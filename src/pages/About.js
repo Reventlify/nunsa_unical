@@ -2,10 +2,15 @@ import Background from "../components/background/Background";
 import Footer from "../components/layout/footer/footer";
 import Nav from "../components/layout/navbar/nav";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
+  const navigate = useNavigate();
   const bgText = () => {
     return <span>ABOUT US</span>;
+  };
+  const executives = () => {
+    return navigate("/executives");
   };
   return (
     <>
@@ -74,7 +79,10 @@ const About = () => {
               whileInView={{ x: 0 }}
               transition={{ duration: 1, type: "spring", bounce: 0.5 }}
             >
-              <button className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa">
+              <button
+                onClick={executives}
+                className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa"
+              >
                 <motion.div
                   className="limiter"
                   whileHover={{ scale: 1.1 }}

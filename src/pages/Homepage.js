@@ -1,5 +1,4 @@
 import Background from "../components/background/Background";
-import BottomSpace from "../components/bottomSpace";
 import Footer from "../components/layout/footer/footer";
 import Nav from "../components/layout/navbar/nav";
 import { motion } from "framer-motion";
