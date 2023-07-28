@@ -52,6 +52,51 @@ const About = () => {
           </p>
         </div>
       </div>
+
+      {/* About us */}
+      <div className="container margingTopOutrageous topicFlex">
+        <div className="tFlex">
+          <div className="container">
+            <div className="lineForHeader">
+              <h2 className="bolder">OUR EXECUTIVES</h2>
+              <div className="theLine"></div>
+            </div>
+          </div>
+          <div className="container blogText">
+            <p className="mt-3">
+              The Executive Council is responsible for the daily running of the
+              association and deals with issues such as publicity, internal and
+              external relations, administration, finances, fundraising,
+              partnerships, and correspondence. It consists of...
+            </p>
+            <motion.div
+              initial={{ x: -100 }}
+              whileInView={{ x: 0 }}
+              transition={{ duration: 1, type: "spring", bounce: 0.5 }}
+            >
+              <button className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa">
+                <motion.div
+                  className="limiter"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 1.1 }}
+                >
+                  Learn more
+                </motion.div>
+              </button>
+            </motion.div>
+          </div>
+        </div>
+        <div className="tFlex">
+          <div className="container">
+            <img
+              className="tImg"
+              loading="lazy"
+              src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=cnYXGcrFsx4AX-61MTX&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDVA002Qwp8reA6WNbH7_t_0Xcoa3gEaOLriqq9o5ml-w&oe=64C837AC"
+              alt="nunsa unical president"
+            />
+          </div>
+        </div>
+      </div>
       <Footer />
     </>
   );
