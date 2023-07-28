@@ -149,7 +149,7 @@ const Homepage = () => {
             </div>
             <div className="container blogText">
               <p className="container">
-                The President of NUNSA and his Executives, recognizing the importance of staying
+                The President of NUNSA UNICAL and his Executives, recognizing the importance of staying
                 technologically up-to-date, took a proactive step by
                 commissioning a developer to create a custom web application for
                 the association. Understanding that the digital ...
