@@ -58,7 +58,50 @@ const About = () => {
         </div>
       </div>
 
-      {/* About us */}
+      {/* About Nunsa */}
+      <div className="container margingTopOutrageous">
+        <div className="container">
+          <div className="lineForHeader">
+            <h2 className="bolder">ABOUT NUNSA</h2>
+            <div className="theLine"></div>
+          </div>
+        </div>
+        <div className="container blogText">
+          <p className="mt-3">
+            The purpose of creating NUNSA was to integrate Nursing students
+            across Universities in Nigeria and to allow its members to take
+            their vision and making them a reality. NUNSA allows its members to
+            create an impact at the local, National and International level on
+            many global health topics through carrying out activities.
+            <br />
+            {/*  */}
+            The Nigerian Universities Nursing Students’ Association (NUNSA) is
+            the only official pre-professional body that caters for the welfare,
+            academic progress of all Nigerian Universities students studying to
+            be future Nurses across the nation and in Diaspora. Our main aim is
+            to motivate and inspire the pristine learning and practice of
+            Nursing in tandem with global standards. To attain this, we function
+            under the mentorship of the Nursing and Midwifery Council of Nigeria
+            (NMCN), motherly care of National Association of Nigeria Nurses and
+            Midwives (NANNM), the tutelage of International Council of Nurses
+            (ICN), and in affiliation to the West Africa Nursing Students
+            Association (WANSA). 3110339891
+            <br />
+            {/*  */}
+          </p>
+          <p className="bold hover">
+            <a
+              className="a nunsa"
+              href="https://nunsa.org.ng/history/"
+              target="_blank"
+            >
+              READ MORE »{" "}
+            </a>
+          </p>
+        </div>
+      </div>
+
+      {/* Executives */}
       <div className="container margingTopOutrageous topicFlex">
         <div className="tFlex">
           <div className="container">
