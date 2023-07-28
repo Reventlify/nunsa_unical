@@ -1,9 +1,9 @@
 import Background from "../components/background/Background";
 import Nav from "../components/layout/navbar/nav";
 
-const About = () => {
+const Executives = () => {
   const bgText = () => {
-    return <span>ABOUT US</span>;
+    return <span>NUNSA UNICAL EXECUTIVES</span>;
   };
   return (
     <>
@@ -13,4 +13,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Executives;

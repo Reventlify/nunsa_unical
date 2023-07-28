@@ -145,7 +145,7 @@ const Nav = () => {
                   whileTap={{ scale: 1 }}
                 >
                   <NavLink
-                    to="/ourteam"
+                    to="/executives"
                     className="nav-link onPhoneNav"
                     style={({ isActive }) =>
                       isActive
