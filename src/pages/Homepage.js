@@ -3,8 +3,10 @@ import BottomSpace from "../components/bottomSpace";
 import Footer from "../components/layout/footer/footer";
 import Nav from "../components/layout/navbar/nav";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
+  const navigate = useNavigate();
   const bgText = () => {
     return (
       <span>
@@ -13,10 +15,16 @@ const Homepage = () => {
       </span>
     );
   };
+  const about = () => {
+    return navigate("/about");
+  };
+  const blog = () => {
+    return navigate("/blog");
+  };
   return (
     <>
       <Nav />
-      <Background button={true} buttonText='Signup' text={bgText} />
+      <Background button={true} buttonText="Signup" text={bgText} />
 
       {/* welcome */}
       <div class="centerDivH margingTopOutrageous">
@@ -92,7 +100,10 @@ const Homepage = () => {
               whileInView={{ x: 0 }}
               transition={{ duration: 1, type: "spring", bounce: 0.5 }}
             >
-              <button className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa">
+              <button
+                onClick={about}
+                className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa"
+              >
                 <motion.div
                   className="limiter"
                   whileHover={{ scale: 1.1 }}
@@ -128,7 +139,10 @@ const Homepage = () => {
             whileInView={{ x: 0 }}
             transition={{ duration: 1, type: "spring", bounce: 0.5 }}
           >
-            <button className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa">
+            <button
+              onClick={blog}
+              className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa"
+            >
               <motion.div
                 className="limiter"
                 whileHover={{ scale: 1.1 }}
