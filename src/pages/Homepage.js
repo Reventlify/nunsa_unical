@@ -5,10 +5,18 @@ import Nav from "../components/layout/navbar/nav";
 import { motion } from "framer-motion";
 
 const Homepage = () => {
+  const bgText = () => {
+    return (
+      <span>
+        NUNSA UNIVERSITY OF
+        <br /> CALABAR CHAPTER
+      </span>
+    );
+  };
   return (
     <>
       <Nav />
-      <Background />
+      <Background button={true} buttonText='Signup' text={bgText} />
 
       {/* welcome */}
       <div class="centerDivH margingTopOutrageous">
@@ -149,10 +157,11 @@ const Homepage = () => {
             </div>
             <div className="container blogText">
               <p className="container">
-                The President of NUNSA UNICAL and his Executives, recognizing the importance of staying
-                technologically up-to-date, took a proactive step by
-                commissioning a developer to create a custom web application for
-                the association. Understanding that the digital ...
+                The President of NUNSA UNICAL and his Executives, recognizing
+                the importance of staying technologically up-to-date, took a
+                proactive step by commissioning a developer to create a custom
+                web application for the association. Understanding that the
+                digital ...
                 {/* landscape plays
                 a crucial role in modernizing organizations, the President's
                 forward-thinking approach aimed to ensure that NUNSA would not
