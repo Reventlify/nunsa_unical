@@ -1,10 +1,15 @@
 import BottomSpace from "../../bottomSpace";
 import classes from "../footer/footer.module.css";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
   const refresh = () => {
     return window.location.reload();
+  };
+  const about = () => {
+    return navigate("/about");
   };
   return (
     <div className={`${classes.footer}`}>
@@ -74,7 +79,7 @@ const Footer = () => {
                 </span>
               </span>
             </div>
-            <div className="hover">
+            <div onClick={about} className="hover">
               <div className="lineForHeader">
                 <h5 className="bolder">About Us</h5>
                 <div className="theLine"></div>
