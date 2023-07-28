@@ -22,10 +22,12 @@ const Footer = () => {
           </div>
         </motion.div>
       </div>
-      <h6 className="center mt-2">
-        Nigerian Universities Nursing Students’ Association (NUNSA), University
-        Of Calabar (UNICAL) Chapter
-      </h6>
+      <div className="container">
+        <h6 className="center mt-2 container">
+          Nigerian Universities Nursing Students’ Association (NUNSA),
+          University Of Calabar (UNICAL) Chapter
+        </h6>
+      </div>
 
       <div className="centerDivH mt-3 mb-5">
         <div className="lineForHeader centerDivH" style={{ width: "100px" }}>
