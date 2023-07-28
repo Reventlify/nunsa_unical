@@ -63,7 +63,7 @@ const Homepage = () => {
               <div className="theLine"></div>
             </div>
           </div>
-          <div className="container">
+          <div className="container blogText">
             <p className="mt-3">
               The Nigerian Universities Nursing Students' Association (NUNSA),
               University of Calabar (UNICAL) Chapter, is a dynamic and
@@ -198,9 +198,6 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-
-      {/* space  */}
-      <BottomSpace />
 
       {/* footer */}
       <Footer />
