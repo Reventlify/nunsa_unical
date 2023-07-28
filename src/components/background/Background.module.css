@@ -1,0 +1,29 @@
+.background {
+  background-color: rgba(132, 129, 125, 0.467);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(https://img.freepik.com/free-photo/group-african-medical-students-posed-outdoor-against-university-door_627829-404.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: "100%";
+  min-height: 550px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.mainFocus {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+.mainFocus h1 {
+  font-weight: 700;
+}
+@media (min-width: 750px) {
+  .mainFocus {
+    font-size: 1.1rem;
+  }
+}

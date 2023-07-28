@@ -1,13 +1,232 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+/* margins */
+.margingTopOutrageous {
+  margin-top: 4rem;
+}
+.mr-1 {
+  margin-right: 0.5rem;
+}
+.mr-2 {
+  margin-right: 1rem;
+}
+.mr-3 {
+  margin-right: 1.5rem;
+}
+.mr-4 {
+  margin-right: 2.5rem;
+}
+.ml-1 {
+  margin-left: 0.5rem;
+}
+.ml-2 {
+  margin-left: 1rem;
+}
+.ml-3 {
+  margin-left: 1.5rem;
+}
+.ml-4 {
+  margin-left: 2.5rem;
+}
+/* margins */
+.paddTB {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.block {
+  display: block;
+}
+.a {
+  text-decoration: none;
+  color: white;
+}
+.or:hover {
+  color: #61ce70;
+}
+.float-right {
+  float: right;
+}
+.browni {
+  color: #fd7e2b;
+}
+.white {
+  color: white;
+}
+.bg-white {
+  background-color: white;
+}
+.nunsa {
+  color: #61ce70;
+}
+.bg-nunsa {
+  background-color: #61ce70;
+}
+.wText {
+  color: #333;
+}
+/* shadow */
+.boxShadow {
+  /* box-shadow: 0 0 10px #000; */
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.bottomShadow {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.hover:hover {
+  cursor: pointer;
+}
+.btnct-nunsa {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding: 5px 15px;
+  background-color: #61ce70;
+  color: white;
+}
+.btnct-nunsa:hover {
+  background-color: #61ce70;
+  border: 1px solid;
+  border-color: #61ce70;
+  color: white;
+}
+.bold {
+  font-weight: 600;
+}
+.bolder {
+  font-weight: 700;
+}
+.limiter {
+  width: fit-content;
+}
+.margAuto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.center {
+  text-align: center;
+}
+.centerDiv {
+  display: flex;
+  height: 550px;
+  justify-content: center;
+  text-align: center;
+}
+.centerDivH {
+  display: flex;
+  height: fit-content;
+  justify-content: center;
+}
+.noBorder {
+  border: none;
+}
+.atGrabNormal-1 {
+  font-size: 1.9rem;
+  color: white;
+}
+.atGrabNormal {
+  font-size: 1.7rem;
+  color: white;
+}
+.onPhoneNav {
+  font-weight: 700;
+}
+.focus {
+  font-weight: 700;
+}
+
+/* topics */
+.lineForHeader {
+  width: fit-content;
+}
+.lineForHeader .theLine {
+  background-color: #61ce70;
+  width: 40%;
+  height: 4px;
+}
+.topicFlex {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+}
+.tFlex {
+  flex: 1;
+  /* display: flex;
+  flex-direction: column; */
+}
+.tImg {
+  width: 100%;
+  height: 100%;
+}
+.blogGrid {
+  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  padding-block: 2rem;
+}
+.blogImage {
+  height: 200px;
+  /* background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 70%); */
+  filter: brightness(95%);
+}
+.blogTitle h3{
+  font-size: 1.2rem;
+}
+.blogText {
+  color: #777;
+}
+.blogFoot{
+  border-top: 1px solid #adadad;
+  color: #adadad;
+}
+.ourserGrid {
+  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  padding-block: 2rem;
+  /* width: min(95%, 70rem); */
+  /* margin-inline: auto; */
+}
+.underlineGrey {
+  /* text-decoration: underline 5px;
+  text-decoration-color: #ff914d; */
+  border-bottom: 1px solid #5c5e64;
+}
+.atGrab {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.cRight {
+  font-size: 0.8rem;
+}
+@media (min-width: 750px) {
+  .onPhoneNav {
+    font-weight: 600;
+  }
+  .margingTopOutrageous {
+    margin-top: 6rem;
+  }
+  .topicFlex {
+    flex-direction: row;
+  }
+  .blogGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .ourserGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .atGrab {
+    font-size: 2.2rem;
+  }
 }
