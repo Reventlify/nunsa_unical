@@ -11,6 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.underline{
+  text-decoration: underline;
+}
 /* margins */
 .margingTopOutrageous {
   margin-top: 4rem;

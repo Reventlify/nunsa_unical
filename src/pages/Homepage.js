@@ -198,6 +198,37 @@ const Homepage = () => {
         </div>
       </div>
 
+      {/* FAQs */}
+      <div className="margingTopOutrageous container">
+        <div className="container">
+          <div className="lineForHeader">
+            <h2 className="bolder">Frequently Asked Questions(FAQs)</h2>
+            <div className="theLine"></div>
+          </div>
+          <motion.div
+            initial={{ x: -100 }}
+            whileInView={{ x: 0 }}
+            transition={{ duration: 1, type: "spring", bounce: 0.5 }}
+          >
+            <button
+              onClick={blog}
+              className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa"
+            >
+              <motion.div
+                className="limiter"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 1.1 }}
+              >
+                View all
+              </motion.div>
+            </button>
+          </motion.div>
+        </div>
+        <div className="container blogText">
+          <p className="underline hover limiter">Who is eligible to register on NUNSA UNICAL's platform?</p>
+          <p className="underline hover limiter">Why was NUNSA UNICAL platform created?</p>
+        </div>
+      </div>
       {/* footer */}
       <Footer />
     </>
