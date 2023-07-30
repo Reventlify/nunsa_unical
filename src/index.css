@@ -140,6 +140,9 @@ code {
 .fullscreen{
   height: 100vh;
 }
+.fullscreen-10{
+  height: 90vh;
+}
 .noBorder {
   border: none;
 }

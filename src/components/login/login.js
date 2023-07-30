@@ -99,7 +99,7 @@ const LoginView = () => {
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="centerDiv fullscreen">
+        <div className="centerDiv fullscreen-10">
           <div className={` mt-2 smartContainer ${classes.bod}`}>
             <img
               className={`block margAuto mb-3`}
