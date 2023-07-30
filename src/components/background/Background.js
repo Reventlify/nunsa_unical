@@ -1,7 +1,7 @@
 import classes from "../background/Background.module.css";
 import { motion } from "framer-motion";
 
-const Background = ({ button, text, buttonText }) => {
+const Background = ({ button, text, buttonText, buttonAction }) => {
   return (
     <div className={`${classes.background}`}>
       <div className={`${classes.mainFocus}`}>
@@ -17,7 +17,7 @@ const Background = ({ button, text, buttonText }) => {
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 1.1 }}
             >
-              <button className="btn btn-lg mt-3 bold bottomShadow btnct btnct-nunsa">
+              <button onClick={buttonAction} className="btn btn-lg mt-3 bold bottomShadow btnct btnct-nunsa">
                 {buttonText}
               </button>
             </motion.div>

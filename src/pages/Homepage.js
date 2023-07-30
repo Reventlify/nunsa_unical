@@ -14,6 +14,9 @@ const Homepage = () => {
       </span>
     );
   };
+  const bgBtAction = () => {
+    return navigate("/signup");
+  };
   const about = () => {
     return navigate("/about");
   };
@@ -23,7 +26,12 @@ const Homepage = () => {
   return (
     <>
       <Nav />
-      <Background button={true} buttonText="Signup" text={bgText} />
+      <Background
+        button={true}
+        buttonText="Signup"
+        buttonAction={bgBtAction}
+        text={bgText}
+      />
 
       {/* welcome */}
       <div class="centerDivH margingTopOutrageous">
@@ -225,8 +233,12 @@ const Homepage = () => {
           </motion.div>
         </div>
         <div className="container blogText">
-          <p className="underline hover limiter">Who is eligible to register on NUNSA UNICAL's platform?</p>
-          <p className="underline hover limiter">Why was NUNSA UNICAL platform created?</p>
+          <p className="underline hover limiter">
+            Who is eligible to register on NUNSA UNICAL's platform?
+          </p>
+          <p className="underline hover limiter">
+            Why was NUNSA UNICAL platform created?
+          </p>
         </div>
       </div>
       {/* footer */}

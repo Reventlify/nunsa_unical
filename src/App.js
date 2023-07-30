@@ -4,6 +4,7 @@ import About from "./pages/About";
 import Blog from "./pages/Blog";
 import Executives from "./pages/Executives";
 import LoginView from "./components/login/login";
+import Signup from "./components/signup/signup";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/blog" element={<Blog />} />
       <Route path="/executives" element={<Executives />} />
       <Route path="/login" element={<LoginView />} />
+      <Route path="/signup" element={<Signup />} />
     </Routes>
   );
 }
