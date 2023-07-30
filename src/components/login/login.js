@@ -1,5 +1,5 @@
 import classes from "../login/login.module.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import { api } from "../../link/API";
@@ -8,6 +8,9 @@ import { motion } from "framer-motion";
 import trim from "lodash.trim";
 
 const LoginView = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
   const location = useLocation();
   // values inputed in the form
   const [email, setEmail] = useState("");
@@ -76,10 +79,19 @@ const LoginView = () => {
   };
   return (
     <>
-      <div className="container" onClick={handlePostBack}>
-        <h5 className="nunsa limiter hover">
-          <i className="fa-solid mt-2 fa-chevron-left"></i> Home
-        </h5>
+      <div className="container">
+        <div className="limiter" onClick={handlePostBack}>
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ from: 0, duration: 1 }}
+          >
+            <div className="limiter">
+              <h5 className="nunsa hover">
+                <i className="fa-solid mt-2 fa-chevron-left"></i> Home
+              </h5>
+            </div>
+          </motion.div>
+        </div>
       </div>
 
       <motion.div
