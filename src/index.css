@@ -43,6 +43,13 @@ code {
   margin-left: 2.5rem;
 }
 /* margins */
+.smartContainer {
+  width: 100%;
+  max-width: 400px;
+  padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .paddTB {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -122,14 +129,16 @@ code {
 }
 .centerDiv {
   display: flex;
-  height: 550px;
   justify-content: center;
-  text-align: center;
+  align-items: center;
 }
 .centerDivH {
   display: flex;
   height: fit-content;
   justify-content: center;
+}
+.fullscreen{
+  height: 100vh;
 }
 .noBorder {
   border: none;
