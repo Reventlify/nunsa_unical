@@ -139,7 +139,7 @@ const About = () => {
           </div>
         </div>
         <div className="tFlex">
-          <div className="container">
+          <div className="container tImgHeight">
             <img
               className="tImg"
               loading="lazy"
