@@ -88,10 +88,19 @@ export default function MobileDashboard() {
             alt="nunsaLogo"
             width="45px"
             className="round"
-          />{" "}
-          &nbsp;&nbsp;
-          <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
-            Ezra Madu
+          />
+          <Typography
+            variant="h6"
+            noWrap
+            sx={{ display: "flex", flexGrow: 1, justifyContent: "center" }}
+            component="div"
+          >
+            <img
+              src="https://nunsa.org.ng/wp-content/uploads/2023/03/download-2.jpeg"
+              alt="nunsaLogo"
+              width="45px"
+              className="round"
+            />
           </Typography>
           <IconButton
             color="inherit"
@@ -156,12 +165,9 @@ export default function MobileDashboard() {
               <ChevronRightIcon />
             )}
           </IconButton>
-          <img
-            src="https://nunsa.org.ng/wp-content/uploads/2021/01/NUNSA_NORTH_NG-scale-1._20200703_023930-scale-1-removebg-preview-1.png"
-            alt="nunsaLogo"
-            width="45px"
-            className="round"
-          />
+          <Typography className="hover" variant="h6" noWrap component="div">
+            Ezra madu
+          </Typography>
         </DrawerHeader>
         <Divider />
         <List>
