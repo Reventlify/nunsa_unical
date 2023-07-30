@@ -1,0 +1,50 @@
+.sideBar {
+  right: auto;
+  left: 0;
+  top: 45px;
+  position: fixed;
+  /* background-color: #CCCCCC; */
+  width: 100%;
+  height: 75px;
+}
+.layHelp{
+  margin-top: 20px;
+}
+.foc{
+  margin-top: 25px;
+}
+
+.dashGrid {
+  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  padding-block: 2rem;
+}
+.content {
+  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  /* padding-block: 2rem; */
+}
+.postImg{
+  height: 350px;
+  width: 100%;
+}
+@media (min-width: 700px) {
+  .sideBar {
+    left: auto;
+    top: auto;
+    right: 0;
+    width: 30%;
+    height: 250px;
+  }
+  .layHelp{
+    margin-top:0;
+  }
+  .dashGrid{
+    grid-template-columns: 2fr 1fr;
+  }
+  .postImg{
+    height: 550px;
+  }
+}

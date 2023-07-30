@@ -18,6 +18,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import classes from "../mobile/mobile.module.css";
+import president from "../../../images/president.jpg";
 
 const drawerWidth = 240;
 
@@ -115,35 +117,115 @@ export default function MobileDashboard() {
       </AppBar>
       <Main open={open}>
         <DrawerHeader />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-          ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-          elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-          sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-          mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-          risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-          purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-          morbi tristique senectus et. Adipiscing elit duis tristique
-          sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        <div className={`${classes.sideBar}`}>
+          <div className="container">
+            <div className={`container ${classes.foc} shadowB roboroboS edit`}>
+              <form className={`d-flex `} role="search">
+                <input
+                  className={`form-control me-2 b`}
+                  type="search"
+                  placeholder="Search NUNSA UNICAL..."
+                  aria-label="Search"
+                />
+                <button
+                  className="btn bottomShadow btnct btnct-nunsa"
+                  type="button"
+                >
+                  <i className="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div className={`${classes.layHelp} ${classes.dashGrid}`}>
+          <div className={`${classes.content}`}>
+            <div className={`${classes.post} margAuto boxShadow`}>
+              <div className={`${classes.postImg}`}>
+                <img
+                  src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=cnYXGcrFsx4AX-61MTX&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDVA002Qwp8reA6WNbH7_t_0Xcoa3gEaOLriqq9o5ml-w&oe=64C837AC"
+                  width="100%"
+                  height="100%"
+                  alt="blog post image"
+                />
+              </div>
+              <div className="blogText">
+                <p className="container mt-3">
+                  The President of NUNSA UNICAL and his Executives, recognizing
+                  the importance of staying technologically up-to-date, took a
+                  proactive step by commissioning a developer to create a custom
+                  web application for the association. Understanding that the
+                  digital ...
+                  {/* landscape plays
+                a crucial role in modernizing organizations, the President's
+                forward-thinking approach aimed to ensure that NUNSA would not
+                lag behind in technology. By investing in this web app, the
+                association can streamline its operations, enhance communication
+                with members, and provide more efficient services to the
+                community they serve. This strategic move demonstrates the
+                President's commitment to keeping NUNSA relevant and responsive
+                in the ever-evolving digital age.*/}
+                </p>
+              </div>
+            </div>
+            <div className={`${classes.post} margAuto boxShadow`}>
+              <div className={`${classes.postImg}`}>
+                <img
+                  src="https://nigerianfinder.com/wp-content/uploads/2021/04/Best-Universities-for-Nursing-in-Nigeria.jpg"
+                  width="100%"
+                  height="100%"
+                  alt="blog post image"
+                />
+              </div>
+              <div className="blogText">
+                <p className="container mt-3">
+                  The President of NUNSA UNICAL and his Executives, recognizing
+                  the importance of staying technologically up-to-date, took a
+                  proactive step by commissioning a developer to create a custom
+                  web application for the association. Understanding that the
+                  digital ...
+                  {/* landscape plays
+                a crucial role in modernizing organizations, the President's
+                forward-thinking approach aimed to ensure that NUNSA would not
+                lag behind in technology. By investing in this web app, the
+                association can streamline its operations, enhance communication
+                with members, and provide more efficient services to the
+                community they serve. This strategic move demonstrates the
+                President's commitment to keeping NUNSA relevant and responsive
+                in the ever-evolving digital age.*/}
+                </p>
+              </div>
+            </div>
+            <div className={`${classes.post} margAuto boxShadow`}>
+              <div className={`${classes.postImg}`}>
+                <img
+                  src={president}
+                  width="100%"
+                  height="100%"
+                  alt="blog post image"
+                />
+              </div>
+              <div className="blogText">
+                <p className="container mt-3">
+                  The President of NUNSA UNICAL and his Executives, recognizing
+                  the importance of staying technologically up-to-date, took a
+                  proactive step by commissioning a developer to create a custom
+                  web application for the association. Understanding that the
+                  digital ...
+                  {/* landscape plays
+                a crucial role in modernizing organizations, the President's
+                forward-thinking approach aimed to ensure that NUNSA would not
+                lag behind in technology. By investing in this web app, the
+                association can streamline its operations, enhance communication
+                with members, and provide more efficient services to the
+                community they serve. This strategic move demonstrates the
+                President's commitment to keeping NUNSA relevant and responsive
+                in the ever-evolving digital age.*/}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className={`${classes.noContent}`}></div>
+        </div>
       </Main>
       <Drawer
         sx={{
