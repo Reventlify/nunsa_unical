@@ -20,6 +20,11 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import classes from "../mobile/mobile.module.css";
 import president from "../../../images/president.jpg";
+import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
+import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 
 const drawerWidth = 240;
 
@@ -135,6 +140,77 @@ export default function MobileDashboard() {
                 </button>
               </form>
             </div>
+
+            <div className={`${classes.sidebarDis} container mt-2`}>
+              <div className="lineForHeader">
+                <h4 className="bolder">Notifications</h4>
+                <div className="theLine"></div>
+              </div>
+              {/* notifications */}
+              <div className={`${classes.notP} mt-3 container bg-white`}>
+                <div className={`${classes.notification}`}>
+                  <div className={`${classes.notIMG}`}>
+                    <img
+                      src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=cnYXGcrFsx4AX-61MTX&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDVA002Qwp8reA6WNbH7_t_0Xcoa3gEaOLriqq9o5ml-w&oe=64C837AC"
+                      alt="nunsaLogo"
+                      width="55px"
+                      className="round"
+                    />
+                  </div>
+                  <div className={`${classes.notText} hover blogText`}>
+                    <span className="block">
+                      <span className="bold">Eze Chinaza</span> made a new post
+                      recently.
+                    </span>
+                    <span className={`block ${classes.notTime}`}>
+                      <span className="nunsa">17 hours ago</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className={`${classes.notP} mt-3 container bg-white`}>
+                <div className={`${classes.notification}`}>
+                  <div className={`${classes.notIMG}`}>
+                    <img
+                      src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=cnYXGcrFsx4AX-61MTX&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDVA002Qwp8reA6WNbH7_t_0Xcoa3gEaOLriqq9o5ml-w&oe=64C837AC"
+                      alt="nunsaLogo"
+                      width="55px"
+                      className="round"
+                    />
+                  </div>
+                  <div className={`${classes.notText} hover blogText`}>
+                    <span className="block">
+                      <span className="bold">Eze Chinaza</span> made a new post
+                      recently.
+                    </span>
+                    <span className={`block ${classes.notTime}`}>
+                      <span className="nunsa">17 hours ago</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className={`${classes.notP} mt-3 container bg-white`}>
+                <div className={`${classes.notification}`}>
+                  <div className={`${classes.notIMG}`}>
+                    <img
+                      src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=cnYXGcrFsx4AX-61MTX&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDVA002Qwp8reA6WNbH7_t_0Xcoa3gEaOLriqq9o5ml-w&oe=64C837AC"
+                      alt="nunsaLogo"
+                      width="55px"
+                      className="round"
+                    />
+                  </div>
+                  <div className={`${classes.notText} hover blogText`}>
+                    <span className="block">
+                      <span className="bold">Eze Chinaza</span> made a new post
+                      recently.
+                    </span>
+                    <span className={`block ${classes.notTime}`}>
+                      <span className="nunsa">17 hours ago</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className={`${classes.layHelp} ${classes.dashGrid}`}>
@@ -149,22 +225,34 @@ export default function MobileDashboard() {
                 />
               </div>
               <div className="blogText">
-                <p className="container mt-3">
-                  The President of NUNSA UNICAL and his Executives, recognizing
-                  the importance of staying technologically up-to-date, took a
-                  proactive step by commissioning a developer to create a custom
-                  web application for the association. Understanding that the
-                  digital ...
-                  {/* landscape plays
-                a crucial role in modernizing organizations, the President's
-                forward-thinking approach aimed to ensure that NUNSA would not
-                lag behind in technology. By investing in this web app, the
-                association can streamline its operations, enhance communication
-                with members, and provide more efficient services to the
-                community they serve. This strategic move demonstrates the
-                President's commitment to keeping NUNSA relevant and responsive
-                in the ever-evolving digital age.*/}
-                </p>
+                <div className={`container mt-3 ${classes.opinion}`}>
+                  <div className={`${classes.like} centerDivH `}>
+                    <ThumbUpAltIcon className="hover nunsa" />
+                    &nbsp;
+                    <span className="">563</span>{" "}
+                  </div>
+                  <div className={`${classes.comment} centerDivH`}>
+                    <ChatBubbleOutlineIcon className="hover" />
+                    &nbsp;
+                    <span className="">32</span>{" "}
+                  </div>
+                  <div className={`${classes.dislike} centerDivH`}>
+                    <ThumbDownOffAltIcon className="hover" />
+                    &nbsp;
+                    <span className="">23</span>{" "}
+                  </div>
+                </div>
+                <div className="container">
+                  <p className="container mt-3 blogText">
+                    <span className="bold">Eze Chinaza</span>&nbsp; The
+                    President of NUNSA UNICAL and his Executives, recognizing
+                    the importance of...
+                    <br />
+                    <span className={`hover ${classes.blogFoot} blogFoot`}>
+                      more
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
             <div className={`${classes.post} margAuto boxShadow`}>
@@ -177,22 +265,34 @@ export default function MobileDashboard() {
                 />
               </div>
               <div className="blogText">
-                <p className="container mt-3">
-                  The President of NUNSA UNICAL and his Executives, recognizing
-                  the importance of staying technologically up-to-date, took a
-                  proactive step by commissioning a developer to create a custom
-                  web application for the association. Understanding that the
-                  digital ...
-                  {/* landscape plays
-                a crucial role in modernizing organizations, the President's
-                forward-thinking approach aimed to ensure that NUNSA would not
-                lag behind in technology. By investing in this web app, the
-                association can streamline its operations, enhance communication
-                with members, and provide more efficient services to the
-                community they serve. This strategic move demonstrates the
-                President's commitment to keeping NUNSA relevant and responsive
-                in the ever-evolving digital age.*/}
-                </p>
+                <div className={`container mt-3 ${classes.opinion}`}>
+                  <div className={`${classes.like} centerDivH`}>
+                    <ThumbUpOffAltIcon className="hover" />
+                    &nbsp;
+                    <span className="">708</span>{" "}
+                  </div>
+                  <div className={`${classes.comment} centerDivH`}>
+                    <ChatBubbleOutlineIcon className="hover" />
+                    &nbsp;
+                    <span className="">93</span>{" "}
+                  </div>
+                  <div className={`${classes.dislike} centerDivH`}>
+                    <ThumbDownAltIcon className="hover nunsa" />
+                    &nbsp;
+                    <span className="">15</span>{" "}
+                  </div>
+                </div>
+                <div className="container">
+                  <p className="container mt-3 blogText">
+                    <span className="bold">Idang Confidence</span>&nbsp; The
+                    President of NUNSA UNICAL and his Executives, recognizing
+                    the importance of...
+                    <br />
+                    <span className={`hover ${classes.blogFoot} blogFoot`}>
+                      more
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
             <div className={`${classes.post} margAuto boxShadow`}>
@@ -205,22 +305,34 @@ export default function MobileDashboard() {
                 />
               </div>
               <div className="blogText">
-                <p className="container mt-3">
-                  The President of NUNSA UNICAL and his Executives, recognizing
-                  the importance of staying technologically up-to-date, took a
-                  proactive step by commissioning a developer to create a custom
-                  web application for the association. Understanding that the
-                  digital ...
-                  {/* landscape plays
-                a crucial role in modernizing organizations, the President's
-                forward-thinking approach aimed to ensure that NUNSA would not
-                lag behind in technology. By investing in this web app, the
-                association can streamline its operations, enhance communication
-                with members, and provide more efficient services to the
-                community they serve. This strategic move demonstrates the
-                President's commitment to keeping NUNSA relevant and responsive
-                in the ever-evolving digital age.*/}
-                </p>
+                <div className={`container mt-3 ${classes.opinion}`}>
+                  <div className={`${classes.like} centerDivH`}>
+                    <ThumbUpOffAltIcon className="hover" />
+                    &nbsp;
+                    <span className="">108</span>{" "}
+                  </div>
+                  <div className={`${classes.comment} centerDivH`}>
+                    <ChatBubbleOutlineIcon className="hover" />
+                    &nbsp;
+                    <span className="">3</span>{" "}
+                  </div>
+                  <div className={`${classes.dislike} centerDivH`}>
+                    <ThumbDownOffAltIcon className="hover" />
+                    &nbsp;
+                    <span className="">300</span>{" "}
+                  </div>
+                </div>
+                <div className="container">
+                  <p className="container mt-3 blogText">
+                    <span className="bold">Etuku Theophilus</span>&nbsp; The
+                    President of NUNSA UNICAL and his Executives, recognizing
+                    the importance of...
+                    <br />
+                    <span className={`hover ${classes.blogFoot} blogFoot`}>
+                      more
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
