@@ -283,6 +283,9 @@ export default function MobileDashboard() {
                     <span className={`hover ${classes.blogFoot} blogFoot`}>
                       more
                     </span>
+                    <span className={`mt-2 block ${classes.blogFoot}`}>
+                      August 10, 2023
+                    </span>
                   </p>
                 </div>
               </div>
@@ -326,6 +329,9 @@ export default function MobileDashboard() {
                     <span className={`hover ${classes.blogFoot} blogFoot`}>
                       more
                     </span>
+                    <span className={`mt-2 block ${classes.blogFoot}`}>
+                      August 10, 2023
+                    </span>
                   </p>
                 </div>
               </div>
@@ -368,6 +374,9 @@ export default function MobileDashboard() {
                     <br />
                     <span className={`hover ${classes.blogFoot} blogFoot`}>
                       more
+                    </span>
+                    <span className={`mt-2 block ${classes.blogFoot}`}>
+                      August 10, 2023
                     </span>
                   </p>
                 </div>
