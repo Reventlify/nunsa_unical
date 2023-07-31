@@ -232,7 +232,7 @@ export default function MobileDashboard() {
                     <span className="">563</span>{" "}
                   </div>
                   <div className={`${classes.comment} centerDivH`}>
-                    <ChatBubbleOutlineIcon className="hover" />
+                    <ChatBubbleOutlineIcon/>
                     &nbsp;
                     <span className="">32</span>{" "}
                   </div>
@@ -272,7 +272,7 @@ export default function MobileDashboard() {
                     <span className="">708</span>{" "}
                   </div>
                   <div className={`${classes.comment} centerDivH`}>
-                    <ChatBubbleOutlineIcon className="hover" />
+                    <ChatBubbleOutlineIcon/>
                     &nbsp;
                     <span className="">93</span>{" "}
                   </div>
@@ -312,7 +312,7 @@ export default function MobileDashboard() {
                     <span className="">108</span>{" "}
                   </div>
                   <div className={`${classes.comment} centerDivH`}>
-                    <ChatBubbleOutlineIcon className="hover" />
+                    <ChatBubbleOutlineIcon/>
                     &nbsp;
                     <span className="">3</span>{" "}
                   </div>
