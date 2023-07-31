@@ -1,8 +1,5 @@
 import * as React from "react";
-import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import CssBaseline from "@mui/material/CssBaseline";
 import List from "@mui/material/List";
@@ -10,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -25,70 +21,102 @@ import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-
-const drawerWidth = 240;
-
-const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginRight: -drawerWidth,
-    ...(open && {
-      transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginRight: 0,
-    }),
-  })
-);
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(["margin", "width"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginRight: drawerWidth,
-  }),
-}));
-
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-  justifyContent: "flex-start",
-}));
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import AppBar from "@mui/material/AppBar";
 
 export default function MobileDashboard() {
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [drawerOpen, setDrawer] = React.useState(false);
+  const [details, setDetails] = React.useState("");
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
+  const toggleDrawer = (anchor, open, stuff) => (event) => {
+    setDetails(stuff);
+    if (
+      event &&
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
   };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
+  const list = (anchor) => (
+    <Box
+      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <IconButton onClick={toggleDrawer(anchor, false)}>
+          <ChevronRightIcon sx={{ fontSize: "40px" }} />
+        </IconButton>
+        <div style={{ paddingTop: "12px" }}>
+          <h3>Ezra Madu</h3>{" "}
+        </div>
+      </div>
+      <List>
+        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {["All mail", "Trash", "Spam"].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
+  const listBottom = (anchor) => (
+    <Box
+      sx={{
+        height: "60vh",
+        width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
+      }}
+      role="presentation"
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      {/* <h1>check</h1> */}
+      <h1>{details}</h1>
+    </Box>
+  );
+
+  const handleCommentDrawer = () => {
+    //  if (drawerOpen) {
+    //    setDrawer(false);
+    //  } else {
+    //   setDrawer(true);
+    //  }
+
+    return setDrawer(true);
   };
 
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar sx={{ backgroundColor: "#61ce70" }} position="fixed" open={open}>
+      <AppBar sx={{ backgroundColor: "#61ce70" }} position="fixed">
         <Toolbar>
           <img
             src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=cnYXGcrFsx4AX-61MTX&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDVA002Qwp8reA6WNbH7_t_0Xcoa3gEaOLriqq9o5ml-w&oe=64C837AC"
@@ -111,21 +139,19 @@ export default function MobileDashboard() {
           </Typography>
           <IconButton
             color="inherit"
-            aria-label="open drawer"
+            // aria-label="open drawer"
             edge="end"
-            onClick={handleDrawerOpen}
-            sx={{ ...(open && { display: "none" }) }}
+            onClick={toggleDrawer("right", true)}
           >
             <MenuIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Main open={open}>
-        <DrawerHeader />
+      <main>
         <div className={`${classes.sideBar}`}>
           <div className="container">
             <div className={`container ${classes.foc} shadowB roboroboS edit`}>
-              <form className={`d-flex `} role="search">
+              <form className={`d-flex`} role="search">
                 <input
                   className={`form-control me-2 b`}
                   type="search"
@@ -214,7 +240,7 @@ export default function MobileDashboard() {
           </div>
         </div>
         <div className={`${classes.layHelp} ${classes.dashGrid}`}>
-          <div className={`${classes.content}`}>
+          <div className={`${classes.content} container`}>
             <div className={`${classes.post} margAuto boxShadow`}>
               <div className={`${classes.postImg}`}>
                 <img
@@ -227,17 +253,20 @@ export default function MobileDashboard() {
               <div className="blogText">
                 <div className={`container mt-3 ${classes.opinion}`}>
                   <div className={`${classes.like} container`}>
-                    <ThumbUpAltIcon className="hover nunsa" />
+                    <ThumbUpAltIcon className="hover bottomShadowHover nunsa" />
                     &nbsp;
                     <span className="">563</span>{" "}
                   </div>
                   <div className={`${classes.comment} centerDivH`}>
-                    <ChatBubbleOutlineIcon />
+                    <div onClick={toggleDrawer("bottom", true, "Eze Chinaza")}>
+                      {" "}
+                      <ChatBubbleOutlineIcon className="hover bottomShadowHover" />
+                    </div>
                     &nbsp;
                     <span className="">32</span>{" "}
                   </div>
                   <div className={`${classes.dislike} centerDivR container`}>
-                    <ThumbDownOffAltIcon className="hover" />
+                    <ThumbDownOffAltIcon className="hover bottomShadowHover" />
                     &nbsp;
                     <span className="">23</span>{" "}
                   </div>
@@ -267,17 +296,20 @@ export default function MobileDashboard() {
               <div className="blogText">
                 <div className={`container mt-3 ${classes.opinion}`}>
                   <div className={`${classes.like} container`}>
-                    <ThumbUpOffAltIcon className="hover" />
+                    <ThumbUpOffAltIcon className="hover bottomShadowHover" />
                     &nbsp;
                     <span className="">708</span>{" "}
                   </div>
                   <div className={`${classes.comment} centerDivH`}>
-                    <ChatBubbleOutlineIcon />
+                    <ChatBubbleOutlineIcon
+                      className="hover bottomShadowHover"
+                      onClick={toggleDrawer("bottom", true, "Idang Confidence")}
+                    />
                     &nbsp;
                     <span className="">93</span>{" "}
                   </div>
                   <div className={`${classes.dislike} centerDivR container`}>
-                    <ThumbDownAltIcon className="hover nunsa" />
+                    <ThumbDownAltIcon className="hover bottomShadowHover nunsa" />
                     &nbsp;
                     <span className="">15</span>{" "}
                   </div>
@@ -307,17 +339,20 @@ export default function MobileDashboard() {
               <div className="blogText">
                 <div className={`container mt-3 ${classes.opinion}`}>
                   <div className={`${classes.like} container`}>
-                    <ThumbUpOffAltIcon className="hover" />
+                    <ThumbUpOffAltIcon className="hover bottomShadowHover" />
                     &nbsp;
                     <span className="">108</span>{" "}
                   </div>
                   <div className={`${classes.comment} centerDivH`}>
-                    <ChatBubbleOutlineIcon />
+                    <ChatBubbleOutlineIcon
+                      className="hover bottomShadowHover"
+                      onClick={toggleDrawer("bottom", true, "Etuku Theophilus")}
+                    />
                     &nbsp;
                     <span className="">3</span>{" "}
                   </div>
                   <div className={`${classes.dislike} centerDivR container`}>
-                    <ThumbDownOffAltIcon className="hover" />
+                    <ThumbDownOffAltIcon className="hover bottomShadowHover" />
                     &nbsp;
                     <span className="">300</span>{" "}
                   </div>
@@ -336,60 +371,26 @@ export default function MobileDashboard() {
               </div>
             </div>
           </div>
-          <div className={`${classes.noContent}`}></div>
+
+          {/* <div className={`${classes.noContent} ${classes.sidebarDis}`}></div> */}
         </div>
-      </Main>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-          },
-        }}
-        variant="persistent"
-        anchor="right"
-        open={open}
+      </main>
+      <SwipeableDrawer
+        anchor={"right"}
+        open={state["right"]}
+        onClose={toggleDrawer("right", false)}
+        onOpen={toggleDrawer("right", true)}
       >
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-          <Typography className="hover" variant="h6" noWrap component="div">
-            Ezra madu
-          </Typography>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
+        {list("right")}
+      </SwipeableDrawer>
+      <SwipeableDrawer
+        anchor={"bottom"}
+        open={state["bottom"]}
+        onClose={toggleDrawer("bottom", false)}
+        onOpen={toggleDrawer("bottom", true)}
+      >
+        {listBottom("bottom")}
+      </SwipeableDrawer>
     </Box>
   );
 }
