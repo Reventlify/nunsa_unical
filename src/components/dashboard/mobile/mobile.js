@@ -94,12 +94,15 @@ export default function MobileDashboard() {
       sx={{
         height: "60vh",
         width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
+        overflowY: "auto",
       }}
       role="presentation"
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      {/* <h1>check</h1> */}
-      <h1>{details}</h1>
+      <div className="container">
+        <h1 className="mt-2 mb-3">Comments</h1>
+        <h5>{details}</h5>
+      </div>
     </Box>
   );
 
