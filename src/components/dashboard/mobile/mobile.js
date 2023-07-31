@@ -226,17 +226,17 @@ export default function MobileDashboard() {
               </div>
               <div className="blogText">
                 <div className={`container mt-3 ${classes.opinion}`}>
-                  <div className={`${classes.like} centerDivH `}>
+                  <div className={`${classes.like} container`}>
                     <ThumbUpAltIcon className="hover nunsa" />
                     &nbsp;
                     <span className="">563</span>{" "}
                   </div>
                   <div className={`${classes.comment} centerDivH`}>
-                    <ChatBubbleOutlineIcon/>
+                    <ChatBubbleOutlineIcon />
                     &nbsp;
                     <span className="">32</span>{" "}
                   </div>
-                  <div className={`${classes.dislike} centerDivH`}>
+                  <div className={`${classes.dislike} centerDivR container`}>
                     <ThumbDownOffAltIcon className="hover" />
                     &nbsp;
                     <span className="">23</span>{" "}
@@ -266,17 +266,17 @@ export default function MobileDashboard() {
               </div>
               <div className="blogText">
                 <div className={`container mt-3 ${classes.opinion}`}>
-                  <div className={`${classes.like} centerDivH`}>
+                  <div className={`${classes.like} container`}>
                     <ThumbUpOffAltIcon className="hover" />
                     &nbsp;
                     <span className="">708</span>{" "}
                   </div>
                   <div className={`${classes.comment} centerDivH`}>
-                    <ChatBubbleOutlineIcon/>
+                    <ChatBubbleOutlineIcon />
                     &nbsp;
                     <span className="">93</span>{" "}
                   </div>
-                  <div className={`${classes.dislike} centerDivH`}>
+                  <div className={`${classes.dislike} centerDivR container`}>
                     <ThumbDownAltIcon className="hover nunsa" />
                     &nbsp;
                     <span className="">15</span>{" "}
@@ -306,17 +306,17 @@ export default function MobileDashboard() {
               </div>
               <div className="blogText">
                 <div className={`container mt-3 ${classes.opinion}`}>
-                  <div className={`${classes.like} centerDivH`}>
+                  <div className={`${classes.like} container`}>
                     <ThumbUpOffAltIcon className="hover" />
                     &nbsp;
                     <span className="">108</span>{" "}
                   </div>
                   <div className={`${classes.comment} centerDivH`}>
-                    <ChatBubbleOutlineIcon/>
+                    <ChatBubbleOutlineIcon />
                     &nbsp;
                     <span className="">3</span>{" "}
                   </div>
-                  <div className={`${classes.dislike} centerDivH`}>
+                  <div className={`${classes.dislike} centerDivR container`}>
                     <ThumbDownOffAltIcon className="hover" />
                     &nbsp;
                     <span className="">300</span>{" "}

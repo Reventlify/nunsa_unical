@@ -24,7 +24,6 @@
   gap: 2rem;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  /* padding-block: 2rem; */
 }
 .postImg {
   height: 350px;
@@ -78,7 +77,7 @@
     left: auto;
     top: auto;
     right: 0;
-    width: 30%;
+    width: 35%;
     height: 83vh;
     background-color: #f7f7f7c7;
     overflow-y: scroll;
@@ -93,6 +92,7 @@
   }
   .dashGrid {
     grid-template-columns: 2fr 1fr;
+    width: min(95%, 70rem);
   }
   .postImg {
     height: 550px;

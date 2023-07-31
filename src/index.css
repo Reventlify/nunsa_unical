@@ -140,6 +140,11 @@ code {
   height: fit-content;
   justify-content: center;
 }
+.centerDivR {
+  display: flex;
+  height: fit-content;
+  justify-content: right;
+}
 .fullscreen{
   height: 100vh;
 }
