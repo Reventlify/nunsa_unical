@@ -1,5 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
+import { NavLink } from "react-router-dom";
 import Toolbar from "@mui/material/Toolbar";
 import CssBaseline from "@mui/material/CssBaseline";
 import List from "@mui/material/List";
@@ -11,10 +12,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
-//
 import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import LogoutIcon from "@mui/icons-material/Logout";
-//
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -22,7 +21,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import AppBar from "@mui/material/AppBar";
 
@@ -71,24 +69,48 @@ export default function MobileDashboard({ children }) {
           "Election",
         ].map((text, index) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index === 0 ? (
-                  <DashboardIcon />
-                ) : index === 1 ? (
-                  <SchoolIcon />
-                ) : index === 2 ? (
-                  <MailIcon />
-                ) : index === 3 ? (
-                  <NotificationsIcon />
-                ) : index === 4 ? (
-                  <PictureAsPdfIcon />
-                ) : (
-                  <HowToRegIcon />
-                )}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
+            <NavLink
+              to={`/student/${text.toLowerCase()}`}
+              className="nav-link onPhoneNav"
+              style={({ isActive }) =>
+                isActive
+                  ? {
+                      color: "#61CE70",
+                    }
+                  : {}
+              }
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  <NavLink
+                    to={`/student/${text.toLowerCase()}`}
+                    className="nav-link onPhoneNav"
+                    style={({ isActive }) =>
+                      isActive
+                        ? {
+                            color: "#61CE70",
+                          }
+                        : {}
+                    }
+                  >
+                    {index === 0 ? (
+                      <DashboardIcon />
+                    ) : index === 1 ? (
+                      <SchoolIcon />
+                    ) : index === 2 ? (
+                      <MailIcon />
+                    ) : index === 3 ? (
+                      <NotificationsIcon />
+                    ) : index === 4 ? (
+                      <PictureAsPdfIcon />
+                    ) : (
+                      <HowToRegIcon />
+                    )}
+                  </NavLink>
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </NavLink>
           </ListItem>
         ))}
       </List>
