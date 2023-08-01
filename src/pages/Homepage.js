@@ -34,7 +34,7 @@ const Homepage = () => {
       />
 
       {/* welcome */}
-      <div class="centerDivH margingTopOutrageous">
+      <div className="centerDivH margingTopOutrageous">
         <img
           decoding="async"
           width="50"
@@ -44,7 +44,7 @@ const Homepage = () => {
           loading="lazy"
         />
       </div>
-      <div class="centerDivH mt-4 wText container">
+      <div className="centerDivH mt-4 wText container">
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           whileInView={{ opacity: 1, scale: 1 }}

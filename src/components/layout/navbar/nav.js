@@ -94,7 +94,7 @@ const Nav = () => {
                   </NavLink>
                 </motion.div>
               </li>
-              <li className="nav-item bottomShadow">
+              <li className="nav-item bottomShadow smallScreen">
                 <motion.div
                   className="container"
                   whileHover={{ scale: 1.1 }}
@@ -179,6 +179,28 @@ const Nav = () => {
                     }
                   >
                     Blog
+                  </NavLink>
+                </motion.div>
+              </li>
+              <li className="nav-item bottomShadow bigScreen">
+                <motion.div
+                  className="container"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 1 }}
+                >
+                  <NavLink
+                    to="/login"
+                    className="nav-link onPhoneNav"
+                    style={({ isActive }) =>
+                      isActive
+                        ? {
+                            color: "#61CE70",
+                            borderBottom: "2px solid #61CE70",
+                          }
+                        : { color: "white", borderBottom: "none" }
+                    }
+                  >
+                    Login
                   </NavLink>
                 </motion.div>
               </li>

@@ -246,6 +246,12 @@ code {
 .cRight {
   font-size: 0.8rem;
 }
+.bigScreen{
+  display: none;
+}
+.smallScreen{
+  display: block;
+}
 @media (min-width: 750px) {
   .onPhoneNav {
     font-weight: 600;
@@ -264,5 +270,11 @@ code {
   }
   .atGrab {
     font-size: 2.2rem;
+  }
+  .bigScreen{
+    display: block;
+  }
+  .smallScreen{
+    display: none;
   }
 }
