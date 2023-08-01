@@ -1,6 +1,5 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { NavLink } from "react-router-dom";
 import Toolbar from "@mui/material/Toolbar";
 import CssBaseline from "@mui/material/CssBaseline";
 import List from "@mui/material/List";
@@ -23,14 +22,23 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import AppBar from "@mui/material/AppBar";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function MobileDashboard({ children }) {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const parentPath = pathname.slice(0, 8);
+  const page = pathname.slice(9, pathname.length);
   const [state, setState] = React.useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
   });
+
+  const navMaker = (text) => {
+    navigate(`${parentPath}/${text}`);
+  };
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -69,48 +77,45 @@ export default function MobileDashboard({ children }) {
           "Election",
         ].map((text, index) => (
           <ListItem key={text} disablePadding>
-            <NavLink
-              to={`/student/${text.toLowerCase()}`}
-              className="nav-link onPhoneNav"
-              style={({ isActive }) =>
-                isActive
-                  ? {
-                      color: "#61CE70",
-                    }
-                  : {}
-              }
+            <ListItemButton
+              onClick={() => {
+                navMaker(text.toLowerCase());
+              }}
             >
-              <ListItemButton>
-                <ListItemIcon>
-                  <NavLink
-                    to={`/student/${text.toLowerCase()}`}
-                    className="nav-link onPhoneNav"
-                    style={({ isActive }) =>
-                      isActive
-                        ? {
-                            color: "#61CE70",
-                          }
-                        : {}
-                    }
-                  >
-                    {index === 0 ? (
-                      <DashboardIcon />
-                    ) : index === 1 ? (
-                      <SchoolIcon />
-                    ) : index === 2 ? (
-                      <MailIcon />
-                    ) : index === 3 ? (
-                      <NotificationsIcon />
-                    ) : index === 4 ? (
-                      <PictureAsPdfIcon />
-                    ) : (
-                      <HowToRegIcon />
-                    )}
-                  </NavLink>
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </NavLink>
+              <ListItemIcon
+                sx={() =>
+                  page === text.toLowerCase()
+                    ? {
+                        color: "#61CE70",
+                      }
+                    : {}
+                }
+              >
+                {index === 0 ? (
+                  <DashboardIcon />
+                ) : index === 1 ? (
+                  <SchoolIcon />
+                ) : index === 2 ? (
+                  <MailIcon />
+                ) : index === 3 ? (
+                  <NotificationsIcon />
+                ) : index === 4 ? (
+                  <PictureAsPdfIcon />
+                ) : (
+                  <HowToRegIcon />
+                )}
+              </ListItemIcon>
+              <ListItemText
+                sx={() =>
+                  page === text.toLowerCase()
+                    ? {
+                        color: "#61CE70",
+                      }
+                    : {}
+                }
+                primary={text}
+              />
+            </ListItemButton>
           </ListItem>
         ))}
       </List>
