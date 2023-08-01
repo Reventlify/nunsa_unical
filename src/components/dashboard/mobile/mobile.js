@@ -59,12 +59,19 @@ export default function MobileDashboard({ children }) {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <div style={{ display: "flex", flexDirection: "row" }}>
-        <IconButton onClick={toggleDrawer(anchor, false)}>
-          <ChevronRightIcon sx={{ fontSize: "40px" }} />
-        </IconButton>
-        <div style={{ paddingTop: "12px" }}>
-          <h3>Ezra Madu</h3>{" "}
+      <div
+        style={{ display: "flex", flexDirection: "row", paddingTop: "12px", paddingLeft: '12px' }}
+      >
+        <img
+          src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=8WNPXV6yNF0AX_-7dgq&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDk4GuES7kMlVHdKo6i7kaBZxBkjnQDLYWNkNS1FE7dHw&oe=64CE266C"
+          alt="nunsaLogo"
+          width="45px"
+          height="45px"
+          className="round"
+        />{" "}
+        &nbsp;&nbsp;&nbsp;
+        <div style={{ display: "flex", alignItems: 'center'}}>
+          <h5>Ezra Madu</h5>{" "}
         </div>
       </div>
       <List>
