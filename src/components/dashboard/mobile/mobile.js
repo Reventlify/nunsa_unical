@@ -14,19 +14,10 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import classes from "../studentDash.module.css";
-import president from "../../../images/president.jpg";
-import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
-import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
-import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import AppBar from "@mui/material/AppBar";
 
-export default function MobileDashboard() {
-  const [drawerOpen, setDrawer] = React.useState(false);
-  const [details, setDetails] = React.useState("");
+export default function MobileDashboard({children}) {
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -34,8 +25,7 @@ export default function MobileDashboard() {
     right: false,
   });
 
-  const toggleDrawer = (anchor, open, stuff) => (event) => {
-    setDetails(stuff);
+  const toggleDrawer = (anchor, open) => (event) => {
     if (
       event &&
       event.type === "keydown" &&
@@ -89,32 +79,6 @@ export default function MobileDashboard() {
       </List>
     </Box>
   );
-  const listBottom = (anchor) => (
-    <Box
-      sx={{
-        height: "60vh",
-        width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
-        overflowY: "auto",
-      }}
-      role="presentation"
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <div className="container">
-        <h1 className="mt-2 mb-3">Comments</h1>
-        <h5>{details}</h5>
-      </div>
-    </Box>
-  );
-
-  const handleCommentDrawer = () => {
-    //  if (drawerOpen) {
-    //    setDrawer(false);
-    //  } else {
-    //   setDrawer(true);
-    //  }
-
-    return setDrawer(true);
-  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -151,244 +115,7 @@ export default function MobileDashboard() {
         </Toolbar>
       </AppBar>
       <main>
-        <div className={`${classes.sideBar}`}>
-          <div className="container">
-            <div className={`container ${classes.foc} shadowB roboroboS edit`}>
-              <form className={`d-flex`} role="search">
-                <input
-                  className={`form-control me-2 b`}
-                  type="search"
-                  placeholder="Search NUNSA UNICAL..."
-                  aria-label="Search"
-                />
-                <button
-                  className="btn bottomShadow btnct btnct-nunsa"
-                  type="button"
-                >
-                  <i className="fa-solid fa-magnifying-glass"></i>
-                </button>
-              </form>
-            </div>
-
-            <div className={`${classes.sidebarDis} container mt-2`}>
-              <div className="lineForHeader">
-                <h4 className="bolder">Notifications</h4>
-                <div className="theLine"></div>
-              </div>
-              {/* notifications */}
-              <div className={`${classes.notP} mt-3 container bg-white`}>
-                <div className={`${classes.notification}`}>
-                  <div className={`${classes.notIMG}`}>
-                    <img
-                      src="https://remoteok.com/cdn-cgi/image/format=auto,fit=cover,width=500,height=500,quality=50/https://remoteok.com/assets/img/users/278d0ea32774f18ff37d2d58a4d70189.jpg?1683009009"
-                      alt="user"
-                      width="60px"
-                      height="100%"
-                      className="round"
-                    />
-                  </div>
-                  <div className={`${classes.notText} hover blogText`}>
-                    <span className="block">
-                      <span className="bold">Eze Chinaza</span> made a new post
-                      recently.
-                    </span>
-                    <span className={`block ${classes.notTime}`}>
-                      <span className="nunsa">17 hours ago</span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className={`${classes.notP} mt-3 container bg-white`}>
-                <div className={`${classes.notification}`}>
-                  <div className={`${classes.notIMG}`}>
-                    <img
-                      src={president}
-                      alt="user"
-                      width="60px"
-                      height="100%"
-                      className="round"
-                    />
-                  </div>
-                  <div className={`${classes.notText} hover blogText`}>
-                    <span className="block">
-                      <span className="bold">Eze Chinaza</span> made a new post
-                      recently.
-                    </span>
-                    <span className={`block ${classes.notTime}`}>
-                      <span className="nunsa">17 hours ago</span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className={`${classes.notP} mt-3 container bg-white`}>
-                <div className={`${classes.notification}`}>
-                  <div className={`${classes.notIMG}`}>
-                    <img
-                      src={president}
-                      alt="user"
-                      width="60px"
-                      height="100%"
-                      className="round"
-                    />
-                  </div>
-                  <div className={`${classes.notText} hover blogText`}>
-                    <span className="block">
-                      <span className="bold">Eze Chinaza</span> made a new post
-                      recently.
-                    </span>
-                    <span className={`block ${classes.notTime}`}>
-                      <span className="nunsa">17 hours ago</span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={`${classes.layHelp} ${classes.dashGrid}`}>
-          <div className={`${classes.content} container`}>
-            <div className={`${classes.post} margAuto boxShadow`}>
-              <div className={`${classes.postImg}`}>
-                <img
-                  src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=8WNPXV6yNF0AX_-7dgq&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDk4GuES7kMlVHdKo6i7kaBZxBkjnQDLYWNkNS1FE7dHw&oe=64CE266C"
-                  width="100%"
-                  height="100%"
-                  alt="blog post image"
-                />
-              </div>
-              <div className="blogText">
-                <div className={`container mt-3 ${classes.opinion}`}>
-                  <div className={`${classes.like} container`}>
-                    <ThumbUpAltIcon className="hover nunsa" />
-                    &nbsp;
-                    <span className="">563</span>{" "}
-                  </div>
-                  <div className={`${classes.comment} centerDivH`}>
-                    <div onClick={toggleDrawer("bottom", true, "Eze Chinaza")}>
-                      {" "}
-                      <ChatBubbleOutlineIcon className="hover" />
-                    </div>
-                    &nbsp;
-                    <span className="">32</span>{" "}
-                  </div>
-                  <div className={`${classes.dislike} centerDivR container`}>
-                    <ThumbDownOffAltIcon className="hover" />
-                    &nbsp;
-                    <span className="">23</span>{" "}
-                  </div>
-                </div>
-                <div className="container">
-                  <p className="container mt-3 blogText">
-                    <span className="bold">Eze Chinaza</span>&nbsp; The
-                    President of NUNSA UNICAL and his Executives, recognizing
-                    the importance of...
-                    <br />
-                    <span className={`hover ${classes.blogFoot} blogFoot`}>
-                      more
-                    </span>
-                    <span className={`mt-2 block ${classes.blogFoot}`}>
-                      August 10, 2023
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className={`${classes.post} margAuto boxShadow`}>
-              <div className={`${classes.postImg}`}>
-                <img
-                  src="https://nigerianfinder.com/wp-content/uploads/2021/04/Best-Universities-for-Nursing-in-Nigeria.jpg"
-                  width="100%"
-                  height="100%"
-                  alt="blog post image"
-                />
-              </div>
-              <div className="blogText">
-                <div className={`container mt-3 ${classes.opinion}`}>
-                  <div className={`${classes.like} container`}>
-                    <ThumbUpOffAltIcon className="hover" />
-                    &nbsp;
-                    <span className="">708</span>{" "}
-                  </div>
-                  <div className={`${classes.comment} centerDivH`}>
-                    <ChatBubbleOutlineIcon
-                      className="hover"
-                      onClick={toggleDrawer("bottom", true, "Idang Confidence")}
-                    />
-                    &nbsp;
-                    <span className="">93</span>{" "}
-                  </div>
-                  <div className={`${classes.dislike} centerDivR container`}>
-                    <ThumbDownAltIcon className="hover nunsa" />
-                    &nbsp;
-                    <span className="">15</span>{" "}
-                  </div>
-                </div>
-                <div className="container">
-                  <p className="container mt-3 blogText">
-                    <span className="bold">Idang Confidence</span>&nbsp; The
-                    President of NUNSA UNICAL and his Executives, recognizing
-                    the importance of...
-                    <br />
-                    <span className={`hover ${classes.blogFoot} blogFoot`}>
-                      more
-                    </span>
-                    <span className={`mt-2 block ${classes.blogFoot}`}>
-                      August 10, 2023
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className={`${classes.post} margAuto boxShadow`}>
-              <div className={`${classes.postImg}`}>
-                <img
-                  src={president}
-                  width="100%"
-                  height="100%"
-                  alt="blog post image"
-                />
-              </div>
-              <div className="blogText">
-                <div className={`container mt-3 ${classes.opinion}`}>
-                  <div className={`${classes.like} container`}>
-                    <ThumbUpOffAltIcon className="hover" />
-                    &nbsp;
-                    <span className="">108</span>{" "}
-                  </div>
-                  <div className={`${classes.comment} centerDivH`}>
-                    <ChatBubbleOutlineIcon
-                      className="hover"
-                      onClick={toggleDrawer("bottom", true, "Etuku Theophilus")}
-                    />
-                    &nbsp;
-                    <span className="">3</span>{" "}
-                  </div>
-                  <div className={`${classes.dislike} centerDivR container`}>
-                    <ThumbDownOffAltIcon className="hover" />
-                    &nbsp;
-                    <span className="">300</span>{" "}
-                  </div>
-                </div>
-                <div className="container">
-                  <p className="container mt-3 blogText">
-                    <span className="bold">Etuku Theophilus</span>&nbsp; The
-                    President of NUNSA UNICAL and his Executives, recognizing
-                    the importance of...
-                    <br />
-                    <span className={`hover ${classes.blogFoot} blogFoot`}>
-                      more
-                    </span>
-                    <span className={`mt-2 block ${classes.blogFoot}`}>
-                      August 10, 2023
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* <div className={`${classes.noContent} ${classes.sidebarDis}`}></div> */}
-        </div>
+        {children}
       </main>
       <SwipeableDrawer
         anchor={"right"}
@@ -397,14 +124,6 @@ export default function MobileDashboard() {
         onOpen={toggleDrawer("right", true)}
       >
         {list("right")}
-      </SwipeableDrawer>
-      <SwipeableDrawer
-        anchor={"bottom"}
-        open={state["bottom"]}
-        onClose={toggleDrawer("bottom", false)}
-        onOpen={toggleDrawer("bottom", true)}
-      >
-        {listBottom("bottom")}
       </SwipeableDrawer>
     </Box>
   );
