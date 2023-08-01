@@ -5,6 +5,16 @@ import CssBaseline from "@mui/material/CssBaseline";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import SchoolIcon from "@mui/icons-material/School";
+import MailIcon from "@mui/icons-material/Mail";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
+//
+import ContactSupportIcon from "@mui/icons-material/ContactSupport";
+import LogoutIcon from "@mui/icons-material/Logout";
+//
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -13,11 +23,10 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import AppBar from "@mui/material/AppBar";
 
-export default function MobileDashboard({children}) {
+export default function MobileDashboard({ children }) {
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -53,11 +62,30 @@ export default function MobileDashboard({children}) {
         </div>
       </div>
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {[
+          "Dashboard",
+          "Class",
+          "Messages",
+          "Notifications",
+          "Courses",
+          "Election",
+        ].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {index === 0 ? (
+                  <DashboardIcon />
+                ) : index === 1 ? (
+                  <SchoolIcon />
+                ) : index === 2 ? (
+                  <MailIcon />
+                ) : index === 3 ? (
+                  <NotificationsIcon />
+                ) : index === 4 ? (
+                  <PictureAsPdfIcon />
+                ) : (
+                  <HowToRegIcon />
+                )}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
@@ -66,11 +94,11 @@ export default function MobileDashboard({children}) {
       </List>
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
+        {["Support", "Logout"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {index === 0 ? <ContactSupportIcon /> : <LogoutIcon />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
@@ -114,9 +142,7 @@ export default function MobileDashboard({children}) {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <main>
-        {children}
-      </main>
+      <main>{children}</main>
       <SwipeableDrawer
         anchor={"right"}
         open={state["right"]}
