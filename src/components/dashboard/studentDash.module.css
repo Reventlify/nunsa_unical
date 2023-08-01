@@ -65,6 +65,7 @@
 }
 .notIMG{
   flex: 1;
+  height: 60px;
 }
 .notText{
   flex: 3;

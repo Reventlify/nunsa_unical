@@ -14,7 +14,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import classes from "../mobile/mobile.module.css";
+import classes from "../studentDash.module.css";
 import president from "../../../images/president.jpg";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
@@ -122,7 +122,7 @@ export default function MobileDashboard() {
       <AppBar sx={{ backgroundColor: "#61ce70" }} position="fixed">
         <Toolbar>
           <img
-            src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=cnYXGcrFsx4AX-61MTX&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDVA002Qwp8reA6WNbH7_t_0Xcoa3gEaOLriqq9o5ml-w&oe=64C837AC"
+            src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=8WNPXV6yNF0AX_-7dgq&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDk4GuES7kMlVHdKo6i7kaBZxBkjnQDLYWNkNS1FE7dHw&oe=64CE266C"
             alt="nunsaLogo"
             width="45px"
             className="round"
@@ -180,9 +180,10 @@ export default function MobileDashboard() {
                 <div className={`${classes.notification}`}>
                   <div className={`${classes.notIMG}`}>
                     <img
-                      src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=cnYXGcrFsx4AX-61MTX&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDVA002Qwp8reA6WNbH7_t_0Xcoa3gEaOLriqq9o5ml-w&oe=64C837AC"
-                      alt="nunsaLogo"
-                      width="55px"
+                      src="https://remoteok.com/cdn-cgi/image/format=auto,fit=cover,width=500,height=500,quality=50/https://remoteok.com/assets/img/users/278d0ea32774f18ff37d2d58a4d70189.jpg?1683009009"
+                      alt="user"
+                      width="60px"
+                      height="100%"
                       className="round"
                     />
                   </div>
@@ -201,9 +202,10 @@ export default function MobileDashboard() {
                 <div className={`${classes.notification}`}>
                   <div className={`${classes.notIMG}`}>
                     <img
-                      src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=cnYXGcrFsx4AX-61MTX&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDVA002Qwp8reA6WNbH7_t_0Xcoa3gEaOLriqq9o5ml-w&oe=64C837AC"
-                      alt="nunsaLogo"
-                      width="55px"
+                      src={president}
+                      alt="user"
+                      width="60px"
+                      height="100%"
                       className="round"
                     />
                   </div>
@@ -222,9 +224,10 @@ export default function MobileDashboard() {
                 <div className={`${classes.notification}`}>
                   <div className={`${classes.notIMG}`}>
                     <img
-                      src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=cnYXGcrFsx4AX-61MTX&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDVA002Qwp8reA6WNbH7_t_0Xcoa3gEaOLriqq9o5ml-w&oe=64C837AC"
-                      alt="nunsaLogo"
-                      width="55px"
+                      src={president}
+                      alt="user"
+                      width="60px"
+                      height="100%"
                       className="round"
                     />
                   </div>
@@ -247,7 +250,7 @@ export default function MobileDashboard() {
             <div className={`${classes.post} margAuto boxShadow`}>
               <div className={`${classes.postImg}`}>
                 <img
-                  src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=cnYXGcrFsx4AX-61MTX&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDVA002Qwp8reA6WNbH7_t_0Xcoa3gEaOLriqq9o5ml-w&oe=64C837AC"
+                  src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=8WNPXV6yNF0AX_-7dgq&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDk4GuES7kMlVHdKo6i7kaBZxBkjnQDLYWNkNS1FE7dHw&oe=64CE266C"
                   width="100%"
                   height="100%"
                   alt="blog post image"
@@ -256,20 +259,20 @@ export default function MobileDashboard() {
               <div className="blogText">
                 <div className={`container mt-3 ${classes.opinion}`}>
                   <div className={`${classes.like} container`}>
-                    <ThumbUpAltIcon className="hover bottomShadowHover nunsa" />
+                    <ThumbUpAltIcon className="hover nunsa" />
                     &nbsp;
                     <span className="">563</span>{" "}
                   </div>
                   <div className={`${classes.comment} centerDivH`}>
                     <div onClick={toggleDrawer("bottom", true, "Eze Chinaza")}>
                       {" "}
-                      <ChatBubbleOutlineIcon className="hover bottomShadowHover" />
+                      <ChatBubbleOutlineIcon className="hover" />
                     </div>
                     &nbsp;
                     <span className="">32</span>{" "}
                   </div>
                   <div className={`${classes.dislike} centerDivR container`}>
-                    <ThumbDownOffAltIcon className="hover bottomShadowHover" />
+                    <ThumbDownOffAltIcon className="hover" />
                     &nbsp;
                     <span className="">23</span>{" "}
                   </div>
@@ -302,20 +305,20 @@ export default function MobileDashboard() {
               <div className="blogText">
                 <div className={`container mt-3 ${classes.opinion}`}>
                   <div className={`${classes.like} container`}>
-                    <ThumbUpOffAltIcon className="hover bottomShadowHover" />
+                    <ThumbUpOffAltIcon className="hover" />
                     &nbsp;
                     <span className="">708</span>{" "}
                   </div>
                   <div className={`${classes.comment} centerDivH`}>
                     <ChatBubbleOutlineIcon
-                      className="hover bottomShadowHover"
+                      className="hover"
                       onClick={toggleDrawer("bottom", true, "Idang Confidence")}
                     />
                     &nbsp;
                     <span className="">93</span>{" "}
                   </div>
                   <div className={`${classes.dislike} centerDivR container`}>
-                    <ThumbDownAltIcon className="hover bottomShadowHover nunsa" />
+                    <ThumbDownAltIcon className="hover nunsa" />
                     &nbsp;
                     <span className="">15</span>{" "}
                   </div>
@@ -348,20 +351,20 @@ export default function MobileDashboard() {
               <div className="blogText">
                 <div className={`container mt-3 ${classes.opinion}`}>
                   <div className={`${classes.like} container`}>
-                    <ThumbUpOffAltIcon className="hover bottomShadowHover" />
+                    <ThumbUpOffAltIcon className="hover" />
                     &nbsp;
                     <span className="">108</span>{" "}
                   </div>
                   <div className={`${classes.comment} centerDivH`}>
                     <ChatBubbleOutlineIcon
-                      className="hover bottomShadowHover"
+                      className="hover"
                       onClick={toggleDrawer("bottom", true, "Etuku Theophilus")}
                     />
                     &nbsp;
                     <span className="">3</span>{" "}
                   </div>
                   <div className={`${classes.dislike} centerDivR container`}>
-                    <ThumbDownOffAltIcon className="hover bottomShadowHover" />
+                    <ThumbDownOffAltIcon className="hover" />
                     &nbsp;
                     <span className="">300</span>{" "}
                   </div>
