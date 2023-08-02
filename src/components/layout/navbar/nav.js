@@ -182,7 +182,7 @@ const Nav = () => {
                   </NavLink>
                 </motion.div>
               </li>
-              <li className="nav-item bottomShadow bigScreen">
+              <li className="nav-item boxShadow bigScreen">
                 <motion.div
                   className="container"
                   whileHover={{ scale: 1.1 }}

@@ -13,6 +13,7 @@ import DashSearchAndNotifications from "./dashSearch&Not/dashSearch&Not";
 
 const StudentDash = ({}) => {
   const [details, setDetails] = useState("");
+  const [display, setDisplay] = useState(false);
   const [state, setState] = useState({
     top: false,
     left: false,
@@ -22,6 +23,7 @@ const StudentDash = ({}) => {
 
   const toggleDrawer = (anchor, open, stuff) => (event) => {
     setDetails(stuff);
+    display ? setDisplay(false) : setDisplay(true);
     if (
       event &&
       event.type === "keydown" &&
@@ -93,10 +95,24 @@ const StudentDash = ({}) => {
                   <span className={`hover ${classes.blogFoot} blogFoot`}>
                     more
                   </span>
-                  <span className={`mt-2 block ${classes.blogFoot}`}>
+                  <span className={`mt-2 block ${classes.blogFoot}`} style={{fontSize: '12px'}}>
                     August 10, 2023
                   </span>
                 </p>
+
+                <div className="mb-3 container">
+                  <textarea
+                    placeholder="Add a comment..."
+                    className={`form-control onfocusOpinion ${classes.studOpinion}`}
+                    autoComplete="off"
+                    autoCorrect="off" 
+                    id="regimeDescription"
+                    aria-describedby="regimeDescriptionHelp"
+                    // value={regimeDescription}
+                    // onChange={(e) => setRegimeDescription(trim(e.target.value))}
+                    required
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -139,7 +155,7 @@ const StudentDash = ({}) => {
                   <span className={`hover ${classes.blogFoot} blogFoot`}>
                     more
                   </span>
-                  <span className={`mt-2 block ${classes.blogFoot}`}>
+                  <span className={`mt-2 block ${classes.blogFoot}`} style={{fontSize: '12px'}}>
                     August 10, 2023
                   </span>
                 </p>
@@ -185,7 +201,7 @@ const StudentDash = ({}) => {
                   <span className={`hover ${classes.blogFoot} blogFoot`}>
                     more
                   </span>
-                  <span className={`mt-2 block ${classes.blogFoot}`}>
+                  <span className={`mt-2 block ${classes.blogFoot}`} style={{fontSize: '12px'}}>
                     August 10, 2023
                   </span>
                 </p>
@@ -197,6 +213,7 @@ const StudentDash = ({}) => {
         {/* <div className={`${classes.noContent} ${classes.sidebarDis}`}></div> */}
       </div>
       <SwipeableDrawer
+        sx={() => (display ? { display: "block" } : { display: "none" })}
         anchor={"bottom"}
         open={state["bottom"]}
         onClose={toggleDrawer("bottom", false)}

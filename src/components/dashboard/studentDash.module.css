@@ -29,49 +29,63 @@
   height: 350px;
   width: 100%;
 }
-.opinion{
+.opinion {
   display: flex;
   flex-direction: row;
 }
-.like{
+.like {
   flex: 1;
 }
-.dislike{
+.dislike {
   flex: 1;
 }
-.comment{
+.comment {
   flex: 1;
 }
-.blogFoot{
+.blogFoot {
   border-top: none;
 }
 .sidebarDis {
   display: none;
 }
-.notP{
+.notP {
   padding: 5px;
   border-top-left-radius: 7px !important;
   border-top-right-radius: 7px !important;
   border-bottom-right-radius: 7px !important;
   border-bottom-left-radius: 7px !important;
 }
-.notP:hover{
+.notP:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.notification{
+.notification {
   display: flex;
   flex-direction: row;
   height: auto;
 }
-.notIMG{
+.notIMG {
   flex: 1;
   height: 60px;
 }
-.notText{
+.notText {
   flex: 3;
 }
-.notTime{
+.notTime {
   font-size: 12px;
+}
+.studOpinion {
+  /* background-color: #f0f2f5; */
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  resize: none;
+  padding-left: 0;
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+.studOpinion::placeholder {
+  color: #adadad;
 }
 @media (min-width: 572px) {
   .sideBar {
