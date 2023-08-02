@@ -23,15 +23,15 @@ const StudentDash = ({}) => {
 
   const toggleDrawer = (anchor, open, stuff) => (event) => {
     setDetails(stuff);
-    display ? setDisplay(false) : setDisplay(true);
     if (
       event &&
       event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
+      event.key
+      // (event.key === "Tab" || event.key === "Shift")
     ) {
       return;
     }
-
+    display ? setDisplay(false) : setDisplay(true);
     setState({ ...state, [anchor]: open });
   };
 
@@ -40,14 +40,135 @@ const StudentDash = ({}) => {
       sx={{
         height: "60vh",
         width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
-        overflowY: "auto",
       }}
       role="presentation"
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <div className="container">
-        <h1 className="mt-2 mb-3">Comments</h1>
-        <h5>{details}</h5>
+        <div className={`${classes.othersOpinion}`}>
+          <h3 className="mt-2 mb-3 bold">Comments</h3>
+          {/* <h5>{details}</h5> */}
+          <div className={`${classes.notification} mt-3`}>
+            <div className={`${classes.commIMG}`}>
+              <img
+                src="https://remoteok.com/cdn-cgi/image/format=auto,fit=cover,width=500,height=500,quality=50/https://remoteok.com/assets/img/users/278d0ea32774f18ff37d2d58a4d70189.jpg?1683009009"
+                alt="user"
+                width="40px"
+                height="40px"
+                className="round"
+              />
+            </div>
+            <div
+              className={`${classes.commText} paddFull-1 hover blogText ml-2`}
+            >
+              <span className="block">
+                <span className="bold">Eze Chinaza</span>
+                <br />
+                Eddy is good
+              </span>
+              <span className={`block ${classes.notTime}`}>
+                <span className="nunsa">17 hours ago</span>
+              </span>
+            </div>
+          </div>
+          <div className={`${classes.notification} mt-3`}>
+            <div className={`${classes.commIMG}`}>
+              <img
+                src={president}
+                alt="user"
+                width="40px"
+                height="40px"
+                className="round"
+              />
+            </div>
+            <div
+              className={`${classes.commText} paddFull-1 hover blogText ml-2`}
+            >
+              <span className="block">
+                <span className="bold">Eze Chinaza</span>
+                <br />
+                The President of NUNSA UNICAL and his Executives
+              </span>
+              <span className={`block ${classes.notTime}`}>
+                <span className="nunsa">17 hours ago</span>
+              </span>
+            </div>
+          </div>
+          <div className={`${classes.notification} mt-3`}>
+            <div className={`${classes.commIMG}`}>
+              <img
+                src="https://remoteok.com/cdn-cgi/image/format=auto,fit=cover,width=500,height=500,quality=50/https://remoteok.com/assets/img/users/278d0ea32774f18ff37d2d58a4d70189.jpg?1683009009"
+                alt="user"
+                width="40px"
+                height="40px"
+                className="round"
+              />
+            </div>
+            <div
+              className={`${classes.commText} paddFull-1 hover blogText ml-2`}
+            >
+              <span className="block">
+                <span className="bold">Eze Chinaza</span>
+                <br />
+                The President of NUNSA UNICAL and his Executives, recognizing
+                the importance of staying technologically up-to-date, took a
+                proactive step by commissioning a developer to create a custom
+                web application for the association.
+              </span>
+              <span className={`block ${classes.notTime}`}>
+                <span className="nunsa">17 hours ago</span>
+              </span>
+            </div>
+          </div>
+          <div className={`${classes.notification} mt-3`}>
+            <div className={`${classes.commIMG}`}>
+              <img
+                src="https://remoteok.com/cdn-cgi/image/format=auto,fit=cover,width=500,height=500,quality=50/https://remoteok.com/assets/img/users/278d0ea32774f18ff37d2d58a4d70189.jpg?1683009009"
+                alt="user"
+                width="40px"
+                height="40px"
+                className="round"
+              />
+            </div>
+            <div
+              className={`${classes.commText} paddFull-1 hover blogText ml-2`}
+            >
+              <span className="block">
+                <span className="bold">Eze Chinaza</span>
+                <br />
+                The President of NUNSA UNICAL and his Executives, recognizing
+                the importance of staying technologically up-to-date, took a
+                proactive step by commissioning a developer to create a custom
+                web application for the association. Understanding that the
+                digital landscape plays a crucial role in modernizing
+                organizations, the President's forward-thinking approach aimed
+                to ensure that NUNSA would not lag behind in technology. By
+                investing in this web app, the association can streamline its
+                operations, enhance communication with members, and provide more
+                efficient services to the community they serve. This strategic
+                move demonstrates the President's commitment to keeping NUNSA
+                relevant and responsive in the ever-evolving digital age.
+              </span>
+              <span className={`block ${classes.notTime}`}>
+                <span className="nunsa">17 hours ago</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className={`float-bottom ${classes.studOpinionDraw}`}>
+          <textarea
+            placeholder="Add a comment..."
+            className={`form-control onfocusOpinion ${classes.studOpinion}`}
+            autoComplete="off"
+            autoCorrect="off"
+            id="regimeDescription"
+            aria-describedby="regimeDescriptionHelp"
+            // value={regimeDescription}
+            // onChange={(e) => setRegimeDescription(trim(e.target.value))}
+            required
+          />
+        </div>
       </div>
     </Box>
   );
@@ -95,7 +216,10 @@ const StudentDash = ({}) => {
                   <span className={`hover ${classes.blogFoot} blogFoot`}>
                     more
                   </span>
-                  <span className={`mt-2 block ${classes.blogFoot}`} style={{fontSize: '12px'}}>
+                  <span
+                    className={`mt-2 block ${classes.blogFoot}`}
+                    style={{ fontSize: "12px" }}
+                  >
                     August 10, 2023
                   </span>
                 </p>
@@ -105,7 +229,7 @@ const StudentDash = ({}) => {
                     placeholder="Add a comment..."
                     className={`form-control onfocusOpinion ${classes.studOpinion}`}
                     autoComplete="off"
-                    autoCorrect="off" 
+                    autoCorrect="off"
                     id="regimeDescription"
                     aria-describedby="regimeDescriptionHelp"
                     // value={regimeDescription}
@@ -155,10 +279,27 @@ const StudentDash = ({}) => {
                   <span className={`hover ${classes.blogFoot} blogFoot`}>
                     more
                   </span>
-                  <span className={`mt-2 block ${classes.blogFoot}`} style={{fontSize: '12px'}}>
+                  <span
+                    className={`mt-2 block ${classes.blogFoot}`}
+                    style={{ fontSize: "12px" }}
+                  >
                     August 10, 2023
                   </span>
                 </p>
+
+                <div className="mb-3 container">
+                  <textarea
+                    placeholder="Add a comment..."
+                    className={`form-control onfocusOpinion ${classes.studOpinion}`}
+                    autoComplete="off"
+                    autoCorrect="off"
+                    id="regimeDescription"
+                    aria-describedby="regimeDescriptionHelp"
+                    // value={regimeDescription}
+                    // onChange={(e) => setRegimeDescription(trim(e.target.value))}
+                    required
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -201,10 +342,27 @@ const StudentDash = ({}) => {
                   <span className={`hover ${classes.blogFoot} blogFoot`}>
                     more
                   </span>
-                  <span className={`mt-2 block ${classes.blogFoot}`} style={{fontSize: '12px'}}>
+                  <span
+                    className={`mt-2 block ${classes.blogFoot}`}
+                    style={{ fontSize: "12px" }}
+                  >
                     August 10, 2023
                   </span>
                 </p>
+
+                <div className="mb-3 container">
+                  <textarea
+                    placeholder="Add a comment..."
+                    className={`form-control onfocusOpinion ${classes.studOpinion}`}
+                    autoComplete="off"
+                    autoCorrect="off"
+                    id="regimeDescription"
+                    aria-describedby="regimeDescriptionHelp"
+                    // value={regimeDescription}
+                    // onChange={(e) => setRegimeDescription(trim(e.target.value))}
+                    required
+                  />
+                </div>
               </div>
             </div>
           </div>

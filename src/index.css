@@ -54,6 +54,12 @@ code {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
+.paddFull {
+  padding: 0.5rem;
+}
+.paddFull-1 {
+  padding: 1rem;
+}
 .block {
   display: block;
 }
@@ -154,6 +160,10 @@ code {
   display: flex;
   height: fit-content;
   justify-content: center;
+}
+.float-bottom{
+  position: absolute;
+  bottom: 10px;
 }
 .centerDivR {
   display: flex;

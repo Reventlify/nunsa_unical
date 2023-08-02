@@ -73,8 +73,19 @@
 .notTime {
   font-size: 12px;
 }
+.commIMG {
+  flex: 0;
+}
+.commText {
+  width: auto;
+  max-width: 450px;
+  background-color: #f0f2f5;
+  border-top-left-radius: 7px !important;
+  border-top-right-radius: 7px !important;
+  border-bottom-right-radius: 7px !important;
+  border-bottom-left-radius: 7px !important;
+}
 .studOpinion {
-  /* background-color: #f0f2f5; */
   border-right: none;
   border-left: none;
   border-top: none;
@@ -87,6 +98,13 @@
 .studOpinion::placeholder {
   color: #adadad;
 }
+.othersOpinion {
+  height: 47vh;
+  overflow-y: scroll;
+}
+.studOpinionDraw {
+  width: 90vw;
+}
 @media (min-width: 572px) {
   .sideBar {
     left: auto;
@@ -97,6 +115,9 @@
     background-color: #f7f7f7c7;
     overflow-y: scroll;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  .studOpinionDraw {
+    width: 80vw;
   }
 
   .sidebarDis {
