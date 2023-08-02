@@ -38,7 +38,7 @@ const StudentDash = ({}) => {
   const listBottom = (anchor) => (
     <Box
       sx={{
-        height: "60vh",
+        height: "80vh",
         width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
       }}
       role="presentation"
