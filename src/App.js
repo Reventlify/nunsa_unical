@@ -6,6 +6,7 @@ import Executives from "./pages/Executives";
 import LoginView from "./components/login/login";
 import Signup from "./components/signup/signup";
 import Dashboard from "./pages/auth/Dashboard";
+import Class from "./pages/auth/Class";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/login" element={<LoginView />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/student/dashboard" element={<Dashboard />} />
+      <Route path="/student/class" element={<Class />} />
     </Routes>
   );
 }
