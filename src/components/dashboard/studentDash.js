@@ -418,17 +418,28 @@ const StudentDash = ({ searchWhere }) => {
         </div>
 
         <div className={`float-bottom ${classes.studOpinionDraw}`}>
-          <textarea
-            placeholder="Add a comment..."
-            className={`form-control onfocusOpinion ${classes.studOpinion}`}
-            autoComplete="off"
-            autoCorrect="off"
-            id="regimeDescription"
-            aria-describedby="regimeDescriptionHelp"
-            // value={regimeDescription}
-            onChange={(e) => setStudentOpinion(e.target.value)}
-            required
-          />
+          <div className="" style={{ display: "flex", flexDirection: "row" }}>
+            <textarea
+              placeholder="Add a comment..."
+              id="IdOfCommentArea"
+              onBlur={() => {
+                setStudentOpinion("");
+                document.getElementById(`IdOfCommentArea`).value = "";
+              }}
+              className={`form-control onfocusOpinion ${classes.studOpinion}`}
+              autoComplete="off"
+              autoCorrect="off"
+              aria-describedby="regimeDescriptionHelp"
+              // value={regimeDescription}
+              onChange={(e) => setStudentOpinion(e.target.value)}
+              required
+            />
+            {studentOpinion !== "" ? (
+              <div className="reventlify hover centerDiv">Post</div>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       </div>
     </Box>
