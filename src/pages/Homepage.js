@@ -261,9 +261,9 @@ const Homepage = () => {
                   ></div>
                 </div>
                 <h5 className="bold mt-2">Sen. Ezra Madu (Bestie)</h5>
-                <button className="btn mt-3 mb-5 bottomShadow btnct btnct-nunsa">
+                <button className="btn mt-3 mb-5 bottomShadow btnct btnct-white">
                   <a
-                    className="a"
+                    className="nunsa a"
                     rel="noreferrer"
                     target="_blank"
                     href="tel:+2348105185381"
@@ -296,9 +296,9 @@ const Homepage = () => {
                   ></div>
                 </div>
                 <h5 className="bold mt-2">Nr. Okem Irene Baba</h5>
-                <button className="btn mt-3 mb-5 bottomShadow btnct btnct-nunsa">
+                <button className="btn mt-3 mb-5 bottomShadow btnct btnct-white">
                   <a
-                    className="a"
+                    className="nunsa a"
                     rel="noreferrer"
                     target="_blank"
                     href="tel:+2348165150422"
@@ -336,9 +336,9 @@ const Homepage = () => {
                   ></div>
                 </div>
                 <h5 className="bold mt-2">Sen. Etukwu Theophilus</h5>
-                <button className="btn mt-3 mb-5 bottomShadow btnct btnct-nunsa">
+                <button className="btn mt-3 mb-5 bottomShadow btnct btnct-white">
                   <a
-                    className="a"
+                    className="nunsa a"
                     rel="noreferrer"
                     target="_blank"
                     href="tel:+2349038951081"
@@ -371,9 +371,9 @@ const Homepage = () => {
                   ></div>
                 </div>
                 <h5 className="bold mt-2">Nr. Ogwu Faith</h5>
-                <button className="btn mt-3 bottomShadow btnct btnct-nunsa">
+                <button className="btn mt-3 bottomShadow btnct btnct-white">
                   <a
-                    className="a"
+                    className="nunsa a"
                     rel="noreferrer"
                     target="_blank"
                     href="tel:+2348142646811"
