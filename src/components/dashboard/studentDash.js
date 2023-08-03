@@ -29,7 +29,7 @@ const StudentDash = ({ searchWhere }) => {
       posterName: "Angelina Jolie",
       post: false,
       showComments: false,
-      postImg: five,
+      postImg: six,
       postText: `
       The President of NUNSA UNICAL and his Executives,
       recognizing the importance of staying technologically
@@ -57,7 +57,7 @@ const StudentDash = ({ searchWhere }) => {
       posterName: "Daenarys Targayrn",
       post: false,
       showComments: false,
-      postImg: six,
+      postImg: five,
       postText: `
       The President of NUNSA UNICAL and his Executives,
       recognizing the importance of staying technologically
