@@ -80,6 +80,8 @@ const Executives = () => {
             thrive. Their collaborative synergy and unwavering dedication
             underscore the association's ability to adapt, grow, and flourish in
             its pursuit of excellence.
+            <br />
+            <br />
           </p>
         </div>
         <div className="container">
@@ -231,6 +233,73 @@ const Executives = () => {
                     </motion.div>
                   </a>
                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="container">
+          <div className="lineForHeader">
+            <h2 className="bolder">OUR PATRONS</h2>
+            <div className="theLine"></div>
+          </div>
+        </div>
+        <div className="container blogText">
+          <p className="mt-3">
+            The esteemed NUNSA (Nigerian Universities Nursing Students'
+            Association , University of Calabar Chapter) Patrons play a pivotal
+            role in shaping the academic and social landscape of the students.
+            As visionary mentors and guardians of student interests, the NUNSA
+            Unical Patrons provide invaluable guidance, wisdom, and support to
+            the student body. With their extensive expertise and experience,
+            they serve as beacons of inspiration, instilling a sense of purpose,
+            resilience, and community engagement among the students. These
+            patrons not only contribute to the academic development of the
+            institution but also foster an environment of holistic growth by
+            nurturing leadership skills, promoting cultural diversity, and
+            advocating for the welfare and well-being of every student. Through
+            their dedicated involvement in various academic, cultural, and
+            social initiatives, the NUNSA Unical Patrons exemplify the
+            embodiment of educational excellence, laying the foundation for a
+            brighter future for both the university and its aspiring students.
+          </p>
+        </div>
+        <div className="execGrid container">
+          {/* an exec */}
+          <div className="">
+            <div className="execImg hover">
+              <img
+                src={first}
+                width="100%"
+                height="100%"
+                alt="HOD. NURSING UNICAL"
+              />
+            </div>
+            <div className="blogTitle container mt-4">
+              <div className="">
+                <div className="lineForHeader">
+                  <h3 className="bolder">HOD. NURSING UNICAL</h3>
+                  <div className="theLine"></div>
+                </div>
+                <h5 className="bold mt-2 mb-4">Prof. Regina Ella</h5>
+              </div>
+            </div>
+          </div>
+          <div className="">
+            <div className="execImg hover">
+              <img
+                src={second}
+                width="100%"
+                height="100%"
+                alt="CHAIRMAN STUD. AFFAIRS"
+              />
+            </div>
+            <div className="blogTitle container mt-4">
+              <div className="">
+                <div className="lineForHeader">
+                  <h3 className="bolder">CHAIRMAN STUD. AFFAIRS</h3>
+                  <div className="theLine"></div>
+                </div>
+                <h5 className="bold mt-2 mb-4">Dr. Teressa Achi OSaji</h5>
               </div>
             </div>
           </div>
