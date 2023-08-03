@@ -9,6 +9,7 @@ import three from "../images/three.jpg";
 import four from "../images/four.jpg";
 import first from "../images/first.jpg";
 import second from "../images/second.jpg";
+import CallIcon from "@mui/icons-material/Call";
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -248,10 +249,13 @@ const Homepage = () => {
               <div className="">
                 <div className="lineForHeader">
                   <h3 className="bolder">PRESIDENT</h3>
-                  <div className="theLine bottomShadow" style={{width: '100%'}}></div>
+                  <div
+                    className="theLine bottomShadow"
+                    style={{ width: "100%" }}
+                  ></div>
                 </div>
                 <h5 className="bold mt-2">Sen. Ezra Madu (Bestie)</h5>
-                <button className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa">
+                <button className="btn mt-3 mb-5 bottomShadow btnct btnct-nunsa">
                   <a
                     className="a"
                     rel="noreferrer"
@@ -263,7 +267,8 @@ const Homepage = () => {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 1.1 }}
                     >
-                      Place a call
+                      <CallIcon />
+                      &nbsp;Place a call
                     </motion.div>
                   </a>
                 </button>
@@ -279,10 +284,13 @@ const Homepage = () => {
               <div className="">
                 <div className="lineForHeader">
                   <h3 className="bolder">V. PRESIDENT</h3>
-                  <div className="theLine bottomShadow" style={{width: '100%'}}></div>
+                  <div
+                    className="theLine bottomShadow"
+                    style={{ width: "100%" }}
+                  ></div>
                 </div>
                 <h5 className="bold mt-2">Nr. Okem Irene Baba</h5>
-                <button className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa">
+                <button className="btn mt-3 mb-5 bottomShadow btnct btnct-nunsa">
                   <a
                     className="a"
                     rel="noreferrer"
@@ -294,7 +302,8 @@ const Homepage = () => {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 1.1 }}
                     >
-                      Place a call
+                      <CallIcon />
+                      &nbsp;Place a call
                     </motion.div>
                   </a>
                 </button>
@@ -315,10 +324,13 @@ const Homepage = () => {
               <div className="">
                 <div className="lineForHeader">
                   <h3 className="bolder">GEN. SECRETARY</h3>
-                  <div className="theLine bottomShadow" style={{width: '100%'}}></div>
+                  <div
+                    className="theLine bottomShadow"
+                    style={{ width: "100%" }}
+                  ></div>
                 </div>
                 <h5 className="bold mt-2">Sen. Etukwu Theophilus</h5>
-                <button className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa">
+                <button className="btn mt-3 mb-5 bottomShadow btnct btnct-nunsa">
                   <a
                     className="a"
                     rel="noreferrer"
@@ -330,7 +342,8 @@ const Homepage = () => {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 1.1 }}
                     >
-                      Place a call
+                      <CallIcon />
+                      &nbsp;Place a call
                     </motion.div>
                   </a>
                 </button>
@@ -351,10 +364,13 @@ const Homepage = () => {
               <div className="">
                 <div className="lineForHeader">
                   <h3 className="bolder">FIN. SECRETARY</h3>
-                  <div className="theLine bottomShadow" style={{width: '100%'}}></div>
+                  <div
+                    className="theLine bottomShadow"
+                    style={{ width: "100%" }}
+                  ></div>
                 </div>
                 <h5 className="bold mt-2">Nr. Ogwu Faith</h5>
-                <button className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa">
+                <button className="btn mt-3 mb-5 bottomShadow btnct btnct-nunsa">
                   <a
                     className="a"
                     rel="noreferrer"
@@ -366,7 +382,8 @@ const Homepage = () => {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 1.1 }}
                     >
-                      Place a call
+                      <CallIcon />
+                      &nbsp;Place a call
                     </motion.div>
                   </a>
                 </button>
