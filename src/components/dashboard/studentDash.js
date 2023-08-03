@@ -1,5 +1,6 @@
 import classes from "../dashboard/studentDash.module.css";
 import Box from "@mui/material/Box";
+import truncate from "lodash.truncate";
 import president from "../../images/president.jpg";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
@@ -12,9 +13,120 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import DashSearchAndNotifications from "./dashSearch&Not/dashSearch&Not";
 import BottomSpace from "../bottomSpace";
+import five from "../../images/five.jpg";
+import six from "../../images/six.jpg";
+import seven from "../../images/seven.jpg";
 
-const StudentDash = ({searchWhere}) => {
+const StudentDash = ({ searchWhere }) => {
+  const [posts, setPosts] = useState([
+    {
+      postId: "1",
+      posterId: "a",
+      posterName: "Angelina Jolie",
+      post: false,
+      postImg: five,
+      postText: `
+      The President of NUNSA UNICAL and his Executives,
+      recognizing the importance of staying technologically
+      up-to-date, took a proactive step by commissioning a
+      developer to create a custom web application for the
+      association. Understanding that the digital landscape
+      plays a crucial role in modernizing organizations, the
+      President's forward-thinking approach aimed to ensure
+      that NUNSA would not lag behind in technology. By
+      investing in this web app, the association can
+      streamline its operations, enhance communication with
+      members, and provide more efficient services to the
+      community they serve. This strategic move demonstrates
+      the President's commitment to keeping NUNSA relevant and
+      responsive in the ever-evolving digital age.`,
+      postLikes: 563,
+      postDisLikes: 23,
+      postComments: 3,
+      postTime: "August 10, 2023",
+      liked: true,
+    },
+    {
+      postId: "2",
+      posterId: "b",
+      posterName: "Daenarys Targayrn",
+      post: false,
+      postImg: six,
+      postText: `
+      The President of NUNSA UNICAL and his Executives,
+      recognizing the importance of staying technologically
+      up-to-date, took a proactive step by commissioning a
+      developer to create a custom web application for the
+      association. Understanding that the digital landscape
+      plays a crucial role in modernizing organizations, the
+      President's forward-thinking approach aimed to ensure
+      that NUNSA would not lag behind in technology. By
+      investing in this web app, the association can
+      streamline its operations, enhance communication with
+      members, and provide more efficient services to the
+      community they serve. This strategic move demonstrates
+      the President's commitment to keeping NUNSA relevant and
+      responsive in the ever-evolving digital age.`,
+      postLikes: 1000,
+      postDisLikes: 363,
+      postComments: 0,
+      postTime: "August 9, 2023",
+    },
+    {
+      postId: "3",
+      posterId: "c",
+      posterName: "Justina Lindsay",
+      post: false,
+      postImg: seven,
+      postText: `
+      The President of NUNSA UNICAL and his Executives,
+      recognizing the importance of staying technologically
+      up-to-date, took a proactive step by commissioning a
+      developer to create a custom web application for the
+      association. Understanding that the digital landscape
+      plays a crucial role in modernizing organizations, the
+      President's forward-thinking approach aimed to ensure
+      that NUNSA would not lag behind in technology. By
+      investing in this web app, the association can
+      streamline its operations, enhance communication with
+      members, and provide more efficient services to the
+      community they serve. This strategic move demonstrates
+      the President's commitment to keeping NUNSA relevant and
+      responsive in the ever-evolving digital age.`,
+      postLikes: 5,
+      postDisLikes: 100,
+      postComments: 0,
+      postTime: "August 8, 2023",
+    },
+  ]);
+  const [comments, setComments] = useState([
+    {
+      commentId: "1a",
+      postid: "1",
+      commenterId: "b",
+      commenterName: "Obe Precious",
+      comment: "",
+      commentLikes: "",
+      commentDisLikes: "563",
+      commentReplies: "",
+      commentTime: "",
+    },
+  ]);
+  const [replies, setReplies] = useState([
+    {
+      post: false,
+      action: "reply",
+      postid: "1",
+      postImg: "",
+      postText: "",
+      replyLikes: "",
+      replyDisLikes: "",
+      replyTime: "",
+    },
+  ]);
   const [details, setDetails] = useState("");
+  const [focus, setFocus] = useState("");
+  const [studentOpinion, setStudentOpinion] = useState("");
   const [display, setDisplay] = useState(false);
   const [displayReplies, setDisplayReplies] = useState(false);
   const [state, setState] = useState({
@@ -255,201 +367,91 @@ const StudentDash = ({searchWhere}) => {
   );
   return (
     <>
-      <DashSearchAndNotifications search={searchWhere}/>
-      <div className={`${classes.layHelp} ${classes.dashGrid}`}>
-        <div className={`${classes.content} container`}>
-          <div className={`${classes.post} margAuto boxShadow`}>
-            <div className={`${classes.postImg}`}>
-              <img
-                src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=8WNPXV6yNF0AX_-7dgq&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDk4GuES7kMlVHdKo6i7kaBZxBkjnQDLYWNkNS1FE7dHw&oe=64CE266C"
-                width="100%"
-                height="100%"
-                alt="blog post image"
-              />
-            </div>
-            <div className="blogText">
-              <div className={`container mt-3 ${classes.opinion}`}>
-                <div className={`${classes.like} container`}>
-                  <ThumbUpAltIcon className="hover nunsa" />
-                  &nbsp;
-                  <span className="">563</span>{" "}
-                </div>
-                <div className={`${classes.comment} centerDivH`}>
-                  <div onClick={toggleDrawer("bottom", true, "Eze Chinaza")}>
-                    {" "}
-                    <ChatBubbleOutlineIcon className="hover" />
+      <DashSearchAndNotifications search={searchWhere} />
+      <div className={`${classes.layHelp} ${classes.content} container`}>
+        {posts.map((post) => {
+          return (
+            <div
+              key={post.postId}
+              className={`${classes.post} margAuto boxShadow`}
+            >
+              <div className={`${classes.postImg}`}>
+                <img
+                  src={post.postImg}
+                  width="100%"
+                  height="100%"
+                  alt="blog post image"
+                />
+              </div>
+              <div className="blogText">
+                <div className={`container mt-3 ${classes.opinion}`}>
+                  <div className={`${classes.like} container`}>
+                    <ThumbUpAltIcon className="hover nunsa" />
+                    &nbsp;
+                    <span className="">{post.postLikes}</span>{" "}
                   </div>
-                  &nbsp;
-                  <span className="">32</span>{" "}
+                  <div className={`${classes.comment} centerDivH`}>
+                    <div onClick={toggleDrawer("bottom", true, "Eze Chinaza")}>
+                      {" "}
+                      <ChatBubbleOutlineIcon className="hover" />
+                    </div>
+                    &nbsp;
+                    <span className="">{post.postComments}</span>{" "}
+                  </div>
+                  <div className={`${classes.dislike} centerDivR container`}>
+                    <ThumbDownOffAltIcon className="hover" />
+                    &nbsp;
+                    <span className="">{post.postDisLikes}</span>{" "}
+                  </div>
                 </div>
-                <div className={`${classes.dislike} centerDivR container`}>
-                  <ThumbDownOffAltIcon className="hover" />
-                  &nbsp;
-                  <span className="">23</span>{" "}
-                </div>
-              </div>
-              <div className="container">
-                <p className="container mt-3 blogText">
-                  <span className="bold">Eze Chinaza</span>&nbsp; The President
-                  of NUNSA UNICAL and his Executives, recognizing the importance
-                  of...
-                  <br />
-                  <span className={`hover ${classes.blogFoot} blogFoot`}>
-                    more
-                  </span>
-                  <span
-                    className={`mt-2 block ${classes.blogFoot}`}
-                    style={{ fontSize: "12px" }}
+                <div className="container">
+                  <p className="container mt-3 blogText">
+                    <span className="bold">{post.posterName}</span>&nbsp;
+                    {truncate(post.postText, {
+                      length: 55,
+                      // separator: /,? +/,
+                    })}
+                    <br />
+                    <span className={`hover ${classes.blogFoot} blogFoot`}>
+                      more
+                    </span>
+                    <span
+                      className={`mt-2 block ${classes.blogFoot}`}
+                      style={{ fontSize: "12px" }}
+                    >
+                      {post.postTime}
+                    </span>
+                  </p>
+
+                  <div
+                    className="mb-3 container"
+                    style={{ display: "flex", flexDirection: "row" }}
                   >
-                    August 10, 2023
-                  </span>
-                </p>
-
-                <div className="mb-3 container">
-                  <textarea
-                    placeholder="Add a comment..."
-                    className={`form-control onfocusOpinion ${classes.studOpinion}`}
-                    autoComplete="off"
-                    autoCorrect="off"
-                    id="regimeDescription"
-                    aria-describedby="regimeDescriptionHelp"
-                    // value={regimeDescription}
-                    // onChange={(e) => setRegimeDescription(trim(e.target.value))}
-                    required
-                  />
+                    <textarea
+                      onFocus={() => setFocus(true)}
+                      placeholder="Add a comment..."
+                      className={`form-control onfocusOpinion ${classes.studOpinion}`}
+                      autoComplete="off"
+                      autoCorrect="off"
+                      id="regimeDescription"
+                      aria-describedby="regimeDescriptionHelp"
+                      // value={regimeDescription}
+                      onChange={(e) => setStudentOpinion(e.target.value)}
+                      required
+                    />
+                    {studentOpinion !== "" && focus ? (
+                      <div className="reventlify hover centerDiv" key={"12"}>
+                        Post
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className={`${classes.post} margAuto boxShadow`}>
-            <div className={`${classes.postImg}`}>
-              <img
-                src="https://nigerianfinder.com/wp-content/uploads/2021/04/Best-Universities-for-Nursing-in-Nigeria.jpg"
-                width="100%"
-                height="100%"
-                alt="blog post image"
-              />
-            </div>
-            <div className="blogText">
-              <div className={`container mt-3 ${classes.opinion}`}>
-                <div className={`${classes.like} container`}>
-                  <ThumbUpOffAltIcon className="hover" />
-                  &nbsp;
-                  <span className="">708</span>{" "}
-                </div>
-                <div className={`${classes.comment} centerDivH`}>
-                  <ChatBubbleOutlineIcon
-                    className="hover"
-                    onClick={toggleDrawer("bottom", true, "Idang Confidence")}
-                  />
-                  &nbsp;
-                  <span className="">93</span>{" "}
-                </div>
-                <div className={`${classes.dislike} centerDivR container`}>
-                  <ThumbDownAltIcon className="hover nunsa" />
-                  &nbsp;
-                  <span className="">15</span>{" "}
-                </div>
-              </div>
-              <div className="container">
-                <p className="container mt-3 blogText">
-                  <span className="bold">Idang Confidence</span>&nbsp; The
-                  President of NUNSA UNICAL and his Executives, recognizing the
-                  importance of...
-                  <br />
-                  <span className={`hover ${classes.blogFoot} blogFoot`}>
-                    more
-                  </span>
-                  <span
-                    className={`mt-2 block ${classes.blogFoot}`}
-                    style={{ fontSize: "12px" }}
-                  >
-                    August 10, 2023
-                  </span>
-                </p>
-
-                <div className="mb-3 container">
-                  <textarea
-                    placeholder="Add a comment..."
-                    className={`form-control onfocusOpinion ${classes.studOpinion}`}
-                    autoComplete="off"
-                    autoCorrect="off"
-                    id="regimeDescription"
-                    aria-describedby="regimeDescriptionHelp"
-                    // value={regimeDescription}
-                    // onChange={(e) => setRegimeDescription(trim(e.target.value))}
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={`${classes.post} margAuto boxShadow`}>
-            <div className={`${classes.postImg}`}>
-              <img
-                src={president}
-                width="100%"
-                height="100%"
-                alt="blog post image"
-              />
-            </div>
-            <div className="blogText">
-              <div className={`container mt-3 ${classes.opinion}`}>
-                <div className={`${classes.like} container`}>
-                  <ThumbUpOffAltIcon className="hover" />
-                  &nbsp;
-                  <span className="">108</span>{" "}
-                </div>
-                <div className={`${classes.comment} centerDivH`}>
-                  <ChatBubbleOutlineIcon
-                    className="hover"
-                    onClick={toggleDrawer("bottom", true, "Etuku Theophilus")}
-                  />
-                  &nbsp;
-                  <span className="">3</span>{" "}
-                </div>
-                <div className={`${classes.dislike} centerDivR container`}>
-                  <ThumbDownOffAltIcon className="hover" />
-                  &nbsp;
-                  <span className="">300</span>{" "}
-                </div>
-              </div>
-              <div className="container">
-                <p className="container mt-3 blogText">
-                  <span className="bold">Etuku Theophilus</span>&nbsp; The
-                  President of NUNSA UNICAL and his Executives, recognizing the
-                  importance of...
-                  <br />
-                  <span className={`hover ${classes.blogFoot} blogFoot`}>
-                    more
-                  </span>
-                  <span
-                    className={`mt-2 block ${classes.blogFoot}`}
-                    style={{ fontSize: "12px" }}
-                  >
-                    August 10, 2023
-                  </span>
-                </p>
-
-                <div className="mb-3 container">
-                  <textarea
-                    placeholder="Add a comment..."
-                    className={`form-control onfocusOpinion ${classes.studOpinion}`}
-                    autoComplete="off"
-                    autoCorrect="off"
-                    id="regimeDescription"
-                    aria-describedby="regimeDescriptionHelp"
-                    // value={regimeDescription}
-                    // onChange={(e) => setRegimeDescription(trim(e.target.value))}
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* <div className={`${classes.noContent} ${classes.sidebarDis}`}></div> */}
+          );
+        })}
       </div>
       <SwipeableDrawer
         sx={() => (display ? { display: "block" } : { display: "none" })}

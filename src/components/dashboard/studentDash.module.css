@@ -8,22 +8,21 @@
   height: 75px;
 }
 .layHelp {
-  margin-top: 100px;
+  margin-top: 130px;
 }
 .foc {
   margin-top: 25px;
 }
-
-.dashGrid {
-  gap: 2rem;
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  padding-block: 2rem;
-}
 .content {
-  gap: 2rem;
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.post {
+  margin-bottom: 2rem;
+  width: 100%;
+  flex: 1;
+  /* max-width: 400px; */
 }
 .postImg {
   height: 350px;
@@ -85,7 +84,7 @@
   border-bottom-right-radius: 7px !important;
   border-bottom-left-radius: 7px !important;
 }
-.likeandReply{
+.likeandReply {
   display: flex;
   flex-direction: row;
   font-size: 13px;
@@ -110,12 +109,12 @@
 .studOpinionDraw {
   width: 90vw;
 }
-.puller{
+.puller {
   height: fit-content;
   background-color: white;
   opacity: 10;
 }
-@media (min-width: 572px) {
+@media (min-width: 750px) {
   .sideBar {
     left: auto;
     top: 80px;
@@ -134,11 +133,11 @@
     display: block;
   }
   .layHelp {
-    margin-top: 50px;
+    margin-top: 100px;
   }
-  .dashGrid {
-    grid-template-columns: 2fr 1fr;
-    width: min(95%, 70rem);
+  .post {
+    width: 60%;
+    margin-left: 0;
   }
   .postImg {
     height: 550px;

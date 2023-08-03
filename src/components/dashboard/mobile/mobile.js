@@ -27,6 +27,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 export default function MobileDashboard({ children }) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const [display, setDisplay] = React.useState(false);
   const parentPath = pathname.slice(0, 8);
   const page = pathname.slice(9, pathname.length);
   const [state, setState] = React.useState({
@@ -49,18 +50,34 @@ export default function MobileDashboard({ children }) {
       return;
     }
 
+    // display ? setDisplay(false) : setDisplay(true);
     setState({ ...state, [anchor]: open });
   };
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+      sx={{
+        width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
+      }}
+      // sx={() =>
+      //   display
+      //     ? {
+      //         display: "block",
+      //         width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
+      //       }
+      //     : { display: "none" }
+      // }
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <div
-        style={{ display: "flex", flexDirection: "row", paddingTop: "12px", paddingLeft: '12px' }}
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          paddingTop: "12px",
+          paddingLeft: "12px",
+        }}
       >
         <img
           src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=8WNPXV6yNF0AX_-7dgq&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDk4GuES7kMlVHdKo6i7kaBZxBkjnQDLYWNkNS1FE7dHw&oe=64CE266C"
@@ -70,7 +87,7 @@ export default function MobileDashboard({ children }) {
           className="round"
         />{" "}
         &nbsp;&nbsp;&nbsp;
-        <div style={{ display: "flex", alignItems: 'center'}}>
+        <div style={{ display: "flex", alignItems: "center" }}>
           <h5>Ezra Madu</h5>{" "}
         </div>
       </div>
@@ -143,7 +160,8 @@ export default function MobileDashboard({ children }) {
   );
 
   return (
-    <Box sx={{ display: "flex" }}>
+    // <Box sx={{ display: "flex" }}>
+    <>
       <CssBaseline />
       <AppBar sx={{ backgroundColor: "#61ce70" }} position="fixed">
         <Toolbar>
@@ -185,6 +203,7 @@ export default function MobileDashboard({ children }) {
       >
         {list("right")}
       </SwipeableDrawer>
-    </Box>
+      {/* </Box> */}
+    </>
   );
 }
