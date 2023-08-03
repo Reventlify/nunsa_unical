@@ -238,9 +238,9 @@ const Homepage = () => {
             </button>
           </motion.div>
         </div>
-        <div className="execGrid container">
+        <div className="blogGrid container">
           {/* an exec */}
-          <div className="boxShadow">
+          <div className="">
             <div className="execImg hover">
               <img src={one} width="100%" height="100%" alt="blog post image" />
             </div>
@@ -248,7 +248,7 @@ const Homepage = () => {
               <div className="">
                 <div className="lineForHeader">
                   <h3 className="bolder">PRESIDENT</h3>
-                  <div className="theLine"></div>
+                  <div className="theLine bottomShadow" style={{width: '100%'}}></div>
                 </div>
                 <h5 className="bold mt-2">Sen. Ezra Madu (Bestie)</h5>
                 <button className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa">
@@ -271,7 +271,7 @@ const Homepage = () => {
             </div>
           </div>
           {/* an exec */}
-          <div className="boxShadow">
+          <div className="">
             <div className="execImg hover">
               <img src={two} width="100%" height="100%" alt="blog post image" />
             </div>
@@ -279,7 +279,7 @@ const Homepage = () => {
               <div className="">
                 <div className="lineForHeader">
                   <h3 className="bolder">V. PRESIDENT</h3>
-                  <div className="theLine"></div>
+                  <div className="theLine bottomShadow" style={{width: '100%'}}></div>
                 </div>
                 <h5 className="bold mt-2">Nr. Okem Irene Baba</h5>
                 <button className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa">
@@ -302,7 +302,7 @@ const Homepage = () => {
             </div>
           </div>
           {/* an exec */}
-          <div className="boxShadow">
+          <div className="">
             <div className="execImg hover">
               <img
                 src={three}
@@ -315,7 +315,7 @@ const Homepage = () => {
               <div className="">
                 <div className="lineForHeader">
                   <h3 className="bolder">GEN. SECRETARY</h3>
-                  <div className="theLine"></div>
+                  <div className="theLine bottomShadow" style={{width: '100%'}}></div>
                 </div>
                 <h5 className="bold mt-2">Sen. Etukwu Theophilus</h5>
                 <button className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa">
@@ -338,7 +338,7 @@ const Homepage = () => {
             </div>
           </div>
           {/* an exec */}
-          <div className="boxShadow">
+          <div className="">
             <div className="execImg hover">
               <img
                 src={four}
@@ -351,7 +351,7 @@ const Homepage = () => {
               <div className="">
                 <div className="lineForHeader">
                   <h3 className="bolder">FIN. SECRETARY</h3>
-                  <div className="theLine"></div>
+                  <div className="theLine bottomShadow" style={{width: '100%'}}></div>
                 </div>
                 <h5 className="bold mt-2">Nr. Ogwu Faith</h5>
                 <button className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa">
@@ -404,7 +404,7 @@ const Homepage = () => {
         </div>
         <div className="execGrid container">
           {/* an exec */}
-          <div className="boxShadow">
+          <div className="">
             <div className="execImg hover">
               <img
                 src={first}
@@ -423,7 +423,7 @@ const Homepage = () => {
               </div>
             </div>
           </div>
-          <div className="boxShadow">
+          <div className="">
             <div className="execImg hover">
               <img
                 src={second}
