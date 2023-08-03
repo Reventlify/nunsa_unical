@@ -369,7 +369,7 @@ const StudentDash = ({ searchWhere }) => {
     <>
       <DashSearchAndNotifications search={searchWhere} />
       <div className={`${classes.layHelp} ${classes.content} container`}>
-        {posts.map((post) => {
+        {posts.map((post, index) => {
           return (
             <div
               key={post.postId}
@@ -428,19 +428,29 @@ const StudentDash = ({ searchWhere }) => {
                     style={{ display: "flex", flexDirection: "row" }}
                   >
                     <textarea
-                      onFocus={() => setFocus(true)}
+                      onFocus={() => {
+                        setStudentOpinion("");
+                        post.post = true;
+                      }}
                       placeholder="Add a comment..."
                       className={`form-control onfocusOpinion ${classes.studOpinion}`}
                       autoComplete="off"
                       autoCorrect="off"
-                      id="regimeDescription"
+                      id={`${post.postId}IdOfPost`}
+                      onBlur={() => {
+                        document.getElementById(
+                          `${post.postId}IdOfPost`
+                        ).value = "";
+                      }}
                       aria-describedby="regimeDescriptionHelp"
-                      // value={regimeDescription}
                       onChange={(e) => setStudentOpinion(e.target.value)}
                       required
                     />
-                    {studentOpinion !== "" && focus ? (
-                      <div className="reventlify hover centerDiv" key={"12"}>
+                    {posts[index].post && studentOpinion !== "" ? (
+                      <div
+                        className="reventlify hover centerDiv"
+                        key={`${post.postId}post`}
+                      >
                         Post
                       </div>
                     ) : (
