@@ -210,7 +210,7 @@ const StudentDash = ({ searchWhere }) => {
       event.key
       // (event.key === "Tab" || event.key === "Shift")
     ) {
-      return;
+      return setDetails(details);
     }
     display ? setDisplay(false) : setDisplay(true);
     setState({ ...state, [anchor]: open });
@@ -426,7 +426,7 @@ const StudentDash = ({ searchWhere }) => {
             id="regimeDescription"
             aria-describedby="regimeDescriptionHelp"
             // value={regimeDescription}
-            // onChange={(e) => setRegimeDescription(trim(e.target.value))}
+            onChange={(e) => setStudentOpinion(e.target.value)}
             required
           />
         </div>
