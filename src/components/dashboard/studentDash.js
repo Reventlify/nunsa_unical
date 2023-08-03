@@ -19,6 +19,7 @@ import four from "../../images/four.jpg";
 import five from "../../images/five.jpg";
 import six from "../../images/six.jpg";
 import seven from "../../images/seven.jpg";
+import { formatCompactNumber } from "../../utilities/number";
 
 const StudentDash = ({ searchWhere }) => {
   const [posts, setPosts] = useState([
@@ -44,7 +45,7 @@ const StudentDash = ({ searchWhere }) => {
       community they serve. This strategic move demonstrates
       the President's commitment to keeping NUNSA relevant and
       responsive in the ever-evolving digital age.`,
-      postLikes: 563,
+      postLikes: 5673,
       postDisLikes: 23,
       postComments: 3,
       postTime: "August 10, 2023",
@@ -394,7 +395,7 @@ const StudentDash = ({ searchWhere }) => {
                       <ThumbUpOffAltIcon />
                       &nbsp;
                       <span className="reventlify hover">
-                        {comment.commentLikes}
+                        {formatCompactNumber(comment.commentLikes)}
                       </span>
                     </div>{" "}
                     <div className="ml-2 hover">Reply</div>
@@ -455,7 +456,9 @@ const StudentDash = ({ searchWhere }) => {
                   <div className={`${classes.like} container`}>
                     <ThumbUpAltIcon className="hover nunsa" />
                     &nbsp;
-                    <span className="">{post.postLikes}</span>{" "}
+                    <span className="">
+                      {formatCompactNumber(post.postLikes)}
+                    </span>{" "}
                   </div>
                   <div className={`${classes.comment} centerDivH`}>
                     <div onClick={toggleDrawer("bottom", true, post.postId)}>
@@ -464,13 +467,15 @@ const StudentDash = ({ searchWhere }) => {
                     </div>
                     &nbsp;
                     <span className="">
-                      {commentFilter(post.postId).length}
+                      {formatCompactNumber(commentFilter(post.postId).length)}
                     </span>{" "}
                   </div>
                   <div className={`${classes.dislike} centerDivR container`}>
                     <ThumbDownOffAltIcon className="hover" />
                     &nbsp;
-                    <span className="">{post.postDisLikes}</span>{" "}
+                    <span className="">
+                      {formatCompactNumber(post.postDisLikes)}
+                    </span>{" "}
                   </div>
                 </div>
                 <div className="container">
