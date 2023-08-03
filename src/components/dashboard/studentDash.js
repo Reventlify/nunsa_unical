@@ -8,12 +8,15 @@ import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { useState } from "react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import MobileDashboard from "./mobile/mobile";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import DashSearchAndNotifications from "./dashSearch&Not/dashSearch&Not";
+import BottomSpace from "../bottomSpace";
 
-const StudentDash = ({}) => {
+const StudentDash = ({searchWhere}) => {
   const [details, setDetails] = useState("");
   const [display, setDisplay] = useState(false);
+  const [displayReplies, setDisplayReplies] = useState(false);
   const [state, setState] = useState({
     top: false,
     left: false,
@@ -21,6 +24,9 @@ const StudentDash = ({}) => {
     right: false,
   });
 
+  const toggleReplies = () => {
+    displayReplies ? setDisplayReplies(false) : setDisplayReplies(true);
+  };
   const toggleDrawer = (anchor, open, stuff) => (event) => {
     setDetails(stuff);
     if (
@@ -70,21 +76,103 @@ const StudentDash = ({}) => {
                 className="round"
               />
             </div>
-            <div
-              className={`${classes.commText} paddFull-1 hover blogText ml-2`}
-            >
-              <span className="block">
-                <span className="bold">Eze Chinaza</span>
-                <br />
-                Eddy is good
-              </span>
-              <span className={`block ${classes.notTime}`}>
-                <span className="nunsa">17 hours ago</span>
-              </span>
+            <div className={`hover blogText ml-2`}>
+              <div className={`${classes.commText} paddFull-1`}>
+                <span className="block">
+                  <span className="bold">Eze Chinaza</span>
+                  <br />
+                  Eddy is good
+                </span>
+                <span className={`block ${classes.notTime}`}>
+                  <span className="nunsa">17 hours ago</span>
+                </span>
+              </div>
+              <div className={`container mt-2 ${classes.likeandReply}`}>
+                <div>
+                  Like-<span className="reventlify hover">12</span>
+                </div>{" "}
+                <div className="ml-2 hover">Reply</div>
+              </div>
+              {displayReplies ? (
+                <>
+                  <span
+                    className="nunsa block container hover"
+                    onClick={toggleReplies}
+                  >
+                    hide replies <KeyboardArrowUpIcon />
+                  </span>
+                  <div className={`${classes.notification} mt-3`}>
+                    <div className={`${classes.commIMG}`}>
+                      <img
+                        src={president}
+                        alt="user"
+                        width="30px"
+                        height="30px"
+                        className="round"
+                      />
+                    </div>
+                    <div
+                      className={`${classes.commText} paddFull-1 hover blogText ml-1`}
+                    >
+                      <span className="block">
+                        <span className="bold">Eze Chinaza</span>
+                        <br />
+                        The President of NUNSA UNICAL and his Executives
+                      </span>
+                      <span className={`block ${classes.notTime}`}>
+                        <span className="nunsa">17 hours ago</span>
+                      </span>
+                    </div>
+                  </div>
+                  <div className={`${classes.notification} mt-3`}>
+                    <div className={`${classes.commIMG}`}>
+                      <img
+                        src="https://remoteok.com/cdn-cgi/image/format=auto,fit=cover,width=500,height=500,quality=50/https://remoteok.com/assets/img/users/278d0ea32774f18ff37d2d58a4d70189.jpg?1683009009"
+                        alt="user"
+                        width="30px"
+                        height="30px"
+                        className="round"
+                      />
+                    </div>
+                    <div
+                      className={`${classes.commText} paddFull-1 hover blogText ml-1`}
+                    >
+                      <span className="block">
+                        <span className="bold">Eze Chinaza</span>
+                        <br />
+                        The President of NUNSA UNICAL and his Executives,
+                        recognizing the importance of staying technologically
+                        up-to-date, took a proactive step by commissioning a
+                        developer to create a custom web application for the
+                        association. Understanding that the digital landscape
+                        plays a crucial role in modernizing organizations, the
+                        President's forward-thinking approach aimed to ensure
+                        that NUNSA would not lag behind in technology. By
+                        investing in this web app, the association can
+                        streamline its operations, enhance communication with
+                        members, and provide more efficient services to the
+                        community they serve. This strategic move demonstrates
+                        the President's commitment to keeping NUNSA relevant and
+                        responsive in the ever-evolving digital age.
+                      </span>
+                      <span className={`block ${classes.notTime}`}>
+                        <span className="nunsa">17 hours ago</span>
+                      </span>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <span
+                  className="nunsa block container hover"
+                  onClick={toggleReplies}
+                >
+                  see replies <KeyboardArrowDownIcon />
+                </span>
+              )}
             </div>
           </div>
           <div className={`${classes.notification} mt-3`}>
-            <div className={`${classes.commIMG}`}>
+            <div className={`${classes.commIMG} hover`}>
               <img
                 src={president}
                 alt="user"
@@ -93,17 +181,24 @@ const StudentDash = ({}) => {
                 className="round"
               />
             </div>
-            <div
-              className={`${classes.commText} paddFull-1 hover blogText ml-2`}
-            >
-              <span className="block">
-                <span className="bold">Eze Chinaza</span>
-                <br />
-                The President of NUNSA UNICAL and his Executives
-              </span>
-              <span className={`block ${classes.notTime}`}>
-                <span className="nunsa">17 hours ago</span>
-              </span>
+
+            <div className={`hover blogText ml-2`}>
+              <div className={`${classes.commText} paddFull-1`}>
+                <span className="block">
+                  <span className="bold">Eze Chinaza</span>
+                  <br />
+                  The President of NUNSA UNICAL and his Executives
+                </span>
+                <span className={`block ${classes.notTime}`}>
+                  <span className="nunsa">17 hours ago</span>
+                </span>
+              </div>
+              <div className={`container mt-2 ${classes.likeandReply}`}>
+                <div>
+                  Like-<span className="reventlify hover">2</span>
+                </div>{" "}
+                <div className="ml-2 hover">Reply</div>
+              </div>
             </div>
           </div>
           <div className={`${classes.notification} mt-3`}>
@@ -116,56 +211,30 @@ const StudentDash = ({}) => {
                 className="round"
               />
             </div>
-            <div
-              className={`${classes.commText} paddFull-1 hover blogText ml-2`}
-            >
-              <span className="block">
-                <span className="bold">Eze Chinaza</span>
-                <br />
-                The President of NUNSA UNICAL and his Executives, recognizing
-                the importance of staying technologically up-to-date, took a
-                proactive step by commissioning a developer to create a custom
-                web application for the association.
-              </span>
-              <span className={`block ${classes.notTime}`}>
-                <span className="nunsa">17 hours ago</span>
-              </span>
+
+            <div className={`hover blogText ml-2`}>
+              <div className={`${classes.commText} paddFull-1`}>
+                <span className="block">
+                  <span className="bold">Eze Chinaza</span>
+                  <br />
+                  The President of NUNSA UNICAL and his Executives, recognizing
+                  the importance of staying technologically up-to-date, took a
+                  proactive step by commissioning a developer to create a custom
+                  web application for the association.
+                </span>
+                <span className={`block ${classes.notTime}`}>
+                  <span className="nunsa">17 hours ago</span>
+                </span>
+              </div>
+              <div className={`container mt-2 ${classes.likeandReply}`}>
+                <div>
+                  Like-<span className="reventlify hover">200</span>
+                </div>{" "}
+                <div className="ml-2 hover">Reply</div>
+              </div>
             </div>
           </div>
-          <div className={`${classes.notification} mt-3`}>
-            <div className={`${classes.commIMG}`}>
-              <img
-                src="https://remoteok.com/cdn-cgi/image/format=auto,fit=cover,width=500,height=500,quality=50/https://remoteok.com/assets/img/users/278d0ea32774f18ff37d2d58a4d70189.jpg?1683009009"
-                alt="user"
-                width="40px"
-                height="40px"
-                className="round"
-              />
-            </div>
-            <div
-              className={`${classes.commText} paddFull-1 hover blogText ml-2`}
-            >
-              <span className="block">
-                <span className="bold">Eze Chinaza</span>
-                <br />
-                The President of NUNSA UNICAL and his Executives, recognizing
-                the importance of staying technologically up-to-date, took a
-                proactive step by commissioning a developer to create a custom
-                web application for the association. Understanding that the
-                digital landscape plays a crucial role in modernizing
-                organizations, the President's forward-thinking approach aimed
-                to ensure that NUNSA would not lag behind in technology. By
-                investing in this web app, the association can streamline its
-                operations, enhance communication with members, and provide more
-                efficient services to the community they serve. This strategic
-                move demonstrates the President's commitment to keeping NUNSA
-                relevant and responsive in the ever-evolving digital age.
-              </span>
-              <span className={`block ${classes.notTime}`}>
-                <span className="nunsa">17 hours ago</span>
-              </span>
-            </div>
-          </div>
+          <BottomSpace />
         </div>
 
         <div className={`float-bottom ${classes.studOpinionDraw}`}>
@@ -186,7 +255,7 @@ const StudentDash = ({}) => {
   );
   return (
     <>
-      <DashSearchAndNotifications />
+      <DashSearchAndNotifications search={searchWhere}/>
       <div className={`${classes.layHelp} ${classes.dashGrid}`}>
         <div className={`${classes.content} container`}>
           <div className={`${classes.post} margAuto boxShadow`}>

@@ -85,6 +85,11 @@
   border-bottom-right-radius: 7px !important;
   border-bottom-left-radius: 7px !important;
 }
+.likeandReply{
+  display: flex;
+  flex-direction: row;
+  font-size: 13px;
+}
 .studOpinion {
   border-right: none;
   border-left: none;

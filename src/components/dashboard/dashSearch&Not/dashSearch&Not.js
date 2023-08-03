@@ -1,7 +1,7 @@
 import classes from "../studentDash.module.css";
 import president from "../../../images/president.jpg";
 
-const DashSearchAndNotifications = () => {
+const DashSearchAndNotifications = ({ search }) => {
   return (
     <div className={`${classes.sideBar}`}>
       <div className="container">
@@ -10,7 +10,7 @@ const DashSearchAndNotifications = () => {
             <input
               className={`form-control me-2 b`}
               type="search"
-              placeholder="Search NUNSA UNICAL..."
+              placeholder={search}
               aria-label="Search"
             />
             <button
