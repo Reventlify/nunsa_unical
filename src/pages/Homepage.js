@@ -370,7 +370,7 @@ const Homepage = () => {
                   ></div>
                 </div>
                 <h5 className="bold mt-2">Nr. Ogwu Faith</h5>
-                <button className="btn mt-3 mb-5 bottomShadow btnct btnct-nunsa">
+                <button className="btn mt-3 bottomShadow btnct btnct-nunsa">
                   <a
                     className="a"
                     rel="noreferrer"
