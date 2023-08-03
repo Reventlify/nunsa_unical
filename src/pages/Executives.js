@@ -453,7 +453,7 @@ const Executives = () => {
                   ></div>
                 </div>
                 <h5 className="bold mt-2">Comr. Eze Timothy Ekene</h5>
-                <button className="btn mt-3 bottomShadow btnct btnct-nunsa">
+                <button className="btn mt-3 bottomShadow btnct btnct-nunsa" id="patrons">
                   <a
                     className="a"
                     rel="noreferrer"
@@ -475,7 +475,7 @@ const Executives = () => {
           </div>
         </div>
 
-        <div className="centerDivH margingTopOutrageous" id="patrons">
+        <div className="centerDivH margingTopOutrageous">
           <div className="lineForHeader centerDivH" style={{ width: "100px" }}>
             <div className="theLine"></div>
           </div>
