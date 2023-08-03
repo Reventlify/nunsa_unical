@@ -113,6 +113,7 @@ const StudentDash = ({ searchWhere }) => {
       commenterName: "Obe Precious",
       commenterImg: one,
       comment: `Eddy is the best Software Engineer ever 😊`,
+      showReply: false,
       commentLikes: 1000,
       commentDisLikes: 0,
       commentReplies: 2,
@@ -129,13 +130,14 @@ const StudentDash = ({ searchWhere }) => {
       recognizing the importance of staying technologically
       up-to-date, took a proactive step by commissioning a
       `,
+      showReply: false,
       commentLikes: 500,
       commentDisLikes: 2,
       commentReplies: 0,
       commentTime: "August 17, 2023",
     },
     {
-      commentId: "2b",
+      commentId: "3c",
       postId: "2",
       commenterId: "c",
       commenterName: "Gojo Satoru",
@@ -143,6 +145,7 @@ const StudentDash = ({ searchWhere }) => {
       comment: `
       Edidiong is Gojo, Gojo is Edidiong.
       `,
+      showReply: false,
       commentLikes: 500,
       commentDisLikes: 2,
       commentReplies: 0,
@@ -151,22 +154,46 @@ const StudentDash = ({ searchWhere }) => {
   ]);
   const [replies, setReplies] = useState([
     {
-      post: false,
-      action: "reply",
+      replyId: "1",
       postid: "1",
-      postImg: "",
-      postText: "",
-      replyLikes: "",
-      replyDisLikes: "",
-      replyTime: "",
+      commentId: "1a",
+      replierId: "2",
+      replierName: "Kurosaki Ichigo",
+      replierImg: six,
+      reply: "Yes he is, he single handedly built this platform 👌",
+      replyLikes: 200,
+      replyDisLikes: 0,
+      replyTime: "2 mins ago",
+    },
+    {
+      replyId: "2",
+      postid: "1",
+      commentId: "1a",
+      replierId: "2",
+      replierName: "Kurosaki Ichigo",
+      replierImg: president,
+      reply: "And he also built a whole ticketing platform on his own.",
+      replyLikes: 400,
+      replyDisLikes: 0,
+      replyTime: "2 mins ago",
+    },
+    {
+      replyId: "3",
+      postid: "2",
+      commentId: "3c",
+      replierId: "5",
+      replierName: "David Udosen",
+      replierImg: president,
+      reply: "Gojo Sensei is the best.",
+      replyLikes: 140,
+      replyDisLikes: 0,
+      replyTime: "5 mins ago",
     },
   ]);
   const [details, setDetails] = useState("");
-  const [focus, setFocus] = useState("");
   const [studentOpinion, setStudentOpinion] = useState("");
   const [studentOpinionTo, setStudentOpinionTo] = useState("");
   const [display, setDisplay] = useState(false);
-  const [displayReplies, setDisplayReplies] = useState(false);
   const [state, setState] = useState({
     top: false,
     left: false,
@@ -174,9 +201,6 @@ const StudentDash = ({ searchWhere }) => {
     right: false,
   });
 
-  const toggleReplies = () => {
-    displayReplies ? setDisplayReplies(false) : setDisplayReplies(true);
-  };
   const toggleDrawer = (anchor, open, stuff) => (event) => {
     setDetails(stuff);
     if (
@@ -203,6 +227,18 @@ const StudentDash = ({ searchWhere }) => {
       setPosts(newArr);
     }
   };
+  // helps show more
+  const newArrC = [...comments];
+  // show more post text
+  const seeMoreReplies = (index) => {
+    if (!newArrC[index].showReply) {
+      newArrC[index].showReply = true;
+      setComments(newArrC);
+    } else {
+      newArrC[index].showReply = false;
+      setComments(newArrC);
+    }
+  };
 
   // actuall post text
   const postJargons = (index) => {
@@ -224,6 +260,75 @@ const StudentDash = ({ searchWhere }) => {
     });
 
     return newComments;
+  };
+
+  const replyFilter = (id) => {
+    let newReplies = replies.filter((item) => {
+      if (item.commentId === id) {
+        return item;
+      }
+    });
+
+    return newReplies;
+  };
+
+  // actuall post text
+  const replyJargons = (index, id) => {
+    if (!comments[index].showReply) {
+      return (
+        <span
+          className="nunsa block container hover"
+          onClick={() => {
+            seeMoreReplies(index);
+          }}
+        >
+          see replies <KeyboardArrowDownIcon />
+        </span>
+      );
+    } else {
+      return (
+        <>
+          <span
+            className="nunsa block container hover"
+            onClick={() => {
+              seeMoreReplies(index);
+            }}
+          >
+            hide replies <KeyboardArrowUpIcon />
+          </span>
+          {replyFilter(id).map((reply) => {
+            return (
+              <div
+                key={reply.replyId}
+                className={`${classes.notification} mt-3`}
+              >
+                <div className={`${classes.commIMG}`}>
+                  <img
+                    src={reply.replierImg}
+                    alt="user"
+                    width="30px"
+                    height="30px"
+                    className="round"
+                  />
+                </div>
+                <div
+                  className={`${classes.commText} paddFull-1 hover blogText ml-1`}
+                >
+                  <span className="block">
+                    <span className="bold">{reply.replierName}</span>
+                    <br />
+                    {reply.reply}
+                  </span>
+                  <span className={`block ${classes.notTime}`}>
+                    <span className="nunsa">{reply.replyTime}</span>
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </>
+      );
+    }
   };
   const listBottom = (anchor) => (
     <Box
@@ -292,83 +397,9 @@ const StudentDash = ({ searchWhere }) => {
                       </span>
                     </div>{" "}
                   </div>
-                  {displayReplies ? (
-                    <>
-                      <span
-                        className="nunsa block container hover"
-                        onClick={toggleReplies}
-                      >
-                        hide replies <KeyboardArrowUpIcon />
-                      </span>
-                      <div className={`${classes.notification} mt-3`}>
-                        <div className={`${classes.commIMG}`}>
-                          <img
-                            src={president}
-                            alt="user"
-                            width="30px"
-                            height="30px"
-                            className="round"
-                          />
-                        </div>
-                        <div
-                          className={`${classes.commText} paddFull-1 hover blogText ml-1`}
-                        >
-                          <span className="block">
-                            <span className="bold">Eze Chinaza</span>
-                            <br />
-                            The President of NUNSA UNICAL and his Executives
-                          </span>
-                          <span className={`block ${classes.notTime}`}>
-                            <span className="nunsa">17 hours ago</span>
-                          </span>
-                        </div>
-                      </div>
-                      <div className={`${classes.notification} mt-3`}>
-                        <div className={`${classes.commIMG}`}>
-                          <img
-                            src="https://remoteok.com/cdn-cgi/image/format=auto,fit=cover,width=500,height=500,quality=50/https://remoteok.com/assets/img/users/278d0ea32774f18ff37d2d58a4d70189.jpg?1683009009"
-                            alt="user"
-                            width="30px"
-                            height="30px"
-                            className="round"
-                          />
-                        </div>
-                        <div
-                          className={`${classes.commText} paddFull-1 hover blogText ml-1`}
-                        >
-                          <span className="block">
-                            <span className="bold">Eze Chinaza</span>
-                            <br />
-                            The President of NUNSA UNICAL and his Executives,
-                            recognizing the importance of staying
-                            technologically up-to-date, took a proactive step by
-                            commissioning a developer to create a custom web
-                            application for the association. Understanding that
-                            the digital landscape plays a crucial role in
-                            modernizing organizations, the President's
-                            forward-thinking approach aimed to ensure that NUNSA
-                            would not lag behind in technology. By investing in
-                            this web app, the association can streamline its
-                            operations, enhance communication with members, and
-                            provide more efficient services to the community
-                            they serve. This strategic move demonstrates the
-                            President's commitment to keeping NUNSA relevant and
-                            responsive in the ever-evolving digital age.
-                          </span>
-                          <span className={`block ${classes.notTime}`}>
-                            <span className="nunsa">17 hours ago</span>
-                          </span>
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    <span
-                      className="nunsa block container hover"
-                      onClick={toggleReplies}
-                    >
-                      see replies <KeyboardArrowDownIcon />
-                    </span>
-                  )}
+                  {replyFilter(comment.commentId).length > 0
+                    ? replyJargons(index, comment.commentId)
+                    : ""}
                 </div>
               </div>
             );
