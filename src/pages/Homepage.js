@@ -170,7 +170,7 @@ const Homepage = () => {
             </button>
           </motion.div>
         </div>
-        <div className="blogGrid container">
+        <div className="execGrid container">
           <div className="boxShadow">
             <div className="blogImage hover">
               <img
