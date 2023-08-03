@@ -161,6 +161,10 @@ code {
   height: fit-content;
   justify-content: center;
 }
+.float-top{
+  position: absolute;
+  top: 0;
+}
 .float-bottom{
   position: absolute;
   bottom: 10px;

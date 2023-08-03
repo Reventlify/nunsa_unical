@@ -45,8 +45,20 @@ const StudentDash = ({}) => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <div className="container">
+        <div className={`${classes.puller} centerDivH`}>
+          <div className={`mt-2 float-top`}>
+            <div className="centerDivH lineForHeader" style={{ width: "60px" }}>
+              <div
+                className="theLine"
+                style={{ backgroundColor: "#adadad" }}
+              ></div>
+            </div>
+          </div>
+        </div>
+        <h5 className="mt-3 bold">Comments</h5>
+      </div>
+      <div className="container">
         <div className={`${classes.othersOpinion}`}>
-          <h3 className="mt-2 mb-3 bold">Comments</h3>
           {/* <h5>{details}</h5> */}
           <div className={`${classes.notification} mt-3`}>
             <div className={`${classes.commIMG}`}>
