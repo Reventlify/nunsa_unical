@@ -127,6 +127,7 @@ const StudentDash = ({ searchWhere }) => {
   const [details, setDetails] = useState("");
   const [focus, setFocus] = useState("");
   const [studentOpinion, setStudentOpinion] = useState("");
+  const [studentOpinionTo, setStudentOpinionTo] = useState("");
   const [display, setDisplay] = useState(false);
   const [displayReplies, setDisplayReplies] = useState(false);
   const [state, setState] = useState({
@@ -438,16 +439,22 @@ const StudentDash = ({ searchWhere }) => {
                       id={`${post.postId}IdOfPost`}
                       onBlur={() => {
                         setStudentOpinion("");
+                        setStudentOpinionTo("");
                         post.post = false;
                         document.getElementById(
                           `${post.postId}IdOfPost`
                         ).value = "";
                       }}
                       aria-describedby="regimeDescriptionHelp"
-                      onChange={(e) => setStudentOpinion(e.target.value)}
+                      onChange={(e) => {
+                        setStudentOpinion(e.target.value);
+                        setStudentOpinionTo(post.postId);
+                      }}
                       required
                     />
-                    {posts[index].post && studentOpinion !== "" ? (
+                    {posts[index].post &&
+                    studentOpinion !== "" &&
+                    studentOpinionTo !== "" ? (
                       <div
                         className="reventlify hover centerDiv"
                         key={`${post.postId}post`}
