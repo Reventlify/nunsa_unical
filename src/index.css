@@ -230,6 +230,16 @@ code {
 .relative {
   position: relative;
 }
+.execImg{
+  height: 350px;
+}
+.execGrid {
+  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  padding-block: 2rem;
+}
+
 .blogGrid {
   gap: 2rem;
   display: grid;
@@ -286,6 +296,12 @@ code {
   }
   .topicFlex {
     flex-direction: row;
+  }
+  .execGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .execImg{
+    height: 450px;
   }
   .blogGrid {
     grid-template-columns: repeat(3, 1fr);

@@ -3,6 +3,12 @@ import Footer from "../components/layout/footer/footer";
 import Nav from "../components/layout/navbar/nav";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import one from "../images/one.jpg";
+import two from "../images/two.jpg";
+import three from "../images/three.jpg";
+import four from "../images/four.jpg";
+import first from "../images/first.jpg";
+import second from "../images/second.jpg";
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -148,7 +154,7 @@ const Homepage = () => {
           >
             <button
               onClick={blog}
-              className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa"
+              className="btn btn-lg mt-3 mb-3 bottomShadow btnct btnct-nunsa"
             >
               <motion.div
                 className="limiter"
@@ -200,6 +206,239 @@ const Homepage = () => {
                 <div className="blogFoot">
                   <p className="mt-2">August 10, 2023</p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Executives */}
+      <div className="margingTopOutrageous container">
+        <div className="container">
+          <div className="lineForHeader">
+            <h2 className="bolder">OUR EXECUTIVES</h2>
+            <div className="theLine"></div>
+          </div>
+          <motion.div
+            initial={{ x: -100 }}
+            whileInView={{ x: 0 }}
+            transition={{ duration: 1, type: "spring", bounce: 0.5 }}
+          >
+            <button
+              onClick={blog}
+              className="btn btn-lg mt-3 mb-3 bottomShadow btnct btnct-nunsa"
+            >
+              <motion.div
+                className="limiter"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 1.1 }}
+              >
+                View all
+              </motion.div>
+            </button>
+          </motion.div>
+        </div>
+        <div className="execGrid container">
+          {/* an exec */}
+          <div className="boxShadow">
+            <div className="execImg hover">
+              <img src={one} width="100%" height="100%" alt="blog post image" />
+            </div>
+            <div className="blogTitle container mt-4">
+              <div className="">
+                <div className="lineForHeader">
+                  <h3 className="bolder">PRESIDENT</h3>
+                  <div className="theLine"></div>
+                </div>
+                <h5 className="bold mt-2">Sen. Ezra Madu (Bestie)</h5>
+                <button className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa">
+                  <a
+                    className="a"
+                    rel="noreferrer"
+                    target="_blank"
+                    href="tel:+2348105185381"
+                  >
+                    <motion.div
+                      className="limiter"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 1.1 }}
+                    >
+                      Place a call
+                    </motion.div>
+                  </a>
+                </button>
+              </div>
+            </div>
+          </div>
+          {/* an exec */}
+          <div className="boxShadow">
+            <div className="execImg hover">
+              <img src={two} width="100%" height="100%" alt="blog post image" />
+            </div>
+            <div className="blogTitle container mt-4">
+              <div className="">
+                <div className="lineForHeader">
+                  <h3 className="bolder">V. PRESIDENT</h3>
+                  <div className="theLine"></div>
+                </div>
+                <h5 className="bold mt-2">Nr. Okem Irene Baba</h5>
+                <button className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa">
+                  <a
+                    className="a"
+                    rel="noreferrer"
+                    target="_blank"
+                    href="tel:+2348165150422"
+                  >
+                    <motion.div
+                      className="limiter"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 1.1 }}
+                    >
+                      Place a call
+                    </motion.div>
+                  </a>
+                </button>
+              </div>
+            </div>
+          </div>
+          {/* an exec */}
+          <div className="boxShadow">
+            <div className="execImg hover">
+              <img
+                src={three}
+                width="100%"
+                height="100%"
+                alt="blog post image"
+              />
+            </div>
+            <div className="blogTitle container mt-4">
+              <div className="">
+                <div className="lineForHeader">
+                  <h3 className="bolder">GEN. SECRETARY</h3>
+                  <div className="theLine"></div>
+                </div>
+                <h5 className="bold mt-2">Sen. Etukwu Theophilus</h5>
+                <button className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa">
+                  <a
+                    className="a"
+                    rel="noreferrer"
+                    target="_blank"
+                    href="tel:+2349038951081"
+                  >
+                    <motion.div
+                      className="limiter"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 1.1 }}
+                    >
+                      Place a call
+                    </motion.div>
+                  </a>
+                </button>
+              </div>
+            </div>
+          </div>
+          {/* an exec */}
+          <div className="boxShadow">
+            <div className="execImg hover">
+              <img
+                src={four}
+                width="100%"
+                height="100%"
+                alt="blog post image"
+              />
+            </div>
+            <div className="blogTitle container mt-4">
+              <div className="">
+                <div className="lineForHeader">
+                  <h3 className="bolder">FIN. SECRETARY</h3>
+                  <div className="theLine"></div>
+                </div>
+                <h5 className="bold mt-2">Nr. Ogwu Faith</h5>
+                <button className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa">
+                  <a
+                    className="a"
+                    rel="noreferrer"
+                    target="_blank"
+                    href="tel:+2348142646811"
+                  >
+                    <motion.div
+                      className="limiter"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 1.1 }}
+                    >
+                      Place a call
+                    </motion.div>
+                  </a>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Patrons */}
+      <div className="margingTopOutrageous container">
+        <div className="container">
+          <div className="lineForHeader">
+            <h2 className="bolder">OUR PATRONS</h2>
+            <div className="theLine"></div>
+          </div>
+          <motion.div
+            initial={{ x: -100 }}
+            whileInView={{ x: 0 }}
+            transition={{ duration: 1, type: "spring", bounce: 0.5 }}
+          >
+            <button
+              onClick={blog}
+              className="btn btn-lg mt-3 bottomShadow btnct btnct-nunsa"
+            >
+              <motion.div
+                className="limiter"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 1.1 }}
+              >
+                View all
+              </motion.div>
+            </button>
+          </motion.div>
+        </div>
+        <div className="execGrid container">
+          {/* an exec */}
+          <div className="boxShadow">
+            <div className="execImg hover">
+              <img
+                src={first}
+                width="100%"
+                height="100%"
+                alt="blog post image"
+              />
+            </div>
+            <div className="blogTitle container mt-4">
+              <div className="">
+                <div className="lineForHeader">
+                  <h3 className="bolder">HOD. NURSING UNICAL</h3>
+                  <div className="theLine"></div>
+                </div>
+                <h5 className="bold mt-2 mb-4">Prof. Regina Ella</h5>
+              </div>
+            </div>
+          </div>
+          <div className="boxShadow">
+            <div className="execImg hover">
+              <img
+                src={second}
+                width="100%"
+                height="100%"
+                alt="blog post image"
+              />
+            </div>
+            <div className="blogTitle container mt-4">
+              <div className="">
+                <div className="lineForHeader">
+                  <h3 className="bolder">CHAIRMAN STUD. AFFAIRS</h3>
+                  <div className="theLine"></div>
+                </div>
+                <h5 className="bold mt-2 mb-4">Dr. Teressa Achi OSaji</h5>
               </div>
             </div>
           </div>
