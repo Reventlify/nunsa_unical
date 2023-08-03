@@ -1,4 +1,5 @@
 import Background from "../components/background/Background";
+import Footer from "../components/layout/footer/footer";
 import Nav from "../components/layout/navbar/nav";
 
 const Executives = () => {
@@ -9,6 +10,7 @@ const Executives = () => {
     <>
       <Nav />
       <Background button={false} text={bgText} />
+      <Footer />
     </>
   );
 };

@@ -30,6 +30,9 @@ const Homepage = () => {
   const blog = () => {
     return navigate("/blog");
   };
+  const exec = () => {
+    return navigate("/executives");
+  };
   return (
     <>
       <Nav />
@@ -226,7 +229,7 @@ const Homepage = () => {
             transition={{ duration: 1, type: "spring", bounce: 0.5 }}
           >
             <button
-              onClick={blog}
+              onClick={exec}
               className="btn btn-lg mt-3 mb-3 bottomShadow btnct btnct-nunsa"
             >
               <motion.div
