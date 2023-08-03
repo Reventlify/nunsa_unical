@@ -429,7 +429,6 @@ const StudentDash = ({ searchWhere }) => {
                   >
                     <textarea
                       onFocus={() => {
-                        setStudentOpinion("");
                         post.post = true;
                       }}
                       placeholder="Add a comment..."
@@ -438,6 +437,8 @@ const StudentDash = ({ searchWhere }) => {
                       autoCorrect="off"
                       id={`${post.postId}IdOfPost`}
                       onBlur={() => {
+                        setStudentOpinion("");
+                        post.post = false;
                         document.getElementById(
                           `${post.postId}IdOfPost`
                         ).value = "";
