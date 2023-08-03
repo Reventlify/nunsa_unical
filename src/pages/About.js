@@ -4,6 +4,7 @@ import Nav from "../components/layout/navbar/nav";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import president from "../images/president.jpg";
+import one from "../images/one.jpg";
 
 const About = () => {
   const navigate = useNavigate();
@@ -119,10 +120,10 @@ const About = () => {
           </div>
           <div className="container blogText">
             <p className="mt-3">
-              The Executive Council is responsible for the daily running of the
-              association and deals with issues such as publicity, internal and
-              external relations, administration, finances, fundraising,
-              partnerships, and correspondence. It consists of...
+              The Executive Council assumes a pivotal and multifaceted role in
+              diligently supervising and orchestrating the intricate web of
+              day-to-day activities within the association. Their purview
+              extends across a diverse spectrum of responsibilities that...
             </p>
             <motion.div
               initial={{ x: -100 }}
@@ -149,8 +150,7 @@ const About = () => {
             <img
               className="tImg"
               loading="lazy"
-              // src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=cnYXGcrFsx4AX-61MTX&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDVA002Qwp8reA6WNbH7_t_0Xcoa3gEaOLriqq9o5ml-w&oe=64C837AC"
-              src={president}
+              src={one}
               alt="nunsa unical president"
             />
           </div>
