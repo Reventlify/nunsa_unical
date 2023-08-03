@@ -5,6 +5,12 @@ import one from "../images/one.jpg";
 import two from "../images/two.jpg";
 import three from "../images/three.jpg";
 import four from "../images/four.jpg";
+import five from "../images/five.jpg";
+import six from "../images/six.jpg";
+import seven from "../images/seven.jpg";
+import eight from "../images/eight.jpg";
+import nine from "../images/nine.jpg";
+import ten from "../images/ten.jpg";
 import first from "../images/first.jpg";
 import second from "../images/second.jpg";
 import CallIcon from "@mui/icons-material/Call";
@@ -233,6 +239,226 @@ const Executives = () => {
                     rel="noreferrer"
                     target="_blank"
                     href="tel:+2348142646811"
+                  >
+                    <motion.div
+                      className="limiter"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 1.1 }}
+                    >
+                      <CallIcon />
+                      &nbsp;Place a call
+                    </motion.div>
+                  </a>
+                </button>
+              </div>
+            </div>
+          </div>
+          {/* an exec */}
+          <div className="">
+            <div className="execImg hover">
+              <img src={five} width="100%" height="100%" alt="TREASURER" />
+            </div>
+            <div className="blogTitle container mt-4">
+              <div className="">
+                <div className="lineForHeader">
+                  <h3 className="bolder">TREASURER</h3>
+                  <div
+                    className="theLine bottomShadow"
+                    style={{ width: "100%" }}
+                  ></div>
+                </div>
+                <h5 className="bold mt-2">Nr. Ejor Ann Ejik</h5>
+                <button className="btn mt-3 bottomShadow btnct btnct-nunsa">
+                  <a
+                    className="a"
+                    rel="noreferrer"
+                    target="_blank"
+                    href="tel:+2347062075976"
+                  >
+                    <motion.div
+                      className="limiter"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 1.1 }}
+                    >
+                      <CallIcon />
+                      &nbsp;Place a call
+                    </motion.div>
+                  </a>
+                </button>
+              </div>
+            </div>
+          </div>
+          {/* an exec */}
+          <div className="">
+            <div className="execImg hover">
+              <img src={six} width="100%" height="100%" alt="DIR. OF WELFARE" />
+            </div>
+            <div className="blogTitle container mt-4">
+              <div className="">
+                <div className="lineForHeader">
+                  <h3 className="bolder">DIR. OF WELFARE</h3>
+                  <div
+                    className="theLine bottomShadow"
+                    style={{ width: "100%" }}
+                  ></div>
+                </div>
+                <h5 className="bold mt-2">Hon. Onuoha Amarachi</h5>
+                <button className="btn mt-3 bottomShadow btnct btnct-nunsa">
+                  <a
+                    className="a"
+                    rel="noreferrer"
+                    target="_blank"
+                    href="tel:+2348163894202"
+                  >
+                    <motion.div
+                      className="limiter"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 1.1 }}
+                    >
+                      <CallIcon />
+                      &nbsp;Place a call
+                    </motion.div>
+                  </a>
+                </button>
+              </div>
+            </div>
+          </div>
+          {/* an exec */}
+          <div className="">
+            <div className="execImg hover">
+              <img src={seven} width="100%" height="100%" alt="DIR. SOCIALS" />
+            </div>
+            <div className="blogTitle container mt-4">
+              <div className="">
+                <div className="lineForHeader">
+                  <h3 className="bolder">DIR. SOCIALS</h3>
+                  <div
+                    className="theLine bottomShadow"
+                    style={{ width: "100%" }}
+                  ></div>
+                </div>
+                <h5 className="bold mt-2">Nr. Emmanuel Akachukwu</h5>
+                <button className="btn mt-3 bottomShadow btnct btnct-nunsa">
+                  <a
+                    className="a"
+                    rel="noreferrer"
+                    target="_blank"
+                    href="tel:+2348143998803"
+                  >
+                    <motion.div
+                      className="limiter"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 1.1 }}
+                    >
+                      <CallIcon />
+                      &nbsp;Place a call
+                    </motion.div>
+                  </a>
+                </button>
+              </div>
+            </div>
+          </div>
+          {/* an exec */}
+          <div className="">
+            <div className="execImg hover">
+              <img
+                src={eight}
+                width="100%"
+                height="100%"
+                alt="DIR. OF SPORTS"
+              />
+            </div>
+            <div className="blogTitle container mt-4">
+              <div className="">
+                <div className="lineForHeader">
+                  <h3 className="bolder">DIR. OF SPORTS</h3>
+                  <div
+                    className="theLine bottomShadow"
+                    style={{ width: "100%" }}
+                  ></div>
+                </div>
+                <h5 className="bold mt-2">Hon. Songu Clifford</h5>
+                <button className="btn mt-3 bottomShadow btnct btnct-nunsa">
+                  <a
+                    className="a"
+                    rel="noreferrer"
+                    target="_blank"
+                    href="tel:+2348187617398"
+                  >
+                    <motion.div
+                      className="limiter"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 1.1 }}
+                    >
+                      <CallIcon />
+                      &nbsp;Place a call
+                    </motion.div>
+                  </a>
+                </button>
+              </div>
+            </div>
+          </div>
+          {/* an exec */}
+          <div className="">
+            <div className="execImg hover">
+              <img src={nine} width="100%" height="100%" alt="DIR. HEALTH" />
+            </div>
+            <div className="blogTitle container mt-4">
+              <div className="">
+                <div className="lineForHeader">
+                  <h3 className="bolder">DIR. HEALTH</h3>
+                  <div
+                    className="theLine bottomShadow"
+                    style={{ width: "100%" }}
+                  ></div>
+                </div>
+                <h5 className="bold mt-2">Nr. Ndukwe Esther</h5>
+                <button className="btn mt-3 bottomShadow btnct btnct-nunsa">
+                  <a
+                    className="a"
+                    rel="noreferrer"
+                    target="_blank"
+                    href="tel:+2349053238947"
+                  >
+                    <motion.div
+                      className="limiter"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 1.1 }}
+                    >
+                      <CallIcon />
+                      &nbsp;Place a call
+                    </motion.div>
+                  </a>
+                </button>
+              </div>
+            </div>
+          </div>
+          {/* an exec */}
+          <div className="">
+            <div className="execImg hover">
+              <img
+                src={ten}
+                width="100%"
+                height="100%"
+                alt="DIR. OF INFORMATION"
+              />
+            </div>
+            <div className="blogTitle container mt-4">
+              <div className="">
+                <div className="lineForHeader">
+                  <h3 className="bolder">DIR. OF INFORMATION</h3>
+                  <div
+                    className="theLine bottomShadow"
+                    style={{ width: "100%" }}
+                  ></div>
+                </div>
+                <h5 className="bold mt-2">Comr. Eze Timothy Ekene</h5>
+                <button className="btn mt-3 bottomShadow btnct btnct-nunsa">
+                  <a
+                    className="a"
+                    rel="noreferrer"
+                    target="_blank"
+                    href="tel:+2348132891348"
                   >
                     <motion.div
                       className="limiter"
