@@ -444,7 +444,7 @@ const StudentDash = ({ searchWhere }) => {
                           seeMore(index);
                         }}
                       >
-                        more
+                        {post.showComments ? "hide" : "more"}
                       </span>
                     ) : (
                       ""
