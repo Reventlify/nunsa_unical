@@ -9,8 +9,19 @@ import first from "../images/first.jpg";
 import second from "../images/second.jpg";
 import CallIcon from "@mui/icons-material/Call";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const Executives = () => {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash.length > 0) {
+      return document.querySelector(`${hash}`).scrollIntoView();
+    } else {
+      return;
+    }
+  }, []);
   const bgText = () => {
     return <span>NUNSA UNICAL EXECUTIVES</span>;
   };
@@ -237,6 +248,13 @@ const Executives = () => {
             </div>
           </div>
         </div>
+
+        <div className="centerDivH margingTopOutrageous" id="patrons">
+          <div className="lineForHeader centerDivH" style={{ width: "100px" }}>
+            <div className="theLine"></div>
+          </div>
+        </div>
+
         <div className="container margingTopOutrageous">
           <div className="lineForHeader">
             <h2 className="bolder">OUR PATRONS</h2>

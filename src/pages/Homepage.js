@@ -33,6 +33,9 @@ const Homepage = () => {
   const exec = () => {
     return navigate("/executives");
   };
+  const patrons = () => {
+    return navigate("/executives#patrons");
+  };
   return (
     <>
       <Nav />
@@ -404,7 +407,7 @@ const Homepage = () => {
             transition={{ duration: 1, type: "spring", bounce: 0.5 }}
           >
             <button
-              onClick={blog}
+              onClick={patrons}
               className="btn btn-lg mt-3 bottomShadow btnct btnct-nunsa"
             >
               <motion.div
@@ -473,7 +476,7 @@ const Homepage = () => {
             transition={{ duration: 1, type: "spring", bounce: 0.5 }}
           >
             <button
-              onClick={blog}
+              onClick={patrons}
               className="btn btn-lg mt-3 mb-5 bottomShadow btnct btnct-nunsa"
             >
               <motion.div
