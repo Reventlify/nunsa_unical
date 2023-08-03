@@ -269,7 +269,7 @@ const Homepage = () => {
                     href="tel:+2348105185381"
                   >
                     <motion.div
-                      className="limiter"
+                      className="limiter bold"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 1.1 }}
                     >
@@ -304,7 +304,7 @@ const Homepage = () => {
                     href="tel:+2348165150422"
                   >
                     <motion.div
-                      className="limiter"
+                      className="limiter bold"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 1.1 }}
                     >
@@ -344,7 +344,7 @@ const Homepage = () => {
                     href="tel:+2349038951081"
                   >
                     <motion.div
-                      className="limiter"
+                      className="limiter bold"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 1.1 }}
                     >
@@ -379,7 +379,7 @@ const Homepage = () => {
                     href="tel:+2348142646811"
                   >
                     <motion.div
-                      className="limiter"
+                      className="limiter bold"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 1.1 }}
                     >
