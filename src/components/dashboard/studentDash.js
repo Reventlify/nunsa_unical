@@ -24,6 +24,7 @@ const StudentDash = ({ searchWhere }) => {
       posterId: "a",
       posterName: "Angelina Jolie",
       post: false,
+      showComments: false,
       postImg: five,
       postText: `
       The President of NUNSA UNICAL and his Executives,
@@ -51,6 +52,7 @@ const StudentDash = ({ searchWhere }) => {
       posterId: "b",
       posterName: "Daenarys Targayrn",
       post: false,
+      showComments: false,
       postImg: six,
       postText: `
       The President of NUNSA UNICAL and his Executives,
@@ -77,6 +79,7 @@ const StudentDash = ({ searchWhere }) => {
       posterId: "c",
       posterName: "Justina Lindsay",
       post: false,
+      showComments: false,
       postImg: seven,
       postText: `
       The President of NUNSA UNICAL and his Executives,
@@ -154,6 +157,30 @@ const StudentDash = ({ searchWhere }) => {
     setState({ ...state, [anchor]: open });
   };
 
+  // helps show more
+  const newArr = [...posts];
+  // show more post text
+  const seeMore = (index) => {
+    if (!newArr[index].showComments) {
+      newArr[index].showComments = true;
+      setPosts(newArr);
+    } else {
+      newArr[index].showComments = false;
+      setPosts(newArr);
+    }
+  };
+
+  // actuall post text
+  const postJargons = (index) => {
+    if (!posts[index].showComments) {
+      return `${truncate(posts[index].postText, {
+        length: 55,
+        // separator: /,? +/,
+      })}`;
+    } else {
+      return `${posts[index].postText}`;
+    }
+  };
   const listBottom = (anchor) => (
     <Box
       sx={{
@@ -408,14 +435,20 @@ const StudentDash = ({ searchWhere }) => {
                 <div className="container">
                   <p className="container mt-3 blogText">
                     <span className="bold">{post.posterName}</span>&nbsp;
-                    {truncate(post.postText, {
-                      length: 55,
-                      // separator: /,? +/,
-                    })}
+                    {postJargons(index)}
                     <br />
-                    <span className={`hover ${classes.blogFoot} blogFoot`}>
-                      more
-                    </span>
+                    {post.postText.length > 55 ? (
+                      <span
+                        className={`hover ${classes.blogFoot} blogFoot`}
+                        onClick={() => {
+                          seeMore(index);
+                        }}
+                      >
+                        more
+                      </span>
+                    ) : (
+                      ""
+                    )}
                     <span
                       className={`mt-2 block ${classes.blogFoot}`}
                       style={{ fontSize: "12px" }}
