@@ -3,7 +3,7 @@ import Footer from "../components/layout/footer/footer";
 import Nav from "../components/layout/navbar/nav";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import president from "../images/president.jpg"
+import president from "../images/president.jpg";
 
 const About = () => {
   const navigate = useNavigate();
@@ -35,6 +35,7 @@ const About = () => {
             associations from various universities across Nigeria to
             collectively uplift the standards of nursing education and practice.
             <br />
+            <br />
             {/*  */}
             NUNSA UNICAL strives to create a nurturing environment for nursing
             students, fostering their growth and development through a range of
@@ -42,6 +43,8 @@ const About = () => {
             seminars to impactful community outreach programs, the organization
             is committed to equipping its members with the knowledge and skills
             necessary to excel in their studies and future careers as nurses.
+            <br />
+            <br />
             {/*  */}
             With a strong sense of unity and camaraderie among its members,
             NUNSA UNICAL provides an invaluable platform for networking,
@@ -49,6 +52,8 @@ const About = () => {
             the organization's activities, nursing students can expand their
             horizons and build meaningful connections within the nursing
             community.
+            <br />
+            <br />
             {/*  */}
             Whether you're already a proud member of NUNSA UNICAL or considering
             joining this exceptional organization, your involvement promises to
@@ -74,6 +79,7 @@ const About = () => {
             their vision and making them a reality. NUNSA allows its members to
             create an impact at the local, National and International level on
             many global health topics through carrying out activities.
+            <br />
             <br />
             {/*  */}
             The Nigerian Universities Nursing Students’ Association (NUNSA) is
