@@ -243,7 +243,7 @@ const Homepage = () => {
           {/* an exec */}
           <div className="">
             <div className="execImg hover">
-              <img src={one} width="100%" height="100%" alt="blog post image" />
+              <img src={one} width="100%" height="100%" alt="PRESIDENT" />
             </div>
             <div className="blogTitle container mt-4">
               <div className="">
@@ -278,7 +278,7 @@ const Homepage = () => {
           {/* an exec */}
           <div className="">
             <div className="execImg hover">
-              <img src={two} width="100%" height="100%" alt="blog post image" />
+              <img src={two} width="100%" height="100%" alt="V. PRESIDENT" />
             </div>
             <div className="blogTitle container mt-4">
               <div className="">
@@ -317,7 +317,7 @@ const Homepage = () => {
                 src={three}
                 width="100%"
                 height="100%"
-                alt="blog post image"
+                alt="GEN. SECRETARY"
               />
             </div>
             <div className="blogTitle container mt-4">
@@ -353,12 +353,7 @@ const Homepage = () => {
           {/* an exec */}
           <div className="">
             <div className="execImg hover">
-              <img
-                src={four}
-                width="100%"
-                height="100%"
-                alt="blog post image"
-              />
+              <img src={four} width="100%" height="100%" alt="FIN. SECRETARY" />
             </div>
             <div className="blogTitle container mt-4">
               <div className="">
@@ -427,7 +422,7 @@ const Homepage = () => {
                 src={first}
                 width="100%"
                 height="100%"
-                alt="blog post image"
+                alt="HOD. NURSING UNICAL"
               />
             </div>
             <div className="blogTitle container mt-4">
@@ -446,7 +441,7 @@ const Homepage = () => {
                 src={second}
                 width="100%"
                 height="100%"
-                alt="blog post image"
+                alt="CHAIRMAN STUD. AFFAIRS"
               />
             </div>
             <div className="blogTitle container mt-4">
