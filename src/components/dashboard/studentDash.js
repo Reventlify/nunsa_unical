@@ -394,7 +394,7 @@ const StudentDash = ({ searchWhere }) => {
                     <div>
                       <ThumbUpOffAltIcon />
                       &nbsp;
-                      <span className="reventlify hover">
+                      <span className=" hover">
                         {formatCompactNumber(comment.commentLikes)}
                       </span>
                     </div>{" "}
@@ -402,7 +402,7 @@ const StudentDash = ({ searchWhere }) => {
                     <div className="ml-2 ">
                       <ThumbDownOffAltIcon />
                       &nbsp;
-                      <span className="reventlify hover">
+                      <span className=" hover">
                         {comment.commentDisLikes}
                       </span>
                     </div>{" "}
