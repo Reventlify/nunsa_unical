@@ -20,6 +20,7 @@ import five from "../../images/five.jpg";
 import six from "../../images/six.jpg";
 import seven from "../../images/seven.jpg";
 import { formatCompactNumber } from "../../utilities/number";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 const StudentDash = ({ searchWhere }) => {
   const [posts, setPosts] = useState([
@@ -29,7 +30,7 @@ const StudentDash = ({ searchWhere }) => {
       posterName: "Angelina Jolie",
       post: false,
       showComments: false,
-      postImg: searchWhere !== "Search NUNSA UNICAL..." ?  five : six,
+      postImg: searchWhere !== "Search NUNSA UNICAL..." ? five : six,
       postText: `
       The President of NUNSA UNICAL and his Executives,
       recognizing the importance of staying technologically
@@ -57,7 +58,7 @@ const StudentDash = ({ searchWhere }) => {
       posterName: "Daenarys Targayrn",
       post: false,
       showComments: false,
-      postImg: searchWhere !== "Search NUNSA UNICAL..." ?  six : five,
+      postImg: searchWhere !== "Search NUNSA UNICAL..." ? six : five,
       postText: `
       The President of NUNSA UNICAL and his Executives,
       recognizing the importance of staying technologically
@@ -402,9 +403,7 @@ const StudentDash = ({ searchWhere }) => {
                     <div className="ml-2 ">
                       <ThumbDownOffAltIcon />
                       &nbsp;
-                      <span className=" hover">
-                        {comment.commentDisLikes}
-                      </span>
+                      <span className=" hover">{comment.commentDisLikes}</span>
                     </div>{" "}
                   </div>
                   {replyFilter(comment.commentId).length > 0
@@ -560,6 +559,13 @@ const StudentDash = ({ searchWhere }) => {
             </div>
           );
         })}
+      </div>
+      <div className={`fixed-bottom`} style={{ width: "100%" }}>
+        <div className="centerDivH">
+          <span className="boxShadow hover circle bg-white">
+            <AddCircleIcon className="nunsa" style={{ fontSize: "62px" }} />
+          </span>
+        </div>
       </div>
       <SwipeableDrawer
         sx={() => (display ? { display: "block" } : { display: "none" })}

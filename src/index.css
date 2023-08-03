@@ -200,7 +200,9 @@ code {
 .focus {
   font-weight: 700;
 }
-
+.circle{
+  border-radius: 50%;
+}
 /* topics */
 .lineForHeader {
   width: fit-content;
