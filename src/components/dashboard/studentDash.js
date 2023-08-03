@@ -155,7 +155,7 @@ const StudentDash = ({ searchWhere }) => {
   const [replies, setReplies] = useState([
     {
       replyId: "1",
-      postid: "1",
+      postId: "1",
       commentId: "1a",
       replierId: "2",
       replierName: "Kurosaki Ichigo",
@@ -167,7 +167,7 @@ const StudentDash = ({ searchWhere }) => {
     },
     {
       replyId: "2",
-      postid: "1",
+      postId: "1",
       commentId: "1a",
       replierId: "2",
       replierName: "Kurosaki Ichigo",
@@ -179,7 +179,7 @@ const StudentDash = ({ searchWhere }) => {
     },
     {
       replyId: "3",
-      postid: "2",
+      postId: "2",
       commentId: "3c",
       replierId: "5",
       replierName: "David Udosen",
@@ -261,6 +261,14 @@ const StudentDash = ({ searchWhere }) => {
 
     return newComments;
   };
+  const commentFilterC = (id) => {
+    // let om =  comments.map(object => object.commentId).indexOf('c');
+    let realIndex = comments.findIndex((object) => {
+      return object.commentId === id;
+    });
+
+    return realIndex;
+  };
 
   const replyFilter = (id) => {
     let newReplies = replies.filter((item) => {
@@ -273,13 +281,14 @@ const StudentDash = ({ searchWhere }) => {
   };
 
   // actuall post text
-  const replyJargons = (index, id) => {
-    if (!comments[index].showReply) {
+  const replyJargons = (id) => {
+    let realIndex = commentFilterC(id);
+    if (!comments[realIndex].showReply) {
       return (
         <span
           className="nunsa block container hover"
           onClick={() => {
-            seeMoreReplies(index);
+            seeMoreReplies(realIndex);
           }}
         >
           see replies <KeyboardArrowDownIcon />
@@ -291,7 +300,7 @@ const StudentDash = ({ searchWhere }) => {
           <span
             className="nunsa block container hover"
             onClick={() => {
-              seeMoreReplies(index);
+              seeMoreReplies(realIndex);
             }}
           >
             hide replies <KeyboardArrowUpIcon />
@@ -398,7 +407,7 @@ const StudentDash = ({ searchWhere }) => {
                     </div>{" "}
                   </div>
                   {replyFilter(comment.commentId).length > 0
-                    ? replyJargons(index, comment.commentId)
+                    ? replyJargons(comment.commentId)
                     : ""}
                 </div>
               </div>
