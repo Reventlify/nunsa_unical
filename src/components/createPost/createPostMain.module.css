@@ -5,6 +5,9 @@
 .big {
   display: none;
 }
+.postImg{
+  height: 400px;
+}
 /* small styles */
 .headStart {
   border-bottom: 1px solid #bbacac;
