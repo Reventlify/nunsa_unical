@@ -14,7 +14,8 @@
   flex-direction: row;
   padding-top: 5px;
   padding-bottom: 5px;
-  margin-bottom: 0.5rem;
+  height: 50px;
+  margin-bottom: 0.2rem;
 }
 .left {
   flex: 1;
@@ -40,40 +41,29 @@
 .userDetails {
   flex: 1;
 }
-.invisiput{
-  max-width: 1px;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-}
-.defaultInputText {
-  font-size: 18px;
-  /* display: inline-block; */
-  width: 100%;
+.postInput {
+  caret-color: blue;
   height: 60vh;
-  overflow-y: scroll;
+  border-right: none !important;
+  border-left: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
 }
-.blinker{
-  width: 3px;
-  font-size: 19px;
-  /* height: 20px; */
-  background: blue;
-  display: inline-block;
+.postInput::placeholder {
+  font-size: 18px;
 }
-/* .blinker {
-  display: flex;
-  align-items: center;
-  gap: 2px;
+.postInput:focus{
+  font-size: 18px;
+  color: #777;
+}
+/* .postInput:focus {
+  border-right: none !important;
+  border-left: none !important;
+  border-top: none !important;
+  border-color: #adadad !important;
+  box-shadow: none  !important;
 } */
-@keyframes cursor-blink {
-  0% {
-    opacity: 0;
-  }
-}
-.blinker {
-  /*code commented for brevity*/
-  animation: cursor-blink 1.5s steps(2) infinite;
-}
 @media (min-width: 750px) {
   .small {
     display: none;
