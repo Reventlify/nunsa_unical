@@ -551,7 +551,7 @@ const Executives = () => {
                   <h3 className="bolder">CHAIRMAN STUD. AFFAIRS</h3>
                   <div className="theLine"></div>
                 </div>
-                <h5 className="bold mt-2 mb-4">Dr. Teressa Achi OSaji</h5>
+                <h5 className="bold mt-2 mb-4">Dr. Teresa Achi OSaji</h5>
               </div>
             </div>
           </div>
