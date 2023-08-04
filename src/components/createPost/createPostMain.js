@@ -1,17 +1,13 @@
 import { useEffect, useState, useCallback } from "react";
-import classes from "../createPost/createPostMain.module.css";
+// import classes from "../createPost/createPostMain.module.css";
 import CreatePostSmall from "./screenSizes/createPostSmall";
 import CreatePostBig from "./screenSizes/createPostBig";
 
 const CreatePostMain = () => {
   return (
     <>
-      <div className={`${classes.small}`}>
-        <CreatePostSmall />
-      </div>
-      <div className={`${classes.big}`}>
-        <CreatePostBig />
-      </div>
+      <CreatePostSmall />
+      <CreatePostBig />
     </>
   );
 };
