@@ -21,6 +21,11 @@ const Homepage = () => {
       </span>
     );
   };
+  const slideInButtonTransitionParams = {
+    duration: 0.5,
+    type: "spring",
+    bounce: 0.5,
+  };
   const bgBtAction = () => {
     return navigate("/signup");
   };
@@ -118,7 +123,7 @@ const Homepage = () => {
             <motion.div
               initial={{ x: -100 }}
               whileInView={{ x: 0 }}
-              transition={{ duration: 1, type: "spring", bounce: 0.5 }}
+              transition={slideInButtonTransitionParams}
             >
               <button
                 onClick={about}
@@ -157,7 +162,7 @@ const Homepage = () => {
           <motion.div
             initial={{ x: -100 }}
             whileInView={{ x: 0 }}
-            transition={{ duration: 1, type: "spring", bounce: 0.5 }}
+            transition={slideInButtonTransitionParams}
           >
             <button
               onClick={blog}
@@ -229,7 +234,7 @@ const Homepage = () => {
           <motion.div
             initial={{ x: -100 }}
             whileInView={{ x: 0 }}
-            transition={{ duration: 1, type: "spring", bounce: 0.5 }}
+            transition={slideInButtonTransitionParams}
           >
             <button
               onClick={exec}
@@ -404,7 +409,7 @@ const Homepage = () => {
           <motion.div
             initial={{ x: -100 }}
             whileInView={{ x: 0 }}
-            transition={{ duration: 1, type: "spring", bounce: 0.5 }}
+            transition={slideInButtonTransitionParams}
           >
             <button
               onClick={patrons}
@@ -473,7 +478,7 @@ const Homepage = () => {
           <motion.div
             initial={{ x: -100 }}
             whileInView={{ x: 0 }}
-            transition={{ duration: 1, type: "spring", bounce: 0.5 }}
+            transition={slideInButtonTransitionParams}
           >
             <button
               onClick={patrons}
