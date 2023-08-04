@@ -22,7 +22,7 @@ const Homepage = () => {
     );
   };
   const slideInButtonTransitionParams = {
-    duration: 0.5,
+    duration: 1,
     type: "spring",
     bounce: 0.5,
   };
