@@ -3,7 +3,12 @@ import Nav from "../components/layout/navbar/nav";
 
 const Blog = () => {
   const bgText = () => {
-    return <span>BLOG POSTS AND ARTICLES</span>;
+    return (
+      <span>
+        BLOG POSTS AND
+        <br /> ARTICLES
+      </span>
+    );
   };
   return (
     <>

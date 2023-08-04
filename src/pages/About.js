@@ -9,7 +9,12 @@ import one from "../images/one.jpg";
 const About = () => {
   const navigate = useNavigate();
   const bgText = () => {
-    return <span>ABOUT US</span>;
+    return (
+      <span>
+        ABOUT NUNSA <br />
+        UNICAL
+      </span>
+    );
   };
   const executives = () => {
     return navigate("/executives");

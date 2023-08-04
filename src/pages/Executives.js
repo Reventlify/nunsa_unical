@@ -29,7 +29,12 @@ const Executives = () => {
     }
   }, []);
   const bgText = () => {
-    return <span>NUNSA UNICAL EXECUTIVES</span>;
+    return (
+      <span>
+        NUNSA UNICAL
+        <br /> EXECUTIVES
+      </span>
+    );
   };
   return (
     <>
@@ -453,7 +458,10 @@ const Executives = () => {
                   ></div>
                 </div>
                 <h5 className="bold mt-2">Comr. Eze Timothy Ekene</h5>
-                <button className="btn mt-3 bottomShadow btnct btnct-nunsa" id="patrons">
+                <button
+                  className="btn mt-3 bottomShadow btnct btnct-nunsa"
+                  id="patrons"
+                >
                   <a
                     className="a"
                     rel="noreferrer"
