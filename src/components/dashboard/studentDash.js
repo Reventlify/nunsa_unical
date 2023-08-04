@@ -20,7 +20,7 @@ import five from "../../images/five.jpg";
 import six from "../../images/six.jpg";
 import seven from "../../images/seven.jpg";
 import { formatCompactNumber } from "../../utilities/number";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
+import CreatePost from "../createPostButton";
 
 const StudentDash = ({ searchWhere }) => {
   const [posts, setPosts] = useState([
@@ -78,6 +78,33 @@ const StudentDash = ({ searchWhere }) => {
       postDisLikes: 363,
       postComments: 1,
       postTime: "August 9, 2023",
+    },
+    {
+      postId: "4",
+      posterId: "d",
+      posterName: "Hirako Shinji",
+      post: false,
+      showComments: false,
+      postImg: "",
+      postText: `
+      The President of NUNSA UNICAL and his Executives,
+      recognizing the importance of staying technologically
+      up-to-date, took a proactive step by commissioning a
+      developer to create a custom web application for the
+      association. Understanding that the digital landscape
+      plays a crucial role in modernizing organizations, the
+      President's forward-thinking approach aimed to ensure
+      that NUNSA would not lag behind in technology. By
+      investing in this web app, the association can
+      streamline its operations, enhance communication with
+      members, and provide more efficient services to the
+      community they serve. This strategic move demonstrates
+      the President's commitment to keeping NUNSA relevant and
+      responsive in the ever-evolving digital age.`,
+      postLikes: 1_000_000,
+      postDisLikes: 100,
+      postComments: 0,
+      postTime: "August 8, 2023",
     },
     {
       postId: "3",
@@ -247,6 +274,17 @@ const StudentDash = ({ searchWhere }) => {
     if (!posts[index].showComments) {
       return `${truncate(posts[index].postText, {
         length: 55,
+        // separator: /,? +/,
+      })}`;
+    } else {
+      return `${posts[index].postText}`;
+    }
+  };
+  // actuall post text
+  const postJargonsGreater = (index) => {
+    if (!posts[index].showComments) {
+      return `${truncate(posts[index].postText, {
+        length: 250,
         // separator: /,? +/,
       })}`;
     } else {
@@ -448,125 +486,232 @@ const StudentDash = ({ searchWhere }) => {
       <DashSearchAndNotifications search={searchWhere} />
       <div className={`${classes.layHelp} ${classes.content} container`}>
         {posts.map((post, index) => {
-          return (
-            <div
-              key={post.postId}
-              className={`${classes.post} margAuto boxShadow`}
-            >
-              <div className={`${classes.postImg}`}>
-                <img
-                  src={post.postImg}
-                  width="100%"
-                  height="100%"
-                  alt="blog post image"
-                />
-              </div>
-              <div className="blogText">
-                <div className={`container mt-3 ${classes.opinion}`}>
-                  <div className={`${classes.like} container`}>
-                    <ThumbUpAltIcon className="hover nunsa" />
-                    &nbsp;
-                    <span className="">
-                      {formatCompactNumber(post.postLikes)}
-                    </span>{" "}
-                  </div>
-                  <div className={`${classes.comment} centerDivH`}>
-                    <div onClick={toggleDrawer("bottom", true, post.postId)}>
-                      {" "}
-                      <ChatBubbleOutlineIcon className="hover" />
+          if (post.postImg.length > 0) {
+            return (
+              <div
+                key={post.postId}
+                className={`${classes.post} margAuto boxShadow`}
+              >
+                <div className={`${classes.postImg}`}>
+                  <img
+                    src={post.postImg}
+                    width="100%"
+                    height="100%"
+                    alt="blog post image"
+                  />
+                </div>
+                <div className="blogText">
+                  <div className={`container mt-3 ${classes.opinion}`}>
+                    <div className={`${classes.like} container`}>
+                      <ThumbUpAltIcon className="hover nunsa" />
+                      &nbsp;
+                      <span className="">
+                        {formatCompactNumber(post.postLikes)}
+                      </span>{" "}
                     </div>
-                    &nbsp;
-                    <span className="">
-                      {formatCompactNumber(commentFilter(post.postId).length)}
-                    </span>{" "}
+                    <div className={`${classes.comment} centerDivH`}>
+                      <div onClick={toggleDrawer("bottom", true, post.postId)}>
+                        {" "}
+                        <ChatBubbleOutlineIcon className="hover" />
+                      </div>
+                      &nbsp;
+                      <span className="">
+                        {formatCompactNumber(commentFilter(post.postId).length)}
+                      </span>{" "}
+                    </div>
+                    <div className={`${classes.dislike} centerDivR container`}>
+                      <ThumbDownOffAltIcon className="hover" />
+                      &nbsp;
+                      <span className="">
+                        {formatCompactNumber(post.postDisLikes)}
+                      </span>{" "}
+                    </div>
                   </div>
-                  <div className={`${classes.dislike} centerDivR container`}>
-                    <ThumbDownOffAltIcon className="hover" />
-                    &nbsp;
-                    <span className="">
-                      {formatCompactNumber(post.postDisLikes)}
-                    </span>{" "}
+                  <div className="container">
+                    <p className="container mt-3 blogText">
+                      <span className="bold">{post.posterName}</span>&nbsp;
+                      {postJargons(index)}
+                      <br />
+                      {post.postText.length > 55 ? (
+                        <span
+                          className={`hover ${classes.blogFoot} blogFoot`}
+                          onClick={() => {
+                            seeMore(index);
+                          }}
+                        >
+                          {post.showComments ? "hide" : "more"}
+                        </span>
+                      ) : (
+                        ""
+                      )}
+                      <span
+                        className={`mt-2 block ${classes.blogFoot}`}
+                        style={{ fontSize: "12px" }}
+                      >
+                        {post.postTime}
+                      </span>
+                    </p>
+
+                    <div
+                      className="mb-3 container"
+                      style={{ display: "flex", flexDirection: "row" }}
+                    >
+                      <textarea
+                        onFocus={() => {
+                          post.post = true;
+                        }}
+                        placeholder="Add a comment..."
+                        className={`form-control onfocusOpinion ${classes.studOpinion}`}
+                        autoComplete="off"
+                        autoCorrect="off"
+                        id={`${post.postId}IdOfPost`}
+                        onBlur={() => {
+                          setStudentOpinion("");
+                          setStudentOpinionTo("");
+                          post.post = false;
+                          document.getElementById(
+                            `${post.postId}IdOfPost`
+                          ).value = "";
+                        }}
+                        aria-describedby="regimeDescriptionHelp"
+                        onChange={(e) => {
+                          setStudentOpinion(e.target.value);
+                          setStudentOpinionTo(post.postId);
+                        }}
+                        required
+                      />
+                      {posts[index].post &&
+                      studentOpinion !== "" &&
+                      studentOpinionTo !== "" ? (
+                        <div
+                          className="reventlify hover centerDiv"
+                          key={`${post.postId}post`}
+                        >
+                          Post
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </div>
                 </div>
-                <div className="container">
-                  <p className="container mt-3 blogText">
-                    <span className="bold">{post.posterName}</span>&nbsp;
-                    {postJargons(index)}
-                    <br />
-                    {post.postText.length > 55 ? (
-                      <span
-                        className={`hover ${classes.blogFoot} blogFoot`}
-                        onClick={() => {
-                          seeMore(index);
-                        }}
+              </div>
+            );
+          } else {
+            return (
+              <div
+                key={post.postId}
+                className={`${classes.post} margAuto boxShadow`}
+              >
+                <div className="blogText">
+                  <div className="container">
+                    <div className="container mt-3 blogText">
+                      <span className="bold">{post.posterName}</span>&nbsp;
+                      {postJargonsGreater(index)}
+                      <br />
+                      {post.postText.length > 250 ? (
+                        <span
+                          className={`hover ${classes.blogFoot} blogFoot`}
+                          onClick={() => {
+                            seeMore(index);
+                          }}
+                        >
+                          {post.showComments ? "hide" : "more"}
+                        </span>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div className={`mt-3 ${classes.opinion}`}>
+                      <div className={`${classes.like} container`}>
+                        <ThumbUpAltIcon className="hover nunsa" />
+                        &nbsp;
+                        <span className="">
+                          {formatCompactNumber(post.postLikes)}
+                        </span>{" "}
+                      </div>
+                      <div className={`${classes.comment} centerDivH`}>
+                        <div
+                          onClick={toggleDrawer("bottom", true, post.postId)}
+                        >
+                          {" "}
+                          <ChatBubbleOutlineIcon className="hover" />
+                        </div>
+                        &nbsp;
+                        <span className="">
+                          {formatCompactNumber(
+                            commentFilter(post.postId).length
+                          )}
+                        </span>{" "}
+                      </div>
+                      <div
+                        className={`${classes.dislike} centerDivR container`}
                       >
-                        {post.showComments ? "hide" : "more"}
-                      </span>
-                    ) : (
-                      ""
-                    )}
+                        <ThumbDownOffAltIcon className="hover" />
+                        &nbsp;
+                        <span className="">
+                          {formatCompactNumber(post.postDisLikes)}
+                        </span>{" "}
+                      </div>
+                    </div>
                     <span
-                      className={`mt-2 block ${classes.blogFoot}`}
+                      className={`mt-3 mb-3 container block ${classes.blogFoot}`}
                       style={{ fontSize: "12px" }}
                     >
                       {post.postTime}
                     </span>
-                  </p>
 
-                  <div
-                    className="mb-3 container"
-                    style={{ display: "flex", flexDirection: "row" }}
-                  >
-                    <textarea
-                      onFocus={() => {
-                        post.post = true;
-                      }}
-                      placeholder="Add a comment..."
-                      className={`form-control onfocusOpinion ${classes.studOpinion}`}
-                      autoComplete="off"
-                      autoCorrect="off"
-                      id={`${post.postId}IdOfPost`}
-                      onBlur={() => {
-                        setStudentOpinion("");
-                        setStudentOpinionTo("");
-                        post.post = false;
-                        document.getElementById(
-                          `${post.postId}IdOfPost`
-                        ).value = "";
-                      }}
-                      aria-describedby="regimeDescriptionHelp"
-                      onChange={(e) => {
-                        setStudentOpinion(e.target.value);
-                        setStudentOpinionTo(post.postId);
-                      }}
-                      required
-                    />
-                    {posts[index].post &&
-                    studentOpinion !== "" &&
-                    studentOpinionTo !== "" ? (
-                      <div
-                        className="reventlify hover centerDiv"
-                        key={`${post.postId}post`}
-                      >
-                        Post
-                      </div>
-                    ) : (
-                      ""
-                    )}
+                    <div
+                      className="mb-3 container"
+                      style={{ display: "flex", flexDirection: "row" }}
+                    >
+                      <textarea
+                        onFocus={() => {
+                          post.post = true;
+                        }}
+                        placeholder="Add a comment..."
+                        className={`form-control onfocusOpinion ${classes.studOpinion}`}
+                        autoComplete="off"
+                        autoCorrect="off"
+                        id={`${post.postId}IdOfPost`}
+                        onBlur={() => {
+                          setStudentOpinion("");
+                          setStudentOpinionTo("");
+                          post.post = false;
+                          document.getElementById(
+                            `${post.postId}IdOfPost`
+                          ).value = "";
+                        }}
+                        aria-describedby="regimeDescriptionHelp"
+                        onChange={(e) => {
+                          setStudentOpinion(e.target.value);
+                          setStudentOpinionTo(post.postId);
+                        }}
+                        required
+                      />
+                      {posts[index].post &&
+                      studentOpinion !== "" &&
+                      studentOpinionTo !== "" ? (
+                        <div
+                          className="reventlify hover centerDiv"
+                          key={`${post.postId}post`}
+                        >
+                          Post
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          );
+            );
+          }
         })}
       </div>
-      <div className={`fixed-bottom`} style={{ width: "100%" }}>
-        <div className="centerDivH">
-          <span className="boxShadow hover circle bg-white">
-            <AddCircleIcon className="nunsa" style={{ fontSize: "62px" }} />
-          </span>
-        </div>
-      </div>
+
+      <CreatePost />
+
       <SwipeableDrawer
         sx={() => (display ? { display: "block" } : { display: "none" })}
         anchor={"bottom"}
