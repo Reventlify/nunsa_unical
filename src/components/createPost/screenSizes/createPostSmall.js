@@ -1,20 +1,17 @@
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback } from "react";
 import one from "../../../images/one.jpg";
 import classes from "../createPostMain.module.css";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import { useNavigate } from "react-router-dom";
 
 const CreatePostSmall = () => {
+  const navigate = useNavigate();
   const [opinion, setOpinion] = useState("");
-  const hiddenFileInput = useRef();
-  // Programatically click the hidden file input element
-  // when the defaultInputText component is clicked
-  const handleClick = () => {
-    hiddenFileInput.current.focus();
+  const back = () => {
+    navigate(-1);
   };
-  // const handleChange = (event) => {
-  //   const text = event.target.value;
-  //   return setOpinion(text);
-  // };
   return (
     <>
       <div className={`${classes.small}`}>
@@ -22,8 +19,13 @@ const CreatePostSmall = () => {
           <div className={`${classes.headStart}`}>
             <div className={`${classes.head} container`}>
               <div className={`${classes.left}`}>
-                <ArrowBackIcon />
-                &nbsp;<span className="bolder">Create Post</span>
+                <span onClick={back}>
+                  <ArrowBackIcon />
+                </span>
+                &nbsp;
+                <span className="bolder" onClick={back}>
+                  Create Post
+                </span>
               </div>
               <div className={`${classes.right}`}>
                 <button
@@ -77,7 +79,19 @@ const CreatePostSmall = () => {
             // required
           />
         </div>
-        {/* <div className="fixed-bottom">{opinion}</div> */}
+        <div className={`fixed-bottom`} style={{ width: "100%" }}>
+          <div className="centerDivH">
+            <span
+              className="mb-3 hover"
+              // onClick={handleCreation}
+            >
+              <AddPhotoAlternateIcon
+                className="nunsa"
+                style={{ fontSize: "42px" }}
+              />
+            </span>
+          </div>
+        </div>
       </div>
     </>
   );
