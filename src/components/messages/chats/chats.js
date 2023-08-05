@@ -48,8 +48,8 @@ const Chats = () => {
               <img
                 className="circle mr-2"
                 src={chat.chatPaticipantB_img}
-                height="70px"
-                width="70px"
+                height="55px"
+                width="55px"
               />
             </div>
             <div

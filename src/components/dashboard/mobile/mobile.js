@@ -23,6 +23,7 @@ import ListItemText from "@mui/material/ListItemText";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import AppBar from "@mui/material/AppBar";
 import { useLocation, useNavigate } from "react-router-dom";
+import one from "../../../images/one.jpg";
 
 export default function MobileDashboard({ children }) {
   const navigate = useNavigate();
@@ -80,8 +81,8 @@ export default function MobileDashboard({ children }) {
         }}
       >
         <img
-          src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=8WNPXV6yNF0AX_-7dgq&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDk4GuES7kMlVHdKo6i7kaBZxBkjnQDLYWNkNS1FE7dHw&oe=64CE266C"
-          alt="nunsaLogo"
+          src={one}
+          alt="user"
           width="45px"
           height="45px"
           className="round"
@@ -165,12 +166,7 @@ export default function MobileDashboard({ children }) {
       <CssBaseline />
       <AppBar sx={{ backgroundColor: "#61ce70" }} position="fixed">
         <Toolbar>
-          <img
-            src="https://scontent.flos5-2.fna.fbcdn.net/v/t39.30808-6/313336548_674588254185403_964964941295928814_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF0S5BynH3rDfPLEnYRKNIyU1JeqTLUwvJTUl6pMtTC8q63DFX2hW9EDQpZ-421ZUchU68Eyh9xz4MOHyZc_hxs&_nc_ohc=8WNPXV6yNF0AX_-7dgq&_nc_zt=23&_nc_ht=scontent.flos5-2.fna&oh=00_AfDk4GuES7kMlVHdKo6i7kaBZxBkjnQDLYWNkNS1FE7dHw&oe=64CE266C"
-            alt="nunsaLogo"
-            width="45px"
-            className="round"
-          />
+          <img src={one} alt="nunsaLogo" width="45px" height="45px" className="round" />
           <Typography
             variant="h6"
             noWrap
@@ -181,6 +177,7 @@ export default function MobileDashboard({ children }) {
               src="https://nunsa.org.ng/wp-content/uploads/2023/03/download-2.jpeg"
               alt="nunsaLogo"
               width="45px"
+              height="45px"
               className="round"
             />
           </Typography>
