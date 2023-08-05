@@ -15,210 +15,17 @@ import DashSearchAndNotifications from "./dashSearch&Not/dashSearch&Not";
 import BottomSpace from "../bottomSpace";
 import one from "../../images/one.jpg";
 import two from "../../images/two.jpg";
-import four from "../../images/four.jpg";
 import five from "../../images/five.jpg";
 import six from "../../images/six.jpg";
-import seven from "../../images/seven.jpg";
 import { formatCompactNumber } from "../../utilities/number";
 import CreatePost from "../createPostButton";
+import { testComments, testPost, testReplies } from "../../testData/tesData";
+import { startWithCase } from "../../utilities/text";
 
 const StudentDash = ({ searchWhere }) => {
-  const [posts, setPosts] = useState([
-    {
-      postId: "1",
-      posterId: "a",
-      posterName: "Angelina Jolie",
-      post: false,
-      showComments: false,
-      postImg: searchWhere !== "Search NUNSA UNICAL..." ? five : six,
-      postText: `
-      The President of NUNSA UNICAL and his Executives,
-      recognizing the importance of staying technologically
-      up-to-date, took a proactive step by commissioning a
-      developer to create a custom web application for the
-      association. Understanding that the digital landscape
-      plays a crucial role in modernizing organizations, the
-      President's forward-thinking approach aimed to ensure
-      that NUNSA would not lag behind in technology. By
-      investing in this web app, the association can
-      streamline its operations, enhance communication with
-      members, and provide more efficient services to the
-      community they serve. This strategic move demonstrates
-      the President's commitment to keeping NUNSA relevant and
-      responsive in the ever-evolving digital age.`,
-      postLikes: 5673,
-      postDisLikes: 23,
-      postComments: 3,
-      postTime: "August 10, 2023",
-      liked: true,
-    },
-    {
-      postId: "2",
-      posterId: "b",
-      posterName: "Daenarys Targayrn",
-      post: false,
-      showComments: false,
-      postImg: searchWhere !== "Search NUNSA UNICAL..." ? six : five,
-      postText: `
-      The President of NUNSA UNICAL and his Executives,
-      recognizing the importance of staying technologically
-      up-to-date, took a proactive step by commissioning a
-      developer to create a custom web application for the
-      association. Understanding that the digital landscape
-      plays a crucial role in modernizing organizations, the
-      President's forward-thinking approach aimed to ensure
-      that NUNSA would not lag behind in technology. By
-      investing in this web app, the association can
-      streamline its operations, enhance communication with
-      members, and provide more efficient services to the
-      community they serve. This strategic move demonstrates
-      the President's commitment to keeping NUNSA relevant and
-      responsive in the ever-evolving digital age.`,
-      postLikes: 1000,
-      postDisLikes: 363,
-      postComments: 1,
-      postTime: "August 9, 2023",
-    },
-    {
-      postId: "4",
-      posterId: "d",
-      posterName: "Hirako Shinji",
-      post: false,
-      showComments: false,
-      postImg: "",
-      postText: `
-      The President of NUNSA UNICAL and his Executives,
-      recognizing the importance of staying technologically
-      up-to-date, took a proactive step by commissioning a
-      developer to create a custom web application for the
-      association. Understanding that the digital landscape
-      plays a crucial role in modernizing organizations, the
-      President's forward-thinking approach aimed to ensure
-      that NUNSA would not lag behind in technology. By
-      investing in this web app, the association can
-      streamline its operations, enhance communication with
-      members, and provide more efficient services to the
-      community they serve. This strategic move demonstrates
-      the President's commitment to keeping NUNSA relevant and
-      responsive in the ever-evolving digital age.`,
-      postLikes: 1_000_000,
-      postDisLikes: 100,
-      postComments: 0,
-      postTime: "August 8, 2023",
-    },
-    {
-      postId: "3",
-      posterId: "c",
-      posterName: "Justina Lindsay",
-      post: false,
-      showComments: false,
-      postImg: seven,
-      postText: `
-      The President of NUNSA UNICAL and his Executives,
-      recognizing the importance of staying technologically
-      up-to-date, took a proactive step by commissioning a
-      developer to create a custom web application for the
-      association. Understanding that the digital landscape
-      plays a crucial role in modernizing organizations, the
-      President's forward-thinking approach aimed to ensure
-      that NUNSA would not lag behind in technology. By
-      investing in this web app, the association can
-      streamline its operations, enhance communication with
-      members, and provide more efficient services to the
-      community they serve. This strategic move demonstrates
-      the President's commitment to keeping NUNSA relevant and
-      responsive in the ever-evolving digital age.`,
-      postLikes: 5,
-      postDisLikes: 100,
-      postComments: 0,
-      postTime: "August 8, 2023",
-    },
-  ]);
-  const [comments, setComments] = useState([
-    {
-      commentId: "1a",
-      postId: "1",
-      commenterId: "b",
-      commenterName: "Obe Precious",
-      commenterImg: one,
-      comment: `Eddy is the best Software Engineer ever 😊`,
-      showReply: false,
-      commentLikes: 1000,
-      commentDisLikes: 0,
-      commentReplies: 2,
-      commentTime: "August 17, 2023",
-    },
-    {
-      commentId: "2b",
-      postId: "1",
-      commenterId: "c",
-      commenterName: "Ajanaku sango",
-      commenterImg: two,
-      comment: `
-      The President of NUNSA UNICAL and his Executives,
-      recognizing the importance of staying technologically
-      up-to-date, took a proactive step by commissioning a
-      `,
-      showReply: false,
-      commentLikes: 500,
-      commentDisLikes: 2,
-      commentReplies: 0,
-      commentTime: "August 17, 2023",
-    },
-    {
-      commentId: "3c",
-      postId: "2",
-      commenterId: "c",
-      commenterName: "Gojo Satoru",
-      commenterImg: five,
-      comment: `
-      Edidiong is Gojo, Gojo is Edidiong.
-      `,
-      showReply: false,
-      commentLikes: 500,
-      commentDisLikes: 2,
-      commentReplies: 0,
-      commentTime: "August 17, 2023",
-    },
-  ]);
-  const [replies, setReplies] = useState([
-    {
-      replyId: "1",
-      postId: "1",
-      commentId: "1a",
-      replierId: "2",
-      replierName: "Kurosaki Ichigo",
-      replierImg: six,
-      reply: "Yes he is, he single handedly built this platform 👌",
-      replyLikes: 200,
-      replyDisLikes: 0,
-      replyTime: "2 mins ago",
-    },
-    {
-      replyId: "2",
-      postId: "1",
-      commentId: "1a",
-      replierId: "2",
-      replierName: "Kurosaki Ichigo",
-      replierImg: president,
-      reply: "And he also built a whole ticketing platform on his own.",
-      replyLikes: 400,
-      replyDisLikes: 0,
-      replyTime: "2 mins ago",
-    },
-    {
-      replyId: "3",
-      postId: "2",
-      commentId: "3c",
-      replierId: "5",
-      replierName: "David Udosen",
-      replierImg: president,
-      reply: "Gojo Sensei is the best.",
-      replyLikes: 140,
-      replyDisLikes: 0,
-      replyTime: "5 mins ago",
-    },
-  ]);
+  const [posts, setPosts] = useState(testPost);
+  const [comments, setComments] = useState(testComments);
+  const [replies, setReplies] = useState(testReplies);
   const [details, setDetails] = useState("");
   const [studentOpinion, setStudentOpinion] = useState("");
   const [studentOpinionTo, setStudentOpinionTo] = useState("");
@@ -360,11 +167,11 @@ const StudentDash = ({ searchWhere }) => {
                     className="round"
                   />
                 </div>
-                <div
-                  className={`${classes.commText} paddFull-1 hover ml-1`}
-                >
+                <div className={`${classes.commText} paddFull-1 hover ml-1`}>
                   <span className="block">
-                    <span className="bold">{reply.replierName}</span>
+                    <span className="bold">
+                      {startWithCase(reply.replierName)}
+                    </span>
                     <br />
                     {reply.reply}
                   </span>
@@ -421,7 +228,9 @@ const StudentDash = ({ searchWhere }) => {
                 <div className={`hover  ml-2`}>
                   <div className={`${classes.commText} paddFull-1`}>
                     <span className="block">
-                      <span className="bold">{comment.commenterName}</span>
+                      <span className="bold">
+                        {startWithCase(comment.commenterName)}
+                      </span>
                       <br />
                       {comment.comment}
                     </span>
@@ -429,7 +238,9 @@ const StudentDash = ({ searchWhere }) => {
                       <span className="nunsa">{comment.commentTime}</span>
                     </span>
                   </div>
-                  <div className={`container mt-2 blogText ${classes.likeandReply}`}>
+                  <div
+                    className={`container mt-2 blogText ${classes.likeandReply}`}
+                  >
                     <div>
                       <ThumbUpOffAltIcon />
                       &nbsp;
@@ -529,7 +340,10 @@ const StudentDash = ({ searchWhere }) => {
                   </div>
                   <div className="container">
                     <p className="container mt-3 blogText">
-                      <span className="bold">{post.posterName}</span>&nbsp;
+                      <span className="bold">
+                        {startWithCase(post.posterName)}
+                      </span>
+                      &nbsp;
                       {postJargons(index)}
                       <br />
                       {post.postText.length > 55 ? (
@@ -606,7 +420,10 @@ const StudentDash = ({ searchWhere }) => {
                 <div className="blogText">
                   <div className="container">
                     <div className="container mt-3 blogText">
-                      <span className="bold">{post.posterName}</span>&nbsp;
+                      <span className="bold">
+                        {startWithCase(post.posterName)}
+                      </span>
+                      &nbsp;
                       {postJargonsGreater(index)}
                       <br />
                       {post.postText.length > 250 ? (
