@@ -1,0 +1,19 @@
+.chat{
+    height: 80px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+}
+.seventy{
+    height: 70px;
+}
+.chatChild{
+    flex: 1;
+}
+.end{
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-end;
+    height: auto;
+}

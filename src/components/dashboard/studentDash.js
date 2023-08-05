@@ -361,7 +361,7 @@ const StudentDash = ({ searchWhere }) => {
                   />
                 </div>
                 <div
-                  className={`${classes.commText} paddFull-1 hover blogText ml-1`}
+                  className={`${classes.commText} paddFull-1 hover ml-1`}
                 >
                   <span className="block">
                     <span className="bold">{reply.replierName}</span>
@@ -418,7 +418,7 @@ const StudentDash = ({ searchWhere }) => {
                     className="round"
                   />
                 </div>
-                <div className={`hover blogText ml-2`}>
+                <div className={`hover  ml-2`}>
                   <div className={`${classes.commText} paddFull-1`}>
                     <span className="block">
                       <span className="bold">{comment.commenterName}</span>
@@ -429,7 +429,7 @@ const StudentDash = ({ searchWhere }) => {
                       <span className="nunsa">{comment.commentTime}</span>
                     </span>
                   </div>
-                  <div className={`container mt-2 ${classes.likeandReply}`}>
+                  <div className={`container mt-2 blogText ${classes.likeandReply}`}>
                     <div>
                       <ThumbUpOffAltIcon />
                       &nbsp;

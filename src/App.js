@@ -10,11 +10,11 @@ import Signup from "./components/signup/signup";
 import CreatePostMain from "./components/createPost/createPostMain";
 const Dashboard = lazy(() => import("./pages/auth/Dashboard"));
 const Class = lazy(() => import("./pages/auth/Class"));
+const Message = lazy(() => import("./pages/auth/Message"));
 
 function App() {
   return (
     <Routes>
-      
       <Route path="/" element={<Homepage />} />
       <Route path="/about" element={<About />} />
       <Route path="/blog" element={<Blog />} />
@@ -37,6 +37,14 @@ function App() {
         element={
           <Suspense fallback={<FullLoader />}>
             <Class />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/student/messages"
+        element={
+          <Suspense fallback={<FullLoader />}>
+            <Message />
           </Suspense>
         }
       />
