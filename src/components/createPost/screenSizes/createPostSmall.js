@@ -5,6 +5,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import ClearIcon from "@mui/icons-material/Clear";
 import { useNavigate } from "react-router-dom";
+import BottomSpace from "../../bottomSpace";
 
 const CreatePostSmall = () => {
   const navigate = useNavigate();
@@ -17,8 +18,8 @@ const CreatePostSmall = () => {
   };
 
   const clearImg = () => {
-    setImg("")
-  }
+    setImg("");
+  };
   // converts image to base64
   const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -47,13 +48,13 @@ const CreatePostSmall = () => {
 
   return (
     <>
-      {/* <div> */}
-      <div className={`${classes.small}`}>
+      <div>
+        {/* <div className={`${classes.small}`}> */}
         <div className={`${classes.headSection}`}>
           <div className={`${classes.headStart}`}>
             <div className={`${classes.head} container`}>
               <div className={`${classes.left}`}>
-                <span onClick={back}>
+                <span className="hover" onClick={back}>
                   <ArrowBackIcon />
                 </span>
                 &nbsp;
@@ -125,14 +126,20 @@ const CreatePostSmall = () => {
         ) : (
           <div className={`${classes.postImg}`}>
             <div>
-              <span onClick={clearImg}>
+              <span className="hover" onClick={clearImg}>
                 <ClearIcon className="float-right" />
               </span>
             </div>
-            <img src={img} width="100%" height="100%" alt="blog post image" />
+            <img
+              className={`${classes.postImg}`}
+              src={img}
+              width="100%"
+              alt="blog post image"
+            />
           </div>
         )}
 
+        <BottomSpace />
         <div className={`fixed-bottom bg-white`} style={{ width: "100%" }}>
           <div className="centerDivH">
             <span className="mb-3 mt-2 hover" onClick={handleClick}>

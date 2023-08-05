@@ -5,7 +5,7 @@
 .big {
   display: none;
 }
-.postImg{
+.postImg {
   height: 400px;
 }
 /* small styles */
@@ -56,7 +56,7 @@
 .postInput::placeholder {
   font-size: 18px;
 }
-.postInput:focus{
+.postInput:focus {
   font-size: 18px;
   color: #777;
 }
@@ -72,7 +72,16 @@
     display: none;
   }
 
+  .postImg {
+    height: 600px;
+  }
   .big {
     display: block;
+  }
+}
+
+@media (min-width: 990px) {
+  .postImg {
+    height: 800px;
   }
 }
