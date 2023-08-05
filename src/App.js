@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
-import FullLoader from "./components/fullLoader/FullLoader";
+import FullLoader from "./components/loader/fullLoader/FullLoader";
 import Homepage from "./pages/Homepage";
 import About from "./pages/About";
 import Blog from "./pages/Blog";

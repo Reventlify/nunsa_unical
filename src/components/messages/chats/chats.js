@@ -6,7 +6,7 @@ import five from "../../../images/five.jpg";
 import six from "../../../images/six.jpg";
 import eight from "../../../images/eight.jpg";
 
-const Chats = () => {
+const Chats = ({openChat}) => {
   const [chats, setChats] = useState([
     {
       chatId: "1",
@@ -43,6 +43,10 @@ const Chats = () => {
           <div
             className={`${classes.chat} container mt-3 hover`}
             key={chat.chatId}
+            onClick={() => {
+              localStorage.setItem("nunsaChat", chat.chatId)
+              openChat(false);
+            }}
           >
             <div>
               <img
