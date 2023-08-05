@@ -98,7 +98,7 @@ const CreatePostSmall = () => {
             </div>
           </div>
         </div>
-        <div className={`${classes.inputSection}  mt-4`}>
+        <div className={`${classes.inputSection} container  mt-4`}>
           <textarea
             style={
               opinion.length === 0

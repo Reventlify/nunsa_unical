@@ -10,7 +10,7 @@ const CreatePost = () => {
     <div className={`fixed-bottom`} style={{ width: "100%" }}>
       <div className="centerDivH">
         <span
-          className="boxShadow hover circle bg-white"
+          className="boxShadow hover mb-2 circle bg-white"
           onClick={handleCreation}
         >
           <AddCircleIcon className="nunsa" style={{ fontSize: "62px" }} />
