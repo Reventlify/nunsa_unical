@@ -1,7 +1,6 @@
 import classes from "../dashboard/studentDash.module.css";
 import Box from "@mui/material/Box";
 import truncate from "lodash.truncate";
-import president from "../../images/president.jpg";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
@@ -13,10 +12,6 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import DashSearchAndNotifications from "./dashSearch&Not/dashSearch&Not";
 import BottomSpace from "../bottomSpace";
-import one from "../../images/one.jpg";
-import two from "../../images/two.jpg";
-import five from "../../images/five.jpg";
-import six from "../../images/six.jpg";
 import { formatCompactNumber } from "../../utilities/number";
 import CreatePost from "../createPostButton";
 import { testComments, testPost, testReplies } from "../../testData/tesData";
