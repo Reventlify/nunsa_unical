@@ -106,7 +106,7 @@ const Chats = ({ openChat, navAction }) => {
               navAction("people");
             }}
           >
-            <ChatIcon className="nunsa" style={{ fontSize: "42px" }} />
+            <ChatIcon className="nunsa bg-white" style={{ fontSize: "42px", opacity: 10 }} />
           </span>
         </div>
       </div>
