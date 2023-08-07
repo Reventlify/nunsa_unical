@@ -25,7 +25,7 @@ const MessageMain = () => {
     return (
       <>
         <MessageNav navAction={navTo} currentPage={currentPage} />
-        {currentPage === "chats" ? <Chats openChat={openChat} /> : ""}
+        {currentPage === "chats" ? <Chats openChat={openChat} navAction={navTo} /> : ""}
       </>
     );
   } else {

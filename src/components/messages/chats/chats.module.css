@@ -1,9 +1,17 @@
+.noChat{
+    display: flex;
+    height: 60vh;
+    justify-content: center;
+    align-items: center;
+  }
+
 .chat{
     height: 80px;
     padding-top: 5px;
     padding-bottom: 5px;
     display: flex;
     flex-direction: row;
+    /* border: 1px solid red; */
 }
 .seventy{
     height: 70px;

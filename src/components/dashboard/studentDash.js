@@ -291,235 +291,255 @@ const StudentDash = ({ searchWhere }) => {
     <>
       <DashSearchAndNotifications search={searchWhere} />
       <div className={`${classes.layHelp} ${classes.content} container`}>
-        {posts.map((post, index) => {
-          if (post.postImg.length > 0) {
-            return (
-              <div
-                key={post.postId}
-                className={`${classes.post} margAuto boxShadow`}
-              >
-                <div className={`${classes.postImg}`}>
-                  <img
-                    src={post.postImg}
-                    width="100%"
-                    height="100%"
-                    alt="blog post image"
-                  />
-                </div>
-                <div className="blogText">
-                  <div className={`container mt-3 ${classes.opinion}`}>
-                    <div className={`${classes.like} container`}>
-                      <ThumbUpAltIcon className="hover nunsa" />
-                      &nbsp;
-                      <span className="">
-                        {formatCompactNumber(post.postLikes)}
-                      </span>{" "}
-                    </div>
-                    <div className={`${classes.comment} centerDivH`}>
-                      <div onClick={toggleDrawer("bottom", true, post.postId)}>
-                        {" "}
-                        <ChatBubbleOutlineIcon className="hover" />
-                      </div>
-                      &nbsp;
-                      <span className="">
-                        {formatCompactNumber(commentFilter(post.postId).length)}
-                      </span>{" "}
-                    </div>
-                    <div className={`${classes.dislike} centerDivR container`}>
-                      <ThumbDownOffAltIcon className="hover" />
-                      &nbsp;
-                      <span className="">
-                        {formatCompactNumber(post.postDisLikes)}
-                      </span>{" "}
-                    </div>
-                  </div>
-                  <div className="container">
-                    <p className="container mt-3 blogText">
-                      <span className="bold">
-                        {startWithCase(post.posterName)}
-                      </span>
-                      &nbsp;
-                      {postJargons(index)}
-                      <br />
-                      {post.postText.length > 55 ? (
-                        <span
-                          className={`hover ${classes.blogFoot} blogFoot`}
-                          onClick={() => {
-                            seeMore(index);
-                          }}
-                        >
-                          {post.showComments ? "hide" : "more"}
-                        </span>
-                      ) : (
-                        ""
-                      )}
-                      <span
-                        className={`mt-2 block ${classes.blogFoot}`}
-                        style={{ fontSize: "12px" }}
-                      >
-                        {post.postTime}
-                      </span>
-                    </p>
-
-                    <div
-                      className="mb-3 container"
-                      style={{ display: "flex", flexDirection: "row" }}
-                    >
-                      <textarea
-                        onFocus={() => {
-                          post.post = true;
-                        }}
-                        placeholder="Add a comment..."
-                        className={`form-control onfocusOpinion ${classes.studOpinion}`}
-                        autoComplete="off"
-                        autoCorrect="off"
-                        id={`${post.postId}IdOfPost`}
-                        onBlur={() => {
-                          setStudentOpinion("");
-                          setStudentOpinionTo("");
-                          post.post = false;
-                          document.getElementById(
-                            `${post.postId}IdOfPost`
-                          ).value = "";
-                        }}
-                        aria-describedby="regimeDescriptionHelp"
-                        onChange={(e) => {
-                          setStudentOpinion(e.target.value);
-                          setStudentOpinionTo(post.postId);
-                        }}
-                        required
+        {posts.length === 0 ? (
+          <>
+            <div className={`${classes.noPost}`}>
+              <h1 className="blogText">Nothing to show...</h1>
+            </div>
+          </>
+        ) : (
+          <>
+            {posts.map((post, index) => {
+              if (post.postImg.length > 0) {
+                return (
+                  <div
+                    key={post.postId}
+                    className={`${classes.post} margAuto boxShadow`}
+                  >
+                    <div className={`${classes.postImg}`}>
+                      <img
+                        src={post.postImg}
+                        width="100%"
+                        height="100%"
+                        alt="blog post image"
                       />
-                      {posts[index].post &&
-                      studentOpinion !== "" &&
-                      studentOpinionTo !== "" ? (
-                        <div
-                          className="reventlify hover centerDiv"
-                          key={`${post.postId}post`}
-                        >
-                          Post
+                    </div>
+                    <div className="blogText">
+                      <div className={`container mt-3 ${classes.opinion}`}>
+                        <div className={`${classes.like} container`}>
+                          <ThumbUpAltIcon className="hover nunsa" />
+                          &nbsp;
+                          <span className="">
+                            {formatCompactNumber(post.postLikes)}
+                          </span>{" "}
                         </div>
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          } else {
-            return (
-              <div
-                key={post.postId}
-                className={`${classes.post} margAuto boxShadow`}
-              >
-                <div className="blogText">
-                  <div className="container">
-                    <div className="container mt-3 blogText">
-                      <span className="bold">
-                        {startWithCase(post.posterName)}
-                      </span>
-                      &nbsp;
-                      {postJargonsGreater(index)}
-                      <br />
-                      {post.postText.length > 250 ? (
-                        <span
-                          className={`hover ${classes.blogFoot} blogFoot`}
-                          onClick={() => {
-                            seeMore(index);
-                          }}
+                        <div className={`${classes.comment} centerDivH`}>
+                          <div
+                            onClick={toggleDrawer("bottom", true, post.postId)}
+                          >
+                            {" "}
+                            <ChatBubbleOutlineIcon className="hover" />
+                          </div>
+                          &nbsp;
+                          <span className="">
+                            {formatCompactNumber(
+                              commentFilter(post.postId).length
+                            )}
+                          </span>{" "}
+                        </div>
+                        <div
+                          className={`${classes.dislike} centerDivR container`}
                         >
-                          {post.showComments ? "hide" : "more"}
-                        </span>
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                    <div className={`mt-3 ${classes.opinion}`}>
-                      <div className={`${classes.like} container`}>
-                        <ThumbUpAltIcon className="hover nunsa" />
-                        &nbsp;
-                        <span className="">
-                          {formatCompactNumber(post.postLikes)}
-                        </span>{" "}
+                          <ThumbDownOffAltIcon className="hover" />
+                          &nbsp;
+                          <span className="">
+                            {formatCompactNumber(post.postDisLikes)}
+                          </span>{" "}
+                        </div>
                       </div>
-                      <div className={`${classes.comment} centerDivH`}>
-                        <div
-                          onClick={toggleDrawer("bottom", true, post.postId)}
-                        >
-                          {" "}
-                          <ChatBubbleOutlineIcon className="hover" />
-                        </div>
-                        &nbsp;
-                        <span className="">
-                          {formatCompactNumber(
-                            commentFilter(post.postId).length
+                      <div className="container">
+                        <p className="container mt-3 blogText">
+                          <span className="bold">
+                            {startWithCase(post.posterName)}
+                          </span>
+                          &nbsp;
+                          {postJargons(index)}
+                          <br />
+                          {post.postText.length > 55 ? (
+                            <span
+                              className={`hover ${classes.blogFoot} blogFoot`}
+                              onClick={() => {
+                                seeMore(index);
+                              }}
+                            >
+                              {post.showComments ? "hide" : "more"}
+                            </span>
+                          ) : (
+                            ""
                           )}
-                        </span>{" "}
-                      </div>
-                      <div
-                        className={`${classes.dislike} centerDivR container`}
-                      >
-                        <ThumbDownOffAltIcon className="hover" />
-                        &nbsp;
-                        <span className="">
-                          {formatCompactNumber(post.postDisLikes)}
-                        </span>{" "}
-                      </div>
-                    </div>
-                    <span
-                      className={`mt-3 mb-3 container block ${classes.blogFoot}`}
-                      style={{ fontSize: "12px" }}
-                    >
-                      {post.postTime}
-                    </span>
+                          <span
+                            className={`mt-2 block ${classes.blogFoot}`}
+                            style={{ fontSize: "12px" }}
+                          >
+                            {post.postTime}
+                          </span>
+                        </p>
 
-                    <div
-                      className="mb-3 container"
-                      style={{ display: "flex", flexDirection: "row" }}
-                    >
-                      <textarea
-                        onFocus={() => {
-                          post.post = true;
-                        }}
-                        placeholder="Add a comment..."
-                        className={`form-control onfocusOpinion ${classes.studOpinion}`}
-                        autoComplete="off"
-                        autoCorrect="off"
-                        id={`${post.postId}IdOfPost`}
-                        onBlur={() => {
-                          setStudentOpinion("");
-                          setStudentOpinionTo("");
-                          post.post = false;
-                          document.getElementById(
-                            `${post.postId}IdOfPost`
-                          ).value = "";
-                        }}
-                        aria-describedby="regimeDescriptionHelp"
-                        onChange={(e) => {
-                          setStudentOpinion(e.target.value);
-                          setStudentOpinionTo(post.postId);
-                        }}
-                        required
-                      />
-                      {posts[index].post &&
-                      studentOpinion !== "" &&
-                      studentOpinionTo !== "" ? (
                         <div
-                          className="reventlify hover centerDiv"
-                          key={`${post.postId}post`}
+                          className="mb-3 container"
+                          style={{ display: "flex", flexDirection: "row" }}
                         >
-                          Post
+                          <textarea
+                            onFocus={() => {
+                              post.post = true;
+                            }}
+                            placeholder="Add a comment..."
+                            className={`form-control onfocusOpinion ${classes.studOpinion}`}
+                            autoComplete="off"
+                            autoCorrect="off"
+                            id={`${post.postId}IdOfPost`}
+                            onBlur={() => {
+                              setStudentOpinion("");
+                              setStudentOpinionTo("");
+                              post.post = false;
+                              document.getElementById(
+                                `${post.postId}IdOfPost`
+                              ).value = "";
+                            }}
+                            aria-describedby="regimeDescriptionHelp"
+                            onChange={(e) => {
+                              setStudentOpinion(e.target.value);
+                              setStudentOpinionTo(post.postId);
+                            }}
+                            required
+                          />
+                          {posts[index].post &&
+                          studentOpinion !== "" &&
+                          studentOpinionTo !== "" ? (
+                            <div
+                              className="reventlify hover centerDiv"
+                              key={`${post.postId}post`}
+                            >
+                              Post
+                            </div>
+                          ) : (
+                            ""
+                          )}
                         </div>
-                      ) : (
-                        ""
-                      )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            );
-          }
-        })}
+                );
+              } else {
+                return (
+                  <div
+                    key={post.postId}
+                    className={`${classes.post} margAuto boxShadow`}
+                  >
+                    <div className="blogText">
+                      <div className="container">
+                        <div className="container mt-3 blogText">
+                          <span className="bold">
+                            {startWithCase(post.posterName)}
+                          </span>
+                          &nbsp;
+                          {postJargonsGreater(index)}
+                          <br />
+                          {post.postText.length > 250 ? (
+                            <span
+                              className={`hover ${classes.blogFoot} blogFoot`}
+                              onClick={() => {
+                                seeMore(index);
+                              }}
+                            >
+                              {post.showComments ? "hide" : "more"}
+                            </span>
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                        <div className={`mt-3 ${classes.opinion}`}>
+                          <div className={`${classes.like} container`}>
+                            <ThumbUpAltIcon className="hover nunsa" />
+                            &nbsp;
+                            <span className="">
+                              {formatCompactNumber(post.postLikes)}
+                            </span>{" "}
+                          </div>
+                          <div className={`${classes.comment} centerDivH`}>
+                            <div
+                              onClick={toggleDrawer(
+                                "bottom",
+                                true,
+                                post.postId
+                              )}
+                            >
+                              {" "}
+                              <ChatBubbleOutlineIcon className="hover" />
+                            </div>
+                            &nbsp;
+                            <span className="">
+                              {formatCompactNumber(
+                                commentFilter(post.postId).length
+                              )}
+                            </span>{" "}
+                          </div>
+                          <div
+                            className={`${classes.dislike} centerDivR container`}
+                          >
+                            <ThumbDownOffAltIcon className="hover" />
+                            &nbsp;
+                            <span className="">
+                              {formatCompactNumber(post.postDisLikes)}
+                            </span>{" "}
+                          </div>
+                        </div>
+                        <span
+                          className={`mt-3 mb-3 container block ${classes.blogFoot}`}
+                          style={{ fontSize: "12px" }}
+                        >
+                          {post.postTime}
+                        </span>
+
+                        <div
+                          className="mb-3 container"
+                          style={{ display: "flex", flexDirection: "row" }}
+                        >
+                          <textarea
+                            onFocus={() => {
+                              post.post = true;
+                            }}
+                            placeholder="Add a comment..."
+                            className={`form-control onfocusOpinion ${classes.studOpinion}`}
+                            autoComplete="off"
+                            autoCorrect="off"
+                            id={`${post.postId}IdOfPost`}
+                            onBlur={() => {
+                              setStudentOpinion("");
+                              setStudentOpinionTo("");
+                              post.post = false;
+                              document.getElementById(
+                                `${post.postId}IdOfPost`
+                              ).value = "";
+                            }}
+                            aria-describedby="regimeDescriptionHelp"
+                            onChange={(e) => {
+                              setStudentOpinion(e.target.value);
+                              setStudentOpinionTo(post.postId);
+                            }}
+                            required
+                          />
+                          {posts[index].post &&
+                          studentOpinion !== "" &&
+                          studentOpinionTo !== "" ? (
+                            <div
+                              className="reventlify hover centerDiv"
+                              key={`${post.postId}post`}
+                            >
+                              Post
+                            </div>
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+            })}
+          </>
+        )}
       </div>
 
       <CreatePost />

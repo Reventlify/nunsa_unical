@@ -1,3 +1,9 @@
+.noPost{
+  display: flex;
+  height: 60vh;
+  justify-content: center;
+  align-items: center;
+}
 .sideBar {
   right: auto;
   left: 0;
@@ -137,6 +143,9 @@
   opacity: 10;
 }
 @media (min-width: 750px) {
+  .noPost{
+    justify-content: left;
+  }
   .sideBar {
     left: auto;
     top: 80px;
