@@ -31,7 +31,15 @@ export default function MobileDashboard({ children }) {
   const [display, setDisplay] = React.useState(false);
   const parentPath = pathname.slice(0, 8);
   const childPath = pathname.slice(9, pathname.length);
-  const page = childPath.substring(0, childPath.indexOf("/"));
+  const pageDerivative = () => {
+    if (childPath.indexOf(`/`) === -1) {
+      return childPath;
+    } else {
+      return childPath.substring(0, childPath.indexOf(`/`));
+    }
+  };
+  const [page, setPage] = React.useState(pageDerivative());
+  console.log(page);
   const [state, setState] = React.useState({
     top: false,
     left: false,
