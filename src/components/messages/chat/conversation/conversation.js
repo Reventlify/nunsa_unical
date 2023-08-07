@@ -15,12 +15,12 @@ const Conversation = () => {
                 The President of NUNSA UNICAL and his Executives, recognizing
                 the importance of staying technologically up-to-date, took a
                 proactive step by commissioning a developer to create a custom
-                web application for the association.&nbsp;&nbsp;&nbsp;
+                web application for the association.<br/>
                 <span
                   className="nunsa float-right"
                   style={{ fontSize: "12px", paddingTop: "0.7rem" }}
                 >
-                  August 17, 2023
+                  Aug 17, 2023
                 </span>
               </p>
             </div>
@@ -29,7 +29,7 @@ const Conversation = () => {
             <div className={classes.rightHelper}>
               <div className={`${classes.convoRight} paddFull-1 mt-3`}>
                 <p>
-                  😊 Ok, so what if i tell you.&nbsp;&nbsp;&nbsp;
+                  😊 Ok, so what if i tell you.<br/>
                   <span
                     className="float-right"
                     style={{
@@ -38,7 +38,7 @@ const Conversation = () => {
                       paddingTop: "0.7rem",
                     }}
                   >
-                    August 17, 2023
+                    Aug 17, 2023
                   </span>
                 </p>
               </div>
@@ -51,7 +51,7 @@ const Conversation = () => {
                   provide more efficient services to the community they serve.
                   This strategic move demonstrates the President's commitment to
                   keeping NUNSA relevant and responsive in the ever-evolving
-                  digital age.&nbsp;&nbsp;&nbsp;
+                  digital age.<br/>
                   <span
                     className="float-right"
                     style={{
@@ -60,7 +60,7 @@ const Conversation = () => {
                       paddingTop: "0.7rem",
                     }}
                   >
-                    August 17, 2023
+                    Aug 17, 2023
                   </span>
                 </p>
               </div>
@@ -69,11 +69,12 @@ const Conversation = () => {
               <div className={`${classes.convoLeft} paddFull-1 mt-3`}>
                 <p>
                   So true boss 👍&nbsp;&nbsp;&nbsp;
+                  <br />
                   <span
                     className="nunsa float-right"
                     style={{ fontSize: "12px", paddingTop: "0.7rem" }}
                   >
-                    August 17, 2023
+                    Aug 17, 2023
                   </span>
                 </p>
               </div>
@@ -93,7 +94,7 @@ const Conversation = () => {
               aria-label="Search"
             /> */}
             <textarea
-              placeholder="Add a comment..."
+              placeholder="Message..."
               id="IdOfCommentArea"
               //   onBlur={() => {
               //     setStudentOpinion("");

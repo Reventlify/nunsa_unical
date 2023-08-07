@@ -6,7 +6,7 @@ import { testPeople } from "../../../testData/tesData";
 import BottomSpace from "../../bottomSpace";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-const People = ({ navAction }) => {
+const People = ({ navAction, openChat }) => {
   const [search, setSearch] = useState("Search NUNSA UNICAL...");
   const [people, setPeople] = useState(testPeople);
   return (
@@ -68,14 +68,14 @@ const People = ({ navAction }) => {
                       ? `${classes1.chat} container mt-1 hover`
                       : `${classes1.chat} container mt-2 hover`
                   }
-                  key={user.userId}
+                  key={user.chatId}
                   style={
                     user.userImg.length === 0 ? { paddingLeft: "0.35rem" } : {}
                   }
-                  //   onClick={() => {
-                  //     localStorage.setItem("nunsaChat", chat.chatId);
-                  //     openChat(false);
-                  //   }}
+                  onClick={() => {
+                    localStorage.setItem("nunsaChat", user.chatId);
+                    openChat(false);
+                  }}
                 >
                   <div>
                     {user.userImg.length === 0 ? (

@@ -3,6 +3,7 @@ import classes from "../chat/chat.module.css";
 import { useState, useEffect } from "react";
 import { testChats } from "../../../testData/tesData";
 import Conversation from "./conversation/conversation";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const Chat = ({ openChat }) => {
   const [partner, setPartner] = useState({
@@ -40,13 +41,22 @@ const Chat = ({ openChat }) => {
                 <ArrowBackIcon style={{ fontSize: "30px" }} />
               </span>
               &nbsp;
-              <img
-                src={partner.chatPaticipantB_img}
-                alt="user"
-                width="45px"
-                height="45px"
-                className="round"
-              />
+              {partner.chatPaticipantB_img.length === 0 ? (
+                <AccountCircleIcon
+                  style={{
+                    fontSize: "55px",
+                    color: "#adadad",
+                  }}
+                />
+              ) : (
+                <img
+                  src={partner.chatPaticipantB_img}
+                  alt="user"
+                  width="45px"
+                  height="45px"
+                  className="round"
+                />
+              )}
             </div>
             <div className={`${classes.onOrOff}`}>
               <div className="bolder" style={{ fontSize: "16px" }}>
