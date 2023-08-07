@@ -30,7 +30,7 @@ const Chats = ({ openChat, navAction }) => {
             {chats.map((chat) => {
               return (
                 <div
-                  className={chat.chatPaticipantB_img.length === 0 ? `${classes.chat} container mt-1 hover` : `${classes.chat} container mt-2 hover`}
+                  className={`${classes.chat} container hover`}
                   key={chat.chatId}
                   style={
                     chat.chatPaticipantB_img.length === 0
