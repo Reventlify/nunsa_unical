@@ -6,8 +6,10 @@ import { startWithCase } from "../../../utilities/text";
 import { testChats } from "../../../testData/tesData";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import BottomSpace from "../../bottomSpace";
+import { useNavigate } from "react-router-dom";
 
-const Chats = ({ openChat, navAction }) => {
+const Chats = ({ navAction }) => {
+  const navigate = useNavigate();
   const [chats, setChats] = useState(testChats);
   return (
     <>
@@ -38,8 +40,7 @@ const Chats = ({ openChat, navAction }) => {
                       : {}
                   }
                   onClick={() => {
-                    localStorage.setItem("nunsaChat", chat.chatId);
-                    openChat(false);
+                    navigate(`/student/messages/chat/${chat.chatId}`);
                   }}
                 >
                   <div>
@@ -106,7 +107,10 @@ const Chats = ({ openChat, navAction }) => {
               navAction("people");
             }}
           >
-            <ChatIcon className="nunsa bg-white" style={{ fontSize: "42px", opacity: 10 }} />
+            <ChatIcon
+              className="nunsa bg-white"
+              style={{ fontSize: "42px", opacity: 10 }}
+            />
           </span>
         </div>
       </div>

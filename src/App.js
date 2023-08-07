@@ -12,6 +12,7 @@ const Dashboard = lazy(() => import("./pages/auth/Dashboard"));
 const Class = lazy(() => import("./pages/auth/Class"));
 const Message = lazy(() => import("./pages/auth/Message"));
 const Courses = lazy(() => import("./pages/auth/Courses"));
+const Chat = lazy(() => import("./components/messages/chat/chat"));
 
 function App() {
   return (
@@ -46,6 +47,14 @@ function App() {
         element={
           <Suspense fallback={<FullLoader />}>
             <Message />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/student/messages/chat/:id"
+        element={
+          <Suspense fallback={<FullLoader />}>
+            <Chat />
           </Suspense>
         }
       />

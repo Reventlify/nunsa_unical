@@ -30,7 +30,8 @@ export default function MobileDashboard({ children }) {
   const { pathname } = useLocation();
   const [display, setDisplay] = React.useState(false);
   const parentPath = pathname.slice(0, 8);
-  const page = pathname.slice(9, pathname.length);
+  const childPath = pathname.slice(9, pathname.length);
+  const page = childPath.substring(0, childPath.indexOf("/"));
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -166,7 +167,13 @@ export default function MobileDashboard({ children }) {
       <CssBaseline />
       <AppBar sx={{ backgroundColor: "#61ce70" }} position="fixed">
         <Toolbar>
-          <img src={one} alt="nunsaLogo" width="45px" height="45px" className="round" />
+          <img
+            src={one}
+            alt="nunsaLogo"
+            width="45px"
+            height="45px"
+            className="round"
+          />
           <Typography
             variant="h6"
             noWrap

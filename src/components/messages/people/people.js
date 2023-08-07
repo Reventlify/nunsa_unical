@@ -5,8 +5,10 @@ import { startWithCase } from "../../../utilities/text";
 import { testPeople } from "../../../testData/tesData";
 import BottomSpace from "../../bottomSpace";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useNavigate } from "react-router-dom";
 
 const People = ({ navAction, openChat }) => {
+  const navigate = useNavigate();
   const [search, setSearch] = useState("Search NUNSA UNICAL...");
   const [people, setPeople] = useState(testPeople);
   return (
@@ -73,8 +75,7 @@ const People = ({ navAction, openChat }) => {
                     user.userImg.length === 0 ? { paddingLeft: "0.35rem" } : {}
                   }
                   onClick={() => {
-                    localStorage.setItem("nunsaChat", user.chatId);
-                    openChat(false);
+                    navigate(`/student/messages/chat/${user.chatId}`);
                   }}
                 >
                   <div>

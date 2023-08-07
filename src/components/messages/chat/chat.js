@@ -5,8 +5,12 @@ import { testChats } from "../../../testData/tesData";
 import Conversation from "./conversation/conversation";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { startWithCase } from "../../../utilities/text";
+import { useNavigate, useParams } from "react-router-dom";
+import MobileDashboard from "../../dashboard/mobile/mobile";
 
-const Chat = ({ openChat }) => {
+const Chat = () => {
+  const navigate = useNavigate();
+  const {id} = useParams();
   const [partner, setPartner] = useState({
     chatId: "",
     chatPaticipantA: "",
@@ -16,7 +20,7 @@ const Chat = ({ openChat }) => {
     lastMessage: "",
     lastMessage_time: "",
   });
-  const [id, setId] = useState(localStorage.getItem("nunsaChat"));
+  // const [id, setId] = useState(localStorage.getItem("nunsaChat"));
 
   const userGotten = testChats.filter((person) => {
     if (person.chatId === id) {
@@ -27,6 +31,7 @@ const Chat = ({ openChat }) => {
     setPartner(userGotten[0]);
   });
   return (
+    <MobileDashboard>
     <div className={`${classes.chat}`}>
       <div className={classes.clasHelper}>
         <div className="container">
@@ -35,8 +40,7 @@ const Chat = ({ openChat }) => {
               <span
                 className="hover"
                 onClick={() => {
-                  localStorage.clear("nunsaChat");
-                  openChat(true);
+                  navigate("/student/messages")
                 }}
               >
                 <ArrowBackIcon style={{ fontSize: "30px" }} />
@@ -70,6 +74,7 @@ const Chat = ({ openChat }) => {
       </div>
       <Conversation />
     </div>
+    </MobileDashboard>
   );
 };
 
