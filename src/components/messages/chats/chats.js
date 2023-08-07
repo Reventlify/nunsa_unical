@@ -10,70 +10,72 @@ const Chats = ({ openChat, navAction }) => {
   const [chats, setChats] = useState(testChats);
   return (
     <>
-      {chats.length === 0 ? (
-        <>
-          <div className={`${classes.noChat}`}>
-            <h2
-              className="blogText hover"
-              onClick={() => {
-                navAction("people");
-              }}
-            >
-              Start a chat...
-            </h2>
-          </div>
-        </>
-      ) : (
-        <>
-          {chats.map((chat) => {
-            return (
-              <div
-                className={`${classes.chat} container mt-3 hover`}
-                key={chat.chatId}
+      <div className={classes.chatHelper}>
+        {chats.length === 0 ? (
+          <>
+            <div className={`${classes.noChat}`}>
+              <h2
+                className="blogText hover"
                 onClick={() => {
-                  localStorage.setItem("nunsaChat", chat.chatId);
-                  openChat(false);
+                  navAction("people");
                 }}
               >
-                <div>
-                  <img
-                    className="circle mr-2"
-                    src={chat.chatPaticipantB_img}
-                    height="55px"
-                    width="55px"
-                  />
-                </div>
+                Start a chat...
+              </h2>
+            </div>
+          </>
+        ) : (
+          <>
+            {chats.map((chat) => {
+              return (
                 <div
-                  className={`${classes.chatChild} ${classes.seventy}  flex-column`}
+                  className={`${classes.chat} container mt-3 hover`}
+                  key={chat.chatId}
+                  onClick={() => {
+                    localStorage.setItem("nunsaChat", chat.chatId);
+                    openChat(false);
+                  }}
                 >
-                  <div className={`flex-row`}>
-                    <div
-                      className={`${classes.chatChild} bold`}
-                      style={{ fontSize: "18px" }}
-                    >
-                      {startWithCase(chat.chatPaticipantB_name)}
-                    </div>
-                    <div className="blogText" style={{ fontSize: "14px" }}>
-                      {chat.lastMessage_time}
-                    </div>
+                  <div>
+                    <img
+                      className="circle mr-2"
+                      src={chat.chatPaticipantB_img}
+                      height="55px"
+                      width="55px"
+                    />
                   </div>
-                  <div className={`${classes.end}`}>
-                    <div className={` blogText`} style={{ fontSize: "14px" }}>
-                      {truncate(chat.lastMessage, {
-                        length: 30,
-                        // separator: /,? +/,
-                      })}
+                  <div
+                    className={`${classes.chatChild} ${classes.seventy}  flex-column`}
+                  >
+                    <div className={`flex-row`}>
+                      <div
+                        className={`${classes.chatChild} bold`}
+                        style={{ fontSize: "18px" }}
+                      >
+                        {startWithCase(chat.chatPaticipantB_name)}
+                      </div>
+                      <div className="blogText" style={{ fontSize: "14px" }}>
+                        {chat.lastMessage_time}
+                      </div>
                     </div>
-                    {/* <div className="blogText"></div> */}
+                    <div className={`${classes.end}`}>
+                      <div className={` blogText`} style={{ fontSize: "14px" }}>
+                        {truncate(chat.lastMessage, {
+                          length: 30,
+                          // separator: /,? +/,
+                        })}
+                      </div>
+                      {/* <div className="blogText"></div> */}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </>
-      )}
+              );
+            })}
+          </>
+        )}
 
-      <BottomSpace />
+        <BottomSpace />
+      </div>
       <div className={`fixed-bottom`} style={{ width: "100%" }}>
         <div className="float-right mr-1">
           <span

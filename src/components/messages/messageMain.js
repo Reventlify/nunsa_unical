@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import MessageNav from "./messageNav/messageNav";
 import Chats from "./chats/chats";
 import Chat from "./chat/chat";
+import People from "./people/people";
 
 const MessageMain = () => {
   const [currentPage, setCurrentPage] = useState("chats");
@@ -25,7 +26,7 @@ const MessageMain = () => {
     return (
       <>
         <MessageNav navAction={navTo} currentPage={currentPage} />
-        {currentPage === "chats" ? <Chats openChat={openChat} navAction={navTo} /> : ""}
+        {currentPage === "chats" ? <Chats openChat={openChat} navAction={navTo} /> : <People navAction={navTo}/>}
       </>
     );
   } else {

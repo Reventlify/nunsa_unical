@@ -21,6 +21,69 @@ members, and provide more efficient services to the
 community they serve. This strategic move demonstrates
 the President's commitment to keeping NUNSA relevant and
 responsive in the ever-evolving digital age.`;
+// testPeople
+const testPeople = [
+  {
+    userId: "1",
+    userName: "sunshine moon",
+    userImg: seven,
+    userClass: "yr3",
+  },
+  {
+    userId: "2",
+    userName: "sunshine moon",
+    userImg: seven,
+    userClass: "yr3",
+  },
+  {
+    userId: "3",
+    userName: "sunshine moon",
+    userImg: seven,
+    userClass: "yr3",
+  },
+  {
+    userId: "4",
+    userName: "sunshine moon",
+    userImg: seven,
+    userClass: "yr3",
+  },
+  // {
+  //   userId: "5",
+  //   userName: "sunshine moon",
+  //   userImg: seven,
+  //   userClass: "yr3",
+  // },
+  // {
+  //   userId: "6",
+  //   userName: "sunshine moon",
+  //   userImg: seven,
+  //   userClass: "yr3",
+  // },
+  // {
+  //   userId: "7",
+  //   userName: "sunshine moon",
+  //   userImg: seven,
+  //   userClass: "yr3",
+  // },
+  // {
+  //   userId: "8",
+  //   userName: "sunshine moon",
+  //   userImg: seven,
+  //   userClass: "yr3",
+  // },
+  // {
+  //   userId: "9",
+  //   userName: "sunshine moon",
+  //   userImg: seven,
+  //   userClass: "yr3",
+  // },
+  // {
+  //   userId: "10",
+  //   userName: "sunshine moon",
+  //   userImg: seven,
+  //   userClass: "yr3",
+  // },
+];
 // testChats
 const testChats = [
   {
@@ -196,4 +259,4 @@ const testReplies = [
   },
 ];
 
-export { testChats, testPost, testComments, testReplies };
+export { testChats, testPost, testComments, testReplies, testPeople };

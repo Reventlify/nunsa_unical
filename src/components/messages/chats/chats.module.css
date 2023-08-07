@@ -1,27 +1,37 @@
-.noChat{
-    display: flex;
-    height: 60vh;
-    justify-content: center;
-    align-items: center;
-  }
+.chatHelper {
+  padding-top: 100px;
+}
 
-.chat{
-    height: 80px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    display: flex;
-    flex-direction: row;
-    /* border: 1px solid red; */
+.noChat {
+  display: flex;
+  height: 60vh;
+  justify-content: center;
+  align-items: center;
 }
-.seventy{
-    height: 70px;
+
+.chat {
+  height: 80px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid red; */
 }
-.chatChild{
-    flex: 1;
+.seventy {
+  height: 70px;
 }
-.end{
-    display: flex;
-    flex-direction: column;
-    justify-content:flex-end;
-    height: auto;
+.chatChild {
+  flex: 1;
+}
+.end {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: auto;
+}
+
+@media (min-width: 750px) {
+  .chatHelper {
+    padding-top: 110px;
+  }
 }

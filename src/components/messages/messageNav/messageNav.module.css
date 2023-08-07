@@ -1,6 +1,12 @@
+.navFixer {
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  /* height: fit-content; */
+}
 .nav {
   margin-top: 60px;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   display: flex;
   flex-direction: row;
   height: 40px;
