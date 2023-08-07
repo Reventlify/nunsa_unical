@@ -4,6 +4,7 @@ import classes1 from "../chats/chats.module.css";
 import { startWithCase } from "../../../utilities/text";
 import { testPeople } from "../../../testData/tesData";
 import BottomSpace from "../../bottomSpace";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const People = ({ navAction }) => {
   const [search, setSearch] = useState("Search NUNSA UNICAL...");

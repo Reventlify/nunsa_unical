@@ -4,6 +4,7 @@ import truncate from "lodash.truncate";
 import ChatIcon from "@mui/icons-material/Chat";
 import { startWithCase } from "../../../utilities/text";
 import { testChats } from "../../../testData/tesData";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import BottomSpace from "../../bottomSpace";
 
 const Chats = ({ openChat, navAction }) => {
@@ -29,23 +30,44 @@ const Chats = ({ openChat, navAction }) => {
             {chats.map((chat) => {
               return (
                 <div
-                  className={`${classes.chat} container mt-3 hover`}
+                  className={chat.chatPaticipantB_img.length === 0 ? `${classes.chat} container mt-1 hover` : `${classes.chat} container mt-2 hover`}
                   key={chat.chatId}
+                  style={
+                    chat.chatPaticipantB_img.length === 0
+                      ? { paddingLeft: "0.35rem" }
+                      : {}
+                  }
                   onClick={() => {
                     localStorage.setItem("nunsaChat", chat.chatId);
                     openChat(false);
                   }}
                 >
                   <div>
-                    <img
-                      className="circle mr-2"
-                      src={chat.chatPaticipantB_img}
-                      height="55px"
-                      width="55px"
-                    />
+                    {chat.chatPaticipantB_img.length === 0 ? (
+                      <AccountCircleIcon
+                        style={{
+                          fontSize: "65px",
+                          color: "#adadad",
+                          marginRight: "0.7rem",
+                          padding: 0,
+                        }}
+                      />
+                    ) : (
+                      <img
+                        className="circle mr-2"
+                        src={chat.chatPaticipantB_img}
+                        height="55px"
+                        width="55px"
+                      />
+                    )}
                   </div>
                   <div
                     className={`${classes.chatChild} ${classes.seventy}  flex-column`}
+                    style={
+                      chat.chatPaticipantB_img.length === 0
+                        ? { marginTop: "0.3rem" }
+                        : {}
+                    }
                   >
                     <div className={`flex-row`}>
                       <div
