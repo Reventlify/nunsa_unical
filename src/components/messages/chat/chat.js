@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { testChats } from "../../../testData/tesData";
 import Conversation from "./conversation/conversation";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { startWithCase } from "../../../utilities/text";
 
 const Chat = ({ openChat }) => {
   const [partner, setPartner] = useState({
@@ -60,7 +61,7 @@ const Chat = ({ openChat }) => {
             </div>
             <div className={`${classes.onOrOff}`}>
               <div className="bolder" style={{ fontSize: "16px" }}>
-                {partner.chatPaticipantB_name}
+                {startWithCase(partner.chatPaticipantB_name)}
               </div>
               <div className="blogText">offline</div>
             </div>

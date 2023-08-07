@@ -11,6 +11,7 @@ import CreatePostMain from "./components/createPost/createPostMain";
 const Dashboard = lazy(() => import("./pages/auth/Dashboard"));
 const Class = lazy(() => import("./pages/auth/Class"));
 const Message = lazy(() => import("./pages/auth/Message"));
+const Courses = lazy(() => import("./pages/auth/Courses"));
 
 function App() {
   return (
@@ -45,6 +46,14 @@ function App() {
         element={
           <Suspense fallback={<FullLoader />}>
             <Message />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/student/courses"
+        element={
+          <Suspense fallback={<FullLoader />}>
+            <Courses />
           </Suspense>
         }
       />
