@@ -1,0 +1,46 @@
+.display {
+  position: fixed;
+  width: 100%;
+  height: 80vh;
+  overflow-y: scroll;
+}
+
+.leftHelper {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+.convoLeft {
+  width: auto;
+  max-width: 250px;
+  font-size: 14px;
+  background-color: #f0f2f5;
+  border-top-left-radius: 7px !important;
+  border-top-right-radius: 7px !important;
+  border-bottom-right-radius: 7px !important;
+  border-bottom-left-radius: 7px !important;
+}
+.rightHelper {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+.convoRight {
+  width: auto;
+  max-width: 250px;
+  font-size: 14px;
+  background-color: #61ce70;
+  border-top-left-radius: 7px !important;
+  border-top-right-radius: 7px !important;
+  border-bottom-right-radius: 7px !important;
+  border-bottom-left-radius: 7px !important;
+}
+
+@media (min-width: 750px) {
+  .convoLeft {
+    max-width: 450px;
+  }
+  .convoRight {
+    max-width: 450px;
+  }
+}
