@@ -5,11 +5,19 @@
   background-color: white;
 }
 .chat {
-  margin-top: 70px;
+  margin-top: 65px;
+}
+.barFlex {
+  display: flex;
+  flex-direction: row;
+}
+.onOrOff {
+  display: flex;
+  flex-direction: column;
 }
 @media (min-width: 750px) {
   .chat {
-    margin-top: 80px;
+    margin-top: 75px;
   }
   .chatHelper {
     top: 120px;

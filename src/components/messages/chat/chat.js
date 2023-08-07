@@ -28,28 +28,33 @@ const Chat = ({ openChat }) => {
     <div className={`${classes.chat}`}>
       <div className={classes.clasHelper}>
         <div className="container">
-          <div
-            className="limiter hover inline-block"
-            onClick={() => {
-              localStorage.clear("nunsaChat");
-              openChat(true);
-            }}
-          >
-            <span className="hover">
-              <ArrowBackIcon />
-            </span>
-            &nbsp;
+          <div className={`${classes.barFlex}`}>
+            <div className={`mr-1`}>
+              <span
+                className="hover"
+                onClick={() => {
+                  localStorage.clear("nunsaChat");
+                  openChat(true);
+                }}
+              >
+                <ArrowBackIcon style={{ fontSize: "30px" }} />
+              </span>
+              &nbsp;
+              <img
+                src={partner.chatPaticipantB_img}
+                alt="user"
+                width="45px"
+                height="45px"
+                className="round"
+              />
+            </div>
+            <div className={`${classes.onOrOff}`}>
+              <div className="bolder" style={{ fontSize: "16px" }}>
+                {partner.chatPaticipantB_name}
+              </div>
+              <div className="blogText">offline</div>
+            </div>
           </div>
-          <img
-            src={partner.chatPaticipantB_img}
-            alt="user"
-            width="40px"
-            height="40px"
-            className="round"
-          />
-          <span className="float-right bolder">
-            {partner.chatPaticipantB_name} {localStorage.getItem("nunsaChat")}
-          </span>
         </div>
       </div>
       <Conversation />

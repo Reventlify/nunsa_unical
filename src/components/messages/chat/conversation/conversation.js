@@ -10,20 +10,18 @@ const Conversation = () => {
       <div className={` ${classes.display} mt-2`}>
         <div className="container">
           <div className={classes.leftHelper}>
-            <div className={`${classes.convoLeft} paddFull-1 mt-3`}>
+            <div className={`${classes.convoLeft} paddFull-1 mt-1`}>
               <p>
                 The President of NUNSA UNICAL and his Executives, recognizing
                 the importance of staying technologically up-to-date, took a
                 proactive step by commissioning a developer to create a custom
-                web application for the association. Understanding that the
-                digital landscape plays a crucial role in modernizing
-                organizations, the President's forward-thinking approach aimed
-                to ensure that NUNSA would not lag behind in technology. By
-                investing in this web app, the association can streamline its
-                operations, enhance communication with members, and provide more
-                efficient services to the community they serve. This strategic
-                move demonstrates the President's commitment to keeping NUNSA
-                relevant and responsive in the ever-evolving digital age.
+                web application for the association.&nbsp;&nbsp;&nbsp;
+                <span
+                  className="nunsa float-right"
+                  style={{ fontSize: "12px", paddingTop: "0.7rem" }}
+                >
+                  August 17, 2023
+                </span>
               </p>
             </div>
           </div>
@@ -31,57 +29,52 @@ const Conversation = () => {
             <div className={classes.rightHelper}>
               <div className={`${classes.convoRight} paddFull-1 mt-3`}>
                 <p>
-                  The President of NUNSA UNICAL and his Executives, recognizing
-                  the importance of staying technologically up-to-date, took a
-                  proactive step by commissioning a developer to create a custom
-                  web application for the association. Understanding that the
-                  digital landscape plays a crucial role in modernizing
-                  organizations, the President's forward-thinking approach aimed
-                  to ensure that NUNSA would not lag behind in technology. By
-                  investing in this web app, the association can streamline its
-                  operations, enhance communication with members, and provide
-                  more efficient services to the community they serve. This
-                  strategic move demonstrates the President's commitment to
-                  keeping NUNSA relevant and responsive in the ever-evolving
-                  digital age.
+                  😊 Ok, so what if i tell you.&nbsp;&nbsp;&nbsp;
+                  <span
+                    className="float-right"
+                    style={{
+                      color: "#f0f2f5",
+                      fontSize: "12px",
+                      paddingTop: "0.7rem",
+                    }}
+                  >
+                    August 17, 2023
+                  </span>
                 </p>
               </div>
             </div>
             <div className={classes.rightHelper}>
               <div className={`${classes.convoRight} paddFull-1 mt-3`}>
                 <p>
-                  The President of NUNSA UNICAL and his Executives, recognizing
-                  the importance of staying technologically up-to-date, took a
-                  proactive step by commissioning a developer to create a custom
-                  web application for the association. Understanding that the
-                  digital landscape plays a crucial role in modernizing
-                  organizations, the President's forward-thinking approach aimed
-                  to ensure that NUNSA would not lag behind in technology. By
-                  investing in this web app, the association can streamline its
-                  operations, enhance communication with members, and provide
-                  more efficient services to the community they serve. This
-                  strategic move demonstrates the President's commitment to
+                  By investing in this web app, the association can streamline
+                  its operations, enhance communication with members, and
+                  provide more efficient services to the community they serve.
+                  This strategic move demonstrates the President's commitment to
                   keeping NUNSA relevant and responsive in the ever-evolving
-                  digital age.
+                  digital age.&nbsp;&nbsp;&nbsp;
+                  <span
+                    className="float-right"
+                    style={{
+                      color: "#f0f2f5",
+                      fontSize: "12px",
+                      paddingTop: "0.7rem",
+                    }}
+                  >
+                    August 17, 2023
+                  </span>
                 </p>
               </div>
             </div>
             <div className={classes.leftHelper}>
               <div className={`${classes.convoLeft} paddFull-1 mt-3`}>
                 <p>
-                  The President of NUNSA UNICAL and his Executives, recognizing
-                  the importance of staying technologically up-to-date, took a
-                  proactive step by commissioning a developer to create a custom
-                  web application for the association. Understanding that the
-                  digital landscape plays a crucial role in modernizing
-                  organizations, the President's forward-thinking approach aimed
-                  to ensure that NUNSA would not lag behind in technology. By
-                  investing in this web app, the association can streamline its
-                  operations, enhance communication with members, and provide
-                  more efficient services to the community they serve. This
-                  strategic move demonstrates the President's commitment to
-                  keeping NUNSA relevant and responsive in the ever-evolving
-                  digital age.
+                  So true boss 👍&nbsp;&nbsp;&nbsp;
+                  <span
+                    className="nunsa float-right"
+                    style={{ fontSize: "12px", paddingTop: "0.7rem" }}
+                  >
+                    August 17, 2023
+                  </span>
                 </p>
               </div>
             </div>
