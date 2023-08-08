@@ -7,7 +7,7 @@ import SendIcon from "@mui/icons-material/Send";
 const Conversation = () => {
   return (
     <>
-      <div className={` ${classes.display} mt-2`}>
+      <div className={` ${classes.display}`}>
         <div className="container">
           <div className={classes.leftHelper}>
             <div className={`${classes.convoLeft} paddFull-1 mt-1`}>
@@ -17,7 +17,7 @@ const Conversation = () => {
                 proactive step by commissioning a developer to create a custom
                 web application for the association.<br/>
                 <span
-                  className="nunsa float-right"
+                  className="blogText float-right"
                   style={{ fontSize: "12px", paddingTop: "0.7rem" }}
                 >
                   Aug 17, 2023
@@ -31,9 +31,8 @@ const Conversation = () => {
                 <p>
                   😊 Ok, so what if i tell you.<br/>
                   <span
-                    className="float-right"
+                    className="float-right blogText"
                     style={{
-                      color: "#f0f2f5",
                       fontSize: "12px",
                       paddingTop: "0.7rem",
                     }}
@@ -53,9 +52,8 @@ const Conversation = () => {
                   keeping NUNSA relevant and responsive in the ever-evolving
                   digital age.<br/>
                   <span
-                    className="float-right"
+                    className="float-right blogText"
                     style={{
-                      color: "#f0f2f5",
                       fontSize: "12px",
                       paddingTop: "0.7rem",
                     }}
@@ -71,7 +69,7 @@ const Conversation = () => {
                   So true boss 👍&nbsp;&nbsp;&nbsp;
                   <br />
                   <span
-                    className="nunsa float-right"
+                    className="blogText float-right"
                     style={{ fontSize: "12px", paddingTop: "0.7rem" }}
                   >
                     Aug 17, 2023
