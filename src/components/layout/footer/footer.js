@@ -2,6 +2,7 @@ import BottomSpace from "../../bottomSpace";
 import classes from "../footer/footer.module.css";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import nunsaLogoBg from "../../../images/NunsalogoBg.png";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -21,11 +22,7 @@ const Footer = () => {
             transition={{ from: 0, duration: 1 }}
           >
             <div className="hover limiter" onClick={refresh}>
-              <img
-                src="https://nunsa.org.ng/wp-content/uploads/2021/01/NUNSA_NORTH_NG-scale-1._20200703_023930-scale-1-removebg-preview-1.png"
-                alt="nunsaLogo"
-                width="115px"
-              />
+              <img src={nunsaLogoBg} alt="nunsaLogo" width="115px" />
             </div>
           </motion.div>
         </div>

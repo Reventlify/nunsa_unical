@@ -24,6 +24,7 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import AppBar from "@mui/material/AppBar";
 import { useLocation, useNavigate } from "react-router-dom";
 import one from "../../../images/one.jpg";
+import nunsaLogo from "../../../images/Nunsalogo.jpg";
 
 export default function MobileDashboard({ children }) {
   const navigate = useNavigate();
@@ -189,7 +190,8 @@ export default function MobileDashboard({ children }) {
             component="div"
           >
             <img
-              src="https://nunsa.org.ng/wp-content/uploads/2023/03/download-2.jpeg"
+              // src="https://nunsa.org.ng/wp-content/uploads/2023/03/download-2.jpeg"
+              src={nunsaLogo}
               alt="nunsaLogo"
               width="45px"
               height="45px"

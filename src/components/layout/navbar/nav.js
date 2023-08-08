@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import nunsaLogoBg from "../../../images/NunsalogoBg.png";
 
 const Nav = () => {
   useEffect(() => {
@@ -42,7 +43,8 @@ const Nav = () => {
               transition={{ from: 0, duration: 1 }}
             >
               <img
-                src="https://nunsa.org.ng/wp-content/uploads/2021/01/NUNSA_NORTH_NG-scale-1._20200703_023930-scale-1-removebg-preview-1.png"
+                // src="https://nunsa.org.ng/wp-content/uploads/2021/01/NUNSA_NORTH_NG-scale-1._20200703_023930-scale-1-removebg-preview-1.png"
+                src={nunsaLogoBg}
                 alt="nunsaLogo"
                 width="65px"
               />
