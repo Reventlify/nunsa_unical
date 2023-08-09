@@ -1,0 +1,30 @@
+.upload {
+  height: 35vh;
+  border: dashed rgba(229, 231, 235, 1);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* border: dashed #adadad; */
+}
+.upload:hover {
+  background-color: rgb(241, 243, 247);
+  border: dashed rgba(156, 163, 175, 1);
+}
+.upDisplay {
+  width: 250px;
+}
+
+.sweet {
+  color: rgba(156, 163, 175, 1);
+  /* color: rgb(212, 214, 219); */
+}
+
+.pdf {
+  font-size: 4rem !important;
+}
+
+.info {
+  margin-top: 1rem;
+}
