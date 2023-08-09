@@ -8,12 +8,15 @@ import Executives from "./pages/Executives";
 import LoginView from "./components/login/login";
 import Signup from "./components/signup/signup";
 import CreatePostMain from "./components/createPost/createPostMain";
+import Four0Four from "./components/error/404error";
 const Dashboard = lazy(() => import("./pages/auth/Dashboard"));
 const Class = lazy(() => import("./pages/auth/Class"));
 const Message = lazy(() => import("./pages/auth/Message"));
 const Courses = lazy(() => import("./pages/auth/Courses"));
 const Chat = lazy(() => import("./components/messages/chat/chat"));
-const MaterialUpload = lazy(() => import("./components/courses/materialUpload/materialUpload"));
+const MaterialUpload = lazy(() =>
+  import("./components/courses/materialUpload/materialUpload")
+);
 const Subjects = lazy(() => import("./components/courses/subjects/subjects"));
 
 function App() {
@@ -26,6 +29,7 @@ function App() {
       <Route path="/login" element={<LoginView />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/student/create_post" element={<CreatePostMain />} />
+      <Route path="*" element={<Four0Four />} />
 
       {/* lazy loaded routes */}
       <Route
