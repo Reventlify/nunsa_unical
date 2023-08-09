@@ -1,20 +1,25 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useNavigate, useParams } from "react-router-dom";
+import { startWithCase } from "../../../utilities/text";
+import MobileDashboard from "../../dashboard/mobile/mobile";
 
-const Subjects = ({ pageHandler }) => {
+const Subjects = () => {
+  const navigate = useNavigate();
+  const { year } = useParams();
   return (
-    <div className="container margingTopOutrageous">
-      <h3>
-        <ArrowBackIcon
-          className="hover"
-          onClick={() => {
-            localStorage.clear("upload");
-            localStorage.clear("subjects");
-            pageHandler(true);
-          }}
-        />{" "}
-        &nbsp; View {localStorage.getItem("subjects")} materials
-      </h3>
-    </div>
+    <MobileDashboard>
+      <div className="container margingTopOutrageous">
+        <h3>
+          <ArrowBackIcon
+            className="hover"
+            onClick={() => {
+              navigate("/student/courses");
+            }}
+          />{" "}
+          &nbsp; View {startWithCase(year.replace("_", " "))} materials
+        </h3>
+      </div>
+    </MobileDashboard>
   );
 };
 

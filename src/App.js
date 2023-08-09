@@ -13,6 +13,8 @@ const Class = lazy(() => import("./pages/auth/Class"));
 const Message = lazy(() => import("./pages/auth/Message"));
 const Courses = lazy(() => import("./pages/auth/Courses"));
 const Chat = lazy(() => import("./components/messages/chat/chat"));
+const MaterialUpload = lazy(() => import("./components/courses/materialUpload/materialUpload"));
+const Subjects = lazy(() => import("./components/courses/subjects/subjects"));
 
 function App() {
   return (
@@ -63,6 +65,22 @@ function App() {
         element={
           <Suspense fallback={<FullLoader />}>
             <Courses />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/student/courses/materials/view/:year"
+        element={
+          <Suspense fallback={<FullLoader />}>
+            <Subjects />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/student/courses/materials/upload/:year"
+        element={
+          <Suspense fallback={<FullLoader />}>
+            <MaterialUpload />
           </Suspense>
         }
       />

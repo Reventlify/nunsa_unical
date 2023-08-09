@@ -29,7 +29,6 @@ import nunsaLogo from "../../../images/Nunsalogo.jpg";
 export default function MobileDashboard({ children }) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const [display, setDisplay] = React.useState(false);
   const parentPath = pathname.slice(0, 8);
   const childPath = pathname.slice(9, pathname.length);
   const pageDerivative = () => {
@@ -40,7 +39,6 @@ export default function MobileDashboard({ children }) {
     }
   };
   const [page, setPage] = React.useState(pageDerivative());
-  console.log(page);
   const [state, setState] = React.useState({
     top: false,
     left: false,
