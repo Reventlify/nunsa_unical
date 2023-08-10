@@ -1,5 +1,5 @@
 .upload {
-  height: 35vh;
+  height: 40vh;
   border: dashed rgba(229, 231, 235, 1);
   border-radius: 10px;
   display: flex;
@@ -27,4 +27,9 @@
 
 .info {
   margin-top: 1rem;
+  margin-bottom: 0;
+}
+.infoSm {
+  margin-top: 0;
+  font-size: 0.8rem;
 }

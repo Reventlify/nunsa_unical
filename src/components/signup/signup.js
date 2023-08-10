@@ -127,7 +127,7 @@ const Signup = () => {
                       NUNSA National Student ID
                     </label>
                     <motion.input
-                      inputmode="numeric"
+                      inputMode="numeric"
                       pattern="[0-9]{9,10}"
                       className="form-control"
                       id="idInput"
