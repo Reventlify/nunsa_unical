@@ -74,6 +74,7 @@ const MaterialUpload = () => {
         return setDip("block");
       } else {
         setError("Please choose a pdf file");
+        return setDip("block");
       }
     }
   };
