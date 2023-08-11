@@ -112,7 +112,7 @@ const Executives = () => {
             <div className="theLine"></div>
           </div>
         </div>
-        <div className="execGrid container">
+        <div className="blogGrid container">
           {/* an exec */}
           <div className="">
             <div className="execImg hover">

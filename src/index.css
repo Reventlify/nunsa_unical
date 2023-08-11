@@ -244,7 +244,7 @@ code {
   position: relative;
 }
 .execImg {
-  height: 350px;
+  height: 400px;
 }
 .execImg img {
   height: 100%;
@@ -318,7 +318,7 @@ code {
     grid-template-columns: repeat(2, 1fr);
   }
   .execImg {
-    height: 450px;
+    height: 500px;
   }
   .blogGrid {
     grid-template-columns: repeat(3, 1fr);
