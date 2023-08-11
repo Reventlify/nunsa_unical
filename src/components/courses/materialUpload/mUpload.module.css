@@ -33,3 +33,13 @@
   margin-top: 0;
   font-size: 0.8rem;
 }
+.login {
+  background-color: #61ce70;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.login:hover {
+  background-color: #61ce70;
+  color: white;
+}
