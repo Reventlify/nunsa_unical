@@ -5,7 +5,7 @@ import classes from "../materialUpload/mUpload.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { startWithCase } from "../../../utilities/text";
 import MobileDashboard from "../../dashboard/mobile/mobile";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Four0Four from "../../error/404error";
 
 const ControlledInput = ({ value, onChange, disabled }) => (
@@ -26,6 +26,7 @@ const MaterialUpload = () => {
   const navigate = useNavigate();
   const { year } = useParams();
   const hiddenFileInput = useRef();
+  const drop = useRef();
   const [error, setError] = useState("");
   const [dip, setDip] = useState("none");
   const [loading, setLoading] = useState(true);
@@ -58,6 +59,8 @@ const MaterialUpload = () => {
           Number(handleError.length)
         ) === "pdf"
       ) {
+        setError("");
+        setDip("none");
         setActualName(fileUploaded.name);
         setTopic(startWithCase(fileName));
         setPdf(fileUploaded);
@@ -96,6 +99,52 @@ const MaterialUpload = () => {
       console.error(error);
     }
   };
+
+  const dropChangeIdentifier = useCallback(() => {
+    drop.current.addEventListener("dragover", handleDragOver);
+    drop.current.addEventListener("drop", handleDrop);
+    return () => {
+      drop.current.removeEventListener("dragover", handleDragOver);
+      drop.current.removeEventListener("drop", handleDrop);
+    };
+  });
+  useEffect(() => {
+    dropChangeIdentifier();
+  }, [dropChangeIdentifier]);
+
+  // handles drag over
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  // hadndles drop
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const { files } = e.dataTransfer;
+    const fileUploaded = files[0];
+    const fileName = files[0].name;
+
+    // if there are files and the file is a pdf drop
+    if (
+      files &&
+      files.length &&
+      fileName.slice(Number(fileName.length) - 3, Number(fileName.length)) ===
+        "pdf"
+    ) {
+      setError("");
+      setDip("none");
+      setActualName(fileName);
+      setTopic(startWithCase(fileName));
+      setPdf(fileUploaded);
+      setLoading(false);
+      return setPermision(false);
+    } else {
+      return;
+    }
+  };
   if (
     year === "Year_1" ||
     year === "Year_2" ||
@@ -117,6 +166,7 @@ const MaterialUpload = () => {
         </div>
         <div
           className={`${classes.upload} container hover`}
+          ref={drop}
           onClick={handleClick}
         >
           <div className={`${classes.upDisplay}`}>
@@ -126,9 +176,15 @@ const MaterialUpload = () => {
             {actualName.length < 1 ? (
               <>
                 <p
-                  className={`${classes.sweet} ${classes.info} limiter margAuto`}
+                  className={`${classes.sweet} ${classes.info} limiter center margAuto`}
                 >
-                  Select a {startWithCase(year.replace("_", " "))} PDF
+                  <span className={`${classes.big}`}>
+                    Drag and drop a {startWithCase(year.replace("_", " "))} PDF,
+                    or browse files.
+                  </span>
+                  <span className={`${classes.small}`}>
+                    Select a {startWithCase(year.replace("_", " "))} PDF
+                  </span>
                 </p>
                 <p
                   className={`${classes.sweet} ${classes.infoSm} limiter margAuto`}
@@ -138,7 +194,7 @@ const MaterialUpload = () => {
               </>
             ) : (
               <p
-                className={`${classes.sweet} ${classes.info} limiter margAuto`}
+                className={`${classes.sweet} ${classes.info} center limiter margAuto`}
               >
                 Selected {actualName.slice(0, 6)}.pdf
               </p>
