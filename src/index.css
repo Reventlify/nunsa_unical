@@ -106,7 +106,7 @@ code {
   border-left: none !important;
   border-top: none !important;
   border-color: #adadad !important;
-  box-shadow: none  !important;
+  box-shadow: none !important;
 }
 /* shadow */
 .boxShadow {
@@ -154,11 +154,11 @@ code {
   margin-left: auto;
   margin-right: auto;
 }
-.flex-row{
+.flex-row {
   display: flex;
   flex-direction: row;
 }
-.flex-column{
+.flex-column {
   display: flex;
   flex-direction: column;
 }
@@ -175,11 +175,11 @@ code {
   height: fit-content;
   justify-content: center;
 }
-.float-top{
+.float-top {
   position: absolute;
   top: 0;
 }
-.float-bottom{
+.float-bottom {
   position: absolute;
   bottom: 10px;
 }
@@ -211,7 +211,7 @@ code {
 .focus {
   font-weight: 700;
 }
-.circle{
+.circle {
   border-radius: 50%;
 }
 /* topics */
@@ -243,8 +243,12 @@ code {
 .relative {
   position: relative;
 }
-.execImg{
+.execImg {
   height: 350px;
+}
+.execImg img {
+  height: 100%;
+  object-fit: cover;
 }
 .execGrid {
   gap: 2rem;
@@ -313,7 +317,7 @@ code {
   .execGrid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .execImg{
+  .execImg {
     height: 450px;
   }
   .blogGrid {
