@@ -69,7 +69,7 @@ const Subjects = () => {
         filterer(year.slice(year.length - 1, year.length)).map((item, i) => {
           return (
             <>
-              <div key={item.courseTopicId}>
+              <div className="container" key={item.courseTopicId}>
                 <Accordion>
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -82,6 +82,7 @@ const Subjects = () => {
                     {realFil(item.session).map((it, id) => {
                       return (
                         <>
+                        <div  key={`${it.courseTopicId}ddd`}>
                           <Typography
                             className={id === 0 ? "hover" : "mt-2 hover"}
                             // onClick={() => {
@@ -90,6 +91,7 @@ const Subjects = () => {
                           >
                             <span className="blogText">{it.courseTitle}</span>
                           </Typography>
+                          </div>
                         </>
                       );
                     })}
