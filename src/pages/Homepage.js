@@ -4,6 +4,7 @@ import Nav from "../components/layout/navbar/nav";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import nunsaLogo from "../images/Nunsalogo.jpg";
+import stethoscope from "../images/stethoscope.png";
 import one from "../images/one.jpg";
 import two from "../images/two.jpg";
 import three from "../images/three.jpg";
@@ -54,18 +55,18 @@ const Homepage = () => {
 
       {/* welcome */}
       <div className="centerDivH margingTopOutrageous">
-        {/* <img
+        <img
           decoding="async"
           width="50"
           height="50"
-          src="https://www.medisave.net/cdn/shop/products/5875-02_curve_cp_twist-94697.jpg?v=1680091295&width=1946"
+          src={stethoscope}
           // src="https://nunsa.org.ng/wp-content/uploads/2021/07/icons8-stethoscope-50.png"
           alt=""
           loading="lazy"
-        /> */}
-        <span style={{ fontSize: "50px" }}>
+        />
+        {/* <span style={{ fontSize: "50px" }}>
           <i className="nunsa fa-solid fa-stethoscope"></i>
-        </span>
+        </span> */}
       </div>
       <div className="centerDivH mt-4 wText container">
         <motion.div

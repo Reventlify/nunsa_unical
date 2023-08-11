@@ -95,7 +95,8 @@ const MaterialUpload = () => {
             </>
           ) : (
             <p className={`${classes.sweet} ${classes.info} limiter margAuto`}>
-              Selected {actualName}
+              Selected{" "}
+              {actualName.slice(0, 6)}.pdf
             </p>
           )}
         </div>
