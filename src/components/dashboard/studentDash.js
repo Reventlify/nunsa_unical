@@ -308,6 +308,7 @@ const StudentDash = ({ searchWhere }) => {
                   >
                     <div className={`${classes.postImg}`}>
                       <img
+                        className={classes.postImgr}
                         src={post.postImg}
                         width="100%"
                         height="100%"

@@ -1,4 +1,4 @@
-.noPost{
+.noPost {
   display: flex;
   height: 60vh;
   justify-content: center;
@@ -33,6 +33,10 @@
 .postImg {
   height: 400px;
   width: 100%;
+}
+.postImgr {
+  height: 100%;
+  object-fit: cover;
 }
 .opinion {
   display: flex;
@@ -120,19 +124,19 @@
 
 /* Track */
 .othersOpinion::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
- 
+
 /* Handle */
 .othersOpinion::-webkit-scrollbar-thumb {
-  background: red; 
+  background: red;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 .othersOpinion::-webkit-scrollbar-thumb:hover {
-  background: #b30000; 
+  background: #b30000;
 }
 .studOpinionDraw {
   width: 90vw;
@@ -143,7 +147,7 @@
   opacity: 10;
 }
 @media (min-width: 750px) {
-  .noPost{
+  .noPost {
     justify-content: left;
   }
   .sideBar {
