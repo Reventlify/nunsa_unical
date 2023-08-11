@@ -167,6 +167,7 @@ code {
 }
 .centerDiv {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -193,6 +194,12 @@ code {
 }
 .fullscreen-10 {
   height: 90vh;
+}
+.fullscreen-20 {
+  height: 80vh;
+}
+.fullscreen-30 {
+  height: 70vh;
 }
 .noBorder {
   border: none;

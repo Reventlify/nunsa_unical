@@ -59,30 +59,6 @@ const testPeople = [
     userImg: "",
     userClass: "yr3",
   },
-  // {
-  //   chatId: "7",
-  //   userName: "sunshine moon",
-  //   userImg: seven,
-  //   userClass: "yr3",
-  // },
-  // {
-  //   chatId: "8",
-  //   userName: "sunshine moon",
-  //   userImg: seven,
-  //   userClass: "yr3",
-  // },
-  // {
-  //   chatId: "9",
-  //   userName: "sunshine moon",
-  //   userImg: seven,
-  //   userClass: "yr3",
-  // },
-  // {
-  //   chatId: "10",
-  //   userName: "sunshine moon",
-  //   userImg: seven,
-  //   userClass: "yr3",
-  // },
 ];
 // testChats
 const testChats = [
@@ -310,4 +286,61 @@ const testReplies = [
   },
 ];
 
-export { testChats, testPost, testComments, testReplies, testPeople };
+const testCourses = [
+  {
+    courseId: "1",
+    courseCode: "102",
+    year: "1",
+    courseTitle: "History of nursing",
+    courseTopicId: "a",
+    courseTopic: "florence nightingale",
+    courseTopicLecturer: "Prof Offiong",
+    session: "2018/2019",
+    date: "Aug 12, 2023",
+  },
+  {
+    courseId: "1",
+    courseCode: "102",
+    year: "1",
+    courseTitle: "History of nursing",
+    courseTopicId: "b",
+    courseTopic: "history of midwifery",
+    courseTopicLecturer: "Prof Offiong",
+    session: "2018/2019",
+    date: "Aug 11, 2023",
+  },
+  {
+    courseId: "2",
+    courseCode: "112",
+    year: "1",
+    courseTitle: "tissues",
+    courseTopicId: "c",
+    courseTopic: "strong tissues",
+    courseTopicLecturer: "Prof Offiong",
+    session: "2019/2020",
+    date: "Aug 20, 2023",
+  },
+  {
+    courseId: "2",
+    courseCode: "112",
+    year: "1",
+    courseTitle: "tissues",
+    courseTopicId: "d",
+    courseTopic: "weak tissues",
+    courseTopicLecturer: "Prof Offiong",
+    session: "2019/2020",
+    date: "Aug 11, 2023",
+  },
+  {
+    courseId: "3",
+    courseCode: "212",
+    year: "2",
+    courseTitle: "blood",
+    courseTopicId: "e",
+    courseTopic: "cells",
+    courseTopicLecturer: "Prof Offiong",
+    session: "2020/2021",
+    date: "Aug 11, 2023",
+  },
+];
+export { testChats, testPost, testComments, testReplies, testPeople, testCourses };
