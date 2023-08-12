@@ -1,10 +1,25 @@
+import { io } from "socket.io-client";
 import BottomSpace from "../../../bottomSpace";
 import CustomLoader from "../../../loader/customLoader/CustomLoader";
 import classes from "../conversation/convo.module.css";
 import ChatIcon from "@mui/icons-material/Chat";
 import SendIcon from "@mui/icons-material/Send";
+import { useState } from "react";
+const socket = io("http://localhost:5000");
+socket.on("connect", () => {
+  console.log(`You connected with ${socket.id}`);
+});
 
 const Conversation = () => {
+  socket.on("receive_message", (message) => {
+    console.log(message);
+  });
+  const onSend = (e) => {
+    e.preventDefault();
+    socket.emit("send_message", message);
+    return setMessage("");
+  };
+  const [message, setMessage] = useState("");
   return (
     <>
       <div className={` ${classes.display}`}>
@@ -15,7 +30,8 @@ const Conversation = () => {
                 The President of NUNSA UNICAL and his Executives, recognizing
                 the importance of staying technologically up-to-date, took a
                 proactive step by commissioning a developer to create a custom
-                web application for the association.<br/>
+                web application for the association.
+                <br />
                 <span
                   className="blogText float-right"
                   style={{ fontSize: "12px", paddingTop: "0.7rem" }}
@@ -29,7 +45,8 @@ const Conversation = () => {
             <div className={classes.rightHelper}>
               <div className={`${classes.convoRight} paddFull-1 mt-3`}>
                 <p>
-                  😊 Ok, so what if i tell you.<br/>
+                  😊 Ok, so what if i tell you.
+                  <br />
                   <span
                     className="float-right blogText"
                     style={{
@@ -50,7 +67,8 @@ const Conversation = () => {
                   provide more efficient services to the community they serve.
                   This strategic move demonstrates the President's commitment to
                   keeping NUNSA relevant and responsive in the ever-evolving
-                  digital age.<br/>
+                  digital age.
+                  <br />
                   <span
                     className="float-right blogText"
                     style={{
@@ -84,7 +102,7 @@ const Conversation = () => {
 
       <div className={`fixed-bottom bg-white`} style={{ width: "100%" }}>
         <div className="container">
-          <form className={`d-flex mb-2 mt-2`} role="search">
+          <form className={`d-flex mb-2 mt-2`} onSubmit={onSend}>
             {/* <input
               className={`form-control me-2 b`}
               type="search"
@@ -103,13 +121,13 @@ const Conversation = () => {
               autoCorrect="off"
               rows="2"
               aria-describedby="regimeDescriptionHelp"
-              // value={regimeDescription}
-              //   onChange={(e) => setStudentOpinion(e.target.value)}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               required
             />
             <button
               className="btn bottomShadow btnct btnct-nunsa"
-              type="button"
+              type="submit"
             >
               <SendIcon />
             </button>
