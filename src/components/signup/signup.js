@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { api } from "../../link/API";
 import { BeatLoader } from "react-spinners";
 import { motion } from "framer-motion";
+import nunsaLogo from "../../images/Nunsalogo.jpg";
 import trim from "lodash.trim";
 
 const Signup = () => {
@@ -15,8 +16,13 @@ const Signup = () => {
   // values inputed in the form
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // email
+  const [verifyEmail, setVerifyEmail] = useState(false);
+  const [emailVerified, setEmailVerified] = useState(false);
+  const [verificationCode, setVerificationCode] = useState("");
   // handle loading on submit
   const [loading, setLoading] = useState(false);
+  const [disableButton, setButton] = useState(false);
 
   //password visibility state
   const [show, setshow] = useState(false);
@@ -39,33 +45,37 @@ const Signup = () => {
     pass.current.type = show ? "password" : "text";
   };
 
-  const onSubmitForm = async (e) => {
+  // takes user back to homepage
+  const handlePostBack = () => {
+    return navigate("/");
+  };
+
+  const onSubmitEmail = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
+      setButton(true);
       //api call for sending the user data to the backend
-      await fetch(`${api}/auth/login`, {
+      await fetch(`${api}/auth/sendcode`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email,
-          password,
         }),
       }).then(async (res) => {
         const data = await res.json();
         if (res.status !== 200) {
           setDip("block");
           setLoading(false);
+          setButton(false);
           return setLoginError(data);
-        } else {
+        } else if (res.status === 200) {
+          setLoginError(
+            "A code has been sent to your email. If you don't see the verification code in your inbox, please check your spam folder."
+          );
           setLoading(false);
-          sessionStorage.setItem("token", "Bearer " + data.token);
-          if (location.state === null) {
-            return navigate("/dashboard");
-          } else {
-            return navigate(-1);
-          }
-          // return navigate("/dashboard");
+          setButton(false);
+          return setVerifyEmail(true);
         }
       });
     } catch (error) {
@@ -73,10 +83,6 @@ const Signup = () => {
     }
   };
 
-  // takes user back to homepage
-  const handlePostBack = () => {
-    return navigate("/");
-  };
   return (
     <>
       <div className="container">
@@ -103,7 +109,7 @@ const Signup = () => {
           <div className={` mt-2 smartContainer ${classes.bod}`}>
             <img
               className={`block margAuto mb-3`}
-              src="https://nunsa.org.ng/wp-content/uploads/2023/03/download-2.jpeg"
+              src={nunsaLogo}
               alt="nunsaLogo"
               width="120px"
             />
@@ -116,39 +122,35 @@ const Signup = () => {
                   <span>{loginError}</span>
                 </div>
               )}
-              <form className="container" onSubmit={onSubmitForm}>
+              <form className="container" onSubmit={onSubmitEmail}>
                 <motion.div
                   className=""
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 1.0 }}
                 >
                   <div className="mb-3">
-                    <label htmlFor="idInput" className="form-label">
-                      NUNSA National Student ID
+                    <label htmlFor="emailInput" className="form-label">
+                      Email address
                     </label>
                     <motion.input
-                      inputMode="numeric"
-                      pattern="[0-9]{9,10}"
+                      // inputMode="numeric"
+                      // pattern="[0-9]{9,10}"
+                      // className="form-control"
+                      // id="idInput"
+                      // autoComplete="off"
+                      // aria-describedby="idHelp"
+                      // onChange={(e) => setEmail(trim(e.target.value))}
+                      // required
+                      // whileFocus={{ scale: 1.1 }}
+                      type="email"
                       className="form-control"
-                      id="idInput"
+                      id="emailInput"
                       autoComplete="off"
-                      aria-describedby="idHelp"
+                      aria-describedby="emailHelp"
                       onChange={(e) => setEmail(trim(e.target.value))}
                       required
                       whileFocus={{ scale: 1.1 }}
-                    >
-                      {/* <input
-                    type="email"
-                    ref={emailfoc}
-                    className="form-control"
-                    id="idInput"
-                    autoComplete="off"
-                    aria-describedby="idHelp"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  /> */}
-                    </motion.input>
+                    ></motion.input>
                   </div>
                 </motion.div>
 
@@ -159,15 +161,20 @@ const Signup = () => {
                 >
                   <div className="d-grid gap-2">
                     <button
-                      className={`btn bottomShadow ${classes.login}`}
+                      className={
+                        !disableButton
+                          ? `btn bottomShadow ${classes.login}`
+                          : "btnct btn  btn-secondary"
+                      }
                       type="submit"
+                      disabled={disableButton}
                     >
                       {loading ? (
                         <>
                           <BeatLoader color="#fff" loading={true} size={"12"} />
                         </>
                       ) : (
-                        <>Verify Student ID</>
+                        <>Send Verification Code</>
                       )}
                     </button>
                   </div>
