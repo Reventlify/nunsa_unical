@@ -211,8 +211,11 @@ const Nav = () => {
         </div>
       </nav>
       {colorChange ? (
-        <div className="fixed-bottom" onClick={scrollToTop}>
-          <button className="btn btn-success  float-right">
+        <div className="fixed-bottom">
+          <button
+            onClick={scrollToTop}
+            className="btn btn-success  float-right"
+          >
             <i className="fa-solid fa-chevron-up"></i>
           </button>
         </div>

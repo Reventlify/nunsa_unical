@@ -115,16 +115,17 @@ const Signup = () => {
   // email verifier api
   const onEmailVerify = async (e) => {
     e.preventDefault();
+    setDip("none");
+    setLoginError("");
     try {
       setLoading(true);
+      setButton(true);
       //api call for sending the user data to the backend
-      await fetch(`${api}/auth/register`, {
+      await fetch(`${api}/auth/verifyemail`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          fName,
           email,
-          password,
           verificationCode,
         }),
       }).then(async (res) => {
@@ -132,10 +133,12 @@ const Signup = () => {
         if (res.status !== 200) {
           setDip("block");
           setLoading(false);
+          setButton(false);
           return setLoginError(data);
         } else if (res.status === 200) {
           localStorage.setItem("verification_code", "Verified");
           setEmailVerified(true);
+          setButton(false);
           return setLoading(false);
         }
       });
@@ -273,7 +276,7 @@ const Signup = () => {
                 maxLength={5}
                 id="vcode"
                 required
-                onChange={(e) => setVerificationCode(trim(e.target.value))}
+                onChange={(e) => setVerificationCode(e.target.value)}
               />
             </div>
           </motion.div>
@@ -306,6 +309,74 @@ const Signup = () => {
         </form>
       );
     } else {
+      return (
+        <form className="container">
+          <motion.div
+            className=""
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 1.0 }}
+          >
+          <div className="mb-3">
+            <label htmlFor="phone" className="form-label">
+              Matric no
+            </label>
+            <input
+              type="tell"
+              className="form-control"
+              id="phone"
+              autoComplete="off"
+              minLength="11"
+              maxLength="11"
+              pattern="[0-9]+"
+              onChange={(e) => setPhoneNo(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="phone" className="form-label">
+              Phone no
+            </label>
+            <input
+              type="tell"
+              className="form-control"
+              id="phone"
+              autoComplete="off"
+              minLength="11"
+              maxLength="11"
+              pattern="[0-9]+"
+              onChange={(e) => setPhoneNo(e.target.value)}
+              required
+            />
+          </div>
+          </motion.div>
+
+          <motion.div
+            className=""
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 1.0 }}
+          >
+            <div className="d-grid gap-2">
+              <button
+                className={
+                  !disableButton
+                    ? `btn bottomShadow ${classes.login}`
+                    : "btnct btn  btn-secondary"
+                }
+                type="submit"
+                disabled={disableButton}
+              >
+                {loading ? (
+                  <>
+                    <BeatLoader color="#fff" loading={true} size={"12"} />
+                  </>
+                ) : (
+                  <>Register</>
+                )}
+              </button>
+            </div>
+          </motion.div>
+        </form>
+      );
     }
   };
 
