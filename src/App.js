@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import FullLoader from "./components/loader/fullLoader/FullLoader";
 import Homepage from "./pages/Homepage";
@@ -21,74 +21,76 @@ const Subjects = lazy(() => import("./components/courses/subjects/subjects"));
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Homepage />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/blog" element={<Blog />} />
-      <Route path="/executives" element={<Executives />} />
-      <Route path="/login" element={<LoginView />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/student/create_post" element={<CreatePostMain />} />
-      <Route path="*" element={<Four0Four />} />
+    <Router>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/executives" element={<Executives />} />
+        <Route path="/login" element={<LoginView />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/student/create_post" element={<CreatePostMain />} />
+        <Route path="*" element={<Four0Four />} />
 
-      {/* lazy loaded routes */}
-      <Route
-        path="/student/dashboard"
-        element={
-          <Suspense fallback={<FullLoader />}>
-            <Dashboard />
-          </Suspense>
-        }
-      />
-      <Route
-        path="/student/class"
-        element={
-          <Suspense fallback={<FullLoader />}>
-            <Class />
-          </Suspense>
-        }
-      />
-      <Route
-        path="/student/messages"
-        element={
-          <Suspense fallback={<FullLoader />}>
-            <Message />
-          </Suspense>
-        }
-      />
-      <Route
-        path="/student/messages/chat/:id"
-        element={
-          <Suspense fallback={<FullLoader />}>
-            <Chat />
-          </Suspense>
-        }
-      />
-      <Route
-        path="/student/courses"
-        element={
-          <Suspense fallback={<FullLoader />}>
-            <Courses />
-          </Suspense>
-        }
-      />
-      <Route
-        path="/student/courses/materials/view/:year"
-        element={
-          <Suspense fallback={<FullLoader />}>
-            <Subjects />
-          </Suspense>
-        }
-      />
-      <Route
-        path="/student/courses/materials/upload/:year"
-        element={
-          <Suspense fallback={<FullLoader />}>
-            <MaterialUpload />
-          </Suspense>
-        }
-      />
-    </Routes>
+        {/* lazy loaded routes */}
+        <Route
+          path="/student/dashboard"
+          element={
+            <Suspense fallback={<FullLoader />}>
+              <Dashboard />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/student/class"
+          element={
+            <Suspense fallback={<FullLoader />}>
+              <Class />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/student/messages"
+          element={
+            <Suspense fallback={<FullLoader />}>
+              <Message />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/student/messages/chat/:id"
+          element={
+            <Suspense fallback={<FullLoader />}>
+              <Chat />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/student/courses"
+          element={
+            <Suspense fallback={<FullLoader />}>
+              <Courses />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/student/courses/materials/view/:year"
+          element={
+            <Suspense fallback={<FullLoader />}>
+              <Subjects />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/student/courses/materials/upload/:year"
+          element={
+            <Suspense fallback={<FullLoader />}>
+              <MaterialUpload />
+            </Suspense>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 
