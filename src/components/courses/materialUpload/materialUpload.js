@@ -8,10 +8,12 @@ import MobileDashboard from "../../dashboard/mobile/mobile";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Four0Four from "../../error/404error";
 
-const ControlledInput = ({ value, onChange, disabled }) => (
+const ControlledInput = ({ value, disabled, onChange }) => (
   <input
     value={value}
-    onChange={(e) => onChange(e.target.value)}
+    onChange={(e) => {
+      onChange(e);
+    }}
     id="topic"
     className="form-control boxShadow"
     type="text"
@@ -39,6 +41,9 @@ const MaterialUpload = () => {
   const [courseCode, setCourseCode] = useState("");
   const [lecturer, setLecturer] = useState("");
 
+  const handleControlledTopic = (event) => {
+    setTopic(event.target.value);
+  };
   // Programatically click the hidden file input element
   // when the Div component is clicked
   const handleClick = (event) => {
@@ -217,7 +222,7 @@ const MaterialUpload = () => {
                 <ControlledInput
                   value={topic}
                   disabled={permittedToType}
-                  onChange={(e) => setTopic(e.target.value)}
+                  onChange={handleControlledTopic}
                 />
               </div>
               <div className="mb-3">

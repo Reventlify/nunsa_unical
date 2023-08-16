@@ -241,11 +241,12 @@ code {
   flex-direction: column; */
 }
 .tImgHeight {
-  height: 350px;
+  height: 550px;
 }
 .tImg {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 .relative {
   position: relative;
