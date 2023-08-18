@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { io } from "socket.io-client";
 
 const initialState = {
   isLoggedIn: false,
@@ -31,16 +32,17 @@ export const login = createAsyncThunk("login", async (userDetails) => {
   } catch (error) {
     // Handle network errors or exceptions
     console.error("Error occurred during login:", error);
-    throw error;
+    throw new Error("Login failed: " + error.message);
   }
 });
 
 const authSlice = createSlice({
   name: "auth",
-  initialState,
+  // initialState,
+  initialState: initialState,
   reducers: {
     addUser(state, action) {
-      state.user = localStorage.getItem("user");
+      state.user = JSON.parse(localStorage.getItem("user"));
     },
     logout(state, action) {
       state.isLoggedIn = false;
@@ -67,10 +69,11 @@ const authSlice = createSlice({
       state.loading = false;
       // state.error = true
       state.error = payload.Error.message;
-      localStorage.setItem("error", JSON.stringify(payload.Error.message));
+      // localStorage.setItem("error", JSON.stringify(payload.Error.message));
     });
   },
 });
 export const authActions = authSlice.actions;
+export const userloggedIn = (state) => state.auth.isLoggedIn;
 
 export default authSlice;

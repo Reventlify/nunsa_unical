@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Suspense, lazy } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Suspense, lazy, useEffect } from "react";
 import FullLoader from "./components/loader/fullLoader/FullLoader";
 import Homepage from "./pages/Homepage";
 import About from "./pages/About";
@@ -9,6 +10,8 @@ import LoginView from "./components/login/login";
 import Signup from "./components/signup/signup";
 import CreatePostMain from "./components/createPost/createPostMain";
 import Four0Four from "./components/error/404error";
+// import { userloggedIn } from "./store/auth-slice";
+import { socket } from "./socket";
 const Dashboard = lazy(() => import("./pages/auth/Dashboard"));
 const Class = lazy(() => import("./pages/auth/Class"));
 const Message = lazy(() => import("./pages/auth/Message"));
@@ -20,6 +23,21 @@ const MaterialUpload = lazy(() =>
 const Subjects = lazy(() => import("./components/courses/subjects/subjects"));
 
 function App() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      socket.disconnect();
+      return console.log(isLoggedIn);
+    } else {
+      // return socket.on("connect", () => {
+      //   console.log(`You connected with ${socket.id}`);
+      // });
+      socket.connect();
+      console.log(isLoggedIn);
+      return console.log("isAuth");
+    }
+  }, [isLoggedIn]);
   return (
     <Router>
       <Routes>
@@ -36,9 +54,13 @@ function App() {
         <Route
           path="/student/dashboard"
           element={
-            <Suspense fallback={<FullLoader />}>
-              <Dashboard />
-            </Suspense>
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <Dashboard />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
           }
         />
         <Route
