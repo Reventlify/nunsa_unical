@@ -12,8 +12,12 @@ import four from "../images/four.jpg";
 import first from "../images/first.jpg";
 import second from "../images/second.jpg";
 import CallIcon from "@mui/icons-material/Call";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../store/auth-slice";
 
 const Homepage = () => {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const bgText = () => {
     return (
@@ -29,7 +33,8 @@ const Homepage = () => {
     bounce: 0.5,
   };
   const bgBtAction = () => {
-    return navigate("/signup");
+    isLoggedIn ? dispatch(authActions.logoutTest()) : dispatch(authActions.loginTest())
+    // return navigate("/signup");
   };
   const about = () => {
     return navigate("/about");

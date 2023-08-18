@@ -1,16 +1,13 @@
-import { io } from "socket.io-client";
 import BottomSpace from "../../../bottomSpace";
 import CustomLoader from "../../../loader/customLoader/CustomLoader";
 import classes from "../conversation/convo.module.css";
 import ChatIcon from "@mui/icons-material/Chat";
 import SendIcon from "@mui/icons-material/Send";
 import { useState } from "react";
-const socket = io("http://localhost:5000");
-socket.on("connect", () => {
-  console.log(`You connected with ${socket.id}`);
-});
+import { socket } from "../../../../socket";
 
 const Conversation = () => {
+  const [message, setMessage] = useState("");
   socket.on("receive_message", (message) => {
     console.log(message);
   });
@@ -19,7 +16,6 @@ const Conversation = () => {
     socket.emit("send_message", message);
     return setMessage("");
   };
-  const [message, setMessage] = useState("");
   return (
     <>
       <div className={` ${classes.display}`}>

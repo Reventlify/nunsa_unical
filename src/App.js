@@ -30,9 +30,6 @@ function App() {
       socket.disconnect();
       return console.log(isLoggedIn);
     } else {
-      // return socket.on("connect", () => {
-      //   console.log(`You connected with ${socket.id}`);
-      // });
       socket.connect();
       console.log(isLoggedIn);
       return console.log("isAuth");
@@ -54,13 +51,16 @@ function App() {
         <Route
           path="/student/dashboard"
           element={
-            isLoggedIn ? (
-              <Suspense fallback={<FullLoader />}>
-                <Dashboard />
-              </Suspense>
-            ) : (
-              <LoginView />
-            )
+            // isLoggedIn ? (
+            //   <Suspense fallback={<FullLoader />}>
+            //     <Dashboard />
+            //   </Suspense>
+            // ) : (
+            //   <LoginView />
+            // )
+            <Suspense fallback={<FullLoader />}>
+              <Dashboard />
+            </Suspense>
           }
         />
         <Route
