@@ -18,6 +18,7 @@ const Signup = () => {
   const [fName, setFName] = useState("");
   const [mName, setMName] = useState("");
   const [lName, setLName] = useState("");
+  const [gender, setGender] = useState("Femail");
   const [matNo, setMatNo] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
   // email
@@ -33,20 +34,20 @@ const Signup = () => {
   const [show, setshow] = useState(false);
   const [eye, setEye] = useState("fa-eye-slash");
   const pass = useRef();
-  const emailfoc = useRef();
+  // const emailfoc = useRef();
   // error messages and status
   const [loginError, setLoginError] = useState("");
   const [dip, setDip] = useState("none");
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    if (localStorage.getItem("verification_code") === "Sent") {
+    if (sessionStorage.getItem("verification_code") === "Sent") {
       setVerifyEmail(true);
       setLoginError(
         "If you don't see the verification code in your inbox, check your spam folder."
       );
       setDip("block");
-    } else if (localStorage.getItem("verification_code") === "Verified") {
+    } else if (sessionStorage.getItem("verification_code") === "Verified") {
       setVerifyEmail(true);
       setEmailVerified(true);
     }
@@ -64,11 +65,11 @@ const Signup = () => {
 
   // takes user back to homepage
   const handlePostBack = () => {
-    localStorage.clear("verification_code");
-    localStorage.clear("email");
-    localStorage.clear("first_name");
-    localStorage.clear("middle_name");
-    localStorage.clear("last_name");
+    sessionStorage.clear("verification_code");
+    sessionStorage.clear("email");
+    sessionStorage.clear("first_name");
+    sessionStorage.clear("middle_name");
+    sessionStorage.clear("last_name");
     return navigate("/");
   };
 
@@ -94,11 +95,11 @@ const Signup = () => {
           setButton(false);
           return setLoginError(data);
         } else if (res.status === 200) {
-          localStorage.setItem("verification_code", "Sent");
-          localStorage.setItem("email", email);
-          localStorage.setItem("first_name", fName);
-          localStorage.setItem("middle_name", mName);
-          localStorage.setItem("last_name", lName);
+          sessionStorage.setItem("verification_code", "Sent");
+          sessionStorage.setItem("email", email);
+          sessionStorage.setItem("first_name", fName);
+          sessionStorage.setItem("middle_name", mName);
+          sessionStorage.setItem("last_name", lName);
           setLoginError(
             "A code has been sent to your email. If you don't see the verification code in your inbox, please check your spam folder."
           );
@@ -147,8 +148,61 @@ const Signup = () => {
     }
   };
 
+  const onUserCreate = async (e) => {
+    e.preventDefault();
+    const email = sessionStorage.getItem("email");
+    const fName = sessionStorage.getItem("first_name");
+    const mName = sessionStorage.getItem("middle_name");
+    const lName = sessionStorage.getItem("last_name");
+    if (email === null || fName === null || mName === null || lName === null) {
+      setLoading(false);
+      setButton(false);
+      setDip("block");
+      return setLoginError("Your information is not complete.");
+    } else {
+      try {
+        setLoading(true);
+        setButton(true);
+        setDip("none");
+        setLoginError("");
+        //api call for sending the user data to the backend
+        await fetch(`${api}/auth/register`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email,
+            password,
+            fName,
+            mName,
+            lName,
+            matNo,
+            gender,
+          }),
+        }).then(async (res) => {
+          const data = await res.json();
+          if (res.status !== 200) {
+            setDip("block");
+            setLoading(false);
+            setButton(false);
+            return setLoginError(data);
+          } else if (res.status === 200) {
+            sessionStorage.clear("verification_code");
+            sessionStorage.clear("email");
+            sessionStorage.clear("first_name");
+            sessionStorage.clear("middle_name");
+            sessionStorage.clear("last_name");
+            setButton(false);
+            setLoading(false);
+            return setSuccess(true);
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
   const formDisplay = () => {
-    if (!verifyEmail && !emailVerified) {
+    if (verifyEmail && emailVerified) {
       return (
         <form className="container" onSubmit={onSubmitEmail}>
           <motion.div
@@ -331,14 +385,30 @@ const Signup = () => {
       );
     } else {
       return (
-        <form className="container">
+        <form className="container" onSubmit={onUserCreate}>
+          <div className={`mb-3`}>
+            <label htmlFor="gender" className="form-label">
+              Gender
+            </label>
+            <motion.select
+              className="form-control shadowB"
+              id="gender"
+              aria-label="genderHelp"
+              onChange={(e) => setGender(e.target.value)}
+              whileFocus={{ scale: 1.1 }}
+              whileHover={{ scale: 1.1 }}
+            >
+              <option selected>Female</option>
+              <option>Male</option>
+            </motion.select>
+          </div>
           <motion.div
             className=""
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 1.0 }}
           >
             <div className="mb-3">
-              <label htmlFor="phone" className="form-label">
+              <label htmlFor="mat_no" className="form-label">
                 Matric no
               </label>
               <motion.input
@@ -360,21 +430,33 @@ const Signup = () => {
             whileTap={{ scale: 1.0 }}
           >
             <div className="mb-3">
-              <label htmlFor="phone" className="form-label">
-                Phone no
+              <label htmlFor="exampleInputPassword1" className="form-label">
+                Password
               </label>
-              <motion.input
-                type="tell"
-                className="form-control"
-                id="phone"
-                autoComplete="off"
-                minLength="11"
-                maxLength="11"
-                pattern="[0-9]+"
-                onChange={(e) => setPhoneNo(e.target.value)}
-                whileFocus={{ scale: 1.1 }}
-                required
-              />
+              <span className={`d-flex ${classes.white}`}>
+                <input
+                  name="password"
+                  type="password"
+                  className="form-control me-2"
+                  id="exampleInputPassword1"
+                  autoComplete="off"
+                  minLength="8"
+                  maxLength="8"
+                  ref={pass}
+                  onChange={(e) => setPassword(trim(e.target.value))}
+                  required
+                />
+                <button
+                  className={`btn ${classes.eye}`}
+                  onClick={showPassword}
+                  type="button"
+                >
+                  <i className={`fa-regular ${eye}`}></i>
+                </button>
+              </span>
+              <div id="emailHelp" className="form-text">
+                min. 8 characters
+              </div>
             </div>
           </motion.div>
 
