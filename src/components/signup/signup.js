@@ -202,7 +202,7 @@ const Signup = () => {
     }
   };
   const formDisplay = () => {
-    if (verifyEmail && emailVerified) {
+    if (!verifyEmail && !emailVerified) {
       return (
         <form className="container" onSubmit={onSubmitEmail}>
           <motion.div
