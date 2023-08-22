@@ -349,6 +349,7 @@ const Signup = () => {
                 autoComplete="off"
                 maxLength={5}
                 id="vcode"
+                value=""
                 required
                 onChange={(e) => setVerificationCode(e.target.value)}
                 whileFocus={{ scale: 1.1 }}
