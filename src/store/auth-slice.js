@@ -1,39 +1,33 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { io } from "socket.io-client";
+import { api } from "../link/API";
 
 const initialState = {
   isLoggedIn: false,
   user: null,
-  Message: null,
-  error: null,
+  error: false,
+  errorMessage: null,
   loading: false,
 };
 
 export const login = createAsyncThunk("login", async (userDetails) => {
-  try {
-    const response = await fetch(
-      "https://backend-iubc.onrender.com/users/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userDetails),
-      }
-    );
-    if (response.status !== 200) {
-      // Handle non-200 response codes
-      throw new Error("Bad response from server");
-    }
+  const response = await fetch(`${api}/auth/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userDetails),
+  });
 
+  if (!response.ok) {
+    // Handle non-200 response codes
     const data = await response.json();
-
-    return data;
-  } catch (error) {
-    // Handle network errors or exceptions
-    console.error("Error occurred during login:", error);
-    throw new Error("Login failed: " + error.message);
+    throw new Error(data); // Let Redux Toolkit handle the error
   }
+
+  const data = await response.json();
+  console.log(data);
+  return data;
 });
 
 const authSlice = createSlice({
@@ -47,14 +41,19 @@ const authSlice = createSlice({
     logout(state, action) {
       state.isLoggedIn = false;
       state.user = null;
-      localStorage.removeItem("user");
-      localStorage.removeItem("Message");
     },
     loginTest(state, action) {
       state.isLoggedIn = true;
     },
     logoutTest(state, action) {
       state.isLoggedIn = false;
+    },
+    stopLoad(state, action) {
+      state.loading = false;
+    },
+    deleteError(state, action) {
+      state.error = false;
+      state.errorMessage = null;
     },
   },
   extraReducers: (builder) => {
@@ -64,18 +63,14 @@ const authSlice = createSlice({
     });
     builder.addCase(login.fulfilled, (state, { payload }) => {
       state.loading = false;
-      state.isLoggedIn = true;
+      state.isLoggedIn = payload.auth;
       state.user = payload.user;
-      state.Message = payload.Message;
-      // localStorage.setItem("user", JSON.stringify(payload.userExist));
-      // localStorage.setItem("Message", JSON.stringify(payload.Message));
     });
 
-    builder.addCase(login.rejected, (state, { payload }) => {
+    builder.addCase(login.rejected, (state, action) => {
       state.loading = false;
-      // state.error = true
-      state.error = payload.Error.message;
-      // localStorage.setItem("error", JSON.stringify(payload.Error.message));
+      state.errorMessage = action.error.message;
+      state.error = true;
     });
   },
 });

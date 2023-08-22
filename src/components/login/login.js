@@ -5,29 +5,41 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { api } from "../../link/API";
 import { BeatLoader } from "react-spinners";
 import { motion } from "framer-motion";
+import { login } from "../../store/auth-slice";
+import { useDispatch, useSelector } from "react-redux";
 import trim from "lodash.trim";
 
 const LoginView = () => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, []);
-  const location = useLocation();
-  // values inputed in the form
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+    if (isLoggedIn) {
+      // If you want to navigate after successful login
+      if (pathname === "/login") {
+        return navigate("/student/dashboard");
+      }
+      return;
+    }
+  }, [isLoggedIn, navigate, pathname]);
+  const dispatch = useDispatch();
   // handle loading on submit
-  const [loading, setLoading] = useState(false);
+  const loading = useSelector((state) => state.auth.loading);
+  const errorMessage = useSelector((state) => state.auth.errorMessage);
+  const error = useSelector((state) => state.auth.error);
+  // values inputed in the form
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
 
   //password visibility state
   const [show, setshow] = useState(false);
   const [eye, setEye] = useState("fa-eye-slash");
   const pass = useRef();
-  const emailfoc = useRef();
-  // error messages and status
-  const [loginError, setLoginError] = useState("");
-  const [dip, setDip] = useState("none");
+  // const emailfoc = useRef();
 
-  const navigate = useNavigate();
 
   const handleSignUp = () => {
     navigate("/signup");
@@ -42,41 +54,37 @@ const LoginView = () => {
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true);
-      //api call for sending the user data to the backend
-      await fetch(`${api}/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      }).then(async (res) => {
-        const data = await res.json();
-        if (res.status !== 200) {
-          setDip("block");
-          setLoading(false);
-          return setLoginError(data);
-        } else {
-          setLoading(false);
-          sessionStorage.setItem("token", "Bearer " + data.token);
-          if (location.state === null) {
-            return navigate("/dashboard");
-          } else {
-            return navigate(-1);
-          }
-          // return navigate("/dashboard");
-        }
-      });
+      dispatch(login(values));
     } catch (error) {
       console.error(error);
     }
+    // .then(() => {
+    //   // toast.success("Login Successfully");
+    //   navigate("/student/dashboard");
+    // });
+    // .then(() => {
+    //   toast.success("Login Successfully");
+    //   navigate("/home");
+    // })
+    // .catch((error) => {
+    //   toast.error("Failed to login");
+    // });
+    // setErrors(Validate(values))
   };
 
   // takes user back to homepage
   const handlePostBack = () => {
     return navigate("/");
   };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: trim(value),
+    });
+  };
+
   return (
     <>
       <div className="container">
@@ -108,12 +116,12 @@ const LoginView = () => {
               width="120px"
             />
             <div className="container">
-              {loginError && ( // then if changed flag is false show error message.
+              {errorMessage && ( // then if changed flag is false show error message.
                 <div
                   className="container"
-                  style={{ color: "red", display: { dip } }}
+                  style={{ color: "red", display: error ? "block" : "none" }}
                 >
-                  <span>{loginError}</span>
+                  <span>{errorMessage}</span>
                 </div>
               )}
               <form className="container" onSubmit={onSubmitForm}>
@@ -127,12 +135,13 @@ const LoginView = () => {
                       Email address
                     </label>
                     <motion.input
+                      name="email"
                       type="email"
                       className="form-control"
                       id="exampleInputEmail1"
                       autoComplete="off"
                       aria-describedby="emailHelp"
-                      onChange={(e) => setEmail(trim(e.target.value))}
+                      onChange={handleChange}
                       required
                       whileFocus={{ scale: 1.1 }}
                     >
@@ -165,12 +174,13 @@ const LoginView = () => {
                     </label>
                     <span className={`d-flex ${classes.white}`}>
                       <input
+                        name="password"
                         type="password"
                         className="form-control me-2"
                         id="exampleInputPassword1"
                         autoComplete="off"
                         ref={pass}
-                        onChange={(e) => setPassword(trim(e.target.value))}
+                        onChange={handleChange}
                         required
                       />
                       <button

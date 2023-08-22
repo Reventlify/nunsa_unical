@@ -12,6 +12,7 @@ import CreatePostMain from "./components/createPost/createPostMain";
 import Four0Four from "./components/error/404error";
 // import { userloggedIn } from "./store/auth-slice";
 import { socket } from "./socket";
+import { authActions } from "./store/auth-slice";
 const Dashboard = lazy(() => import("./pages/auth/Dashboard"));
 const Class = lazy(() => import("./pages/auth/Class"));
 const Message = lazy(() => import("./pages/auth/Message"));
@@ -24,8 +25,11 @@ const Subjects = lazy(() => import("./components/courses/subjects/subjects"));
 
 function App() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(authActions.stopLoad());
+    dispatch(authActions.deleteError());
     if (!isLoggedIn) {
       socket.disconnect();
       return console.log(isLoggedIn);
@@ -51,64 +55,88 @@ function App() {
         <Route
           path="/student/dashboard"
           element={
-            // isLoggedIn ? (
-            //   <Suspense fallback={<FullLoader />}>
-            //     <Dashboard />
-            //   </Suspense>
-            // ) : (
-            //   <LoginView />
-            // )
-            <Suspense fallback={<FullLoader />}>
-              <Dashboard />
-            </Suspense>
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <Dashboard />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
+            // <Suspense fallback={<FullLoader />}>
+            //   <Dashboard />
+            // </Suspense>
           }
         />
         <Route
           path="/student/class"
           element={
-            <Suspense fallback={<FullLoader />}>
-              <Class />
-            </Suspense>
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <Class />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
           }
         />
         <Route
           path="/student/messages"
           element={
-            <Suspense fallback={<FullLoader />}>
-              <Message />
-            </Suspense>
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <Message />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
           }
         />
         <Route
           path="/student/messages/chat/:id"
           element={
-            <Suspense fallback={<FullLoader />}>
-              <Chat />
-            </Suspense>
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <Chat />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
           }
         />
         <Route
           path="/student/courses"
           element={
-            <Suspense fallback={<FullLoader />}>
-              <Courses />
-            </Suspense>
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <Courses />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
           }
         />
         <Route
           path="/student/courses/materials/view/:year"
           element={
-            <Suspense fallback={<FullLoader />}>
-              <Subjects />
-            </Suspense>
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <Subjects />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
           }
         />
         <Route
           path="/student/courses/materials/upload/:year"
           element={
-            <Suspense fallback={<FullLoader />}>
-              <MaterialUpload />
-            </Suspense>
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <MaterialUpload />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
           }
         />
       </Routes>
