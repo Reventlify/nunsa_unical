@@ -40,7 +40,6 @@ const LoginView = () => {
   const pass = useRef();
   // const emailfoc = useRef();
 
-
   const handleSignUp = () => {
     navigate("/signup");
   };
@@ -203,12 +202,13 @@ const LoginView = () => {
                 >
                   <div className="d-grid gap-2">
                     <button
-                      className={`btn bottomShadow ${classes.login}`}
+                      className={!loading ?`btn bottomShadow ${classes.login}` : "btnct btn  btn-secondary"}
                       type="submit"
+                      disabled={loading ? true : false}
                     >
                       {loading ? (
                         <>
-                          <BeatLoader color="#fff" loading={true} size={"12"} />
+                          <BeatLoader color="#fff" loading={true} size={"12px"} />
                         </>
                       ) : (
                         <>Login</>

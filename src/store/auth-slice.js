@@ -35,9 +35,6 @@ const authSlice = createSlice({
   initialState,
   // initialState: initialState,
   reducers: {
-    addUser(state, action) {
-      state.user = JSON.parse(localStorage.getItem("user"));
-    },
     logout(state, action) {
       state.isLoggedIn = false;
       state.user = null;
