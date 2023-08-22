@@ -54,7 +54,7 @@ const Signup = () => {
 
   const toLogin = () => {
     navigate("/login");
-  }
+  };
   //password visibility handler
   const showPassword = () => {
     setshow(!show);
@@ -180,6 +180,12 @@ const Signup = () => {
                 whileFocus={{ scale: 1.1 }}
               ></motion.input>
             </div>
+          </motion.div>
+          <motion.div
+            className=""
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 1.0 }}
+          >
             <div className="mb-3">
               <label htmlFor="fName" className="form-label">
                 First name
@@ -196,6 +202,13 @@ const Signup = () => {
                 whileFocus={{ scale: 1.1 }}
               ></motion.input>
             </div>
+          </motion.div>
+
+          <motion.div
+            className=""
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 1.0 }}
+          >
             <div className="mb-3">
               <label htmlFor="mName" className="form-label">
                 Middle name
@@ -212,6 +225,13 @@ const Signup = () => {
                 whileFocus={{ scale: 1.1 }}
               ></motion.input>
             </div>
+          </motion.div>
+
+          <motion.div
+            className=""
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 1.0 }}
+          >
             <div className="mb-3">
               <label htmlFor="lName" className="form-label">
                 Last name
@@ -269,7 +289,7 @@ const Signup = () => {
               <label htmlFor="vcode" className="form-label">
                 verification code
               </label>
-              <input
+              <motion.input
                 type="text"
                 className="form-control"
                 autoComplete="off"
@@ -277,6 +297,7 @@ const Signup = () => {
                 id="vcode"
                 required
                 onChange={(e) => setVerificationCode(e.target.value)}
+                whileFocus={{ scale: 1.1 }}
               />
             </div>
           </motion.div>
@@ -316,38 +337,45 @@ const Signup = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 1.0 }}
           >
-          <div className="mb-3">
-            <label htmlFor="phone" className="form-label">
-              Matric no
-            </label>
-            <input
-              type="tell"
-              className="form-control"
-              id="phone"
-              autoComplete="off"
-              minLength="11"
-              maxLength="11"
-              pattern="[0-9]+"
-              onChange={(e) => setPhoneNo(e.target.value)}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="phone" className="form-label">
-              Phone no
-            </label>
-            <input
-              type="tell"
-              className="form-control"
-              id="phone"
-              autoComplete="off"
-              minLength="11"
-              maxLength="11"
-              pattern="[0-9]+"
-              onChange={(e) => setPhoneNo(e.target.value)}
-              required
-            />
-          </div>
+            <div className="mb-3">
+              <label htmlFor="phone" className="form-label">
+                Matric no
+              </label>
+              <motion.input
+                type="text"
+                className="form-control"
+                id="mat_no"
+                autoComplete="off"
+                pattern="\d{2}/\d{9}(TR)?"
+                title="Please enter a valid value in the format xx/xxxxxxxxx"
+                onChange={(e) => setMatNo(e.target.value)}
+                whileFocus={{ scale: 1.1 }}
+                required
+              />
+            </div>
+          </motion.div>
+          <motion.div
+            className=""
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 1.0 }}
+          >
+            <div className="mb-3">
+              <label htmlFor="phone" className="form-label">
+                Phone no
+              </label>
+              <motion.input
+                type="tell"
+                className="form-control"
+                id="phone"
+                autoComplete="off"
+                minLength="11"
+                maxLength="11"
+                pattern="[0-9]+"
+                onChange={(e) => setPhoneNo(e.target.value)}
+                whileFocus={{ scale: 1.1 }}
+                required
+              />
+            </div>
           </motion.div>
 
           <motion.div
@@ -428,7 +456,7 @@ const Signup = () => {
       </>
     );
   } else {
-    return <OnSuccess time={3500} to={toLogin}/>;
+    return <OnSuccess time={3500} to={toLogin} />;
   }
 };
 
