@@ -321,7 +321,7 @@ const Signup = () => {
               >
                 {loading ? (
                   <>
-                    <BeatLoader color="#fff" loading={true} size={"12"} />
+                    <BeatLoader color="#fff" loading={true} size={"12px"} />
                   </>
                 ) : (
                   <>Send Verification Code</>
@@ -373,7 +373,7 @@ const Signup = () => {
               >
                 {loading ? (
                   <>
-                    <BeatLoader color="#fff" loading={true} size={"12"} />
+                    <BeatLoader color="#fff" loading={true} size={"12px"} />
                   </>
                 ) : (
                   <>Verify Email</>
@@ -477,7 +477,7 @@ const Signup = () => {
               >
                 {loading ? (
                   <>
-                    <BeatLoader color="#fff" loading={true} size={"12"} />
+                    <BeatLoader color="#fff" loading={true} size={"12px"} />
                   </>
                 ) : (
                   <>Register</>
