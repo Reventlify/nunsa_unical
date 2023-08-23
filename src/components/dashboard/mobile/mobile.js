@@ -25,12 +25,22 @@ import AppBar from "@mui/material/AppBar";
 import { useLocation, useNavigate } from "react-router-dom";
 import one from "../../../images/one.jpg";
 import nunsaLogo from "../../../images/Nunsalogo.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../../../store/auth-slice";
 
 export default function MobileDashboard({ children }) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const parentPath = pathname.slice(0, 8);
   const childPath = pathname.slice(9, pathname.length);
+  const logout = (text) => {
+    if (text === "logout") {
+      dispatch(authActions.logout());
+      return navigate("/");
+    }
+    return;
+  };
   const pageDerivative = () => {
     if (childPath.indexOf(`/`) === -1) {
       return childPath;
@@ -156,7 +166,11 @@ export default function MobileDashboard({ children }) {
       <List>
         {["Support", "Logout"].map((text, index) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton>
+            <ListItemButton
+              onClick={() => {
+                logout(text.toLowerCase());
+              }}
+            >
               <ListItemIcon>
                 {index === 0 ? <ContactSupportIcon /> : <LogoutIcon />}
               </ListItemIcon>

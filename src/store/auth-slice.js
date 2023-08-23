@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { io } from "socket.io-client";
 import { api } from "../link/API";
 
 const initialState = {
