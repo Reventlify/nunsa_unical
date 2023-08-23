@@ -417,7 +417,8 @@ const Signup = () => {
                 className="form-control"
                 id="mat_no"
                 autoComplete="off"
-                pattern="\d{2}/\d{9}(TR)?"
+                // pattern="\d{2}/\d{9}(TR)?"
+                pattern="\d{2}/\d{7,10}(?:TR|tr)?"
                 title="Please enter a valid value in the format xx/xxxxxxxxx"
                 onChange={(e) => setMatNo(e.target.value)}
                 whileFocus={{ scale: 1.1 }}
