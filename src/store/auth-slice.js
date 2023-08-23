@@ -50,6 +50,7 @@ const authSlice = createSlice({
     deleteError(state, action) {
       state.error = false;
       state.errorMessage = null;
+      state.errorRoute = null;
     },
   },
   extraReducers: (builder) => {
