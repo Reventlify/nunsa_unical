@@ -8,10 +8,11 @@ import MobileDashboard from "../../dashboard/mobile/mobile";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Four0Four from "../../error/404error";
 import { api } from "../../../link/API";
-import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import OnSuccess from "../../success/onSuccess";
 import { authActions } from "../../../store/auth-slice";
+import trim from "lodash.trim";
+import truncate from "lodash.truncate";
 
 const ControlledInput = ({ value, disabled, onChange }) => (
   <input
@@ -77,13 +78,12 @@ const MaterialUpload = () => {
   const handleChange = async (event) => {
     const file = event.target.files[0];
     const converter = await convertToBase64(file);
-    console.log(converter);
     const fileUploaded = converter;
     const handleError = file.name;
     if (typeof handleError === "undefined") {
       return;
     } else {
-      const fileName = file.name.slice(0, file.name.length - 4);
+      const fileName = trim(file.name.slice(0, file.name.length - 4));
       if (
         Number(file.size) <= 10 * 1024 * 1024 &&
         handleError.slice(
@@ -187,27 +187,40 @@ const MaterialUpload = () => {
 
       const { files } = e.dataTransfer;
       const file = files[0];
-      const fileName = files[0].name;
       const converter = await convertToBase64(file);
-      console.log(converter);
       const fileUploaded = converter;
-
-      // if there are files and the file is a pdf drop
-      if (
-        files &&
-        files.length &&
-        fileName.slice(Number(fileName.length) - 3, Number(fileName.length)) ===
-          "pdf"
-      ) {
-        setError("");
-        setDip("none");
-        setActualName(fileName);
-        setTopic(startWithCase(fileName));
-        setPdf(fileUploaded);
-        setLoading(false);
-        return setPermision(false);
-      } else {
+      const handleError = file.name;
+      if (typeof handleError === "undefined") {
         return;
+      } else {
+        const fileName = trim(file.name.slice(0, file.name.length - 4));
+        if (
+          Number(file.size) <= 10 * 1024 * 1024 &&
+          handleError.slice(
+            Number(handleError.length) - 3,
+            Number(handleError.length)
+          ) === "pdf"
+        ) {
+          setError("");
+          setDip("none");
+          setActualName(file.name);
+          setTopic(startWithCase(fileName));
+          setPdf(fileUploaded);
+          setLoading(false);
+          return setPermision(false);
+        } else if (
+          Number(file.size) > 10 * 1024 * 1024 &&
+          handleError.slice(
+            Number(handleError.length) - 3,
+            Number(handleError.length)
+          ) === "pdf"
+        ) {
+          setError("Your file size is larger than 10mb");
+          return setDip("block");
+        } else {
+          setError("Please choose a pdf file");
+          return setDip("block");
+        }
       }
     };
 
@@ -278,7 +291,11 @@ const MaterialUpload = () => {
                 <p
                   className={`${classes.sweet} ${classes.info} center limiter margAuto`}
                 >
-                  Selected {actualName.slice(0, 6)}.pdf
+                  Selected{" "}
+                  {truncate(trim(actualName), {
+                    length: 20,
+                    // separator: /,? +/,
+                  })}
                 </p>
               )}
             </div>
