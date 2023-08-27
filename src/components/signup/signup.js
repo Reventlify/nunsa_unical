@@ -540,7 +540,13 @@ const Signup = () => {
       </>
     );
   } else {
-    return <OnSuccess time={3500} to={toLogin} />;
+    return (
+      <OnSuccess
+        time={3500}
+        to={toLogin}
+        message={"Registeration Successful !"}
+      />
+    );
   }
 };
 

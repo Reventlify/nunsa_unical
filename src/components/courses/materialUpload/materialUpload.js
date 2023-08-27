@@ -7,6 +7,11 @@ import { startWithCase } from "../../../utilities/text";
 import MobileDashboard from "../../dashboard/mobile/mobile";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Four0Four from "../../error/404error";
+import { api } from "../../../link/API";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import OnSuccess from "../../success/onSuccess";
+import { authActions } from "../../../store/auth-slice";
 
 const ControlledInput = ({ value, disabled, onChange }) => (
   <input
@@ -25,6 +30,8 @@ const ControlledInput = ({ value, disabled, onChange }) => (
 );
 
 const MaterialUpload = () => {
+  const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
   const { year } = useParams();
   const hiddenFileInput = useRef();
@@ -40,7 +47,11 @@ const MaterialUpload = () => {
   const [session, setSession] = useState("2021/2022");
   const [courseCode, setCourseCode] = useState("");
   const [lecturer, setLecturer] = useState("");
-
+  const [success, setSuccess] = useState(false);
+  const level_year = year;
+  const toCourses = () => {
+    navigate("/student/courses");
+  };
   const handleControlledTopic = (event) => {
     setTopic(event.target.value);
   };
@@ -50,15 +61,31 @@ const MaterialUpload = () => {
     hiddenFileInput.current.click();
   };
 
+  // converts pdf to base64
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
   const handleChange = async (event) => {
-    const fileUploaded = event.target.files[0];
-    const handleError = fileUploaded.name;
+    const file = event.target.files[0];
+    const converter = await convertToBase64(file);
+    console.log(converter);
+    const fileUploaded = converter;
+    const handleError = file.name;
     if (typeof handleError === "undefined") {
       return;
     } else {
-      const fileName = fileUploaded.name.slice(0, fileUploaded.name.length - 4);
+      const fileName = file.name.slice(0, file.name.length - 4);
       if (
-        Number(fileUploaded.size) <= 10 * 1024 * 1024 &&
+        Number(file.size) <= 10 * 1024 * 1024 &&
         handleError.slice(
           Number(handleError.length) - 3,
           Number(handleError.length)
@@ -66,13 +93,13 @@ const MaterialUpload = () => {
       ) {
         setError("");
         setDip("none");
-        setActualName(fileUploaded.name);
+        setActualName(file.name);
         setTopic(startWithCase(fileName));
         setPdf(fileUploaded);
         setLoading(false);
         return setPermision(false);
       } else if (
-        Number(fileUploaded.size) > 10 * 1024 * 1024 &&
+        Number(file.size) > 10 * 1024 * 1024 &&
         handleError.slice(
           Number(handleError.length) - 3,
           Number(handleError.length)
@@ -94,220 +121,286 @@ const MaterialUpload = () => {
         Number(courseCode.slice(0, 1)) !==
         Number(year.slice(year.length - 1, year.length))
       ) {
-        setError(`Please enter a ${year} course`);
+        setError(`Please enter a ${year} course code`);
         return setDip("block");
       } else {
-        setError(`Success!`);
-        return setDip("block");
+        setLoader(true);
+        setLoading(true);
+        //api call for sending the user data to the backend
+        await fetch(`${api}/user/upload_material`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            pdf,
+            topic,
+            session,
+            courseCode,
+            lecturer,
+            level_year,
+          }),
+        }).then(async (res) => {
+          const data = await res.json();
+          if (res.status === 401 || res.status === 403) {
+            setLoader(false);
+            setLoading(false);
+            return dispatch(authActions.logout());
+          } else if (res.status === 200) {
+            setLoader(false);
+            setLoading(false);
+            return setSuccess(true);
+          } else {
+            setLoader(false);
+            setLoading(false);
+            setError(data);
+            return setDip("block");
+          }
+        });
       }
     } catch (error) {
       console.error(error);
     }
   };
 
-  const dropChangeIdentifier = useCallback(() => {
-    drop.current.addEventListener("dragover", handleDragOver);
-    drop.current.addEventListener("drop", handleDrop);
-    return () => {
-      drop.current.removeEventListener("dragover", handleDragOver);
-      drop.current.removeEventListener("drop", handleDrop);
-    };
-  });
+  // const dropChangeIdentifier = useCallback(() => {
+  //   drop.current.addEventListener("dragover", handleDragOver);
+  //   drop.current.addEventListener("drop", handleDrop);
+  //   return () => {
+  //     drop.current.removeEventListener("dragover", handleDragOver);
+  //     drop.current.removeEventListener("drop", handleDrop);
+  //   };
+  // });
+
   useEffect(() => {
-    dropChangeIdentifier();
-  }, [dropChangeIdentifier]);
+    // handles drag over
+    const handleDragOver = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    };
 
-  // handles drag over
-  const handleDragOver = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
+    // hadndles drop
+    const handleDrop = async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
 
-  // hadndles drop
-  const handleDrop = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+      const { files } = e.dataTransfer;
+      const file = files[0];
+      const fileName = files[0].name;
+      const converter = await convertToBase64(file);
+      console.log(converter);
+      const fileUploaded = converter;
 
-    const { files } = e.dataTransfer;
-    const fileUploaded = files[0];
-    const fileName = files[0].name;
+      // if there are files and the file is a pdf drop
+      if (
+        files &&
+        files.length &&
+        fileName.slice(Number(fileName.length) - 3, Number(fileName.length)) ===
+          "pdf"
+      ) {
+        setError("");
+        setDip("none");
+        setActualName(fileName);
+        setTopic(startWithCase(fileName));
+        setPdf(fileUploaded);
+        setLoading(false);
+        return setPermision(false);
+      } else {
+        return;
+      }
+    };
 
-    // if there are files and the file is a pdf drop
-    if (
-      files &&
-      files.length &&
-      fileName.slice(Number(fileName.length) - 3, Number(fileName.length)) ===
-        "pdf"
-    ) {
-      setError("");
-      setDip("none");
-      setActualName(fileName);
-      setTopic(startWithCase(fileName));
-      setPdf(fileUploaded);
-      setLoading(false);
-      return setPermision(false);
-    } else {
-      return;
+    if (drop.current) {
+      drop.current.addEventListener("dragover", handleDragOver);
+      drop.current.addEventListener("drop", handleDrop);
     }
-  };
-  if (
-    year === "Year_1" ||
-    year === "Year_2" ||
-    year === "Year_3" ||
-    year === "Year_4" ||
-    year === "Year_5"
-  ) {
-    return (
-      <MobileDashboard>
-        <div className="container margingTopOutrageous">
-          <h3>
-            <ArrowBackIcon
-              className="hover"
-              onClick={() => {
-                navigate("/student/courses");
-              }}
-            />
-          </h3>
-        </div>
-        <div
-          className={`${classes.upload} container hover`}
-          ref={drop}
-          onClick={handleClick}
-        >
-          <div className={`${classes.upDisplay}`}>
-            <div className="margAuto limiter">
-              <PictureAsPdfIcon className={`${classes.sweet} ${classes.pdf}`} />
-            </div>
-            {actualName.length < 1 ? (
-              <>
-                <p
-                  className={`${classes.sweet} ${classes.info} limiter center margAuto`}
-                >
-                  <span className={`${classes.big}`}>
-                    Drag and drop a {startWithCase(year.replace("_", " "))} PDF,
-                    or browse files.
-                  </span>
-                  <span className={`${classes.small}`}>
-                    Select a {startWithCase(year.replace("_", " "))} PDF
-                  </span>
-                </p>
-                <p
-                  className={`${classes.sweet} ${classes.infoSm} limiter margAuto`}
-                >
-                  Maximum file size 10mb
-                </p>
-              </>
-            ) : (
-              <p
-                className={`${classes.sweet} ${classes.info} center limiter margAuto`}
-              >
-                Selected {actualName.slice(0, 6)}.pdf
-              </p>
-            )}
-          </div>
-        </div>
+    return () => {
+      if (drop.current) {
+        drop.current.removeEventListener("dragover", handleDragOver);
+        drop.current.removeEventListener("drop", handleDrop);
+      }
+    };
+  }, []);
 
-        <div className={`${classes.bod} smartContainer`}>
-          <div className="container">
-            {error && ( // then if changed flag is false show error message.
-              <div className="mb-2" style={{ color: "red", display: { dip } }}>
-                <span>{error}</span>
-              </div>
-            )}
-            <form onSubmit={uploadMat}>
-              <div className="mb-3">
-                <label htmlFor="topic" className="form-label">
-                  Enter PDF Topic
-                </label>
-                <ControlledInput
-                  value={topic}
-                  disabled={permittedToType}
-                  onChange={handleControlledTopic}
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="course_code" className="form-label">
-                  Enter Course Code
-                </label>
-                <input
-                  id="course_code"
-                  className="form-control boxShadow"
-                  inputMode="numeric"
-                  pattern="[0-9]{3,3}"
-                  maxLength="3"
-                  autoComplete="off"
-                  disabled={permittedToType}
-                  onChange={(e) => setCourseCode(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="topic" className="form-label">
-                  Enter Lecturers name
-                </label>
-                <input
-                  id="topic"
-                  className="form-control boxShadow"
-                  type="text"
-                  maxLength="50"
-                  autoComplete="off"
-                  disabled={permittedToType}
-                  onChange={(e) => setLecturer(e.target.value)}
-                  required
-                />
-              </div>
-              <div className={`mb-3`}>
-                <label htmlFor="session" className="form-label">
-                  Select Session
-                </label>
-                <select
-                  className="form-control boxShadow"
-                  id="session"
-                  aria-label="sessionHelp"
-                  disabled={permittedToType}
-                  onChange={(e) => setSession(e.target.value)}
-                >
-                  <option defaultValue>2021/2022</option>
-                  <option>2020/2021</option>
-                  <option>2019/2020</option>
-                  <option>2018/2019</option>
-                  <option>2017/2018</option>
-                </select>
-              </div>
-              <div className="d-grid gap-2">
-                <button
-                  className={
-                    !loading
-                      ? `btn bottomShadow ${classes.login}`
-                      : "btnct btn  btn-secondary"
-                  }
-                  type="submit"
-                  disabled={loading}
-                >
-                  {loader ? (
-                    <>
-                      <BeatLoader color="#fff" loading={loader} size={"12"} />
-                    </>
-                  ) : (
-                    <>Upload Material</>
-                  )}
-                </button>
-              </div>
-            </form>
+  if (!success) {
+    // // handles upload
+    if (
+      year === "Year_1" ||
+      year === "Year_2" ||
+      year === "Year_3" ||
+      year === "Year_4" ||
+      year === "Year_5"
+    ) {
+      return (
+        <MobileDashboard>
+          <div className="container margingTopOutrageous">
+            <h3>
+              <ArrowBackIcon
+                className="hover"
+                onClick={() => {
+                  navigate("/student/courses");
+                }}
+              />
+            </h3>
           </div>
-        </div>
-        {/* hidden input */}
-        <input
-          type="file"
-          accept="application/pdf"
-          ref={hiddenFileInput}
-          onChange={handleChange}
-          style={{ display: "none" }}
-        />
-      </MobileDashboard>
-    );
+          <div
+            className={`${classes.upload} container hover`}
+            ref={drop}
+            onClick={handleClick}
+          >
+            <div className={`${classes.upDisplay}`}>
+              <div className="margAuto limiter">
+                <PictureAsPdfIcon
+                  className={`${classes.sweet} ${classes.pdf}`}
+                />
+              </div>
+              {actualName.length < 1 ? (
+                <>
+                  <p
+                    className={`${classes.sweet} ${classes.info} limiter center margAuto`}
+                  >
+                    <span className={`${classes.big}`}>
+                      Drag and drop a {startWithCase(year.replace("_", " "))}{" "}
+                      PDF, or browse files.
+                    </span>
+                    <span className={`${classes.small}`}>
+                      Select a {startWithCase(year.replace("_", " "))} PDF
+                    </span>
+                  </p>
+                  <p
+                    className={`${classes.sweet} ${classes.infoSm} limiter margAuto`}
+                  >
+                    Maximum file size 10mb
+                  </p>
+                </>
+              ) : (
+                <p
+                  className={`${classes.sweet} ${classes.info} center limiter margAuto`}
+                >
+                  Selected {actualName.slice(0, 6)}.pdf
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div className={`${classes.bod} smartContainer`}>
+            <div className="container">
+              {error && ( // then if changed flag is false show error message.
+                <div
+                  className="mb-2"
+                  style={{ color: "red", display: { dip } }}
+                >
+                  <span>{error}</span>
+                </div>
+              )}
+              <form onSubmit={uploadMat}>
+                <div className="mb-3">
+                  <label htmlFor="topic" className="form-label">
+                    Enter PDF Topic
+                  </label>
+                  <ControlledInput
+                    value={topic}
+                    disabled={permittedToType}
+                    onChange={handleControlledTopic}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="course_code" className="form-label">
+                    Enter Course Code
+                  </label>
+                  <input
+                    id="course_code"
+                    className="form-control boxShadow"
+                    inputMode="numeric"
+                    pattern="[0-9]{3,3}"
+                    maxLength="3"
+                    autoComplete="off"
+                    disabled={permittedToType}
+                    onChange={(e) => setCourseCode(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="topic" className="form-label">
+                    Enter Lecturers name
+                  </label>
+                  <input
+                    id="topic"
+                    className="form-control boxShadow"
+                    type="text"
+                    maxLength="50"
+                    autoComplete="off"
+                    disabled={permittedToType}
+                    onChange={(e) => setLecturer(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className={`mb-3`}>
+                  <label htmlFor="session" className="form-label">
+                    Select Session
+                  </label>
+                  <select
+                    className="form-control boxShadow"
+                    id="session"
+                    aria-label="sessionHelp"
+                    disabled={permittedToType}
+                    onChange={(e) => setSession(e.target.value)}
+                  >
+                    <option defaultValue>2021/2022</option>
+                    <option>2020/2021</option>
+                    <option>2019/2020</option>
+                    <option>2018/2019</option>
+                    <option>2017/2018</option>
+                  </select>
+                </div>
+                <div className="d-grid gap-2">
+                  <button
+                    className={
+                      !loading
+                        ? `btn bottomShadow ${classes.login}`
+                        : "btnct btn  btn-secondary"
+                    }
+                    type="submit"
+                    disabled={loading}
+                  >
+                    {loader ? (
+                      <>
+                        <BeatLoader
+                          color="#fff"
+                          loading={loader}
+                          size={"12px"}
+                        />
+                      </>
+                    ) : (
+                      <>Upload Material</>
+                    )}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          {/* hidden input */}
+          <input
+            type="file"
+            accept="application/pdf"
+            ref={hiddenFileInput}
+            onChange={handleChange}
+            style={{ display: "none" }}
+          />
+        </MobileDashboard>
+      );
+    } else {
+      return <Four0Four />;
+    }
   } else {
-    return <Four0Four />;
+    return (
+      <OnSuccess
+        time={3500}
+        to={toCourses}
+        message={"Uploaded Successfully !"}
+      />
+    );
   }
 };
 
