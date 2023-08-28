@@ -65,11 +65,20 @@ const Approval = () => {
     getPendingMaterials();
   }, [getPendingMaterials]);
 
-  const numberOfMaterialsPerAbbr = (abbr, code) => {
+  const numberOfMaterialsPerAbbr = (abbr, code, session) => {
     const theLength = courses.filter(
-      (item) => item.course_abbr === abbr && item.course_code === code
+      (item) =>
+        item.course_abbr === abbr &&
+        item.course_code === code &&
+        item.sch_session === session
     ).length;
-    return theLength;
+    const theArray = courses.filter(
+      (item) =>
+        item.course_abbr === abbr &&
+        item.course_code === code &&
+        item.sch_session === session
+    );
+    return { theLength, theArray };
   };
 
   const realFil = (session) => {
@@ -80,7 +89,8 @@ const Approval = () => {
           courses.findIndex(
             (o) =>
               obj.course_abbr === o.course_abbr &&
-              obj.course_code === o.course_code
+              obj.course_code === o.course_code &&
+              obj.sch_session === o.sch_session
           )
         );
       }
@@ -100,6 +110,13 @@ const Approval = () => {
     });
     return filt;
   };
+  const toPageInitiator = (session, course, details) => {
+    if (session.length > 0 && course.length > 0) {
+      return navigate(`${session}/${course}`, { state: details });
+    } else {
+      return;
+    }
+  };
 
   const renderer = () => {
     if (typeof courses === "string") {
@@ -107,7 +124,7 @@ const Approval = () => {
         <>
           <MobileDashboard>
             <div className="container margingTopOutrageous">
-              <h3>
+              <h4>
                 <ArrowBackIcon
                   className="hover"
                   onClick={() => {
@@ -116,7 +133,7 @@ const Approval = () => {
                 />{" "}
                 &nbsp;{startWithCase(year.replace("_", " "))} materials awaiting
                 approval
-              </h3>
+              </h4>
               <div className="centerDiv fullscreen-30 container">
                 <h4 className="blogText center">{courses}</h4>
               </div>
@@ -128,7 +145,7 @@ const Approval = () => {
       return (
         <MobileDashboard>
           <div className="container margingTopOutrageous">
-            <h3>
+            <h4>
               <ArrowBackIcon
                 className="hover"
                 onClick={() => {
@@ -137,54 +154,67 @@ const Approval = () => {
               />{" "}
               &nbsp;{startWithCase(year.replace("_", " "))} materials awaiting
               approval
-            </h3>
+            </h4>
           </div>
           {filterer(year.slice(year.length - 1, year.length)).length > 0 ? (
             filterer(year.slice(year.length - 1, year.length)).map(
               (item, i) => {
                 return (
-                  <>
-                    <div className="container" key={item.courseTopicId}>
-                      <Accordion>
-                        <AccordionSummary
-                          expandIcon={<ExpandMoreIcon />}
-                          aria-controls="panel1a-content"
-                          id="panel1a-header"
-                        >
-                          <Typography>{item.sch_session}</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                          {realFil(item.sch_session).map((it, id) => {
-                            return (
-                              <>
-                                <div key={`${it.courseTopicId}ddd`}>
-                                  <Typography
-                                    className={
-                                      id === 0 ? "hover" : "mt-2 hover"
+                  <div
+                    className="container"
+                    key={`pending_${item.sch_session.slice(0, 2)}`}
+                  >
+                    <Accordion defaultExpanded={i === 0 ? true : false}>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                      >
+                        <Typography>{item.sch_session}</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        {realFil(item.sch_session).map((it, id) => {
+                          return (
+                            <div
+                              key={`${it.sch_session.slice(0, 2)}_${
+                                it.course_abbr
+                              }_${it.course_code}_courseID`}
+                              className="topNbottom pb-2"
+                            >
+                              <Typography
+                                className={id === 0 ? "hover" : "mt-2 hover"}
+                                onClick={() => {
+                                  toPageInitiator(
+                                    it.sch_session.slice(0, 2),
+                                    `${it.course_abbr}_${it.course_code}`,
+                                    numberOfMaterialsPerAbbr(
+                                      it.course_abbr,
+                                      it.course_code,
+                                      it.sch_session
+                                    ).theArray
+                                  );
+                                }}
+                              >
+                                <span className="blogText">
+                                  {it.course_abbr.toUpperCase()}&nbsp;
+                                  {it.course_code}{" "}
+                                  <span className="float-right red">
+                                    {
+                                      numberOfMaterialsPerAbbr(
+                                        it.course_abbr,
+                                        it.course_code,
+                                        it.sch_session
+                                      ).theLength
                                     }
-                                    // onClick={() => {
-                                    //   toPageInitiator("view", "Year_1");
-                                    // }}
-                                  >
-                                    <span className="blogText">
-                                      {it.course_abbr.toUpperCase()}&nbsp;
-                                      {it.course_code}{" "}
-                                      <span className="float-right red">
-                                        {numberOfMaterialsPerAbbr(
-                                          it.course_abbr,
-                                          it.course_code
-                                        )}
-                                      </span>
-                                    </span>
-                                  </Typography>
-                                </div>
-                              </>
-                            );
-                          })}
-                        </AccordionDetails>
-                      </Accordion>
-                    </div>
-                  </>
+                                  </span>
+                                </span>
+                              </Typography>
+                            </div>
+                          );
+                        })}
+                      </AccordionDetails>
+                    </Accordion>
+                  </div>
                 );
               }
             )

@@ -13,12 +13,17 @@ import Four0Four from "./components/error/404error";
 // import { userloggedIn } from "./store/auth-slice";
 import { socket } from "./socket";
 import { authActions } from "./store/auth-slice";
-import Approval from "./components/courses/approval";
 const Dashboard = lazy(() => import("./pages/auth/Dashboard"));
 const Class = lazy(() => import("./pages/auth/Class"));
 const Message = lazy(() => import("./pages/auth/Message"));
 const Courses = lazy(() => import("./pages/auth/Courses"));
 const Chat = lazy(() => import("./components/messages/chat/chat"));
+const Approval = lazy(() => import("./components/courses/approval"));
+const ViewCoursesPending = lazy(() =>
+  import(
+    "./components/courses/approval/courses_pending_per_session/courses_pending"
+  )
+);
 const MaterialUpload = lazy(() =>
   import("./components/courses/materialUpload/materialUpload")
 );
@@ -146,6 +151,18 @@ function App() {
             isLoggedIn ? (
               <Suspense fallback={<FullLoader />}>
                 <Approval />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
+          }
+        />
+        <Route
+          path="/student/courses/materials/review/:year/:session/:course"
+          element={
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <ViewCoursesPending />
               </Suspense>
             ) : (
               <LoginView />
