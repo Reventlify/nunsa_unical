@@ -65,6 +65,13 @@ const Approval = () => {
     getPendingMaterials();
   }, [getPendingMaterials]);
 
+  const numberOfMaterialsPerAbbr = (abbr, code) => {
+    const theLength = courses.filter(
+      (item) => item.course_abbr === abbr && item.course_code === code
+    ).length;
+    return theLength;
+  };
+
   const realFil = (session) => {
     const filt = courses.filter((obj, i) => {
       if (obj.sch_session === session) {
@@ -161,7 +168,13 @@ const Approval = () => {
                                   >
                                     <span className="blogText">
                                       {it.course_abbr.toUpperCase()}&nbsp;
-                                      {it.course_code}
+                                      {it.course_code}{" "}
+                                      <span className="float-right red">
+                                        {numberOfMaterialsPerAbbr(
+                                          it.course_abbr,
+                                          it.course_code
+                                        )}
+                                      </span>
                                     </span>
                                   </Typography>
                                 </div>
