@@ -13,6 +13,7 @@ import OnSuccess from "../../success/onSuccess";
 import { authActions } from "../../../store/auth-slice";
 import trim from "lodash.trim";
 import truncate from "lodash.truncate";
+import CourseAbbrSelector from "./courseAbbrSelector";
 
 const ControlledInput = ({ value, disabled, onChange }) => (
   <input
@@ -47,6 +48,7 @@ const MaterialUpload = () => {
   const [topic, setTopic] = useState("");
   const [session, setSession] = useState("2021/2022");
   const [courseCode, setCourseCode] = useState("");
+  const [courseAbbr, setCourseAbbr] = useState("NSC");
   const [lecturer, setLecturer] = useState("");
   const [success, setSuccess] = useState(false);
   const level_year = year;
@@ -55,6 +57,9 @@ const MaterialUpload = () => {
   };
   const handleControlledTopic = (event) => {
     setTopic(event.target.value);
+  };
+  const course_abbr = (abbr) => {
+    setCourseAbbr(abbr);
   };
   // Programatically click the hidden file input element
   // when the Div component is clicked
@@ -140,6 +145,7 @@ const MaterialUpload = () => {
             courseCode,
             lecturer,
             level_year,
+            courseAbbr,
           }),
         }).then(async (res) => {
           const data = await res.json();
@@ -322,6 +328,10 @@ const MaterialUpload = () => {
                     onChange={handleControlledTopic}
                   />
                 </div>
+                <CourseAbbrSelector
+                  abbr={course_abbr}
+                  permittedToType={permittedToType}
+                />
                 <div className="mb-3">
                   <label htmlFor="course_code" className="form-label">
                     Enter Course Code

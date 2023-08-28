@@ -343,4 +343,22 @@ const testCourses = [
     date: "Aug 11, 2023",
   },
 ];
-export { testChats, testPost, testComments, testReplies, testPeople, testCourses };
+
+const years = [
+  {
+    year: "Year_1",
+  },
+  {
+    year: "Year_2",
+  },
+  {
+    year: "Year_3",
+  },
+  {
+    year: "Year_4",
+  },
+  {
+    year: "Year_5",
+  },
+]
+export { testChats, testPost, testComments, testReplies, testPeople, testCourses, years };

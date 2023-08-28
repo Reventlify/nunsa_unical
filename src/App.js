@@ -13,6 +13,7 @@ import Four0Four from "./components/error/404error";
 // import { userloggedIn } from "./store/auth-slice";
 import { socket } from "./socket";
 import { authActions } from "./store/auth-slice";
+import Approval from "./components/courses/approval";
 const Dashboard = lazy(() => import("./pages/auth/Dashboard"));
 const Class = lazy(() => import("./pages/auth/Class"));
 const Message = lazy(() => import("./pages/auth/Message"));
@@ -133,6 +134,18 @@ function App() {
             isLoggedIn ? (
               <Suspense fallback={<FullLoader />}>
                 <MaterialUpload />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
+          }
+        />
+        <Route
+          path="/student/courses/materials/review/:year"
+          element={
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <Approval />
               </Suspense>
             ) : (
               <LoginView />
