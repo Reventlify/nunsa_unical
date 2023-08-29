@@ -8,19 +8,55 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Typography from "@mui/material/Typography";
 import { startWithCase } from "../../../../utilities/text";
 import BottomSpace from "../../../bottomSpace";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
+import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
+import { authActions } from "../../../../store/auth-slice";
+import { api } from "../../../../link/API";
 
 const ViewCoursesPending = () => {
+  const dispatch = useDispatch();
   const [dynamicLoader, setDynamicLoader] = useState("");
-  const [allLoader, setAllLoader] = useState("");
+  // const [material_id, setMaterialID] = useState("");
+  const [ongoing, setOngoing] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const data = location.state;
+  const { token } = useSelector((state) => state.auth.user);
 
-  const approveOne = "";
-  const approveAll = "";
+  const approveOne = useCallback(async (materialID) => {
+    setOngoing(true);
+    try {
+      console.log(`id: ${materialID}`);
+      // const materialID = material_id;
+      //api call for sending the user data to the backend
+      await fetch(`${api}/user/approve_material`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          materialID,
+        }),
+      }).then(async (res) => {
+        const data = await res.json();
+        if (res.status === 200) {
+          setDynamicLoader("");
+          return setOngoing(false);
+        } else if (res.status === 401 || res.status === 403) {
+          return dispatch(authActions.logout());
+        } else {
+          setDynamicLoader("");
+          return setOngoing(false);
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+
   return (
     <>
       <MobileDashboard>
@@ -35,7 +71,7 @@ const ViewCoursesPending = () => {
               />{" "}
               &nbsp;Back
             </h6>
-            <span
+            {/* <span
               className="float-right nunsa hover"
               onClick={() => {
                 return dynamicLoader.length === 0 ? setAllLoader("all") : "";
@@ -46,7 +82,7 @@ const ViewCoursesPending = () => {
               ) : (
                 <BeatLoader size="12px" color="#61ce70" loading={true} />
               )}
-            </span>
+            </span> */}
           </div>
           {data.map((item, i) => {
             return (
@@ -108,12 +144,17 @@ const ViewCoursesPending = () => {
                     </Typography>
                     <Typography className="mt-2 hover">
                       <button
-                        className="btn bottomShadow btnct btnct-nunsa"
+                        className={
+                          ongoing
+                            ? "btnct btn btn-secondary"
+                            : "btn bottomShadow btnct btnct-nunsa"
+                        }
                         type="button"
+                        disabled={ongoing ? true : false}
                         onClick={() => {
-                          return allLoader.length === 0
-                            ? setDynamicLoader(`${i}_approve`)
-                            : "";
+                          setDynamicLoader(`${i}_approve`);
+                          console.log(item.material_id);
+                          approveOne(item.material_id);
                         }}
                       >
                         {dynamicLoader !== `${i}_approve` ? (
@@ -125,10 +166,10 @@ const ViewCoursesPending = () => {
                       <button
                         className="float-right btn bottomShadow btn-danger"
                         type="button"
+                        disabled={ongoing ? true : false}
                         onClick={() => {
-                          return allLoader.length === 0
-                            ? setDynamicLoader(`${i}_delete`)
-                            : "";
+                          setDynamicLoader(`${i}_delete`);
+                          // approveOne(`${i}_delete`);
                         }}
                       >
                         {dynamicLoader !== `${i}_delete` ? (
