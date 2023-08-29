@@ -8,11 +8,18 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Typography from "@mui/material/Typography";
 import { startWithCase } from "../../../../utilities/text";
 import BottomSpace from "../../../bottomSpace";
+import { useState } from "react";
+import { BeatLoader } from "react-spinners";
 
 const ViewCoursesPending = () => {
+  const [dynamicLoader, setDynamicLoader] = useState("");
+  const [allLoader, setAllLoader] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
   const data = location.state;
+
+  const approveOne = "";
+  const approveAll = "";
   return (
     <>
       <MobileDashboard>
@@ -27,7 +34,18 @@ const ViewCoursesPending = () => {
               />{" "}
               &nbsp;Back
             </h6>
-            <span className="float-right nunsa hover">Approve all</span>
+            <span
+              className="float-right nunsa hover"
+              onClick={() => {
+                return dynamicLoader.length === 0 ? setAllLoader("all") : "";
+              }}
+            >
+              {allLoader !== "all" ? (
+                "Approve all"
+              ) : (
+                <BeatLoader size="12px" color="#61ce70" loading={true} />
+              )}
+            </span>
           </div>
           {data.map((item, i) => {
             return (
@@ -80,8 +98,35 @@ const ViewCoursesPending = () => {
                       <a href={item.material_media}>View</a>
                     </Typography>
                     <Typography className="mt-2 hover">
-                      <button className="btn bottomShadow btnct btnct-nunsa">
-                        Approve
+                      <button
+                        className="btn bottomShadow btnct btnct-nunsa"
+                        type="button"
+                        onClick={() => {
+                          return allLoader.length === 0
+                            ? setDynamicLoader(`${i}_approve`)
+                            : "";
+                        }}
+                      >
+                        {dynamicLoader !== `${i}_approve` ? (
+                          "Approve"
+                        ) : (
+                          <BeatLoader size="12px" color="#fff" loading={true} />
+                        )}
+                      </button>
+                      <button
+                        className="float-right btn bottomShadow btn-danger"
+                        type="button"
+                        onClick={() => {
+                          return allLoader.length === 0
+                            ? setDynamicLoader(`${i}_delete`)
+                            : "";
+                        }}
+                      >
+                        {dynamicLoader !== `${i}_delete` ? (
+                          "Delete"
+                        ) : (
+                          <BeatLoader size="12px" color="#fff" loading={true} />
+                        )}
                       </button>
                     </Typography>
                   </AccordionDetails>
