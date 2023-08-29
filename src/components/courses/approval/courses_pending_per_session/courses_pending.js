@@ -1,5 +1,5 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
 import MobileDashboard from "../../../dashboard/mobile/mobile";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -28,7 +28,7 @@ const ViewCoursesPending = () => {
           {data.map((item, i) => {
             return (
               <div
-                className="container"
+                className=""
                 key={`pending_${item.sch_session.slice(0, 2)}_${i}`}
               >
                 <Accordion defaultExpanded={i === 0 ? true : false}>
@@ -42,17 +42,37 @@ const ViewCoursesPending = () => {
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Typography className="mt-2 hover">
-                      {item.sch_session} session
+                    <Typography className="hover nunsa">
+                      <span className="bolder">DETAILS</span>
                     </Typography>
                     <Typography className="mt-2 hover">
-                      By{" "}
+                      <span className="bolder">Course code:</span>{" "}
+                      {/* <span className="bolder"> */}
+                      {item.course_abbr.toUpperCase()}&nbsp;{item.course_code}
+                      {/* </span> */}
+                    </Typography>
+                    <Typography className="mt-2 hover">
+                      <span className="bolder">Session:</span>{" "}
+                      {item.sch_session}
+                    </Typography>
+                    <Typography className="mt-2 hover">
+                      <span className="bolder">By:</span>{" "}
                       {startWithCase(
                         `${item.student_fname} ${item.student_lname}`
                       )}
                     </Typography>
                     <Typography className="mt-2 hover">
-                      Lecturer: {startWithCase(`${item.lecturer}`)}
+                      <span className="bolder">Mat no:</span>{" "}
+                      {item.student_mat_no.toUpperCase()}
+                    </Typography>
+                    <Typography className="mt-2 hover">
+                      <span className="bolder">Lecturer:</span>{" "}
+                      {startWithCase(`${item.lecturer}`)}
+                    </Typography>
+                    <Typography className="mt-2 hover">
+                      <a href={item.material_media} download>
+                        View
+                      </a>
                     </Typography>
                   </AccordionDetails>
                 </Accordion>

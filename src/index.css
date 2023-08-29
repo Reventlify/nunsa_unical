@@ -165,6 +165,12 @@ code {
 .bolder {
   font-weight: 700;
 }
+.boldest {
+  font-weight: 800;
+}
+.boldEnd {
+  font-weight: 900;
+}
 .limiter {
   width: fit-content;
 }

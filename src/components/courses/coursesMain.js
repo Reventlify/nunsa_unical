@@ -4,6 +4,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import TaskIcon from '@mui/icons-material/Task';
 import UploadIcon from "@mui/icons-material/Upload";
 import BottomSpace from "../bottomSpace";
 import { useNavigate } from "react-router-dom";
@@ -70,9 +71,9 @@ const CoursesMain = () => {
                       toPageInitiator("review", year.year);
                     }}
                   >
-                    <UploadIcon className="nunsa" />
+                    <TaskIcon className="nunsa" />
                     &nbsp;&nbsp;{" "}
-                    <span className="blogText">Review a material</span>
+                    <span className="blogText">Review materials</span>
                   </Typography>
                 ) : (
                   ""
