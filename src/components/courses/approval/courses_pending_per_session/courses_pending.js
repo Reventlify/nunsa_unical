@@ -10,6 +10,7 @@ import { startWithCase } from "../../../../utilities/text";
 import BottomSpace from "../../../bottomSpace";
 import { useState } from "react";
 import { BeatLoader } from "react-spinners";
+import moment from "moment";
 
 const ViewCoursesPending = () => {
   const [dynamicLoader, setDynamicLoader] = useState("");
@@ -93,6 +94,14 @@ const ViewCoursesPending = () => {
                     <Typography className="mt-2">
                       <span className="bolder">Lecturer:</span>{" "}
                       {startWithCase(`${item.lecturer}`)}
+                    </Typography>
+                    <Typography className="mt-2">
+                      <span className="bolder">Date:</span>{" "}
+                      {moment(item.uploadedat).format("MMM DD, YYYY")}
+                    </Typography>
+                    <Typography className="mt-2">
+                      <span className="bolder">Time:</span>{" "}
+                      {moment(item.uploadedat).format("HH:mm A")}
                     </Typography>
                     <Typography className="mt-2 hover">
                       <a href={item.material_media}>View</a>
