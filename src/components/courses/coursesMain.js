@@ -4,7 +4,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import TaskIcon from '@mui/icons-material/Task';
+import TaskIcon from "@mui/icons-material/Task";
 import UploadIcon from "@mui/icons-material/Upload";
 import BottomSpace from "../bottomSpace";
 import { useNavigate } from "react-router-dom";
@@ -28,9 +28,9 @@ const CoursesMain = () => {
   return (
     <div className="container margingTopOutrageous">
       <h4>PDF materials for all levels</h4>
-      {years.map((year) => {
+      {years.map((year, i) => {
         return (
-          <div key={`${year.year}_materials`}>
+          <div className={i > 0 ? "mt-3" : ""} key={`${year.year}_materials`}>
             <Accordion defaultExpanded>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}

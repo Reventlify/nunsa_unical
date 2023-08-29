@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { api } from "../../../link/API";
 import { authActions } from "../../../store/auth-slice";
 import FullLoader from "../../loader/fullLoader/FullLoader";
+import BottomSpace from "../../bottomSpace";
 
 const Approval = () => {
   const dispatch = useDispatch();
@@ -161,7 +162,7 @@ const Approval = () => {
               (item, i) => {
                 return (
                   <div
-                    className="container"
+                    className={i > 0 ? "mt-3 container" : "container"}
                     key={`pending_${item.sch_session.slice(0, 2)}`}
                   >
                     <Accordion defaultExpanded={i === 0 ? true : false}>
@@ -227,6 +228,7 @@ const Approval = () => {
               </div>
             </>
           )}
+          <BottomSpace />
         </MobileDashboard>
       );
     }
