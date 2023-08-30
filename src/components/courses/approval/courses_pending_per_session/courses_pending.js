@@ -1,5 +1,5 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import MobileDashboard from "../../../dashboard/mobile/mobile";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -116,16 +116,13 @@ const ViewCoursesPending = () => {
   const getPendingMaterialsForASession = useCallback(async () => {
     try {
       //api call for sending the user data to the backend
-      await fetch(
-        `${api}/user/pending_materials/pending/${session}/${course}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `Bearer ${token}`,
-          },
-        }
-      ).then(async (res) => {
+      await fetch(`${api}/user/pending_materials/${session}/${course}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+      }).then(async (res) => {
         const datai = await res.json();
         if (res.status === 200) {
           setData(datai);

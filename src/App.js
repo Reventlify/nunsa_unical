@@ -19,6 +19,9 @@ const Message = lazy(() => import("./pages/auth/Message"));
 const Courses = lazy(() => import("./pages/auth/Courses"));
 const Chat = lazy(() => import("./components/messages/chat/chat"));
 const Approval = lazy(() => import("./components/courses/approval"));
+const ViewCourses = lazy(() =>
+  import("./components/courses/subjects/courses_per_session/courses")
+);
 const ViewCoursesPending = lazy(() =>
   import(
     "./components/courses/approval/courses_pending_per_session/courses_pending"
@@ -150,7 +153,7 @@ function App() {
           element={
             isLoggedIn ? (
               <Suspense fallback={<FullLoader />}>
-                <h1>The courses</h1>
+                <ViewCourses />
               </Suspense>
             ) : (
               <LoginView />
