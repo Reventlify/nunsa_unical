@@ -134,6 +134,30 @@ function App() {
           }
         />
         <Route
+          path="/student/courses/materials/view/:year"
+          element={
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <Subjects />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
+          }
+        />
+        <Route
+          path="/student/courses/materials/view/:year/:session/:course"
+          element={
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <h1>The courses</h1>
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
+          }
+        />
+        <Route
           path="/student/courses/materials/upload/:year"
           element={
             isLoggedIn ? (
