@@ -113,7 +113,7 @@ const Approval = () => {
   };
   const toPageInitiator = (session, course, details) => {
     if (session.length > 0 && course.length > 0) {
-      return navigate(`${session}/${course}`, { state: details });
+      return navigate(`${session}/${course}`);
     } else {
       return;
     }
