@@ -10,9 +10,9 @@ import LoginView from "./components/login/login";
 import Signup from "./components/signup/signup";
 import CreatePostMain from "./components/createPost/createPostMain";
 import Four0Four from "./components/error/404error";
-// import { userloggedIn } from "./store/auth-slice";
-import { socket } from "./socket";
+import { io } from "socket.io-client";
 import { authActions } from "./store/auth-slice";
+import { api } from "./link/API";
 const Dashboard = lazy(() => import("./pages/auth/Dashboard"));
 const Class = lazy(() => import("./pages/auth/Class"));
 const Message = lazy(() => import("./pages/auth/Message"));
@@ -32,22 +32,62 @@ const MaterialUpload = lazy(() =>
 );
 const Subjects = lazy(() => import("./components/courses/subjects/subjects"));
 
+let socket = null;
+export { socket };
 function App() {
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const { isLoggedIn, expiresAt } = useSelector(
+    (state) => state.auth
+  );
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(authActions.stopLoad());
-    dispatch(authActions.deleteError());
-    if (!isLoggedIn) {
-      socket.disconnect();
-      return console.log(isLoggedIn);
-    } else {
-      socket.connect();
-      console.log(isLoggedIn);
-      return console.log("isAuth");
+  let intervalTimer; // Variable to store the interval timer reference
+  // Periodically check the token's expiration
+  const tokenExpirationCheck = () => {
+    const currentTimestamp = Math.floor(Date.now() / 1000);
+    if (typeof expiresAt === "number") {
+      if (expiresAt <= currentTimestamp) {
+        // Token has expired, log the user out
+        socket.disconnect();
+        dispatch(authActions.logout());
+        dispatch(authActions.tokenExpiry({ tokenExpiry: null }));
+        console.log(isLoggedIn);
+        clearInterval(intervalTimer);
+      }
     }
-  }, [isLoggedIn]);
+  }; // Check every 10 seconds
+
+  useEffect(() => {
+    // Start the interval and store the timer reference
+    intervalTimer = setInterval(tokenExpirationCheck, 10000); // Run every 10 second
+    try {
+      dispatch(authActions.stopLoad());
+      dispatch(authActions.deleteError());
+      console.log(expiresAt);
+
+      if (
+        !sessionStorage.getItem("nunsa_user") === false &&
+        isLoggedIn &&
+        typeof expiresAt === "number" &&
+        Number(expiresAt) > Math.floor(Date.now() / 1000)
+      ) {
+        socket = io(api, {
+          query: {
+            token: sessionStorage.getItem("nunsa_user"),
+          },
+          autoConnect: false,
+        });
+        socket.connect();
+        console.log("was logged t");
+        console.log(isLoggedIn);
+      } else {
+        console.log("was not logged");
+      }
+      console.log("expiresAt:", expiresAt);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [expiresAt, isLoggedIn, dispatch]);
+
   return (
     <Router>
       <Routes>

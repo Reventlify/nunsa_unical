@@ -1,6 +1,16 @@
 import { io } from "socket.io-client";
 import { api } from "./link/API";
 
-export const socket = io(api, {
-  autoConnect: false,
-});
+const userToken = sessionStorage.getItem("nunsa_user");
+
+let socket = null;
+if (userToken) {
+  socket = io(api, {
+    query: {
+      token: sessionStorage.getItem("nunsa_user"),
+    },
+    autoConnect: false,
+  });
+}
+
+export default socket;

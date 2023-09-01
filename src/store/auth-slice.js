@@ -7,6 +7,7 @@ const initialState = {
   error: false,
   errorMessage: null,
   loading: false,
+  expiresAt: null,
 };
 
 export const login = createAsyncThunk("login", async (userDetails) => {
@@ -40,6 +41,10 @@ const authSlice = createSlice({
       state.error = false;
       state.errorMessage = null;
       state.loading = false;
+      sessionStorage.clear("nunsa_user");
+    },
+    tokenExpiry(state, action) {
+      state.expiresAt = action.payload.tokenExpiry;
     },
     stopLoad(state, action) {
       state.loading = false;
@@ -59,6 +64,8 @@ const authSlice = createSlice({
       state.loading = false;
       state.isLoggedIn = payload.auth;
       state.user = payload.user;
+      state.expiresAt = Number(payload.expiresAt);
+      sessionStorage.setItem("nunsa_user", payload.user.token);
     });
 
     builder.addCase(login.rejected, (state, action) => {

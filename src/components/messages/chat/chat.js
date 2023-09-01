@@ -73,7 +73,7 @@ const Chat = () => {
         </div>
       </div>
       </div>
-      <Conversation />
+      <Conversation receiberID={id} />
     </>
   );
 };

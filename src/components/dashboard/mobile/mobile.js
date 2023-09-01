@@ -27,16 +27,24 @@ import one from "../../../images/one.jpg";
 import nunsaLogo from "../../../images/Nunsalogo.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../../store/auth-slice";
+// import socket from "../../../socket";
+import { socket } from "../../../App";
 
 export default function MobileDashboard({ children }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
   const { pathname } = useLocation();
   const parentPath = pathname.slice(0, 8);
   const childPath = pathname.slice(9, pathname.length);
   const logout = (text) => {
     if (text === "logout") {
+      socket.emit(
+        "request_disconnect",
+        `${user.user_fname} ${user.user_lname}`
+      );
       dispatch(authActions.logout());
+      dispatch(authActions.tokenExpiry({ tokenExpiry: null }));
       return navigate("/");
     }
     return;

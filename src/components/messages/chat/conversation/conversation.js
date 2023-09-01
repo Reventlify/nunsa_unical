@@ -1,19 +1,20 @@
+import { socket } from "../../../../App";
+// import socket from "../../../../socket";
 import BottomSpace from "../../../bottomSpace";
 import CustomLoader from "../../../loader/customLoader/CustomLoader";
 import classes from "../conversation/convo.module.css";
 import ChatIcon from "@mui/icons-material/Chat";
 import SendIcon from "@mui/icons-material/Send";
 import { useState } from "react";
-import { socket } from "../../../../socket";
 
-const Conversation = () => {
+const Conversation = ({ receiverID }) => {
   const [message, setMessage] = useState("");
   socket.on("receive_message", (message) => {
     console.log(message);
   });
   const onSend = (e) => {
     e.preventDefault();
-    socket.emit("send_message", message);
+    socket.emit("send_message", message, receiverID);
     return setMessage("");
   };
   return (
