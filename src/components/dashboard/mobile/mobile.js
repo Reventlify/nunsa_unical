@@ -43,6 +43,7 @@ export default function MobileDashboard({ children }) {
         "request_disconnect",
         `${user.user_fname} ${user.user_lname}`
       );
+      socket.disconnect();
       dispatch(authActions.logout());
       dispatch(authActions.tokenExpiry({ tokenExpiry: null }));
       return navigate("/");
