@@ -21,6 +21,8 @@ const Conversation = ({ receiverID, senderID, loadingP, messages }) => {
     socket.on("receive_message", (message) => {
       addObject(message[0]);
     });
+    // Scroll to the bottom when the component mounts (page loads)
+    window.scrollTo(0, document.body.scrollHeight);
   }, []);
 
   const onSend = (e) => {
