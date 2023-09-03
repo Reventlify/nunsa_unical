@@ -149,7 +149,8 @@ const Chat = () => {
                     />
                   )}
                 </div>
-                <div className={`${classes.onOrOff}`}>
+                {/* <div className={`${classes.onOrOff}`}> */}
+                <div>
                   <div className="bolder white" style={{ fontSize: "16px" }}>
                     {startWithCase(
                       `${partner.student_fname} ${partner.student_lname}`
