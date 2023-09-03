@@ -14,6 +14,7 @@ import { api } from "../../../link/API";
 import { authActions } from "../../../store/auth-slice";
 import FullLoader from "../../loader/fullLoader/FullLoader";
 import BottomSpace from "../../bottomSpace";
+import Four0Four from "../../error/404error";
 
 const Subjects = () => {
   const dispatch = useDispatch();
@@ -60,7 +61,7 @@ const Subjects = () => {
     } catch (err) {
       console.error(err.message);
     }
-  }, []);
+  }, [dispatch, token, year]);
 
   useEffect(() => {
     getMaterials();
@@ -222,10 +223,20 @@ const Subjects = () => {
       );
     }
   };
-  if (loading) {
-    return <FullLoader />;
+  if (
+    year.slice(-1) === "1" ||
+    year.slice(-1) === "2" ||
+    year.slice(-1) === "3" ||
+    year.slice(-1) === "4" ||
+    year.slice(-1) === "5"
+  ) {
+    if (loading) {
+      return <FullLoader />;
+    } else {
+      return <>{renderer()}</>;
+    }
   } else {
-    return <>{renderer()}</>;
+    return <Four0Four />;
   }
 };
 

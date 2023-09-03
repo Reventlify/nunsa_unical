@@ -155,7 +155,9 @@ const People = ({ navAction, openChat }) => {
                         : {}
                     }
                     onClick={() => {
-                      navigate(`/student/messages/chat/${user.student_id}`);
+                      navigate(
+                        `/student/messages/chat/${user_id}_${user.student_id}`
+                      );
                     }}
                   >
                     <div>
