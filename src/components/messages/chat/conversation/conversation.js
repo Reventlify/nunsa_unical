@@ -28,7 +28,7 @@ const Conversation = ({ receiverID, senderID, loadingP, messages }) => {
   });
   // const [iTyped, setITyped] = useState([]);
   socket.on("receive_message", (message) => {
-    console.log(message[0]);
+    // console.log(message[0]);
     // Check if the message is already in the discussion
     // const isDuplicate = newDiscussions.some(
     //   (existingMessage) =>
