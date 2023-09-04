@@ -1,7 +1,19 @@
 .display {
   margin-top: 5.5rem;
 }
-
+.dateSeparator {
+  display: flex;
+  justify-content: center;
+}
+.dateS {
+  background-color: #f0f2f5;
+  color: #adadad;
+  padding: 5px 10px;
+  border-top-left-radius: 7px !important;
+  border-top-right-radius: 7px !important;
+  border-bottom-right-radius: 7px !important;
+  border-bottom-left-radius: 7px !important;
+}
 .leftHelper {
   display: flex;
   flex-direction: row;
@@ -26,7 +38,7 @@
   width: auto;
   max-width: 250px;
   font-size: 14px;
-  background-color: #DCF8C6;
+  background-color: #dcf8c6;
   border-top-left-radius: 7px !important;
   border-top-right-radius: 7px !important;
   border-bottom-right-radius: 7px !important;

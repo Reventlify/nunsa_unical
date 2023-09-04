@@ -11,24 +11,21 @@ import Four0Four from "../../error/404error";
 import { api } from "../../../link/API";
 import { authActions } from "../../../store/auth-slice";
 import CustomLoader from "../../loader/customLoader/CustomLoader";
+import { socket } from "../../../App";
 
 const Chat = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user_id, token } = useSelector((state) => state.auth.user);
   const { id } = useParams();
-  const [partner, setPartner] = useState({
-    chatId: "",
-    chatPaticipantA: "",
-    chatPaticipantB: "",
-    chatPaticipantB_name: "",
-    chatPaticipantB_img: "",
-    lastMessage: "",
-    lastMessage_time: "",
-  });
+  const receiver_id = id.split("_");
+  const receiverID = receiver_id[1];
+  const [partner, setPartner] = useState();
   const [messages, setMessages] = useState([]);
   const [badStudent, setBadStudent] = useState(false);
   const [loadingP, setLoadingP] = useState(true);
+  const [isTyping, setIsTyping] = useState(false);
+  // const [uniqueObjects, setUniqueObjects] = useState(new Set());
   // const [id, setId] = useState(localStorage.getItem("nunsaChat"));
 
   // const userGotten = testChats.filter((person) => {
@@ -37,6 +34,19 @@ const Chat = () => {
   //   }
   // });
 
+  useEffect(() => {
+    // const addObject = (newObject) => {
+    //   setUniqueObjects((prevSet) => new Set([...prevSet, newObject]));
+    // };
+
+    socket.on("isTyping", (bool) => {
+      // addObject(bool[0]);
+      setIsTyping(bool);
+    });
+  }, []);
+  // const setIsTypingHandler = (typing) => {
+  //   setIsTyping(typing);
+  // };
   const get_partner_datails_and_conversation_with_partner =
     useCallback(async () => {
       try {
@@ -149,25 +159,39 @@ const Chat = () => {
                     />
                   )}
                 </div>
-                {/* <div className={`${classes.onOrOff}`}> */}
-                <div>
-                  <div className="bolder white" style={{ fontSize: "16px" }}>
+                <div className={`${classes.onOrOff}`}>
+                  {/* <div> */}
+                  <div
+                    className={
+                      isTyping ? "bolder white" : "bolder white centerDivV"
+                    }
+                    style={
+                      isTyping
+                        ? { fontSize: "16px" }
+                        : { fontSize: "18px", height: "55px" }
+                    }
+                  >
                     {startWithCase(
                       `${partner.student_fname} ${partner.student_lname}`
                     )}
                   </div>
-                  {/* <div className="white" style={{ color: "#f0f2f5" }}>
-                    offline
-                  </div> */}
+                  {isTyping ? (
+                    <div className="white" style={{ color: "#f0f2f5" }}>
+                      Typing...
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </div>
           </div>
           <Conversation
-            receiverID={id}
+            receiverID={receiverID}
             senderID={user_id}
             loadingP={loadingP}
             messages={messages}
+            // typing={setIsTypingHandler}
           />
         </>
       );
