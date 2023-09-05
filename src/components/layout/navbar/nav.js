@@ -1,9 +1,11 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
 import nunsaLogoBg from "../../../images/NunsalogoBg.png";
 
 const Nav = () => {
+  const { user } = useSelector((state) => state.auth);
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
@@ -102,20 +104,37 @@ const Nav = () => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 1 }}
                 >
-                  <NavLink
-                    to="/login"
-                    className="nav-link onPhoneNav"
-                    style={({ isActive }) =>
-                      isActive
-                        ? {
-                            color: "#61CE70",
-                            borderBottom: "2px solid #61CE70",
-                          }
-                        : { color: "white", borderBottom: "none" }
-                    }
-                  >
-                    Login
-                  </NavLink>
+                  {user !== null ? (
+                    <NavLink
+                      to="/student/dashboard"
+                      className="nav-link onPhoneNav"
+                      style={({ isActive }) =>
+                        isActive
+                          ? {
+                              color: "#61CE70",
+                              borderBottom: "2px solid #61CE70",
+                            }
+                          : { color: "white", borderBottom: "none" }
+                      }
+                    >
+                      Dashboard
+                    </NavLink>
+                  ) : (
+                    <NavLink
+                      to="/login"
+                      className="nav-link onPhoneNav"
+                      style={({ isActive }) =>
+                        isActive
+                          ? {
+                              color: "#61CE70",
+                              borderBottom: "2px solid #61CE70",
+                            }
+                          : { color: "white", borderBottom: "none" }
+                      }
+                    >
+                      Login
+                    </NavLink>
+                  )}
                 </motion.div>
               </li>
               <li className="nav-item">
@@ -190,20 +209,37 @@ const Nav = () => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 1 }}
                 >
-                  <NavLink
-                    to="/login"
-                    className="nav-link onPhoneNav"
-                    style={({ isActive }) =>
-                      isActive
-                        ? {
-                            color: "#61CE70",
-                            borderBottom: "2px solid #61CE70",
-                          }
-                        : { color: "white", borderBottom: "none" }
-                    }
-                  >
-                    Login
-                  </NavLink>
+                  {user !== null ? (
+                    <NavLink
+                      to="/student/dashboard"
+                      className="nav-link onPhoneNav"
+                      style={({ isActive }) =>
+                        isActive
+                          ? {
+                              color: "#61CE70",
+                              borderBottom: "2px solid #61CE70",
+                            }
+                          : { color: "white", borderBottom: "none" }
+                      }
+                    >
+                      Dashboard
+                    </NavLink>
+                  ) : (
+                    <NavLink
+                      to="/login"
+                      className="nav-link onPhoneNav"
+                      style={({ isActive }) =>
+                        isActive
+                          ? {
+                              color: "#61CE70",
+                              borderBottom: "2px solid #61CE70",
+                            }
+                          : { color: "white", borderBottom: "none" }
+                      }
+                    >
+                      Login
+                    </NavLink>
+                  )}
                 </motion.div>
               </li>
             </ul>

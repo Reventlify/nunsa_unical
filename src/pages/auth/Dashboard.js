@@ -1,12 +1,19 @@
+import { useLocation } from "react-router-dom";
 import MobileDashboard from "../../components/dashboard/mobile/mobile";
-import StudentDash from "../../components/dashboard/studentDash";
+// import StudentDash from "../../components/dashboard/studentDash";
+import Trash from "../../components/dashboard/trash";
 
 const Dashboard = () => {
-  return (
-    <MobileDashboard>
-      <StudentDash searchWhere="Search NUNSA UNICAL..." />
-    </MobileDashboard>
-  );
+  const { pathname } = useLocation();
+
+  if (pathname.slice(-9).toLowerCase() === "dashboard") {
+    return (
+      <MobileDashboard>
+        <Trash path={"dashboard"} />
+        {/* <StudentDash path={"dashboard"} /> */}
+      </MobileDashboard>
+    );
+  }
 };
 
 export default Dashboard;

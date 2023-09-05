@@ -1,7 +1,12 @@
 import classes from "../studentDash.module.css";
 import president from "../../../images/president.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 const DashSearchAndNotifications = ({ search }) => {
+  const { pathname } = useLocation();
+  const { token, level } = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
   return (
     <div className={`${classes.sideBar}`}>
       <div className="container">
@@ -10,7 +15,11 @@ const DashSearchAndNotifications = ({ search }) => {
             <input
               className={`form-control me-2 b`}
               type="search"
-              placeholder={search}
+              placeholder={`Search ${
+                pathname.slice(-5).toLowerCase() === "class"
+                  ? `Yr${level.slice(0, 1)} class`
+                  : "NUNSA UNICAL"
+              }...`}
               aria-label="Search"
             />
             <button

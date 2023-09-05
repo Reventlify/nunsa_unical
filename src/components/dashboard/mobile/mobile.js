@@ -15,6 +15,7 @@ import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import LogoutIcon from "@mui/icons-material/Logout";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -29,6 +30,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../../store/auth-slice";
 // import socket from "../../../socket";
 import { socket } from "../../../App";
+import { startWithCase } from "../../../utilities/text";
 
 export default function MobileDashboard({ children }) {
   const dispatch = useDispatch();
@@ -107,16 +109,27 @@ export default function MobileDashboard({ children }) {
           paddingLeft: "12px",
         }}
       >
-        <img
-          src={one}
-          alt="user"
-          width="45px"
-          height="45px"
-          className="round"
-        />{" "}
+        {user.photo === null ? (
+          <AccountCircleIcon
+            className="circle"
+            style={{
+              fontSize: "45px",
+              color: "#adadad",
+              backgroundColor: "white",
+            }}
+          />
+        ) : (
+          <img
+            src={user.photo}
+            alt="nunsaLogo"
+            width="45px"
+            height="45px"
+            className="round"
+          />
+        )}{" "}
         &nbsp;&nbsp;&nbsp;
         <div style={{ display: "flex", alignItems: "center" }}>
-          <h5>Ezra Madu</h5>{" "}
+          <h5>{startWithCase(`${user.user_fname} ${user.user_lname}`)}</h5>{" "}
         </div>
       </div>
       <List>
@@ -197,13 +210,24 @@ export default function MobileDashboard({ children }) {
       <CssBaseline />
       <AppBar sx={{ backgroundColor: "#61ce70" }} position="fixed">
         <Toolbar>
-          <img
-            src={one}
-            alt="nunsaLogo"
-            width="45px"
-            height="45px"
-            className="round"
-          />
+          {user.photo === null ? (
+            <AccountCircleIcon
+              className="circle"
+              style={{
+                fontSize: "45px",
+                color: "#adadad",
+                backgroundColor: "white",
+              }}
+            />
+          ) : (
+            <img
+              src={user.photo}
+              alt="nunsaLogo"
+              width="45px"
+              height="45px"
+              className="round"
+            />
+          )}
           <Typography
             variant="h6"
             noWrap
