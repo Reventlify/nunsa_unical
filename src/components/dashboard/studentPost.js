@@ -14,8 +14,9 @@ import { api } from "../../link/API";
 import CustomLoader from "../loader/customLoader/CustomLoader";
 import { authActions } from "../../store/auth-slice";
 import { startWithCase } from "../../utilities/text";
+import { postsActions } from "../../store/posts-slice";
 
-const StudentPost = ({ updatePosts, post, index }) => {
+const StudentPost = ({ post, index, path }) => {
   const { token } = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const [showComments, setShowComments] = useState(false);
@@ -42,39 +43,57 @@ const StudentPost = ({ updatePosts, post, index }) => {
     // setState({ ...state, [anchor]: open });
   };
 
-  const handleCommentSubmit = useCallback(async () => {
-    // Handle comment submission here, using studentOpinion and studentOpinionTo
-    // e.preventDefault();
-    setLoading(true);
-    try {
-      await fetch(`${api}/user/posts/${studentOpinionTo}/comment`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          studentOpinion,
-        }),
-      }).then(async (res) => {
-        const data = await res.json();
-        if (res.status === 200) {
-          setStudentOpinion(""); // Clear the comment input
-          setLoading(false);
-          setSent(true);
-          return updatePosts(data, index);
-        } else if (res.status === 401 || res.status === 403) {
-          return dispatch(authActions.logout());
-        } else {
-          setStudentOpinion(""); // Clear the comment input
-          setStudentOpinionTo(""); // Clear the user ID
-          return setLoading(false);
-        }
-      });
-    } catch (error) {
-      return console.error(error);
-    }
-  }, [dispatch, studentOpinion, studentOpinionTo, token]);
+  const handleCommentSubmit = useCallback(
+    async (action, id, i) => {
+      // Handle comment submission here, using studentOpinion and studentOpinionTo
+      // e.preventDefault();
+      setLoading(true);
+      try {
+        await fetch(`${api}/user/posts/${id}/comment`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            studentOpinion,
+            action: action,
+          }),
+        }).then(async (res) => {
+          const data = await res.json();
+          if (res.status === 200) {
+            setStudentOpinion(""); // Clear the comment input
+            setLoading(false);
+            setSent(true);
+            if (path === "class") {
+              return dispatch(
+                postsActions.classPostEdit({
+                  newData: data,
+                  i,
+                })
+              );
+            } else {
+              return dispatch(
+                postsActions.postEdit({
+                  newData: data,
+                  i,
+                })
+              );
+            }
+          } else if (res.status === 401 || res.status === 403) {
+            return dispatch(authActions.logout());
+          } else {
+            setStudentOpinion(""); // Clear the comment input
+            setStudentOpinionTo(""); // Clear the user ID
+            return setLoading(false);
+          }
+        });
+      } catch (error) {
+        return console.error(error);
+      }
+    },
+    [dispatch, studentOpinion, studentOpinionTo, token]
+  );
 
   const loader = (postID) => {
     if (loading && !sent && studentOpinionTo === postID) {
@@ -112,7 +131,16 @@ const StudentPost = ({ updatePosts, post, index }) => {
       <div className="blogText">
         {post.post_media && (
           <div className={`container mt-3 ${classes.opinion}`}>
-            <div className={`${classes.like} container`}>
+            <div
+              className={`${classes.like}`}
+              onClick={() => {
+                if (loading) {
+                  return;
+                } else {
+                  handleCommentSubmit("like", post.post_id, index);
+                }
+              }}
+            >
               {post.liked === "yes" ? (
                 <ThumbUpAltIcon className="hover nunsa" />
               ) : (
@@ -124,7 +152,7 @@ const StudentPost = ({ updatePosts, post, index }) => {
               </span>{" "}
             </div>
             <div className={`${classes.comment} centerDivH`}>
-              <div onClick={toggleDrawer("bottom", true, post.post_id)}>
+              <div onClick={toggleDrawer("bottom", true, post.post_id, index)}>
                 {" "}
                 <ChatBubbleOutlineIcon
                   className={post.commented === "yes" ? "hover nunsa" : "hover"}
@@ -135,7 +163,16 @@ const StudentPost = ({ updatePosts, post, index }) => {
                 {formatCompactNumber(post.comment_count)}
               </span>{" "}
             </div>
-            <div className={`${classes.dislike} centerDivR container`}>
+            <div
+              className={`${classes.dislike} centerDivR`}
+              onClick={() => {
+                if (loading) {
+                  return;
+                } else {
+                  handleCommentSubmit("dislike", post.post_id, index);
+                }
+              }}
+            >
               {post.disliked === "yes" ? (
                 <ThumbDownAltIcon className="hover nunsa" />
               ) : (
@@ -154,7 +191,16 @@ const StudentPost = ({ updatePosts, post, index }) => {
             &nbsp;{post.post_text}
             {!post.post_media && (
               <div className={`mt-3 ${classes.opinion}`}>
-                <div className={`${classes.like}`}>
+                <div
+                  className={`${classes.like}`}
+                  onClick={() => {
+                    if (loading) {
+                      return;
+                    } else {
+                      handleCommentSubmit("like", post.post_id, index);
+                    }
+                  }}
+                >
                   {post.liked === "yes" ? (
                     <ThumbUpAltIcon className="hover nunsa" />
                   ) : (
@@ -166,7 +212,9 @@ const StudentPost = ({ updatePosts, post, index }) => {
                   </span>{" "}
                 </div>
                 <div className={`${classes.comment} centerDivH`}>
-                  <div onClick={toggleDrawer("bottom", true, post.post_id)}>
+                  <div
+                    onClick={toggleDrawer("bottom", true, post.post_id, index)}
+                  >
                     {" "}
                     <ChatBubbleOutlineIcon
                       className={
@@ -179,7 +227,16 @@ const StudentPost = ({ updatePosts, post, index }) => {
                     {formatCompactNumber(post.comment_count)}
                   </span>{" "}
                 </div>
-                <div className={`${classes.dislike} centerDivR`}>
+                <div
+                  className={`${classes.dislike} centerDivR`}
+                  onClick={() => {
+                    if (loading) {
+                      return;
+                    } else {
+                      handleCommentSubmit("dislike", post.post_id, index);
+                    }
+                  }}
+                >
                   {post.disliked === "yes" ? (
                     <ThumbDownAltIcon className="hover nunsa" />
                   ) : (
@@ -223,7 +280,9 @@ const StudentPost = ({ updatePosts, post, index }) => {
             {studentOpinion !== "" && studentOpinionTo !== "" && !loading ? (
               <div
                 className="reventlify hover centerDiv"
-                onClick={handleCommentSubmit}
+                onClick={() => {
+                  handleCommentSubmit("comment", post.post_id, index);
+                }}
               >
                 Post
               </div>

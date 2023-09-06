@@ -31,6 +31,7 @@ import { authActions } from "../../../store/auth-slice";
 // import socket from "../../../socket";
 import { socket } from "../../../App";
 import { startWithCase } from "../../../utilities/text";
+import { postsActions } from "../../../store/posts-slice";
 
 export default function MobileDashboard({ children }) {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ export default function MobileDashboard({ children }) {
         `${user.user_fname} ${user.user_lname}`
       );
       socket.disconnect();
+      dispatch(postsActions.clearAllPosts());
       dispatch(authActions.logout());
       dispatch(authActions.tokenExpiry({ tokenExpiry: null }));
       return navigate("/");

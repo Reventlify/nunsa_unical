@@ -5,6 +5,7 @@ import storageSession from "redux-persist/lib/storage/session";
 import thunk from "redux-thunk";
 import persistReducer from "redux-persist/es/persistReducer";
 import { combineReducers } from "@reduxjs/toolkit";
+import postsSlice from "./posts-slice";
 
 const persistConfig = {
   key: "root",
@@ -14,8 +15,7 @@ const persistConfig = {
 
 const reducer = combineReducers({
   auth: authSlice.reducer,
-  //   cart: cartSlice.reducer,
-  //   ui: uiSlice.reducer,
+  posts: postsSlice.reducer,
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = configureStore({

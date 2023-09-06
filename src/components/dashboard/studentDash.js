@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Box from "@mui/material/Box";
 import moment from "moment";
 import StudentPost from "./studentPost";
@@ -9,47 +9,37 @@ import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../../store/auth-slice";
 import { api } from "../../link/API";
 import classes from "../dashboard/studentDash.module.css";
+import { postsActions } from "../../store/posts-slice";
 
 const StudentDash = ({ path }) => {
   const { token } = useSelector((state) => state.auth.user);
+  const { generalPosts, classPosts } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // const editPost = (newData, index) => {
-  //   console.log(`before code block: ${newData}`);
-  //   if (typeof newData === "object") {
-  //     console.log(`entered code block: ${newData}`);
-  //     posts[index].commented = newData.commented;
-  //     posts[index].liked = newData.liked;
-  //     posts[index].disliked = newData.disliked;
-  //     posts[index].comment_count = newData.commented;
-  //     posts[index].like_count = newData.like_count;
-  //     posts[index].dislike_count = newData.dislike_count;
-  //   } else {
-  //     return;
-  //   }
-  // };
-
-  const editPost = (newData, index) => {
-    if (typeof newData === "object") {
-      const updatedPost = {
-        ...posts[index], // Copy the existing post
-        commented: newData.commented,
-        liked: newData.liked,
-        disliked: newData.disliked,
-        comment_count: newData.comment_count,
-        like_count: newData.like_count,
-        dislike_count: newData.dislike_count,
-      };
-      // Update the posts array with the updated post at the specified index
-      const updatedPosts = [...posts];
-      updatedPosts[index] = updatedPost;
-      setPosts(updatedPosts); // Update the state with the new array
-    } else {
-      return;
-    }
-  };
+  // const editPost = useCallback(
+  //   (newData, index) => {
+  //     if (typeof newData === "object") {
+  //       const updatedPost = {
+  //         ...posts[index], // Copy the existing post
+  //         commented: newData.commented,
+  //         liked: newData.liked,
+  //         disliked: newData.disliked,
+  //         comment_count: newData.comment_count,
+  //         like_count: newData.like_count,
+  //         dislike_count: newData.dislike_count,
+  //       };
+  //       // Update the posts array with the updated post at the specified index
+  //       const updatedPosts = [...posts];
+  //       updatedPosts[index] = updatedPost;
+  //       setPosts(updatedPosts); // Update the state with the new array
+  //     } else {
+  //       return;
+  //     }
+  //   },
+  //   [posts]
+  // );
 
   useEffect(() => {
     const getPosts = async () => {
@@ -66,13 +56,18 @@ const StudentDash = ({ path }) => {
         );
         if (response.status === 200) {
           const data = await response.json();
-          setPosts(data);
+          // setPosts(data);
+          if (path === "class") {
+            dispatch(postsActions.classPostInsert(data));
+          } else {
+            dispatch(postsActions.postInsert(data));
+          }
           setLoading(false);
         } else if (response.status === 401 || response.status === 403) {
           dispatch(authActions.logout());
         } else {
           const data = await response.json();
-          setPosts(data);
+          // setPosts(data);
           setLoading(false);
         }
       } catch (error) {
@@ -83,6 +78,54 @@ const StudentDash = ({ path }) => {
     getPosts();
   }, [token, path, dispatch]);
 
+  const renderer = () => {
+    if (path === "class") {
+      return (
+        <>
+          {classPosts.length === 0 ? (
+            <div className="blogText centerDiv fullscreen-30">
+              <h1>Nothing to show...</h1>
+            </div>
+          ) : (
+            <>
+              {classPosts.map((post, i) => (
+                <StudentPost
+                  key={post.post_id}
+                  // updatePosts={editPost}
+                  path={path}
+                  post={post}
+                  index={i}
+                />
+              ))}
+            </>
+          )}
+        </>
+      );
+    } else {
+      return (
+        <>
+          {generalPosts.length === 0 ? (
+            <div className="blogText centerDiv fullscreen-30">
+              <h1>Nothing to show...</h1>
+            </div>
+          ) : (
+            <>
+              {generalPosts.map((post, i) => (
+                <StudentPost
+                  key={post.post_id}
+                  // updatePosts={editPost}
+                  path={path}
+                  post={post}
+                  index={i}
+                />
+              ))}
+            </>
+          )}
+        </>
+      );
+    }
+  };
+
   if (loading) {
     return <FullLoader />;
   }
@@ -91,22 +134,7 @@ const StudentDash = ({ path }) => {
     <>
       <DashSearchAndNotifications />
       <div className={`${classes.layHelp} ${classes.content} container`}>
-        {posts.length === 0 ? (
-          <div className="blogText centerDiv fullscreen-30">
-            <h1>Nothing to show...</h1>
-          </div>
-        ) : (
-          <>
-            {posts.map((post, i) => (
-              <StudentPost
-                key={post.post_id}
-                updatePosts={editPost}
-                post={post}
-                index={i}
-              />
-            ))}
-          </>
-        )}
+        {renderer()}
       </div>
       <CreatePost path={path} />
     </>

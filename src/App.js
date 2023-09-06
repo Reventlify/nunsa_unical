@@ -13,6 +13,7 @@ import Four0Four from "./components/error/404error";
 import { io } from "socket.io-client";
 import { authActions } from "./store/auth-slice";
 import { api } from "./link/API";
+import { postsActions } from "./store/posts-slice";
 const Dashboard = lazy(() => import("./pages/auth/Dashboard"));
 const Class = lazy(() => import("./pages/auth/Class"));
 const Message = lazy(() => import("./pages/auth/Message"));
@@ -35,9 +36,7 @@ const Subjects = lazy(() => import("./components/courses/subjects/subjects"));
 let socket = null;
 export { socket };
 function App() {
-  const { isLoggedIn, expiresAt } = useSelector(
-    (state) => state.auth
-  );
+  const { isLoggedIn, expiresAt } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   let intervalTimer; // Variable to store the interval timer reference
@@ -48,6 +47,7 @@ function App() {
       if (expiresAt <= currentTimestamp) {
         // Token has expired, log the user out
         socket.disconnect();
+        dispatch(postsActions.clearAllPosts());
         dispatch(authActions.logout());
         dispatch(authActions.tokenExpiry({ tokenExpiry: null }));
         console.log(isLoggedIn);
