@@ -16,6 +16,41 @@ const StudentDash = ({ path }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // const editPost = (newData, index) => {
+  //   console.log(`before code block: ${newData}`);
+  //   if (typeof newData === "object") {
+  //     console.log(`entered code block: ${newData}`);
+  //     posts[index].commented = newData.commented;
+  //     posts[index].liked = newData.liked;
+  //     posts[index].disliked = newData.disliked;
+  //     posts[index].comment_count = newData.commented;
+  //     posts[index].like_count = newData.like_count;
+  //     posts[index].dislike_count = newData.dislike_count;
+  //   } else {
+  //     return;
+  //   }
+  // };
+
+  const editPost = (newData, index) => {
+    if (typeof newData === "object") {
+      const updatedPost = {
+        ...posts[index], // Copy the existing post
+        commented: newData.commented,
+        liked: newData.liked,
+        disliked: newData.disliked,
+        comment_count: newData.comment_count,
+        like_count: newData.like_count,
+        dislike_count: newData.dislike_count,
+      };
+      // Update the posts array with the updated post at the specified index
+      const updatedPosts = [...posts];
+      updatedPosts[index] = updatedPost;
+      setPosts(updatedPosts); // Update the state with the new array
+    } else {
+      return;
+    }
+  };
+
   useEffect(() => {
     const getPosts = async () => {
       try {
@@ -62,8 +97,13 @@ const StudentDash = ({ path }) => {
           </div>
         ) : (
           <>
-            {posts.map((post) => (
-              <StudentPost key={post.post_id} post={post} />
+            {posts.map((post, i) => (
+              <StudentPost
+                key={post.post_id}
+                updatePosts={editPost}
+                post={post}
+                index={i}
+              />
             ))}
           </>
         )}

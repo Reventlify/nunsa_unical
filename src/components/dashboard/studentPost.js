@@ -15,7 +15,7 @@ import CustomLoader from "../loader/customLoader/CustomLoader";
 import { authActions } from "../../store/auth-slice";
 import { startWithCase } from "../../utilities/text";
 
-const StudentPost = ({ post }) => {
+const StudentPost = ({ updatePosts, post, index }) => {
   const { token } = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const [showComments, setShowComments] = useState(false);
@@ -61,7 +61,8 @@ const StudentPost = ({ post }) => {
         if (res.status === 200) {
           setStudentOpinion(""); // Clear the comment input
           setLoading(false);
-          return setSent(true);
+          setSent(true);
+          return updatePosts(data, index);
         } else if (res.status === 401 || res.status === 403) {
           return dispatch(authActions.logout());
         } else {
