@@ -15,9 +15,10 @@ import CommentDrawer from "./swipeableDrawer";
 
 const StudentDash = ({ path }) => {
   const { token } = useSelector((state) => state.auth.user);
-  const { generalPosts, classPosts } = useSelector(
+  const { generalPosts, classPosts, comments } = useSelector(
     (state) => state.posts
   );
+  const [commentPersist, setPersist] = useState(comments);
   const dispatch = useDispatch();
   const [display, setDisplay] = useState(false);
   const [state, setState] = useState({
@@ -30,17 +31,23 @@ const StudentDash = ({ path }) => {
   const [loading, setLoading] = useState(true);
 
   const toggleDrawer = (anchor, open, id) => (event) => {
-    dispatch(postsActions.setPostComments(id))
+    if (comments && event.type !== "keydown") {
+      dispatch(postsActions.clearComments());
+    }
+    if (open && event.type !== "keydown") {
+      dispatch(postsActions.setPostComments(id));
+    }
     if (
       event &&
       event.type === "keydown" &&
       event.key
       // (event.key === "Tab" || event.key === "Shift")
     ) {
+      // dispatch(postsActions.commentInsert(commentPersist));
       return;
     }
-      display ? setDisplay(false) : setDisplay(true);
-      return setState({ ...state, [anchor]: open });
+    display ? setDisplay(false) : setDisplay(true);
+    return setState({ ...state, [anchor]: open });
   };
 
   // const toggleComments = (anchor, open) => {

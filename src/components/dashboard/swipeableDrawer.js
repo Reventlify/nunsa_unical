@@ -6,19 +6,48 @@ import { formatCompactNumber } from "../../utilities/number";
 import classes from "../dashboard/studentDash.module.css";
 import { startWithCase } from "../../utilities/text";
 import BottomSpace from "../bottomSpace";
+import CustomLoader from "../loader/customLoader/CustomLoader";
+import { useDispatch, useSelector } from "react-redux";
+import { api } from "../../link/API";
+import { postsActions } from "../../store/posts-slice";
+import { authActions } from "../../store/auth-slice";
+import PostComments from "./postComponents/comments";
 
 const CommentDrawer = ({ anchor, toggleComments }) => {
+  const dispatch = useDispatch();
+  const { postComments, comments } = useSelector((state) => state.posts);
+  const { token } = useSelector((state) => state.auth.user);
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(true);
+  const [opinion, setOpinion] = useState("");
 
   const getComments = useCallback(async () => {
     try {
-      return;
+      const response = await fetch(
+        `${api}/user/posts/${postComments}/comment`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.status === 200) {
+        const data = await response.json();
+        dispatch(postsActions.commentInsert(data));
+        setFetching(false);
+      } else if (response.status === 401 || response.status === 403) {
+        dispatch(authActions.logout());
+      } else {
+        // const data = await response.json();
+        // setPosts(data);
+        setFetching(false);
+      }
     } catch (error) {
-      return;
+      console.error(error.message);
     }
-  }, []);
-
+  }, [token, dispatch, postComments]);
   useEffect(() => {
     getComments();
   }, [getComments]);
@@ -46,72 +75,38 @@ const CommentDrawer = ({ anchor, toggleComments }) => {
       </div>
       <div className="container">
         <div className={`${classes.othersOpinion}`}>
-          {/* {comments.map((comment, index) => {
-            return (
-              <div
-                className={`${classes.notification} mt-3`}
-                key={comment.commentId}
-              >
-                <div className={`${classes.commIMG}`}>
-                  <img
-                    src={comment.commenterImg}
-                    alt="user"
-                    width="40px"
-                    height="40px"
-                    className="round"
-                  />
-                </div>
-                <div className="hover ml-2">
-                  <div className={`${classes.commText} paddFull-1`}>
-                    <span className="block">
-                      <span className="bold">
-                        {startWithCase(comment.commenterName)}
-                      </span>
-                      <br />
-                      {comment.comment}
-                    </span>
-                    <span className={`block ${classes.notTime}`}>
-                      <span className="nunsa">{comment.commentTime}</span>
-                    </span>
-                  </div>
-                  <div
-                    className={`container mt-2 blogText ${classes.likeandReply}`}
-                  >
-                    <div>
-                      <ThumbUpOffAltIcon />
-                      &nbsp;
-                      <span className="hover">
-                        {formatCompactNumber(comment.commentLikes)}
-                      </span>
-                    </div>
-                    <div className="ml-2 hover">Reply</div>
-                    <div className="ml-2">
-                      <ThumbDownOffAltIcon />
-                      &nbsp;
-                      <span className="hover">
-                        {formatCompactNumber(comment.commentDisLikes)}
-                      </span>
-                    </div>
-                  </div>
-                  {comment.replyCount > 0 ? (
-                    <span
-                      className="block container hover"
-                      onClick={() => seeMoreReplies(index)}
-                    >
-                      {comment.showReplies ? "Hide" : "See"} replies{" "}
-                      {comment.showReplies ? (
-                        <KeyboardArrowUpIcon />
-                      ) : (
-                        <KeyboardArrowDownIcon />
-                      )}
-                    </span>
-                  ) : (
-                    ""
-                  )}
-                </div>
-              </div>
-            );
-          })} */}
+          {fetching ? (
+            <CustomLoader height={"60vh"} size={18} />
+          ) : (
+            comments.map((comment, i) => {
+              return <PostComments comment={comment} index={i} />;
+            })
+          )}
+        </div>
+
+        <div className={`float-bottom ${classes.studOpinionDraw}`}>
+          <div className="" style={{ display: "flex", flexDirection: "row" }}>
+            <textarea
+              placeholder="Add a comment..."
+              id="IdOfCommentArea"
+              onBlur={() => {
+                // setStudentOpinion("");
+                document.getElementById(`IdOfCommentArea`).value = "";
+              }}
+              className={`form-control onfocusOpinion ${classes.studOpinion}`}
+              autoComplete="off"
+              autoCorrect="off"
+              aria-describedby="regimeDescriptionHelp"
+              // value={regimeDescription}
+              onChange={(e) => setOpinion(e.target.value)}
+              required
+            />
+            {opinion !== "" ? (
+              <div className="reventlify hover centerDiv">Post</div>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
         <BottomSpace />
       </div>

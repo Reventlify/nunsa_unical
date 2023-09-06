@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   generalPosts: [],
   classPosts: [],
+  comments: [],
   postComments: null,
 };
 
@@ -46,6 +47,14 @@ const postsSlice = createSlice({
     clearAllPosts(state, action) {
       state.generalPosts = [];
       state.classPosts = [];
+      state.comments = [];
+      state.postComments = null;
+    },
+    commentInsert(state, action) {
+      state.comments = action.payload;
+    },
+    clearComments(state, action) {
+      state.comments = [];
     },
     setPostComments(state, action) {
       state.postComments = action.payload;
