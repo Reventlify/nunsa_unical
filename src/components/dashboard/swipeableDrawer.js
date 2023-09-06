@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -7,11 +7,21 @@ import classes from "../dashboard/studentDash.module.css";
 import { startWithCase } from "../../utilities/text";
 import BottomSpace from "../bottomSpace";
 
-const CommentDrawer = ({ anchor, open, toggleDrawer, comments, replies }) => {
-  const seeMoreReplies = (index) => {
-    // Handle toggling replies here
-  };
+const CommentDrawer = ({ anchor, toggleComments }) => {
+  const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(true);
 
+  const getComments = useCallback(async () => {
+    try {
+      return;
+    } catch (error) {
+      return;
+    }
+  }, []);
+
+  useEffect(() => {
+    getComments();
+  }, [getComments]);
   return (
     <Box
       sx={{
@@ -19,7 +29,7 @@ const CommentDrawer = ({ anchor, open, toggleDrawer, comments, replies }) => {
         width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
       }}
       role="presentation"
-      onKeyDown={toggleDrawer(anchor, false)}
+      onKeyDown={toggleComments(anchor, false, null)}
     >
       <div className="container">
         <div className={`${classes.puller} centerDivH`}>
@@ -36,7 +46,7 @@ const CommentDrawer = ({ anchor, open, toggleDrawer, comments, replies }) => {
       </div>
       <div className="container">
         <div className={`${classes.othersOpinion}`}>
-          {comments.map((comment, index) => {
+          {/* {comments.map((comment, index) => {
             return (
               <div
                 className={`${classes.notification} mt-3`}
@@ -101,7 +111,7 @@ const CommentDrawer = ({ anchor, open, toggleDrawer, comments, replies }) => {
                 </div>
               </div>
             );
-          })}
+          })} */}
         </div>
         <BottomSpace />
       </div>

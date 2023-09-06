@@ -16,34 +16,23 @@ import { authActions } from "../../store/auth-slice";
 import { startWithCase } from "../../utilities/text";
 import { postsActions } from "../../store/posts-slice";
 
-const StudentPost = ({ post, index, path }) => {
+const StudentPost = ({ toggleComments, post, index, path }) => {
   const { token } = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
-  const [showComments, setShowComments] = useState(false);
   const [studentOpinion, setStudentOpinion] = useState("");
   const [studentOpinionTo, setStudentOpinionTo] = useState("");
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
-  const [display, setDisplay] = useState(false);
+  // const [display, setDisplay] = useState(false);
 
-  const toggleComments = () => {
-    setShowComments(!showComments);
-  };
-  const toggleDrawer = (anchor, open, stuff) => (event) => {
-    // setDetails(stuff);
-    if (
-      event &&
-      event.type === "keydown" &&
-      event.key
-      // (event.key === "Tab" || event.key === "Shift")
-    ) {
-      //   return setDetails(details);
-    }
-    display ? setDisplay(false) : setDisplay(true);
-    // setState({ ...state, [anchor]: open });
+  const setAndOpen = () => {
+    console.log(`setAndOpen clicked`);
+    // dispatch(postsActions.setPostComments(post.post_id));
+    toggleComments("bottom", true);
   };
 
-  const handleCommentSubmit = useCallback(
+  const handleCommentSubmit =
+    // useCallback(
     async (action, id, i) => {
       // Handle comment submission here, using studentOpinion and studentOpinionTo
       // e.preventDefault();
@@ -91,9 +80,10 @@ const StudentPost = ({ post, index, path }) => {
       } catch (error) {
         return console.error(error);
       }
-    },
-    [dispatch, studentOpinion, studentOpinionTo, token]
-  );
+    };
+  //   ,
+  //   [dispatch, studentOpinion, studentOpinionTo, token, path]
+  // );
 
   const loader = (postID) => {
     if (loading && !sent && studentOpinionTo === postID) {
@@ -152,7 +142,7 @@ const StudentPost = ({ post, index, path }) => {
               </span>{" "}
             </div>
             <div className={`${classes.comment} centerDivH`}>
-              <div onClick={toggleDrawer("bottom", true, post.post_id, index)}>
+              <div onClick={toggleComments("bottom", true, post.post_id)}>
                 {" "}
                 <ChatBubbleOutlineIcon
                   className={post.commented === "yes" ? "hover nunsa" : "hover"}
@@ -213,7 +203,7 @@ const StudentPost = ({ post, index, path }) => {
                 </div>
                 <div className={`${classes.comment} centerDivH`}>
                   <div
-                    onClick={toggleDrawer("bottom", true, post.post_id, index)}
+                    onClick={toggleComments("bottom", true, post.post_id)}
                   >
                     {" "}
                     <ChatBubbleOutlineIcon

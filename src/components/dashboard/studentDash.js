@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Box from "@mui/material/Box";
 import moment from "moment";
 import StudentPost from "./studentPost";
@@ -10,36 +11,42 @@ import { authActions } from "../../store/auth-slice";
 import { api } from "../../link/API";
 import classes from "../dashboard/studentDash.module.css";
 import { postsActions } from "../../store/posts-slice";
+import CommentDrawer from "./swipeableDrawer";
 
 const StudentDash = ({ path }) => {
   const { token } = useSelector((state) => state.auth.user);
-  const { generalPosts, classPosts } = useSelector((state) => state.posts);
+  const { generalPosts, classPosts } = useSelector(
+    (state) => state.posts
+  );
   const dispatch = useDispatch();
+  const [display, setDisplay] = useState(false);
+  const [state, setState] = useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
   // const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // const editPost = useCallback(
-  //   (newData, index) => {
-  //     if (typeof newData === "object") {
-  //       const updatedPost = {
-  //         ...posts[index], // Copy the existing post
-  //         commented: newData.commented,
-  //         liked: newData.liked,
-  //         disliked: newData.disliked,
-  //         comment_count: newData.comment_count,
-  //         like_count: newData.like_count,
-  //         dislike_count: newData.dislike_count,
-  //       };
-  //       // Update the posts array with the updated post at the specified index
-  //       const updatedPosts = [...posts];
-  //       updatedPosts[index] = updatedPost;
-  //       setPosts(updatedPosts); // Update the state with the new array
-  //     } else {
-  //       return;
-  //     }
-  //   },
-  //   [posts]
-  // );
+  const toggleDrawer = (anchor, open, id) => (event) => {
+    dispatch(postsActions.setPostComments(id))
+    if (
+      event &&
+      event.type === "keydown" &&
+      event.key
+      // (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+      display ? setDisplay(false) : setDisplay(true);
+      return setState({ ...state, [anchor]: open });
+  };
+
+  // const toggleComments = (anchor, open) => {
+  //   console.log(`toggle clicked`);
+  //    toggleDrawer(anchor, open);
+  // };
 
   useEffect(() => {
     const getPosts = async () => {
@@ -91,7 +98,7 @@ const StudentDash = ({ path }) => {
               {classPosts.map((post, i) => (
                 <StudentPost
                   key={post.post_id}
-                  // updatePosts={editPost}
+                  toggleComments={toggleDrawer}
                   path={path}
                   post={post}
                   index={i}
@@ -113,7 +120,7 @@ const StudentDash = ({ path }) => {
               {generalPosts.map((post, i) => (
                 <StudentPost
                   key={post.post_id}
-                  // updatePosts={editPost}
+                  toggleComments={toggleDrawer}
                   path={path}
                   post={post}
                   index={i}
@@ -137,6 +144,17 @@ const StudentDash = ({ path }) => {
         {renderer()}
       </div>
       <CreatePost path={path} />
+
+      <SwipeableDrawer
+        sx={() => (display ? { display: "block" } : { display: "none" })}
+        anchor={"bottom"}
+        open={state["bottom"]}
+        onClose={toggleDrawer("bottom", false)}
+        onOpen={toggleDrawer("bottom", true)}
+      >
+        {/* {listBottom("bottom")} */}
+        <CommentDrawer anchor={"bottom"} toggleComments={toggleDrawer} />
+      </SwipeableDrawer>
     </>
   );
 };
