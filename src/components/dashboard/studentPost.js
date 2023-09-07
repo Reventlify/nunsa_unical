@@ -124,7 +124,7 @@ const StudentPost = ({ toggleComments, post, index, path }) => {
         {post.post_media && (
           <div className={`container mt-3 ${classes.opinion}`}>
             <div
-              className={`${classes.like}`}
+              className={`${classes.like} container`}
               onClick={() => {
                 if (loading) {
                   return;
@@ -156,7 +156,7 @@ const StudentPost = ({ toggleComments, post, index, path }) => {
               </span>{" "}
             </div>
             <div
-              className={`${classes.dislike} centerDivR`}
+              className={`${classes.dislike} centerDivR container`}
               onClick={() => {
                 if (loading) {
                   return;
