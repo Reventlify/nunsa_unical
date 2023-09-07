@@ -87,6 +87,12 @@ const StudentPost = ({ toggleComments, post, index, path }) => {
   //   [dispatch, studentOpinion, studentOpinionTo, token, path]
   // );
 
+  const showImg = () => {
+    if (post.post_media !== null) {
+      window.location.href = post.post_media;
+    }
+  };
+
   const loader = (postID) => {
     if (loading && !sent && studentOpinionTo === postID) {
       return (
@@ -112,7 +118,8 @@ const StudentPost = ({ toggleComments, post, index, path }) => {
       {post.post_media && (
         <div className={`${classes.postImg}`}>
           <img
-            className={classes.postImgr}
+            onClick={showImg}
+            className={`${classes.postImgr} hover`}
             src={post.post_media}
             width="100%"
             height="100%"
