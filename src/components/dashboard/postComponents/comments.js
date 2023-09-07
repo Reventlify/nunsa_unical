@@ -7,8 +7,71 @@ import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import classes from "../studentDash.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { api } from "../../../link/API";
+import { postsActions } from "../../../store/posts-slice";
+import { authActions } from "../../../store/auth-slice";
+import { useState } from "react";
 
-const PostComments = ({ comment, index }) => {
+const PostComments = ({ comment, index, path }) => {
+  const { token } = useSelector((state) => state.auth.user);
+  const { postComments, generalPosts, classPosts } = useSelector(
+    (state) => state.posts
+  );
+  const postP = path === "class" ? classPosts : generalPosts;
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const indexOfPost = postP.findIndex((post) => post.post_id === postComments);
+
+  const handleCommentAction =
+    // useCallback(
+    async (action, id, i, pId) => {
+      // Handle comment submission here, using studentOpinion and studentOpinionTo
+      // e.preventDefault();
+      setLoading(true);
+      try {
+        await fetch(`${api}/user/posts/${pId}/comment/${action}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            commentID: id,
+          }),
+        }).then(async (res) => {
+          const data = await res.json();
+          if (res.status === 200) {
+            setLoading(false);
+            dispatch(postsActions.commentsPersist(postComments));
+            dispatch(postsActions.setPostComments(postComments));
+            dispatch(postsActions.commentInsert(data.postComments));
+            if (path === "class") {
+              return dispatch(
+                postsActions.classPostEdit({
+                  newData: data.post,
+                  i,
+                })
+              );
+            } else {
+              return dispatch(
+                postsActions.postEdit({
+                  newData: data.post,
+                  i,
+                })
+              );
+            }
+          } else if (res.status === 401 || res.status === 403) {
+            return dispatch(authActions.logout());
+          } else {
+            return setLoading(false);
+          }
+        });
+      } catch (error) {
+        return console.error(error);
+      }
+    };
+
   const formatDateGroupTitle = () => {
     const today = moment().format("MMM D, YYYY");
     const yesterday = moment().subtract(1, "days").format("MMM D, YYYY");
@@ -24,7 +87,7 @@ const PostComments = ({ comment, index }) => {
     }
   };
   return (
-    <div className={`${classes.notification} mt-3`} key={comment.comment_id}>
+    <div className={`${classes.notification} mt-3`}>
       <div className={`${classes.commIMG}`}>
         {comment.commenter_photo !== null ? (
           <img
@@ -61,7 +124,20 @@ const PostComments = ({ comment, index }) => {
           </span>
         </div>
         <div className={`container mt-2 blogText ${classes.likeandReply}`}>
-          <div>
+          <div
+            onClick={() => {
+              if (loading) {
+                return;
+              } else {
+                handleCommentAction(
+                  "like_comment",
+                  comment.comment_id,
+                  index,
+                  postComments
+                );
+              }
+            }}
+          >
             {comment.liked === "yes" ? (
               <ThumbUpAltIcon className="hover nunsa" />
             ) : (
@@ -74,7 +150,21 @@ const PostComments = ({ comment, index }) => {
             </span>
           </div>
           {/* <div className="ml-2 hover">Reply</div> */}
-          <div className="ml-2">
+          <div
+            className="ml-2"
+            onClick={() => {
+              if (loading) {
+                return;
+              } else {
+                handleCommentAction(
+                  "dislike_comment",
+                  comment.comment_id,
+                  index,
+                  postComments
+                );
+              }
+            }}
+          >
             {comment.disliked === "yes" ? (
               <ThumbDownAltIcon className="hover nunsa" />
             ) : (

@@ -15,13 +15,17 @@ import PostComments from "./postComponents/comments";
 
 const CommentDrawer = ({ anchor, toggleComments }) => {
   const dispatch = useDispatch();
-  const { postComments, comments } = useSelector((state) => state.posts);
+  const { postComments, comments, formerPostComments } = useSelector(
+    (state) => state.posts
+  );
   const { token } = useSelector((state) => state.auth.user);
   const [loading, setLoading] = useState(false);
-  const [fetching, setFetching] = useState(true);
+  const [fetching, setFetching] = useState(false);
   const [opinion, setOpinion] = useState("");
+  const [opinions, setOpinions] = useState();
 
   const getComments = useCallback(async () => {
+    setFetching(true);
     try {
       const response = await fetch(
         `${api}/user/posts/${postComments}/comment`,
@@ -35,8 +39,12 @@ const CommentDrawer = ({ anchor, toggleComments }) => {
       );
       if (response.status === 200) {
         const data = await response.json();
-        dispatch(postsActions.commentInsert(data));
-        setFetching(false);
+        if (formerPostComments === null) {
+          dispatch(postsActions.commentInsert(data));
+          return setFetching(false);
+        } else {
+          return setFetching(false);
+        }
       } else if (response.status === 401 || response.status === 403) {
         dispatch(authActions.logout());
       } else {
@@ -49,7 +57,9 @@ const CommentDrawer = ({ anchor, toggleComments }) => {
     }
   }, [token, dispatch, postComments]);
   useEffect(() => {
+    // if (postComments !== null && formerPostComments === null) {
     getComments();
+    // }
   }, [getComments]);
   return (
     <Box
@@ -80,7 +90,13 @@ const CommentDrawer = ({ anchor, toggleComments }) => {
             <CustomLoader height={"60vh"} size={18} />
           ) : (
             comments.map((comment, i) => {
-              return <PostComments comment={comment} index={i} />;
+              return (
+                <PostComments
+                  comment={comment}
+                  key={comment.comment_id}
+                  index={i}
+                />
+              );
             })
           )}
           <BottomSpace />

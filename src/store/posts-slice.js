@@ -4,7 +4,9 @@ const initialState = {
   generalPosts: [],
   classPosts: [],
   comments: [],
+  newComments: [],
   postComments: null,
+  formerPostComments: null,
 };
 
 const postsSlice = createSlice({
@@ -50,14 +52,20 @@ const postsSlice = createSlice({
       state.comments = [];
       state.postComments = null;
     },
+    setPostComments(state, action) {
+      state.postComments = action.payload;
+    },
     commentInsert(state, action) {
       state.comments = action.payload;
     },
+    newCommentInsert(state, action) {
+      state.newComments = action.payload;
+    },
+    commentsPersist(state, action) {
+      state.formerPostComments = action.payload;
+    },
     clearComments(state, action) {
       state.comments = [];
-    },
-    setPostComments(state, action) {
-      state.postComments = action.payload;
     },
   },
 });

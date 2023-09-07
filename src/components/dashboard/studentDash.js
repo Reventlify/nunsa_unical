@@ -47,6 +47,7 @@ const StudentDash = ({ path }) => {
       return;
     }
     display ? setDisplay(false) : setDisplay(true);
+    dispatch(postsActions.commentsPersist(null));
     return setState({ ...state, [anchor]: open });
   };
 
@@ -160,7 +161,11 @@ const StudentDash = ({ path }) => {
         onOpen={toggleDrawer("bottom", true)}
       >
         {/* {listBottom("bottom")} */}
-        <CommentDrawer anchor={"bottom"} toggleComments={toggleDrawer} />
+        <CommentDrawer
+          anchor={"bottom"}
+          toggleComments={toggleDrawer}
+          path={path}
+        />
       </SwipeableDrawer>
     </>
   );

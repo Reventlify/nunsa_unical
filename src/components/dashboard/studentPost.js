@@ -47,6 +47,7 @@ const StudentPost = ({ toggleComments, post, index, path }) => {
           body: JSON.stringify({
             studentOpinion,
             action: action,
+            commentId: null,
           }),
         }).then(async (res) => {
           const data = await res.json();
