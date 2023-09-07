@@ -89,7 +89,8 @@ const StudentPost = ({ toggleComments, post, index, path }) => {
 
   const showImg = () => {
     if (post.post_media !== null) {
-      window.location.href = post.post_media;
+      window.open(post.post_media, "_blank");
+      // window.location.href = post.post_media;
     }
   };
 
