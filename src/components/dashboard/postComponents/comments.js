@@ -45,22 +45,22 @@ const PostComments = ({ comment, index, path }) => {
             setLoading(false);
             dispatch(postsActions.commentsPersist(postComments));
             dispatch(postsActions.setPostComments(postComments));
-            dispatch(postsActions.commentInsert(data.postComments));
-            if (path === "class") {
-              return dispatch(
-                postsActions.classPostEdit({
-                  newData: data.post,
-                  i,
-                })
-              );
-            } else {
-              return dispatch(
-                postsActions.postEdit({
-                  newData: data.post,
-                  i,
-                })
-              );
-            }
+            return dispatch(postsActions.commentInsert(data.postComments));
+            // if (path === "class") {
+            //   return dispatch(
+            //     postsActions.classPostEdit({
+            //       newData: data.post,
+            //       i,
+            //     })
+            //   );
+            // } else {
+            //   return dispatch(
+            //     postsActions.postEdit({
+            //       newData: data.post,
+            //       i,
+            //     })
+            //   );
+            // }
           } else if (res.status === 401 || res.status === 403) {
             return dispatch(authActions.logout());
           } else {

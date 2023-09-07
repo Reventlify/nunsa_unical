@@ -99,7 +99,7 @@ const StudentPost = ({ toggleComments, post, index, path }) => {
         setSent(false);
         setStudentOpinion(""); // Clear the comment input
         setStudentOpinionTo(""); // Clear the user ID
-      }, 3500);
+      }, 2500);
       return (
         <div className="nunsa hover centerDiv" style={{ fontSize: "25px" }}>
           ✔

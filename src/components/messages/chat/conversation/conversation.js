@@ -206,7 +206,7 @@ const Conversation = ({ receiverID, senderID, loadingP, messages, typing }) => {
     return messageGroups.map((group, index) => (
       <div key={index}>
         <div className={classes.dateSeparator}>
-          <div className={`limiter bold ${classes.dateS}`}>
+          <div className={`limiter bold ${classes.dateS} mt-3`}>
             {formatDateGroupTitle(group.date)}
           </div>
         </div>
