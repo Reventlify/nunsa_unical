@@ -31,11 +31,11 @@ const StudentDash = ({ path }) => {
   const [loading, setLoading] = useState(true);
 
   const toggleDrawer = (anchor, open, id) => (event) => {
-    if (comments && event.type !== "keydown") {
-      dispatch(postsActions.clearComments());
-    }
-    if (open && event.type !== "keydown") {
+    if (open) {
       dispatch(postsActions.setPostComments(id));
+      // if (comments) {
+      //   dispatch(postsActions.clearComments());
+      // }
     }
     if (
       event &&
