@@ -54,17 +54,18 @@ const StudentPost = ({ toggleComments, post, index, path }) => {
             setStudentOpinion(""); // Clear the comment input
             setLoading(false);
             setSent(true);
+            dispatch(postsActions.setPostComments(data.postComments));
             if (path === "class") {
               return dispatch(
                 postsActions.classPostEdit({
-                  newData: data,
+                  newData: data.post,
                   i,
                 })
               );
             } else {
               return dispatch(
                 postsActions.postEdit({
-                  newData: data,
+                  newData: data.post,
                   i,
                 })
               );
@@ -202,9 +203,7 @@ const StudentPost = ({ toggleComments, post, index, path }) => {
                   </span>{" "}
                 </div>
                 <div className={`${classes.comment} centerDivH`}>
-                  <div
-                    onClick={toggleComments("bottom", true, post.post_id)}
-                  >
+                  <div onClick={toggleComments("bottom", true, post.post_id)}>
                     {" "}
                     <ChatBubbleOutlineIcon
                       className={

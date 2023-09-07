@@ -57,6 +57,7 @@ const CommentDrawer = ({ anchor, toggleComments }) => {
         height: "80vh",
         width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
       }}
+      className={`${classes.opinionMother}`}
       role="presentation"
       onKeyDown={toggleComments(anchor, false, null)}
     >
@@ -82,30 +83,33 @@ const CommentDrawer = ({ anchor, toggleComments }) => {
               return <PostComments comment={comment} index={i} />;
             })
           )}
+          <BottomSpace />
         </div>
 
-        <div className={`float-bottom ${classes.studOpinionDraw}`}>
-          <div className="" style={{ display: "flex", flexDirection: "row" }}>
-            <textarea
-              placeholder="Add a comment..."
-              id="IdOfCommentArea"
-              onBlur={() => {
-                // setStudentOpinion("");
-                document.getElementById(`IdOfCommentArea`).value = "";
-              }}
-              className={`form-control onfocusOpinion ${classes.studOpinion}`}
-              autoComplete="off"
-              autoCorrect="off"
-              aria-describedby="regimeDescriptionHelp"
-              // value={regimeDescription}
-              onChange={(e) => setOpinion(e.target.value)}
-              required
-            />
-            {opinion !== "" ? (
-              <div className="reventlify hover centerDiv">Post</div>
-            ) : (
-              ""
-            )}
+        <div className={`bg-white ${classes.studOpinionDraw} `}>
+          <div className="container fixed-bottom">
+            <div className="" style={{ display: "flex", flexDirection: "row" }}>
+              <textarea
+                placeholder="Add a comment..."
+                id="IdOfCommentArea"
+                onBlur={() => {
+                  // setStudentOpinion("");
+                  document.getElementById(`IdOfCommentArea`).value = "";
+                }}
+                className={`form-control onfocusOpinion ${classes.studOpinion}`}
+                autoComplete="off"
+                autoCorrect="off"
+                aria-describedby="regimeDescriptionHelp"
+                // value={regimeDescription}
+                onChange={(e) => setOpinion(e.target.value)}
+                required
+              />
+              {opinion !== "" ? (
+                <div className="reventlify hover centerDiv">Post</div>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
         </div>
         <BottomSpace />
