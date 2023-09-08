@@ -1,3 +1,5 @@
+import { startWithCase } from "../../utilities/text";
+
 export const COLUMNS = [
   //   {
   //     Header: "Name",
@@ -24,16 +26,19 @@ export const COLUMNS = [
     Header: "First Name",
     // Footer: "First Name",
     accessor: "student_fname",
+    Cell: ({ cell }) => startWithCase(cell.value),
   },
   {
     Header: "Middle Name",
     // Footer: "Middle Name",
     accessor: "student_mname",
+    Cell: ({ cell }) => startWithCase(cell.value),
   },
   {
     Header: "Last Name",
     // Footer: "Last Name",
     accessor: "student_lname",
+    Cell: ({ cell }) => startWithCase(cell.value),
   },
   {
     Header: "Matric No",
@@ -54,6 +59,7 @@ export const COLUMNS = [
     Header: "Role",
     // Footer: "Phone",
     accessor: "student_role",
+    Cell: ({ cell }) => startWithCase(cell.value),
   },
   {
     Header: "Id",
@@ -69,6 +75,7 @@ export const COLUMNS = [
     Header: "State Of Origin",
     // Footer: "Country",
     accessor: "student_state",
+    Cell: ({ cell }) => startWithCase(cell.value),
   },
   {
     Header: "Entry",
