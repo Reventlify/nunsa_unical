@@ -22,6 +22,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import Diversity3Icon from '@mui/icons-material/Diversity3';
 import AppBar from "@mui/material/AppBar";
 import { useLocation, useNavigate } from "react-router-dom";
 import one from "../../../images/one.jpg";
@@ -142,6 +143,7 @@ export default function MobileDashboard({ children }) {
           "Notifications",
           "Courses",
           "Election",
+          "Students"
         ].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton
@@ -168,9 +170,9 @@ export default function MobileDashboard({ children }) {
                   <NotificationsIcon />
                 ) : index === 4 ? (
                   <PictureAsPdfIcon />
-                ) : (
+                ) : index === 5 ?(
                   <HowToRegIcon />
-                )}
+                ) : <Diversity3Icon/>}
               </ListItemIcon>
               <ListItemText
                 sx={() =>

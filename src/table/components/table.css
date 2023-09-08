@@ -1,0 +1,117 @@
+/* table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+ 
+table th, table td {
+    text-align: left;
+    padding: 16px;
+    border: 1px solid #ddd;
+}
+ 
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+ 
+table tr:hover {
+    background-color: #ddd;
+}
+ 
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+} */
+/* 
+tfoot td  {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}  */
+
+/* .table-container {
+  overflow-x: auto; 
+  max-height: 400px;
+} */
+/* 
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd; */
+/* Set a fixed table header background color */
+/* } */
+
+/* Style table header cells */
+/* .table th {
+  text-align: left;
+  padding: 16px;
+  border: 1px solid #ddd;
+  background-color: #4caf50;
+  color: white;
+} */
+
+/* Style even rows */
+/* .table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+} */
+
+/* Style table body cells */
+/* .table td {
+  text-align: left;
+  padding: 16px;
+  border: 1px solid #ddd;
+} */
+
+/* Hover effect for rows */
+/* .table tbody tr:hover {
+  background-color: #ddd;
+} */
+
+.table-container {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  max-height: 480px; /* Set the maximum height for the table body */
+}
+
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+  /* Set a fixed table header background color */
+}
+
+/* Style table header cells */
+.table th {
+  text-align: left;
+  padding: 16px;
+  border: 1px solid #ddd;
+  background-color: #61ce70;
+  color: white;
+  position: sticky; /* Stick to the top */
+  top: 0; /* Stick to the top */
+  z-index: 1; /* Ensure the header appears above the body */
+}
+
+/* Style even rows */
+.table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Style table body cells */
+.table td {
+  text-align: left;
+  padding: 16px;
+  border: 1px solid #ddd;
+}
+
+/* Hover effect for rows */
+.table tbody tr:hover {
+  background-color: #ddd;
+}

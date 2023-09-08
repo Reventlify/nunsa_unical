@@ -14,6 +14,7 @@ import { io } from "socket.io-client";
 import { authActions } from "./store/auth-slice";
 import { api } from "./link/API";
 import { postsActions } from "./store/posts-slice";
+import StudentsDues from "./pages/auth/FinancialReport";
 const Dashboard = lazy(() => import("./pages/auth/Dashboard"));
 const Class = lazy(() => import("./pages/auth/Class"));
 const Message = lazy(() => import("./pages/auth/Message"));
@@ -98,6 +99,7 @@ function App() {
         <Route path="/login" element={<LoginView />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/student/create_post" element={<CreatePostMain />} />
+        <Route path="/student/Students" element={<StudentsDues />} />
         <Route path="*" element={<Four0Four />} />
 
         {/* lazy loaded routes */}
