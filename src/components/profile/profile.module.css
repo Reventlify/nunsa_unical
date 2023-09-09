@@ -1,8 +1,15 @@
+/* visuals */
 .theGParent {
   background-color: #adadad;
 }
 .theParent {
   background-color: #adadad;
+  height: 250px;
+}
+.theGParentM {
+  background-color: #fff;
+}
+.theParentM {
   height: 250px;
 }
 
@@ -11,7 +18,12 @@
   top: 0;
   left: 0;
 }
-
+.backImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.2rem;
+}
 .mail {
   position: absolute;
   bottom: -1.5rem;
@@ -25,13 +37,32 @@
 .mailIcon {
   font-size: 30px;
 }
+
+.profileImg {
+  object-fit: cover;
+}
+/* details */
+.name {
+  font-size: 23px;
+}
+.class{
+  font-size: 18px;
+}
 @media (min-width: 750px) {
+  /* visuals */
   .theGParent {
     background-color: #fff;
   }
   .theParent {
     height: 300px;
   }
+  .theGParentM {
+    background-color: #fff;
+  }
+  .theParentM {
+    height: 300px;
+  }
+
   .mail {
     bottom: -2rem;
     right: 1.5rem;
@@ -41,5 +72,10 @@
   }
   .mailIcon {
     font-size: 45px;
+  }
+
+  /* details */
+  .name {
+    font-size: 28px;
   }
 }

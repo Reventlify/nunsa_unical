@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { api } from "../../../link/API";
 import { postsActions } from "../../../store/posts-slice";
 import { authActions } from "../../../store/auth-slice";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const PostComments = ({ comment, index, path }) => {
@@ -18,10 +19,15 @@ const PostComments = ({ comment, index, path }) => {
   const { postComments, generalPosts, classPosts } = useSelector(
     (state) => state.posts
   );
+  const navigate = useNavigate();
   const postP = path === "class" ? classPosts : generalPosts;
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const indexOfPost = postP.findIndex((post) => post.post_id === postComments);
+
+  const toProfile = () => {
+    navigate(`/student/profile/${comment.commenter_id}`);
+  };
 
   const handleCommentAction =
     // useCallback(
@@ -72,6 +78,13 @@ const PostComments = ({ comment, index, path }) => {
       }
     };
 
+  const showImg = () => {
+    if (comment.commenter_photo !== null) {
+      window.open(comment.commenter_photo, "_blank");
+      // window.location.href = post.post_media;
+    }
+  };
+
   const formatDateGroupTitle = () => {
     const today = moment().format("MMM D, YYYY");
     const yesterday = moment().subtract(1, "days").format("MMM D, YYYY");
@@ -96,6 +109,7 @@ const PostComments = ({ comment, index, path }) => {
             width="40px"
             height="40px"
             className="round"
+            onClick={showImg}
           />
         ) : (
           <AccountCircleIcon
@@ -111,7 +125,7 @@ const PostComments = ({ comment, index, path }) => {
       <div className="hover ml-2">
         <div className={`${classes.commText} paddFull-1`}>
           <span className="block">
-            <span className="bold">
+            <span className="bold" onClick={toProfile}>
               {startWithCase(
                 `${comment.commenter_fname} ${comment.commenter_lname}`
               )}

@@ -15,10 +15,12 @@ import CustomLoader from "../loader/customLoader/CustomLoader";
 import { authActions } from "../../store/auth-slice";
 import { startWithCase } from "../../utilities/text";
 import { postsActions } from "../../store/posts-slice";
+import { useNavigate } from "react-router-dom";
 
 const StudentPost = ({ toggleComments, post, index, path }) => {
   const { token } = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [studentOpinion, setStudentOpinion] = useState("");
   const [studentOpinionTo, setStudentOpinionTo] = useState("");
   const [loading, setLoading] = useState(false);
@@ -114,6 +116,9 @@ const StudentPost = ({ toggleComments, post, index, path }) => {
       );
     }
   };
+  const toProfile = () => {
+    navigate(`/student/profile/${post.student_id}`);
+  };
   return (
     <div className={`${classes.post} margAuto boxShadow`}>
       {post.post_media && (
@@ -187,7 +192,9 @@ const StudentPost = ({ toggleComments, post, index, path }) => {
         )}
         <div className="container">
           <div className="container mt-3">
-            <span className="bold">{startWithCase(post.student_name)}</span>
+            <span className="bold" onClick={toProfile}>
+              {startWithCase(post.student_name)}
+            </span>
             &nbsp;{post.post_text}
             {!post.post_media && (
               <div className={`mt-3 ${classes.opinion}`}>

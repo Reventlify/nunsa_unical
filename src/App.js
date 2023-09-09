@@ -17,6 +17,7 @@ import { postsActions } from "./store/posts-slice";
 const Dashboard = lazy(() => import("./pages/auth/Dashboard"));
 const Profile = lazy(() => import("./pages/auth/Profile"));
 const StudentsDues = lazy(() => import("./pages/auth/FinancialReport"));
+const StudentInfo = lazy(() => import("./pages/auth/studentView"));
 const Class = lazy(() => import("./pages/auth/Class"));
 const Message = lazy(() => import("./pages/auth/Message"));
 const Courses = lazy(() => import("./pages/auth/Courses"));
@@ -126,6 +127,18 @@ function App() {
             isLoggedIn ? (
               <Suspense fallback={<FullLoader />}>
                 <StudentsDues />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
+          }
+        />
+        <Route
+          path="/student/students/:id"
+          element={
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <StudentInfo />
               </Suspense>
             ) : (
               <LoginView />
