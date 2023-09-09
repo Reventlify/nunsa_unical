@@ -10,6 +10,7 @@ import { api } from "../../../link/API";
 import { useDispatch, useSelector } from "react-redux";
 import OnSuccess from "../../success/onSuccess";
 import { authActions } from "../../../store/auth-slice";
+import CustomLoader from "../../loader/customLoader/CustomLoader";
 
 const CreatePostSmall = ({ path }) => {
   const dispatch = useDispatch();
@@ -144,7 +145,11 @@ const CreatePostSmall = ({ path }) => {
                     }
                     disabled={opinion.length === 0 || loading ? true : false}
                   >
-                    POST
+                    {loading ? (
+                      <CustomLoader color={"#fff"} height={"auto"} size={"14"} />
+                    ) : (
+                      "POST"
+                    )}
                   </button>
                 </div>
               </div>
@@ -161,14 +166,14 @@ const CreatePostSmall = ({ path }) => {
                   className="round"
                 />
               </div>
-              <div classes={`${classes.userDetails}`}>
-                <h6 className="bolder">Ezra Madu</h6>
-                <div>
+              <div >
+                <h5 className="bolder">Ezra Madu</h5>
+                {/* <div>
                   <button className="btn btn-sm btn-primary">General</button>
                   <button className="btn btn-sm btn-outline-primary ml-2">
                     &nbsp;Class&nbsp;
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

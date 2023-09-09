@@ -19,7 +19,23 @@ const Chat = () => {
   const { user_id, token } = useSelector((state) => state.auth.user);
   const { id } = useParams();
   const receiver_id = id.split("_");
-  const receiverID = receiver_id[1];
+
+  const whoIs = (a, b) => {
+    if (user_id === a) {
+      return {
+        sender: a,
+        receiver: b,
+      };
+    } else if (user_id === b) {
+      return {
+        sender: b,
+        receiver: a,
+      };
+    } else {
+      return null;
+    }
+  };
+  const receiverID = whoIs(receiver_id[0], receiver_id[1]).receiver;
   const [partner, setPartner] = useState();
   const [messages, setMessages] = useState([]);
   const [badStudent, setBadStudent] = useState(false);
@@ -80,6 +96,9 @@ const Chat = () => {
     get_partner_datails_and_conversation_with_partner();
   }, [get_partner_datails_and_conversation_with_partner]);
 
+  const toProfile = () => {
+    navigate(`/student/profile/${receiverID}`);
+  };
   if (badStudent) {
     return <Four0Four />;
   } else {
@@ -142,7 +161,8 @@ const Chat = () => {
                   &nbsp;
                   {partner.student_photo === null ? (
                     <AccountCircleIcon
-                      className="circle"
+                      onClick={toProfile}
+                      className="circle hover"
                       style={{
                         fontSize: "55px",
                         color: "#adadad",
@@ -152,14 +172,15 @@ const Chat = () => {
                   ) : (
                     <img
                       src={partner.student_photo}
+                      onClick={toProfile}
                       alt="user"
                       width="55px"
                       height="55px"
-                      className="round"
+                      className="round hover"
                     />
                   )}
                 </div>
-                <div className={`${classes.onOrOff}`}>
+                <div className={`${classes.onOrOff} hover`} onClick={toProfile}>
                   {/* <div> */}
                   <div
                     className={

@@ -129,6 +129,7 @@ import CustomLoader from "../../../loader/customLoader/CustomLoader";
 import classes from "../conversation/convo.module.css";
 import ChatIcon from "@mui/icons-material/Chat";
 import SendIcon from "@mui/icons-material/Send";
+import SeeMore from "../../../../utilities/seemore";
 
 const Conversation = ({ receiverID, senderID, loadingP, messages, typing }) => {
   const [msg, setMsg] = useState("");
@@ -227,7 +228,7 @@ const Conversation = ({ receiverID, senderID, loadingP, messages, typing }) => {
               }
             >
               <p>
-                {message.message_text}
+                <SeeMore text={message.message_text} />
                 <br />
                 <span
                   className="blogText float-right"

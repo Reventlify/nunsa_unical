@@ -13,6 +13,7 @@ import { postsActions } from "../../../store/posts-slice";
 import { authActions } from "../../../store/auth-slice";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import SeeMore from "../../../utilities/seemore";
 
 const PostComments = ({ comment, index, path }) => {
   const { token } = useSelector((state) => state.auth.user);
@@ -131,7 +132,7 @@ const PostComments = ({ comment, index, path }) => {
               )}
             </span>
             <br />
-            {comment.comment_text}
+            <SeeMore text={comment.comment_text} />
           </span>
           <span className={`block ${classes.notTime}`}>
             <span className="nunsa">{formatDateGroupTitle()}</span>

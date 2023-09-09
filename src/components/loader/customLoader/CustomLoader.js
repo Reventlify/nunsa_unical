@@ -1,9 +1,13 @@
 import { BeatLoader } from "react-spinners";
 
-const CustomLoader = ({ height, size }) => {
+const CustomLoader = ({ height, size, color }) => {
   return (
     <div className="centerDiv" style={{ height: height }}>
-      <BeatLoader color="#61ce70" loading={true} size={`${size}px`} />
+      <BeatLoader
+        color={color === undefined ? "#61ce70" : color}
+        loading={true}
+        size={`${size}px`}
+      />
     </div>
   );
 };

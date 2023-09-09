@@ -16,6 +16,7 @@ import { authActions } from "../../store/auth-slice";
 import { startWithCase } from "../../utilities/text";
 import { postsActions } from "../../store/posts-slice";
 import { useNavigate } from "react-router-dom";
+import SeeMore from "../../utilities/seemore";
 
 const StudentPost = ({ toggleComments, post, index, path }) => {
   const { token } = useSelector((state) => state.auth.user);
@@ -195,7 +196,8 @@ const StudentPost = ({ toggleComments, post, index, path }) => {
             <span className="bold" onClick={toProfile}>
               {startWithCase(post.student_name)}
             </span>
-            &nbsp;{post.post_text}
+            &nbsp;
+            <SeeMore text={post.post_text} />
             {!post.post_media && (
               <div className={`mt-3 ${classes.opinion}`}>
                 <div
