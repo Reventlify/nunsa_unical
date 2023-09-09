@@ -123,10 +123,10 @@ const PostComments = ({ comment, index, path }) => {
           />
         )}
       </div>
-      <div className="hover ml-2">
+      <div className="ml-2">
         <div className={`${classes.commText} paddFull-1`}>
           <span className="block">
-            <span className="bold" onClick={toProfile}>
+            <span className="bold hover" onClick={toProfile}>
               {startWithCase(
                 `${comment.commenter_fname} ${comment.commenter_lname}`
               )}

@@ -193,7 +193,7 @@ const StudentPost = ({ toggleComments, post, index, path }) => {
         )}
         <div className="container">
           <div className="container mt-3">
-            <span className="bold" onClick={toProfile}>
+            <span className="bold hover" onClick={toProfile}>
               {startWithCase(post.student_name)}
             </span>
             &nbsp;
