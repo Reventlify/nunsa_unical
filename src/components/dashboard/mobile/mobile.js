@@ -22,7 +22,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import Diversity3Icon from '@mui/icons-material/Diversity3';
+import Diversity3Icon from "@mui/icons-material/Diversity3";
 import AppBar from "@mui/material/AppBar";
 import { useLocation, useNavigate } from "react-router-dom";
 import one from "../../../images/one.jpg";
@@ -54,6 +54,9 @@ export default function MobileDashboard({ children }) {
       return navigate("/");
     }
     return;
+  };
+  const myProfile = () => {
+    navigate(`${parentPath}/profile/${user.user_id}`);
   };
   const pageDerivative = () => {
     if (childPath.indexOf(`/`) === -1) {
@@ -105,6 +108,8 @@ export default function MobileDashboard({ children }) {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <div
+        className="hover"
+        onClick={myProfile}
         style={{
           display: "flex",
           flexDirection: "row",
@@ -132,7 +137,17 @@ export default function MobileDashboard({ children }) {
         )}{" "}
         &nbsp;&nbsp;&nbsp;
         <div style={{ display: "flex", alignItems: "center" }}>
-          <h5>{startWithCase(`${user.user_fname} ${user.user_lname}`)}</h5>{" "}
+          <h5
+            style={
+              page === "profile"
+                ? {
+                    color: "#61CE70",
+                  }
+                : {}
+            }
+          >
+            {startWithCase(`${user.user_fname} ${user.user_lname}`)}
+          </h5>{" "}
         </div>
       </div>
       <List>
@@ -143,7 +158,7 @@ export default function MobileDashboard({ children }) {
           "Notifications",
           "Courses",
           "Election",
-          "Students"
+          "Students",
         ].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton
@@ -170,9 +185,11 @@ export default function MobileDashboard({ children }) {
                   <NotificationsIcon />
                 ) : index === 4 ? (
                   <PictureAsPdfIcon />
-                ) : index === 5 ?(
+                ) : index === 5 ? (
                   <HowToRegIcon />
-                ) : <Diversity3Icon/>}
+                ) : (
+                  <Diversity3Icon />
+                )}
               </ListItemIcon>
               <ListItemText
                 sx={() =>

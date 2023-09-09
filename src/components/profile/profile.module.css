@@ -1,0 +1,45 @@
+.theGParent {
+  background-color: #adadad;
+}
+.theParent {
+  background-color: #adadad;
+  height: 250px;
+}
+
+.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.mail {
+  position: absolute;
+  bottom: -1.5rem;
+  right: 1.1rem;
+}
+
+.mailHolder {
+  padding: 0.7rem;
+}
+
+.mailIcon {
+  font-size: 30px;
+}
+@media (min-width: 750px) {
+  .theGParent {
+    background-color: #fff;
+  }
+  .theParent {
+    height: 300px;
+  }
+  .mail {
+    bottom: -2rem;
+    right: 1.5rem;
+  }
+  .mailHolder {
+    padding: 1rem;
+  }
+  .mailIcon {
+    font-size: 45px;
+  }
+}

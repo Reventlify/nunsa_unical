@@ -14,8 +14,9 @@ import { io } from "socket.io-client";
 import { authActions } from "./store/auth-slice";
 import { api } from "./link/API";
 import { postsActions } from "./store/posts-slice";
-import StudentsDues from "./pages/auth/FinancialReport";
 const Dashboard = lazy(() => import("./pages/auth/Dashboard"));
+const Profile = lazy(() => import("./pages/auth/Profile"));
+const StudentsDues = lazy(() => import("./pages/auth/FinancialReport"));
 const Class = lazy(() => import("./pages/auth/Class"));
 const Message = lazy(() => import("./pages/auth/Message"));
 const Courses = lazy(() => import("./pages/auth/Courses"));
@@ -51,7 +52,6 @@ function App() {
         dispatch(postsActions.clearAllPosts());
         dispatch(authActions.logout());
         dispatch(authActions.tokenExpiry({ tokenExpiry: null }));
-        console.log(isLoggedIn);
         clearInterval(intervalTimer);
       }
     }
@@ -63,7 +63,6 @@ function App() {
     try {
       dispatch(authActions.stopLoad());
       dispatch(authActions.deleteError());
-      console.log(expiresAt);
 
       if (
         !sessionStorage.getItem("nunsa_user") === false &&
@@ -78,12 +77,7 @@ function App() {
           autoConnect: false,
         });
         socket.connect();
-        console.log("was logged t");
-        console.log(isLoggedIn);
-      } else {
-        console.log("was not logged");
       }
-      console.log("expiresAt:", expiresAt);
     } catch (error) {
       console.error(error);
     }
@@ -99,7 +93,6 @@ function App() {
         <Route path="/login" element={<LoginView />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/student/create_post" element={<CreatePostMain />} />
-        <Route path="/student/Students" element={<StudentsDues />} />
         <Route path="*" element={<Four0Four />} />
 
         {/* lazy loaded routes */}
@@ -113,9 +106,6 @@ function App() {
             ) : (
               <LoginView />
             )
-            // <Suspense fallback={<FullLoader />}>
-            //   <Dashboard />
-            // </Suspense>
           }
         />
         <Route
@@ -124,6 +114,30 @@ function App() {
             isLoggedIn ? (
               <Suspense fallback={<FullLoader />}>
                 <Class />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
+          }
+        />
+        <Route
+          path="/student/students"
+          element={
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <StudentsDues />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
+          }
+        />
+        <Route
+          path="/student/profile/:id"
+          element={
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <Profile />
               </Suspense>
             ) : (
               <LoginView />

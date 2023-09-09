@@ -93,7 +93,7 @@ const Chat = () => {
                   <span
                     className="hover white"
                     onClick={() => {
-                      navigate("/student/messages");
+                      navigate(-1);
                     }}
                   >
                     <ArrowBackIcon style={{ fontSize: "35px" }} />
@@ -134,7 +134,7 @@ const Chat = () => {
                   <span
                     className="hover white"
                     onClick={() => {
-                      navigate("/student/messages");
+                      navigate(-1);
                     }}
                   >
                     <ArrowBackIcon style={{ fontSize: "35px" }} />
