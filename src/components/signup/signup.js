@@ -443,7 +443,6 @@ const Signup = () => {
                   id="exampleInputPassword1"
                   autoComplete="off"
                   minLength="8"
-                  maxLength="8"
                   ref={pass}
                   onChange={(e) => setPassword(trim(e.target.value))}
                   required
