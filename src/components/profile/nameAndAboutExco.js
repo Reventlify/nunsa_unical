@@ -4,6 +4,7 @@ import truncate from "lodash.truncate";
 import { startWithCase } from "../../utilities/text";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import BottomSpace from "../bottomSpace";
 const text = `Proin faucibus pretium nisl. Pellentesque ut exvel metus laculis
 vulputate. In sagittis lectus sed massa pulvinar efficitur. Sed a
 dictum magna, id volutpat est. Morbi ullamcorper mauris.`;
@@ -58,6 +59,7 @@ const NameAndAboutExco = ({ user_name, about, nos_cleared, level, role }) => {
           </span>
         </div>
       )}
+      <BottomSpace />
       <div className="fixed-bottom container bg-white greatOpacity">
         {!clearDues ? (
           <h4

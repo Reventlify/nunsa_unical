@@ -7,6 +7,7 @@ import { authActions } from "../../store/auth-slice";
 import { useDispatch } from "react-redux";
 import { BeatLoader } from "react-spinners";
 import { api } from "../../link/API";
+import BottomSpace from "../bottomSpace";
 
 const NameAndAbout = ({ user_name, about, level, role, edit, token }) => {
   let about_me = about;
@@ -116,6 +117,7 @@ const NameAndAbout = ({ user_name, about, level, role, edit, token }) => {
       ) : (
         ""
       )}
+      <BottomSpace />
       {showEditor ? (
         <div className={`fixed-bottom bg-white`} style={{ width: "100%" }}>
           <div className="container">
