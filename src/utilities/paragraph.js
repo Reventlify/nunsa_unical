@@ -36,7 +36,7 @@ const ParagraphText = ({ text }) => {
     const paragraphs = text.split(/\n{1}/);
 
     return (
-      <div className="inline">
+      <span>
         {paragraphs.map((paragraph, index) => (
           <React.Fragment key={index}>
             {index > 0 && <br />}{" "}
@@ -44,7 +44,7 @@ const ParagraphText = ({ text }) => {
             <TextWithBold text={paragraph} />
           </React.Fragment>
         ))}
-      </div>
+      </span>
     );
   }
   return <TextWithBold text={text} />;

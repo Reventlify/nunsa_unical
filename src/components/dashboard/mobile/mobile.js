@@ -55,6 +55,28 @@ export default function MobileDashboard({ children }) {
     }
     return;
   };
+  const linkArr = () => {
+    if (user.user_permissions.viewStudents) {
+      return [
+        "Dashboard",
+        "Class",
+        "Messages",
+        "Notifications",
+        "Courses",
+        "Election",
+        "Students",
+      ];
+    } else {
+      return [
+        "Dashboard",
+        "Class",
+        "Messages",
+        "Notifications",
+        "Courses",
+        "Election",
+      ];
+    }
+  };
   const myProfile = () => {
     navigate(`${parentPath}/profile/${user.user_id}`);
   };
@@ -151,15 +173,7 @@ export default function MobileDashboard({ children }) {
         </div>
       </div>
       <List>
-        {[
-          "Dashboard",
-          "Class",
-          "Messages",
-          "Notifications",
-          "Courses",
-          "Election",
-          "Students",
-        ].map((text, index) => (
+        {linkArr().map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton
               onClick={() => {

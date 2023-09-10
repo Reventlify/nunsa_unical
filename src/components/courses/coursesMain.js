@@ -62,7 +62,7 @@ const CoursesMain = () => {
                   &nbsp;&nbsp;{" "}
                   <span className="blogText">Upload a material</span>
                 </Typography>
-                {(!approvePDF && level.slice(0, 1) === year.year.slice(-1)) ||
+                {(approvePDF && level.slice(0, 1) === year.year.slice(-1)) ||
                 user_role === "pres" ||
                 user_role === "v_pres" ? (
                   <Typography

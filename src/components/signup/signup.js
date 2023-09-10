@@ -41,13 +41,13 @@ const Signup = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    if (sessionStorage.getItem("verification_code") === "Sent") {
+    if (localStorage.getItem("verification_code") === "Sent") {
       setVerifyEmail(true);
       setLoginError(
         "If you don't see the verification code in your inbox, check your spam folder."
       );
       setDip("block");
-    } else if (sessionStorage.getItem("verification_code") === "Verified") {
+    } else if (localStorage.getItem("verification_code") === "Verified") {
       setVerifyEmail(true);
       setEmailVerified(true);
     }
@@ -65,11 +65,11 @@ const Signup = () => {
 
   // takes user back to homepage
   const handlePostBack = () => {
-    sessionStorage.clear("verification_code");
-    sessionStorage.clear("email");
-    sessionStorage.clear("first_name");
-    sessionStorage.clear("middle_name");
-    sessionStorage.clear("last_name");
+    localStorage.clear("verification_code");
+    localStorage.clear("email");
+    localStorage.clear("first_name");
+    localStorage.clear("middle_name");
+    localStorage.clear("last_name");
     return navigate("/");
   };
 
@@ -95,11 +95,11 @@ const Signup = () => {
           setButton(false);
           return setLoginError(data);
         } else if (res.status === 200) {
-          sessionStorage.setItem("verification_code", "Sent");
-          sessionStorage.setItem("email", email);
-          sessionStorage.setItem("first_name", fName);
-          sessionStorage.setItem("middle_name", mName);
-          sessionStorage.setItem("last_name", lName);
+          localStorage.setItem("verification_code", "Sent");
+          localStorage.setItem("email", email);
+          localStorage.setItem("first_name", fName);
+          localStorage.setItem("middle_name", mName);
+          localStorage.setItem("last_name", lName);
           setLoginError(
             "A code has been sent to your email. If you don't see the verification code in your inbox, please check your spam folder."
           );
@@ -150,10 +150,10 @@ const Signup = () => {
 
   const onUserCreate = async (e) => {
     e.preventDefault();
-    const email = sessionStorage.getItem("email");
-    const fName = sessionStorage.getItem("first_name");
-    const mName = sessionStorage.getItem("middle_name");
-    const lName = sessionStorage.getItem("last_name");
+    const email = localStorage.getItem("email");
+    const fName = localStorage.getItem("first_name");
+    const mName = localStorage.getItem("middle_name");
+    const lName = localStorage.getItem("last_name");
     if (email === null || fName === null || mName === null || lName === null) {
       setLoading(false);
       setButton(false);
@@ -186,11 +186,11 @@ const Signup = () => {
             setButton(false);
             return setLoginError(data);
           } else if (res.status === 200) {
-            sessionStorage.clear("verification_code");
-            sessionStorage.clear("email");
-            sessionStorage.clear("first_name");
-            sessionStorage.clear("middle_name");
-            sessionStorage.clear("last_name");
+            localStorage.clear("verification_code");
+            localStorage.clear("email");
+            localStorage.clear("first_name");
+            localStorage.clear("middle_name");
+            localStorage.clear("last_name");
             setButton(false);
             setLoading(false);
             return setSuccess(true);

@@ -37,7 +37,7 @@ const DashSearchAndNotifications = ({ search }) => {
             <div className="theLine"></div>
           </div>
           {/* notifications */}
-          <div className={`${classes.notP} mt-3 container bg-white`}>
+          {/* <div className={`${classes.notP} mt-3 container bg-white`}>
             <div className={`${classes.notification}`}>
               <div className={`${classes.notIMG}`}>
                 <img
@@ -102,7 +102,7 @@ const DashSearchAndNotifications = ({ search }) => {
                 </span>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
