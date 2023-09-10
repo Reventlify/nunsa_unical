@@ -1,4 +1,4 @@
 // const api = "http://localhost:5000";
-const api = "https://api-nunsaunicaldev.onrender.com";
+const api = "https://api-nunsaunical.onrender.com";
 
 export { api }
