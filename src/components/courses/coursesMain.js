@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 
 const CoursesMain = () => {
   const navigate = useNavigate();
-  const { approvePDF } = useSelector(
+  const { approvePDF, viewStudents } = useSelector(
     (state) => state.auth.user.user_permissions
   );
   const { level, user_role } = useSelector((state) => state.auth.user);
@@ -63,8 +63,7 @@ const CoursesMain = () => {
                   <span className="blogText">Upload a material</span>
                 </Typography>
                 {(approvePDF && level.slice(0, 1) === year.year.slice(-1)) ||
-                user_role === "pres" ||
-                user_role === "v_pres" ? (
+                (approvePDF && viewStudents) ? (
                   <Typography
                     className="mt-2 hover"
                     onClick={() => {
