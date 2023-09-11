@@ -50,7 +50,12 @@ function App() {
     if (typeof expiresAt === "number") {
       if (expiresAt <= currentTimestamp) {
         // Token has expired, log the user out
-        socket.disconnect();
+        io(api, {
+          query: {
+            token: localStorage.getItem("nunsa_user"),
+          },
+          autoConnect: false,
+        }).disconnect();
         dispatch(postsActions.clearAllPosts());
         dispatch(authActions.logout());
         dispatch(authActions.tokenExpiry({ tokenExpiry: null }));
