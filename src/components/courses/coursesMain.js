@@ -62,9 +62,22 @@ const CoursesMain = () => {
                   &nbsp;&nbsp;{" "}
                   <span className="blogText">Upload a material</span>
                 </Typography>
-                {(user_role === "course rep" &&
-                  level.slice(0, 1) === year.year.slice(-1)) ||
-                (approvePDF && viewStudents) ? (
+                {user_role === "course rep" &&
+                level.slice(0, 1) === year.year.slice(-1) ? (
+                  <Typography
+                    className="mt-2 hover"
+                    onClick={() => {
+                      toPageInitiator("review", year.year);
+                    }}
+                  >
+                    <TaskIcon className="nunsa" />
+                    &nbsp;&nbsp;{" "}
+                    <span className="blogText">Review materials</span>
+                  </Typography>
+                ) : (
+                  ""
+                )}
+                {approvePDF && viewStudents ? (
                   <Typography
                     className="mt-2 hover"
                     onClick={() => {
