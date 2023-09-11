@@ -62,7 +62,8 @@ const CoursesMain = () => {
                   &nbsp;&nbsp;{" "}
                   <span className="blogText">Upload a material</span>
                 </Typography>
-                {(approvePDF && level.slice(0, 1) === year.year.slice(-1)) ||
+                {(user_role === "course rep" &&
+                  level.slice(0, 1) === year.year.slice(-1)) ||
                 (approvePDF && viewStudents) ? (
                   <Typography
                     className="mt-2 hover"
