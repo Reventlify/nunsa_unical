@@ -2,16 +2,59 @@ import classes from "../studentDash.module.css";
 import president from "../../../images/president.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { useCallback, useState } from "react";
+import { api } from "../../../link/API";
+import { authActions } from "../../../store/auth-slice";
+import { postsActions } from "../../../store/posts-slice";
 
 const DashSearchAndNotifications = ({ search }) => {
   const { pathname } = useLocation();
   const { token, level } = useSelector((state) => state.auth.user);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searching, setSearching] = useState(false);
   const dispatch = useDispatch();
+
+  const searchPosts =
+    // useCallback(
+    async (e) => {
+      console.log(`search for: ${searchTerm}`);
+      e.preventDefault();
+      setSearching(true);
+      try {
+        const response = await fetch(`${api}/user/searchposts/${searchTerm}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+        });
+        if (response.status === 200) {
+          const data = await response.json();
+          if (pathname.slice(-5).toLowerCase() === "class") {
+            dispatch(postsActions.classPostInsert(data));
+          } else {
+            dispatch(postsActions.postInsert(data));
+          }
+          return setSearching(false);
+        } else if (response.status === 401 || response.status === 403) {
+          dispatch(authActions.logout());
+        } else {
+          // const data = await response.json();
+          setSearching(false);
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+  //   ,
+  //   [token, dispatch]
+  // );
+
   return (
     <div className={`${classes.sideBar}`}>
       <div className="container">
         <div className={`container ${classes.foc} shadowB roboroboS edit`}>
-          <form className={`d-flex`} role="search">
+          <form className={`d-flex`} role="search" onSubmit={searchPosts}>
             <input
               className={`form-control me-2 b`}
               type="search"
@@ -20,13 +63,23 @@ const DashSearchAndNotifications = ({ search }) => {
                   ? `Yr${level.slice(0, 1)} class`
                   : "NUNSA UNICAL"
               }...`}
+              onChange={(e) => setSearchTerm(e.target.value)}
               aria-label="Search"
             />
             <button
-              className="btn bottomShadow btnct btnct-nunsa"
-              type="button"
+              className={
+                searchTerm.length < 1 || searching
+                  ? "btnct btn btn-secondary"
+                  : "btn bottomShadow btnct btnct-nunsa"
+              }
+              type="submit"
+              disabled={searchTerm.length < 1 || searching ? true : false}
             >
-              <i className="fa-solid fa-magnifying-glass"></i>
+              {searching ? (
+                "..."
+              ) : (
+                <i className="fa-solid fa-magnifying-glass"></i>
+              )}
             </button>
           </form>
         </div>
