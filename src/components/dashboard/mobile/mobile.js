@@ -96,7 +96,14 @@ export default function MobileDashboard({ children }) {
   });
 
   const navMaker = (text) => {
-    navigate(`${parentPath}/${text}`);
+    if (
+      text.toLowerCase() === "notifications" ||
+      text.toLowerCase() === "election"
+    ) {
+      return;
+    } else {
+      return navigate(`${parentPath}/${text}`);
+    }
   };
 
   const toggleDrawer = (anchor, open) => (event) => {
