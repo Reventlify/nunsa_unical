@@ -3,18 +3,22 @@ import one from "../../../images/one.jpg";
 import classes from "../createPostMain.module.css";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ClearIcon from "@mui/icons-material/Clear";
 import { useNavigate } from "react-router-dom";
 import BottomSpace from "../../bottomSpace";
-import { api } from "../../../link/API";
 import { useDispatch, useSelector } from "react-redux";
+import { api } from "../../../link/API";
 import OnSuccess from "../../success/onSuccess";
 import { authActions } from "../../../store/auth-slice";
 import CustomLoader from "../../loader/customLoader/CustomLoader";
+import { startWithCase } from "../../../utilities/text";
 
 const CreatePostSmall = ({ path }) => {
   const dispatch = useDispatch();
-  const { token, user_session } = useSelector((state) => state.auth.user);
+  const { token, user_session, photo, user_fname, user_lname } = useSelector(
+    (state) => state.auth.user
+  );
   const navigate = useNavigate();
   const hiddenFileInput = useRef();
   const [opinion, setOpinion] = useState("");
@@ -146,7 +150,11 @@ const CreatePostSmall = ({ path }) => {
                     disabled={opinion.length === 0 || loading ? true : false}
                   >
                     {loading ? (
-                      <CustomLoader color={"#fff"} height={"auto"} size={"14"} />
+                      <CustomLoader
+                        color={"#fff"}
+                        height={"auto"}
+                        size={"14"}
+                      />
                     ) : (
                       "POST"
                     )}
@@ -158,16 +166,29 @@ const CreatePostSmall = ({ path }) => {
           <div className={`${classes.headEnd}`}>
             <div className={`${classes.headEndSub} container`}>
               <div className={`${classes.userImg}`}>
-                <img
-                  src={one}
-                  alt="user"
-                  width="55px"
-                  height="55px"
-                  className="round"
-                />
+                {photo === null ? (
+                  <AccountCircleIcon
+                    className="circle"
+                    style={{
+                      fontSize: "55px",
+                      color: "#adadad",
+                      backgroundColor: "white",
+                    }}
+                  />
+                ) : (
+                  <img
+                    src={photo}
+                    alt="user"
+                    width="55px"
+                    height="55px"
+                    className="round"
+                  />
+                )}
               </div>
-              <div >
-                <h5 className="bolder">Ezra Madu</h5>
+              <div>
+                <h5 className="bolder">
+                  {startWithCase(`${user_fname} ${user_lname}`)}
+                </h5>
                 {/* <div>
                   <button className="btn btn-sm btn-primary">General</button>
                   <button className="btn btn-sm btn-outline-primary ml-2">
