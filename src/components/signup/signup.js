@@ -18,7 +18,7 @@ const Signup = () => {
   const [fName, setFName] = useState("");
   const [mName, setMName] = useState("");
   const [lName, setLName] = useState("");
-  const [gender, setGender] = useState("Femail");
+  const [gender, setGender] = useState("Female");
   const [matNo, setMatNo] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
   // email
