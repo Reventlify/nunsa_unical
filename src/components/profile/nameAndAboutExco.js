@@ -5,9 +5,9 @@ import { startWithCase } from "../../utilities/text";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import BottomSpace from "../bottomSpace";
-const text = `Proin faucibus pretium nisl. Pellentesque ut exvel metus laculis
-vulputate. In sagittis lectus sed massa pulvinar efficitur. Sed a
-dictum magna, id volutpat est. Morbi ullamcorper mauris.`;
+// const text = `Proin faucibus pretium nisl. Pellentesque ut exvel metus laculis
+// vulputate. In sagittis lectus sed massa pulvinar efficitur. Sed a
+// dictum magna, id volutpat est. Morbi ullamcorper mauris.`;
 const NameAndAboutExco = ({ user_name, about, nos_cleared, level, role }) => {
   const navigate = useNavigate();
   const { clearDues } = useSelector(
@@ -43,14 +43,14 @@ const NameAndAboutExco = ({ user_name, about, nos_cleared, level, role }) => {
         </span>
       </div>
       <div className="reventlify bold">{`( ${startWithCase(role)} )`}</div>
-      {about === null || about === undefined ? (
+      {about === null ? (
         ""
       ) : (
         <div className="mt-2">
           <span className={`${classes.about} blogText`}>
-            {truncateHandler(text)}&nbsp;&nbsp;
+            {truncateHandler(about)}&nbsp;&nbsp;
             <span className="nunsa hover" onClick={view}>
-              {text.length >= 180
+              {about.length >= 180
                 ? seeMore
                   ? "See less..."
                   : "See more..."
