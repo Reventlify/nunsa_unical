@@ -94,7 +94,7 @@ const Details = () => {
     return <FullLoader />;
   } else {
     return (
-      <div className="container mt-2">
+      <div className="centerDiv fullscreen">
         {/* {years.map((year, i) => {
           return (
             <div className={i > 0 ? "mt-3" : ""} key={`${year.year}_materials`}>
@@ -145,7 +145,7 @@ const Details = () => {
             </div>
           );
         })} */}
-        <div>
+        <div className="container">
           <Accordion defaultExpanded>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
