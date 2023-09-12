@@ -61,7 +61,7 @@ const NameAndAboutExco = ({ user_name, about, nos_cleared, level, role }) => {
       )}
       <BottomSpace />
       <div className="fixed-bottom container bg-white greatOpacity">
-        {clearDues ? (
+        {clearDues || role === "developer" ? (
           <h4
             className="hover limiter"
             onClick={() => {

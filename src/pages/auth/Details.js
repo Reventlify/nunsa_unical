@@ -12,6 +12,7 @@ import { api } from "../../link/API";
 import { authActions } from "../../store/auth-slice";
 import BottomSpace from "../../components/bottomSpace";
 import FullLoader from "../../components/loader/fullLoader/FullLoader";
+import { startWithCase } from "../../utilities/text";
 
 const Details = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const Details = () => {
   const [data, setData] = useState([]);
   const [ongoing, setOngoing] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [student_name, setName] = useState("");
   const [dynamicLoader, setDynamicLoader] = useState("");
   const navigate = useNavigate();
   const { token } = useSelector((state) => state.auth.user);
@@ -44,7 +46,8 @@ const Details = () => {
           const datai = await res.json();
           if (res.status === 200) {
             setDynamicLoader("");
-            setData(datai);
+            setData(datai.rows);
+            setData(datai.student_name);
             return setOngoing(false);
           } else if (res.status === 401 || res.status === 403) {
             return dispatch(authActions.logout());
@@ -72,7 +75,8 @@ const Details = () => {
       });
       if (response.status === 200) {
         const datai = await response.json();
-        setData(datai);
+        setData(datai.rows);
+        setName(datai.student_name);
         return setLoading(false);
       } else if (response.status === 401 || response.status === 403) {
         dispatch(authActions.logout());
@@ -155,6 +159,12 @@ const Details = () => {
               <Typography>Dues Clearance Status</Typography>
             </AccordionSummary>
             <AccordionDetails>
+              <Typography className="mt-2">
+                {startWithCase(student_name)}
+              </Typography>
+              <Typography className="mt-2">
+                {data.length === 0 ? "Not paid" : "Paid"}
+              </Typography>
               <Typography className="mt-2 hover">
                 {data.length >= 1 ? (
                   <button
