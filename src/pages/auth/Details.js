@@ -95,7 +95,7 @@ const Details = () => {
   } else {
     return (
       <div className="container mt-2">
-        {years.map((year, i) => {
+        {/* {years.map((year, i) => {
           return (
             <div className={i > 0 ? "mt-3" : ""} key={`${year.year}_materials`}>
               <Accordion defaultExpanded>
@@ -144,7 +144,51 @@ const Details = () => {
               </Accordion>
             </div>
           );
-        })}
+        })} */}
+        <div>
+          <Accordion defaultExpanded>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>Dues Clearance Status</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography className="mt-2 hover">
+                {data.length >= 1 ? (
+                  <button
+                    className="btnct btn btn-secondary"
+                    type="button"
+                    disabled={true}
+                  >
+                    Cleared
+                  </button>
+                ) : (
+                  <button
+                    className={
+                      dynamicLoader === 1
+                        ? "btnct btn btn-secondary"
+                        : "btn bottomShadow btnct btnct-nunsa"
+                    }
+                    type="button"
+                    disabled={dynamicLoader === 1 ? true : false}
+                    onClick={() => {
+                      setDynamicLoader(`1`);
+                      approveOne(`1`);
+                    }}
+                  >
+                    {dynamicLoader.length === 0 ? (
+                      "Clear"
+                    ) : (
+                      <BeatLoader size="12px" color="#fff" loading={true} />
+                    )}
+                  </button>
+                )}
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+        </div>
         <BottomSpace />
       </div>
     );
