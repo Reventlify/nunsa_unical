@@ -441,7 +441,7 @@ const Signup = () => {
                   autoComplete="off"
                   // pattern="\d{2}/\d{9}(TR)?"
                   // pattern="\d{2}/\d{7,10}(?:TR|tr)?"
-                  pattern="^(\d{6}|\d{12})[a-zA-Z]{2}$"
+                  pattern="^\d{6,12}[a-zA-Z]{2}$"
                   title="Please enter a valid value in the format xxxxxxxxx"
                   onChange={(e) => setRegNo(e.target.value)}
                   whileFocus={{ scale: 1.1 }}
