@@ -39,7 +39,7 @@ const Approval = () => {
   const getPendingMaterials = useCallback(async () => {
     try {
       //api call for sending the user data to the backend
-      await fetch(`${api}/user/pending_materials/${level}`, {
+      await fetch(`${api}/user/pending_materials/${year.slice(-1)}00`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
