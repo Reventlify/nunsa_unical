@@ -1,7 +1,9 @@
 const levelDeterminant = (session) => {
   try {
-    if (session === "21/22") {
+    if (session === "22/23") {
       return "100";
+    } else if (session === "21/22") {
+      return "200";
     } else if (session === "20/21") {
       return "200";
     } else if (session === "19/20") {

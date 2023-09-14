@@ -20,11 +20,12 @@ const Signup = () => {
   const [lName, setLName] = useState("");
   const [gender, setGender] = useState("Female");
   const [matNo, setMatNo] = useState("");
-  const [phoneNo, setPhoneNo] = useState("");
+  const [regNo, setRegNo] = useState("");
   // email
   const [success, setSuccess] = useState(false);
   const [verifyEmail, setVerifyEmail] = useState(false);
   const [emailVerified, setEmailVerified] = useState(false);
+  const [year1, setYear1] = useState(false);
   const [verificationCode, setVerificationCode] = useState("");
   // handle loading on submit
   const [loading, setLoading] = useState(false);
@@ -177,6 +178,8 @@ const Signup = () => {
             lName,
             matNo,
             gender,
+            regNo,
+            year1,
           }),
         }).then(async (res) => {
           const data = await res.json();
@@ -202,7 +205,7 @@ const Signup = () => {
     }
   };
   const formDisplay = () => {
-    if (!verifyEmail && !emailVerified) {
+    if (verifyEmail && emailVerified) {
       return (
         <form className="container" onSubmit={onSubmitEmail}>
           <motion.div
@@ -408,23 +411,44 @@ const Signup = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 1.0 }}
           >
-            <div className="mb-3">
-              <label htmlFor="mat_no" className="form-label">
-                Matric no
-              </label>
-              <motion.input
-                type="text"
-                className="form-control"
-                id="mat_no"
-                autoComplete="off"
-                // pattern="\d{2}/\d{9}(TR)?"
-                pattern="\d{2}/\d{7,10}(?:TR|tr)?"
-                title="Please enter a valid value in the format xx/xxxxxxxxx"
-                onChange={(e) => setMatNo(e.target.value)}
-                whileFocus={{ scale: 1.1 }}
-                required
-              />
-            </div>
+            {!year1 ? (
+              <div className="mb-3">
+                <label htmlFor="mat_no" className="form-label">
+                  Matric no
+                </label>
+                <motion.input
+                  type="text"
+                  className="form-control"
+                  id="mat_no"
+                  autoComplete="off"
+                  // pattern="\d{2}/\d{9}(TR)?"
+                  pattern="\d{2}/\d{7,10}(?:TR|tr)?"
+                  title="Please enter a valid value in the format xx/xxxxxxxxx"
+                  onChange={(e) => setMatNo(e.target.value)}
+                  whileFocus={{ scale: 1.1 }}
+                  required
+                />
+              </div>
+            ) : (
+              <div className="mb-3">
+                <label htmlFor="mat_no" className="form-label">
+                  Reg no
+                </label>
+                <motion.input
+                  type="text"
+                  className="form-control"
+                  id="mat_no"
+                  autoComplete="off"
+                  // pattern="\d{2}/\d{9}(TR)?"
+                  // pattern="\d{2}/\d{7,10}(?:TR|tr)?"
+                  pattern="^(\d{6}|\d{12})[a-zA-Z]{2}$"
+                  title="Please enter a valid value in the format xxxxxxxxx"
+                  onChange={(e) => setRegNo(e.target.value)}
+                  whileFocus={{ scale: 1.1 }}
+                  required
+                />
+              </div>
+            )}
           </motion.div>
           <motion.div
             className=""
@@ -460,9 +484,39 @@ const Signup = () => {
               </div>
             </div>
           </motion.div>
-
+          <div className="blogText">Are you in year 1?</div>
+          <div className="form-check inline-block">
+            <input
+              className="form-check-input boxShadow hover"
+              type="radio"
+              name="regNo"
+              onChange={(e) => {
+                console.log(true);
+                setYear1(true);
+              }}
+              required
+            />
+            <label className="form-check-label" htmlFor="flexRadioDefault1">
+              Yes
+            </label>
+          </div>
+          <div className="form-check ml-2 inline-block">
+            <input
+              className="form-check-input boxShadow hover"
+              type="radio"
+              name="regNo"
+              defaultChecked
+              onClick={(e) => {
+                console.log(false);
+                setYear1(false);
+              }}
+            />
+            <label className="form-check-label" htmlFor="flexRadioDefault2">
+              No
+            </label>
+          </div>
           <motion.div
-            className=""
+            className="mt-2"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 1.0 }}
           >
