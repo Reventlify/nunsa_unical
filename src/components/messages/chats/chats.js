@@ -97,7 +97,7 @@ const Chats = ({ navAction }) => {
                   }}
                 >
                   <div>
-                    {chat.message_media === null ? (
+                    {chat.other_user_photo === null ? (
                       <AccountCircleIcon
                         style={{
                           fontSize: "65px",
@@ -109,7 +109,7 @@ const Chats = ({ navAction }) => {
                     ) : (
                       <img
                         className="circle mr-2"
-                        src={chat.message_media}
+                        src={chat.other_user_photo}
                         height="55px"
                         width="55px"
                       />
