@@ -41,7 +41,7 @@ const authSlice = createSlice({
       state.error = false;
       state.errorMessage = null;
       state.loading = false;
-      localStorage.clear("nunsa_user");
+      sessionStorage.clear("nunsa_user");
     },
     updatePhoto(state, action) {
       state.user.photo = action.payload;
@@ -71,7 +71,7 @@ const authSlice = createSlice({
       state.isLoggedIn = payload.auth;
       state.user = payload.user;
       state.expiresAt = Number(payload.expiresAt);
-      localStorage.setItem("nunsa_user", payload.user.token);
+      sessionStorage.setItem("nunsa_user", payload.user.token);
     });
 
     builder.addCase(login.rejected, (state, action) => {

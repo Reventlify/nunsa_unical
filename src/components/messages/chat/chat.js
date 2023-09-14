@@ -42,7 +42,7 @@ const Chat = () => {
   const [loadingP, setLoadingP] = useState(true);
   const [isTyping, setIsTyping] = useState(false);
   // const [uniqueObjects, setUniqueObjects] = useState(new Set());
-  // const [id, setId] = useState(localStorage.getItem("nunsaChat"));
+  // const [id, setId] = useState(sessionStorage.getItem("nunsaChat"));
 
   // const userGotten = testChats.filter((person) => {
   //   if (person.chatId === id) {

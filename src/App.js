@@ -50,12 +50,7 @@ function App() {
     if (typeof expiresAt === "number") {
       if (expiresAt <= currentTimestamp) {
         // Token has expired, log the user out
-        io(api, {
-          query: {
-            token: localStorage.getItem("nunsa_user"),
-          },
-          autoConnect: false,
-        }).disconnect();
+        socket.disconnect();
         dispatch(postsActions.clearAllPosts());
         dispatch(authActions.logout());
         dispatch(authActions.tokenExpiry({ tokenExpiry: null }));
@@ -72,14 +67,14 @@ function App() {
       dispatch(authActions.deleteError());
 
       if (
-        !localStorage.getItem("nunsa_user") === false &&
+        !sessionStorage.getItem("nunsa_user") === false &&
         isLoggedIn &&
         typeof expiresAt === "number" &&
         Number(expiresAt) > Math.floor(Date.now() / 1000)
       ) {
         socket = io(api, {
           query: {
-            token: localStorage.getItem("nunsa_user"),
+            token: sessionStorage.getItem("nunsa_user"),
           },
           autoConnect: false,
         });
