@@ -155,17 +155,16 @@ const Signup = () => {
     const fName = localStorage.getItem("first_name");
     const mName = localStorage.getItem("middle_name");
     const lName = localStorage.getItem("last_name");
-    if (
-      email === null ||
-      fName === null ||
-      mName === null ||
-      lName === null ||
-      regNo.length === 0
-    ) {
+    if (year1 && regNo.length === 0) {
       setLoading(false);
       setButton(false);
       setDip("block");
-      return setLoginError("Your information is not complete.");
+      return setLoginError("Please retype your registration number");
+    } else if (!year1 && matNo.length === 0) {
+      setLoading(false);
+      setButton(false);
+      setDip("block");
+      return setLoginError("Please retype your matric number");
     } else {
       try {
         setLoading(true);
