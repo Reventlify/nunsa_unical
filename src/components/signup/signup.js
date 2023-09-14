@@ -160,7 +160,7 @@ const Signup = () => {
       fName === null ||
       mName === null ||
       lName === null ||
-      regNo === ""
+      regNo.length === 0
     ) {
       setLoading(false);
       setButton(false);
