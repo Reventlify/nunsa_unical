@@ -155,7 +155,13 @@ const Signup = () => {
     const fName = localStorage.getItem("first_name");
     const mName = localStorage.getItem("middle_name");
     const lName = localStorage.getItem("last_name");
-    if (email === null || fName === null || mName === null || lName === null) {
+    if (
+      email === null ||
+      fName === null ||
+      mName === null ||
+      lName === null ||
+      regNo === ""
+    ) {
       setLoading(false);
       setButton(false);
       setDip("block");
