@@ -374,6 +374,7 @@ const MaterialUpload = () => {
                     disabled={permittedToType}
                     onChange={(e) => setSession(e.target.value)}
                   >
+                    <option>2022/2023</option>
                     <option defaultValue>2021/2022</option>
                     <option>2020/2021</option>
                     <option>2019/2020</option>
