@@ -140,6 +140,7 @@ const Chats = ({ navAction }) => {
                           fontSize: "65px",
                           color: "#adadad",
                           marginRight: "0.7rem",
+                          marginLeft: "-0.3rem",
                           padding: 0,
                         }}
                       />
