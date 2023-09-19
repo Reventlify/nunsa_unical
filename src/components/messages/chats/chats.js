@@ -167,20 +167,26 @@ const Chats = ({ navAction }) => {
                           `${chat.other_user_fname} ${chat.other_user_lname}`
                         )}
                       </div>
-                      <div className="blogText" style={{ fontSize: "14px" }}>
+                      <div
+                        className={
+                          chat.seen === "no" && chat.sender_id !== user_id
+                            ? "black bolder"
+                            : "blogText"
+                        }
+                      >
                         {formatDateGroupTitle(chat.sent_at)}
                       </div>
                     </div>
                     <div className={`${classes.end}`}>
                       <div
-                        className={`${classes.ender} blogText`}
+                        className={`${classes.ender}`}
                         style={{ fontSize: "14px" }}
                       >
                         <span
                           className={
                             chat.seen === "no" && chat.sender_id !== user_id
-                              ? "bolder"
-                              : ""
+                              ? "black bolder"
+                              : "blogText"
                           }
                         >
                           {truncate(chat.message_text, {

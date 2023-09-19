@@ -82,11 +82,14 @@ code {
 .notify {
   position: absolute;
   font-size: 14px;
-  top: 0;
-  left: 2px;
+  top: -4px;
+  right: 7px;
 }
 .notify-nav {
-  left: 34px;
+  position: absolute;
+  font-size: 14px;
+  top: 5px;
+  right: 87px;
 }
 .inline {
   display: inline;
@@ -115,6 +118,12 @@ code {
 }
 .topNbottom {
   border-bottom: 1px dotted #61ce70;
+}
+.black {
+  color: black;
+}
+.bg-black {
+  background-color: black;
 }
 .white {
   color: white;
@@ -192,6 +201,10 @@ code {
 }
 .boldEnd {
   font-weight: 900;
+}
+.message-width {
+  max-width: 300px;
+  word-wrap: break-word;
 }
 .limiter {
   width: fit-content;

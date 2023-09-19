@@ -104,8 +104,10 @@ const Conversation = ({ receiverID, senderID, loadingP, messages, typing }) => {
                   : `${classes.convoLeft} paddFull-1 mt-3`
               }
             >
-              <p>
-                <SeeMore text={message.message_text} />
+              <p className="message-width">
+                <span className="message-width">
+                  <SeeMore text={message.message_text} />
+                </span>
                 <br />
                 <span
                   className="blogText float-right"
