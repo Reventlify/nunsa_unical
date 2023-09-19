@@ -101,7 +101,7 @@ const Chats = ({ navAction }) => {
         {loading && chats === testChats ? (
           <CustomLoader height={"90vh"} size={20} />
         ) : !loading && chats === testChats ? (
-          ""
+          <CustomLoader height={"90vh"} size={20} />
         ) : chats.length === 0 ? (
           <>
             <div className={`${classes.noChat}`}>
