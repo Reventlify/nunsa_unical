@@ -77,6 +77,7 @@ const Chat = () => {
           if (res.status === 200) {
             setPartner(data.partner);
             setMessages(data.msg);
+            dispatch(authActions.updateNotifications(data.notifications));
             return setLoadingP(false);
           } else if (res.status === 401 || res.status === 403) {
             return dispatch(authActions.logout());
