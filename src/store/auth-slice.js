@@ -8,6 +8,7 @@ const initialState = {
   errorMessage: null,
   loading: false,
   expiresAt: null,
+  refresh: false,
 };
 
 export const login = createAsyncThunk("login", async (userDetails) => {
@@ -49,11 +50,20 @@ const authSlice = createSlice({
     updateAbout(state, action) {
       state.user.about = action.payload;
     },
+    updateNotifications(state, action) {
+      state.user.notifications = action.payload > 0 ? action.payload : null;
+    },
     tokenExpiry(state, action) {
       state.expiresAt = action.payload.tokenExpiry;
     },
     stopLoad(state, action) {
       state.loading = false;
+    },
+    setRefreshTrue(state, action) {
+      state.refresh = true;
+    },
+    setRefreshFalse(state, action) {
+      state.refresh = false;
     },
     deleteError(state, action) {
       state.error = false;
@@ -71,6 +81,7 @@ const authSlice = createSlice({
       state.isLoggedIn = payload.auth;
       state.user = payload.user;
       state.expiresAt = Number(payload.expiresAt);
+      state.notifications = Number(payload.user.notifications);
       sessionStorage.setItem("nunsa_user", payload.user.token);
     });
 

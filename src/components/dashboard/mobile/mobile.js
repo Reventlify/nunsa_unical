@@ -119,6 +119,16 @@ export default function MobileDashboard({ children }) {
     setState({ ...state, [anchor]: open });
   };
 
+  socket.on("new_message", (new_message) => {
+    // console.log(`new message: ${new_message}`);
+    dispatch(authActions.setRefreshTrue());
+    dispatch(authActions.updateNotifications(new_message));
+  });
+  // React.useEffect(() => {
+  //   socket.on("new_message", (new_message) => {
+  //     console.log(`new message: ${new_message[0]}`);
+  //   });
+  // }, []);
   const list = (anchor) => (
     <Box
       sx={{
@@ -201,7 +211,12 @@ export default function MobileDashboard({ children }) {
                 ) : index === 1 ? (
                   <SchoolIcon />
                 ) : index === 2 ? (
-                  <MailIcon />
+                  <>
+                    <span className="red notify notify-nav">
+                      {user.notifications}
+                    </span>{" "}
+                    <MailIcon />
+                  </>
                 ) : index === 3 ? (
                   <NotificationsIcon />
                 ) : index === 4 ? (
@@ -291,6 +306,7 @@ export default function MobileDashboard({ children }) {
             edge="end"
             onClick={toggleDrawer("right", true)}
           >
+            <span className="red notify">{user.notifications}</span>{" "}
             <MenuIcon />
           </IconButton>
         </Toolbar>

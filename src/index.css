@@ -75,6 +75,20 @@ code {
 .block {
   display: block;
 }
+.dot {
+  height: 10px;
+  width: 10px;
+}
+.notify {
+  position: absolute;
+  font-size: 14px;
+  top: 0;
+  left: 2px;
+}
+.notify-nav {
+  top: 2px;
+  left: 34px;
+}
 .inline {
   display: inline;
 }
@@ -100,7 +114,7 @@ code {
 .red {
   color: red;
 }
-.topNbottom{
+.topNbottom {
   border-bottom: 1px dotted #61ce70;
 }
 .white {
@@ -118,7 +132,7 @@ code {
 .reventlify {
   color: #7165e3;
 }
-.bg-reventlify{
+.bg-reventlify {
   background-color: #7165e3;
 }
 .wText {
@@ -147,7 +161,7 @@ code {
 .bottomShadowHover:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
-.greatOpacity{
+.greatOpacity {
   opacity: 50;
 }
 .hover:hover {

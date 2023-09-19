@@ -17,6 +17,7 @@ const Chats = ({ navAction }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user_id, token } = useSelector((state) => state.auth.user);
+  const { refresh } = useSelector((state) => state.auth);
   const [loading, setLoading] = useState(true);
   const [chats, setChats] = useState(testChats);
 
@@ -36,6 +37,7 @@ const Chats = ({ navAction }) => {
 
   const getConversations = useCallback(async () => {
     try {
+      dispatch(authActions.setRefreshFalse());
       await fetch(`${api}/user/get_conversations`, {
         method: "GET",
         headers: {
@@ -45,7 +47,8 @@ const Chats = ({ navAction }) => {
       }).then(async (res) => {
         const data = await res.json();
         if (res.status === 200) {
-          setChats(data);
+          setChats(data.rows);
+          dispatch(authActions.updateNotifications(data.notifications));
           return setLoading(false);
         } else if (res.status === 401 || res.status === 403) {
           return dispatch(authActions.logout());
@@ -60,6 +63,38 @@ const Chats = ({ navAction }) => {
   useEffect(() => {
     getConversations();
   }, [getConversations]);
+
+  useEffect(() => {
+    const getConversations = async () => {
+      setLoading(false);
+      try {
+        await fetch(`${api}/user/get_conversations`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+        }).then(async (res) => {
+          const data = await res.json();
+          if (res.status === 200) {
+            setChats(data.rows);
+            dispatch(authActions.updateNotifications(data.notifications));
+            return dispatch(authActions.setRefreshFalse());
+          } else if (res.status === 401 || res.status === 403) {
+            dispatch(authActions.setRefreshFalse());
+            return dispatch(authActions.logout());
+          } else {
+            return dispatch(authActions.setRefreshFalse());
+          }
+        });
+      } catch (error) {
+        return console.error(error.message);
+      }
+    };
+    if (refresh) {
+      getConversations();
+    }
+  }, [refresh, dispatch, token]);
   return (
     <>
       <div className={classes.chatHelper}>
@@ -135,13 +170,30 @@ const Chats = ({ navAction }) => {
                       </div>
                     </div>
                     <div className={`${classes.end}`}>
-                      <div className={` blogText`} style={{ fontSize: "14px" }}>
-                        {truncate(chat.message_text, {
-                          length: 30,
-                          // separator: /,? +/,
-                        })}
+                      <div
+                        className={`${classes.ender} blogText`}
+                        style={{ fontSize: "14px" }}
+                      >
+                        <span
+                          className={
+                            chat.seen === "no" && chat.sender_id !== user_id
+                              ? "bolder"
+                              : ""
+                          }
+                        >
+                          {truncate(chat.message_text, {
+                            length: 30,
+                            // separator: /,? +/,
+                          })}
+                        </span>
                       </div>
-                      {/* <div className="blogText"></div> */}
+                      {chat.seen === "no" && chat.sender_id !== user_id ? (
+                        <div className={`${classes.endee} blogText`}>
+                          <div className="circle bg-nunsa dot"></div>
+                        </div>
+                      ) : (
+                        ""
+                      )}
                     </div>
                   </div>
                 </div>

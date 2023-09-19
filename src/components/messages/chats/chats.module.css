@@ -25,9 +25,15 @@
 }
 .end {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  flex-direction: row;
   height: auto;
+}
+.ender{
+  flex: 1;
+}
+.endee{
+  display: flex;
+  align-items: center;
 }
 
 @media (min-width: 750px) {
