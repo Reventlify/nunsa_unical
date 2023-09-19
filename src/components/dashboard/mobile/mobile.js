@@ -212,7 +212,7 @@ export default function MobileDashboard({ children }) {
                   <SchoolIcon />
                 ) : index === 2 ? (
                   <>
-                    <span className="red notify notify-nav">
+                    <span className="bolder red notify notify-nav">
                       {user.notifications}
                     </span>{" "}
                     <MailIcon />
@@ -306,7 +306,7 @@ export default function MobileDashboard({ children }) {
             edge="end"
             onClick={toggleDrawer("right", true)}
           >
-            <span className="red notify">{user.notifications}</span>{" "}
+            <span className="bolder red notify">{user.notifications}</span>{" "}
             <MenuIcon />
           </IconButton>
         </Toolbar>

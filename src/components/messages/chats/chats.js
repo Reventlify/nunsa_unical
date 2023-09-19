@@ -98,8 +98,10 @@ const Chats = ({ navAction }) => {
   return (
     <>
       <div className={classes.chatHelper}>
-        {loading ? (
+        {loading && chats === testChats ? (
           <CustomLoader height={"90vh"} size={20} />
+        ) : !loading && chats === testChats ? (
+          ""
         ) : chats.length === 0 ? (
           <>
             <div className={`${classes.noChat}`}>
