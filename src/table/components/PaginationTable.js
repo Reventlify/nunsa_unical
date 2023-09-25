@@ -21,7 +21,7 @@ function PaginationTable({ students }) {
     ],
     []
   );
-  const data = useMemo(() => students, []);
+  const data = useMemo(() => students, [students]);
 
   const tableInstance = useTable(
     {

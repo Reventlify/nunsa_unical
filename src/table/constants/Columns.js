@@ -67,10 +67,11 @@ export const COLUMNS = [
     accessor: "student_id",
   },
   {
-    Header: "NOS Cleared",
+    Header: "Cleared",
+    // Header: "NOS Cleared",
     // Footer: "Id",
     accessor: "total_dues",
-    Cell: ({ cell }) => (Number(cell.value) === 0 ? "No" : "Yes"),
+    Cell: ({ cell }) => startWithCase(cell.value),
   },
   {
     Header: "State Of Origin",
