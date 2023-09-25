@@ -70,6 +70,7 @@ export const COLUMNS = [
     Header: "NOS Cleared",
     // Footer: "Id",
     accessor: "total_dues",
+    Cell: ({ cell }) => (Number(cell.value) === 0 ? "No" : "Yes"),
   },
   {
     Header: "State Of Origin",
