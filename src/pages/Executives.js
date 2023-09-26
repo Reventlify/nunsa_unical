@@ -41,7 +41,7 @@ const Executives = () => {
       <Nav />
       <Background button={false} text={bgText} />
       {/* NUNSA UNICAL EXECUTIVES */}
-      <div className="container margingTopOutrageous">
+      <div className="container marginTopOutrageous">
         <div className="container">
           <div className="lineForHeader">
             <h2 className="bolder">OUR ROLE</h2>
@@ -483,13 +483,13 @@ const Executives = () => {
           </div>
         </div>
 
-        <div className="centerDivH margingTopOutrageous">
+        <div className="centerDivH marginTopOutrageous">
           <div className="lineForHeader centerDivH" style={{ width: "100px" }}>
             <div className="theLine"></div>
           </div>
         </div>
 
-        <div className="container margingTopOutrageous">
+        <div className="container marginTopOutrageous">
           <div className="lineForHeader">
             <h2 className="bolder">OUR PATRONS</h2>
             <div className="theLine"></div>

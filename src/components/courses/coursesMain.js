@@ -26,7 +26,7 @@ const CoursesMain = () => {
   };
 
   return (
-    <div className="container margingTopOutrageous">
+    <div className="container marginTopOutrageous">
       <h4>PDF materials for all levels</h4>
       {years.map((year, i) => {
         return (

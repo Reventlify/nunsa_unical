@@ -33,7 +33,6 @@ const Signup = () => {
 
   //password visibility state
   const [show, setshow] = useState(false);
-  const [eye, setEye] = useState("fa-eye-slash");
   const pass = useRef();
   // const emailfoc = useRef();
   // error messages and status
@@ -60,7 +59,6 @@ const Signup = () => {
   //password visibility handler
   const showPassword = () => {
     setshow(!show);
-    show ? setEye("fa-eye-slash") : setEye("fa-eye");
     pass.current.type = show ? "password" : "text";
   };
 
@@ -481,7 +479,9 @@ const Signup = () => {
                   onClick={showPassword}
                   type="button"
                 >
-                  <i className={`fa-regular ${eye}`}></i>
+                  <i
+                    className={`fa-regular ${show ? "fa-eye-slash" : "fa-eye"}`}
+                  ></i>
                 </button>
               </span>
               <div id="emailHelp" className="form-text">

@@ -22,6 +22,7 @@ const Details = lazy(() => import("./pages/auth/Details"));
 const Class = lazy(() => import("./pages/auth/Class"));
 const Message = lazy(() => import("./pages/auth/Message"));
 const Courses = lazy(() => import("./pages/auth/Courses"));
+const Election = lazy(() => import("./pages/auth/Election"));
 const Chat = lazy(() => import("./components/messages/chat/chat"));
 const Approval = lazy(() => import("./components/courses/approval"));
 const ViewCourses = lazy(() =>
@@ -272,6 +273,18 @@ function App() {
             isLoggedIn ? (
               <Suspense fallback={<FullLoader />}>
                 <ViewCoursesPending />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
+          }
+        />
+        <Route
+          path="/student/election"
+          element={
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <Election />
               </Suspense>
             ) : (
               <LoginView />

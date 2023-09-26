@@ -125,7 +125,7 @@ const Subjects = () => {
       return (
         <>
           <MobileDashboard>
-            <div className="container margingTopOutrageous">
+            <div className="container marginTopOutrageous">
               <h6>
                 <ArrowBackIcon
                   className="hover"
@@ -145,7 +145,7 @@ const Subjects = () => {
     } else {
       return (
         <MobileDashboard>
-          <div className="container margingTopOutrageous">
+          <div className="container marginTopOutrageous">
             <h6>
               <ArrowBackIcon
                 className="hover"

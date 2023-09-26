@@ -24,7 +24,7 @@ const About = () => {
       <Nav />
       <Background button={false} text={bgText} />
       {/* About us */}
-      <div className="container margingTopOutrageous">
+      <div className="container marginTopOutrageous">
         <div className="container">
           <div className="lineForHeader">
             <h2 className="bolder">ABOUT US</h2>
@@ -71,7 +71,7 @@ const About = () => {
       </div>
 
       {/* About Nunsa */}
-      <div className="container margingTopOutrageous">
+      <div className="container marginTopOutrageous">
         <div className="container">
           <div className="lineForHeader">
             <h2 className="bolder">ABOUT NUNSA</h2>
@@ -115,7 +115,7 @@ const About = () => {
       </div>
 
       {/* Executives */}
-      <div className="container margingTopOutrageous topicFlex">
+      <div className="container marginTopOutrageous topicFlex">
         <div className="tFlex">
           <div className="container">
             <div className="lineForHeader">

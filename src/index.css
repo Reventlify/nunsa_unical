@@ -15,7 +15,7 @@ code {
   text-decoration: underline;
 }
 /* margins */
-.margingTopOutrageous {
+.marginTopOutrageous {
   margin-top: 4rem;
 }
 .pb-1 {
@@ -189,6 +189,24 @@ code {
   border: 1px solid;
   border-color: #61ce70;
   color: white;
+}
+.roborobo{
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.roborobo-1{
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.roborobo-2{
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 .bold {
   font-weight: 600;
@@ -380,7 +398,7 @@ code {
   .onPhoneNav {
     font-weight: 600;
   }
-  .margingTopOutrageous {
+  .marginTopOutrageous {
     margin-top: 6rem;
   }
   .topicFlex {

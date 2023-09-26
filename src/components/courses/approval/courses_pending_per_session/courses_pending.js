@@ -148,7 +148,7 @@ const ViewCoursesPending = () => {
     return (
       <>
         <MobileDashboard>
-          <div className="container margingTopOutrageous">
+          <div className="container marginTopOutrageous">
             <div>
               <h6 className="inline-block">
                 <ArrowBackIcon

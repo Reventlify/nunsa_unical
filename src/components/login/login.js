@@ -156,7 +156,7 @@ const LoginView = () => {
                         onClick={togglePasswordVisibility}
                         type="button"
                       >
-                        <i className={`fa-regular ${eye}`}></i>
+                        <i className={`fa-regular ${showPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
                       </button>
                     </span>
                     <div id="emailHelp" className="form-text">

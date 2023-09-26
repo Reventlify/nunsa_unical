@@ -253,7 +253,7 @@ const MaterialUpload = () => {
     ) {
       return (
         <MobileDashboard>
-          <div className="container margingTopOutrageous">
+          <div className="container marginTopOutrageous">
             <h3>
               <ArrowBackIcon
                 className="hover"

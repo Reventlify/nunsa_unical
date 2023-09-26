@@ -124,7 +124,7 @@ const Approval = () => {
       return (
         <>
           <MobileDashboard>
-            <div className="container margingTopOutrageous">
+            <div className="container marginTopOutrageous">
               <h4>
                 <ArrowBackIcon
                   className="hover"
@@ -145,7 +145,7 @@ const Approval = () => {
     } else {
       return (
         <MobileDashboard>
-          <div className="container margingTopOutrageous">
+          <div className="container marginTopOutrageous">
             <h4>
               <ArrowBackIcon
                 className="hover"

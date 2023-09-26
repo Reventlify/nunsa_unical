@@ -97,8 +97,7 @@ export default function MobileDashboard({ children }) {
 
   const navMaker = (text) => {
     if (
-      text.toLowerCase() === "notifications" ||
-      text.toLowerCase() === "election"
+      text.toLowerCase() === "notifications"
     ) {
       return;
     } else {

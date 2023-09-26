@@ -59,7 +59,7 @@ const Homepage = () => {
       />
 
       {/* welcome */}
-      <div className="centerDivH margingTopOutrageous">
+      <div className="centerDivH marginTopOutrageous">
         <img
           decoding="async"
           width="50"
@@ -91,7 +91,7 @@ const Homepage = () => {
       </div>
 
       {/* About us */}
-      <div className="container margingTopOutrageous topicFlex">
+      <div className="container marginTopOutrageous topicFlex">
         <div className="tFlex">
           <div className="container">
             <div className="lineForHeader">
@@ -164,7 +164,7 @@ const Homepage = () => {
       </div>
 
       {/* blog post */}
-      <div className="margingTopOutrageous container">
+      <div className="marginTopOutrageous container">
         <div className="container">
           <div className="lineForHeader">
             <h2 className="bolder">BLOG POSTS</h2>
@@ -237,7 +237,7 @@ const Homepage = () => {
       </div>
 
       {/* Executives */}
-      <div className="margingTopOutrageous container">
+      <div className="marginTopOutrageous container">
         <div className="container">
           <div className="lineForHeader">
             <h2 className="bolder">OUR EXECUTIVES</h2>
@@ -412,7 +412,7 @@ const Homepage = () => {
       </div>
 
       {/* Patrons */}
-      <div className="margingTopOutrageous container">
+      <div className="marginTopOutrageous container">
         <div className="container">
           <div className="lineForHeader">
             <h2 className="bolder">OUR PATRONS</h2>
@@ -481,7 +481,7 @@ const Homepage = () => {
       </div>
 
       {/* FAQs */}
-      <div className="margingTopOutrageous container">
+      <div className="marginTopOutrageous container">
         <div className="container">
           <div className="lineForHeader">
             <h2 className="bolder">Frequently Asked Questions(FAQs)</h2>
