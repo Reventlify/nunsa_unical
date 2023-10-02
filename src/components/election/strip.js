@@ -4,8 +4,10 @@ import screenSize from "../../utilities/screenSize";
 import { useEffect, useState } from "react";
 import classes from "./strip.module.css";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const MainStrip = ({ details }) => {
+  const navigate = useNavigate();
   const { election } = useSelector((state) => state.auth.user.user_permissions);
   const [screenWidth, setScreenWidth] = useState(screenSize());
 
@@ -21,6 +23,13 @@ export const MainStrip = ({ details }) => {
     };
   }, []);
 
+  const create = () => {
+    if (election) {
+      navigate("creation");
+    } else {
+      return;
+    }
+  };
   const supplier = details.length !== 0 ? details[0] : "";
   const start_date =
     details.length !== 0
@@ -48,6 +57,7 @@ export const MainStrip = ({ details }) => {
       <div
         className={`boxShadow centerDiv roborobo-1 ${election ? "hover" : ""}`}
         style={{ height: divHeight, marginTop: "20vh" }}
+        onClick={create}
       >
         <h2 className="blogText">No Current Election</h2>
         {election ? (
