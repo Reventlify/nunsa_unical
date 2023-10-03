@@ -37,16 +37,17 @@ export const MainStrip = ({ details }) => {
       : "";
 
   const isToday = (date) => {
-    const tomorrow = moment().add(1, "days").format("MMM D, YYYY");
+    const theDay = moment(date).format("MMM D, YYYY");
+    // const tomorrow = moment(date).add(1, "days").format("MMM D, YYYY");
     const today = moment().format("MMM D, YYYY");
-    const yesterday = moment().subtract(1, "days").format("MMM D, YYYY");
+    const yesterday = moment(date).subtract(1, "days").format("MMM D, YYYY");
 
-    if (date === today) {
+    if (theDay === today) {
       return "Today";
-    } else if (date === yesterday) {
+    } else if (theDay === yesterday) {
       return "Yesterday";
     } else {
-      return date;
+      return theDay;
     }
   };
 
@@ -55,8 +56,10 @@ export const MainStrip = ({ details }) => {
   if (details.length === 0) {
     return (
       <div
-        className={`boxShadow centerDiv roborobo-1 ${election ? "hover" : ""}`}
-        style={{ height: divHeight, marginTop: "20vh" }}
+        className={`boxShadow container centerDiv roborobo-1 ${
+          election ? "hover" : ""
+        }`}
+        style={{ height: divHeight }}
         onClick={create}
       >
         <h2 className="blogText">No Current Election</h2>
@@ -69,18 +72,29 @@ export const MainStrip = ({ details }) => {
     );
   } else {
     return (
-      <div className="boxShadow roborobo-1">
+      <div className="hover blogText boxShadow container roborobo-1 pt-3 pb-3">
+        <h4 className="bolder">Election Details</h4>
         <div>
-          <div>{supplier.sch_session} Session</div>
           <div>
+            <span className="nunsa bold">Election Session</span> -{" "}
+            {supplier.sch_session}
+          </div>
+          <div>
+            <span className="black bold">Eleco</span> -{" "}
             {startWithCase(
               `${supplier.student_fname} ${supplier.student_lname}`
             )}
           </div>
         </div>
         <div>
-          <div>{startWithCase(supplier.election_status)}</div>
-          <div>{isToday(start_date)}</div>
+          <div>
+            <span className="black bold">Election Status</span> -{" "}
+            {startWithCase(supplier.election_status)}
+          </div>
+          <div>
+            <span className="black bold">Election Date</span> -{" "}
+            {isToday(supplier.election_date)}
+          </div>
         </div>
       </div>
     );

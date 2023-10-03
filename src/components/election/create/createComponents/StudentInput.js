@@ -1,7 +1,14 @@
 import { motion } from "framer-motion";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { startWithCase } from "../../../../utilities/text";
 
-const StudentInput = ({ onChange, verified, eleco, elecoName }) => {
+const StudentInput = ({
+  onChange,
+  verified,
+  eleco,
+  elecoName,
+  deleteAction,
+}) => {
   return (
     <div className="mb-3">
       <label htmlFor="mat_no" className="form-label">
@@ -35,7 +42,12 @@ const StudentInput = ({ onChange, verified, eleco, elecoName }) => {
         </motion.div>
       )}
       {verified ? (
-        <div className="mt-2 nunsa">{startWithCase(elecoName)}</div>
+        <div className="mt-2 nunsa">
+          <span>{startWithCase(elecoName)}</span>
+          <span className="float-right hover red" onClick={deleteAction}>
+            <DeleteIcon />
+          </span>
+        </div>
       ) : (
         ""
       )}

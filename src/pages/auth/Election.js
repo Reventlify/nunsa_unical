@@ -45,7 +45,7 @@ const Election = () => {
   } else {
     return (
       <MobileDashboard>
-        <div className="marginTopOutrageous fullscreen-20 container pt-4">
+        <div className="fullscreen container centerDiv">
           <MainStrip details={electionDetails} />
         </div>
       </MobileDashboard>
