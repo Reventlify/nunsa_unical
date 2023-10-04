@@ -10,6 +10,7 @@ import LoginView from "./components/login/login";
 import Signup from "./components/signup/signup";
 import CreatePostMain from "./components/createPost/createPostMain";
 import Four0Four from "./components/error/404error";
+import TestChart from "./components/charts/TestChart";
 import { io } from "socket.io-client";
 import { authActions } from "./store/auth-slice";
 import { api } from "./link/API";
@@ -99,6 +100,7 @@ function App() {
         <Route path="/login" element={<LoginView />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/student/create_post" element={<CreatePostMain />} />
+        <Route path="/test/chart" element={<TestChart />} />
         <Route path="*" element={<Four0Four />} />
 
         {/* lazy loaded routes */}

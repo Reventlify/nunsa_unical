@@ -5,10 +5,13 @@ import { useEffect, useState } from "react";
 import classes from "./strip.module.css";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 export const MainStrip = ({ details }) => {
   const navigate = useNavigate();
-  const { election } = useSelector((state) => state.auth.user.user_permissions);
+  const { election, electionCo } = useSelector(
+    (state) => state.auth.user.user_permissions
+  );
   const [screenWidth, setScreenWidth] = useState(screenSize());
 
   useEffect(() => {
@@ -51,6 +54,13 @@ export const MainStrip = ({ details }) => {
     }
   };
 
+  const timeHandler = () => {
+    const theTime = supplier.election_time;
+    const start_time = theTime.split(":");
+    const newTime = `${start_time[0]}${start_time[1]}${start_time[2]}`;
+    return newTime;
+  };
+
   const divHeight = screenWidth > 750 ? "130px" : "200px";
 
   if (details.length === 0) {
@@ -72,15 +82,25 @@ export const MainStrip = ({ details }) => {
     );
   } else {
     return (
-      <div className="hover blogText boxShadow container roborobo-1 pt-3 pb-3">
-        <h4 className="bolder">Election Details</h4>
+      <div className="blogText boxShadow container roborobo-1 pt-3 pb-3">
+        <h4 className="bolder">
+          Election Details&nbsp;
+          {electionCo ? (
+            <span className="float-right reventlify hover">
+              <SettingsIcon />
+            </span>
+          ) : (
+            ""
+          )}
+        </h4>
         <div>
           <div>
-            <span className="nunsa bold">Election Session</span> -{" "}
+            <span className="nunsa bold">Election Session</span>
+            &nbsp;&nbsp;—&nbsp;&nbsp;
             {supplier.sch_session}
           </div>
           <div>
-            <span className="black bold">Eleco</span> -{" "}
+            <span className="black bold">Eleco</span>&nbsp;&nbsp;—&nbsp;&nbsp;
             {startWithCase(
               `${supplier.student_fname} ${supplier.student_lname}`
             )}
@@ -88,13 +108,23 @@ export const MainStrip = ({ details }) => {
         </div>
         <div>
           <div>
-            <span className="black bold">Election Status</span> -{" "}
+            <span className="black bold">Election Status</span>
+            &nbsp;&nbsp;—&nbsp;&nbsp;
             {startWithCase(supplier.election_status)}
           </div>
           <div>
-            <span className="black bold">Election Date</span> -{" "}
+            <span className="black bold">Election Date</span>
+            &nbsp;&nbsp;—&nbsp;&nbsp;
             {isToday(supplier.election_date)}
           </div>
+          <div>
+            <span className="black bold">Time</span>&nbsp;&nbsp;—&nbsp;&nbsp;
+            {moment(timeHandler(), "hmmss").format("h:mm a")}
+          </div>
+        </div>
+        <div className="reventlify mt-2 hover limiter">Election dashboard</div>
+        <div className="reventlify mt-2 hover limiter">
+          Candidate application
         </div>
       </div>
     );
