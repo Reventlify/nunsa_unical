@@ -9,6 +9,8 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  Label,
+  LabelList,
   ResponsiveContainer,
 } from "recharts";
 
@@ -75,11 +77,11 @@ const TestChart = () => {
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis
+            {/* <XAxis
               dataKey={"name"}
               angle={90}
               tick={<CustomizedAxisTick />}
-            />
+            /> */}
             {/* <XAxis
               label={{
                 value: "Candidates",
@@ -87,16 +89,27 @@ const TestChart = () => {
                 position: "insideLeft",
               }}
             /> */}
+            <XAxis dataKey="name" tick={false}>
+              <Label
+                value="Presidential Election Result"
+                offset={0}
+                position="insideBottom"
+              />
+            </XAxis>
             <YAxis
               label={{
                 value: "No Of Votes",
                 angle: -90,
                 position: "insideLeft",
+                textAnchor: "middle",
               }}
             />
             <Tooltip />
             <Legend />
-            <Bar dataKey="votes" fill="#8884d8" />
+            {/* <Bar dataKey="votes" fill="#8884d8" /> */}
+            <Bar dataKey="votes" fill="#82ca9d">
+              <LabelList dataKey="votes" position="top" />
+            </Bar>
             {/* <Bar dataKey="uv" fill="#82ca9d" /> */}
           </BarChart>
         </div>
