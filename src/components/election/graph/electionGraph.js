@@ -17,10 +17,47 @@ import {
 import { startWithCase } from "../../../utilities/text";
 import { useState } from "react";
 import { BeatLoader } from "react-spinners";
+import { api } from "../../../link/API";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../../../store/auth-slice";
 
-const ElectionGraph = ({ details, seatName, vote }) => {
+const ElectionGraph = ({ details, seatName, vote, setter }) => {
+  const dispatch = useDispatch();
   const [ongoing, setOngoing] = useState(false);
-  const [dynamicLoader, setDynamicLoader] = useState("");
+  const [failed, setFailed] = useState(false);
+  const [applying, setApplying] = useState(false);
+  const [dynamicLoader, setDynamicLoader] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+
+  const applyHandler = async (applyFor) => {
+    try {
+      setFailed(false);
+      setApplying(true);
+      //api call for sending the user data to the backend
+      const response = await fetch(`${api}/user/vote`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({
+          candidate_id: applyFor,
+        }),
+      });
+
+      if (response.status === 401 || response.status === 403) {
+        return dispatch(authActions.logout());
+      } else if (response.status === 200) {
+        const data = await response.json();
+        setter(data);
+        return window.location.reload(true)
+      } else {
+        return setApplying(false);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const openAndClose = () => {
     ongoing ? setOngoing(false) : setOngoing(true);
@@ -30,7 +67,7 @@ const ElectionGraph = ({ details, seatName, vote }) => {
       <div>
         <button
           className={
-            "btn bottomShadow btn-info"
+            "btn bottomShadow btn-info mb-3"
             // ongoing
             //   ? "btnct btn btn-secondary"
             //   : "btn bottomShadow btnct btnct-nunsa"
@@ -40,7 +77,7 @@ const ElectionGraph = ({ details, seatName, vote }) => {
           onClick={openAndClose}
         >
           <span>
-            {/* Candidates &nbsp;&nbsp; */}
+            {startWithCase(seatName)}&nbsp;
             {!ongoing ? (
               <KeyboardArrowDownIcon style={{ color: "white" }} />
             ) : (
@@ -50,13 +87,26 @@ const ElectionGraph = ({ details, seatName, vote }) => {
         </button>
       </div>
       {ongoing ? (
-        <div className="display-flex flex-direction-column mt-3">
+        <div className="display-flex flex-direction-column mt-3 mb-3">
           {details.map((candidate) => {
             return (
-              <div key={candidate.candidate_id} className="blogText candidateDiv">
+              <div
+                key={candidate.candidate_id}
+                className="blogText candidateDiv"
+              >
                 {candidate.candidate_name}{" "}
-                <button type="button" className="float-right btn btn-success">
-                  Vote
+                <button
+                  type="button"
+                  className={
+                    applying
+                      ? "float-right btnct btn  btn-secondary"
+                      : "float-right btn btn-success"
+                  }
+                  onClick={() => {
+                    applyHandler(candidate.candidate_id);
+                  }}
+                >
+                  {candidate.votes} &nbsp; Vote
                 </button>
               </div>
             );
@@ -65,11 +115,11 @@ const ElectionGraph = ({ details, seatName, vote }) => {
       ) : (
         ""
       )}
-      <div className="mt-3 container centerDivH">
+      {/* <div className="mt-3 container centerDivH">
         <BarChart
           width={330}
           height={250}
-          data={details}
+          data={dati}
           margin={{
             top: 5,
             right: 30,
@@ -99,7 +149,7 @@ const ElectionGraph = ({ details, seatName, vote }) => {
             <LabelList dataKey="votes" position="top" />
           </Bar>
         </BarChart>
-      </div>
+      </div> */}
     </>
   );
 };

@@ -9,10 +9,13 @@ import FullLoader from "../loader/fullLoader/FullLoader";
 
 const ElectionDashboard = () => {
   const [checking, setChecking] = useState(true);
-  const [apply, setApply] = useState({});
+  const [apply, setApply] = useState([]);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
+  const setter = (det) => {
+    setApply(det);
+  };
   useEffect(() => {
     const getVotes = async () => {
       try {
@@ -49,28 +52,25 @@ const ElectionDashboard = () => {
         <div className="container marginTopOutrageous">
           <div className="pt-3">
             <div className="">
-              {
-                apply.president.map((details) => {
-                  return (
-                    <ElectionGraph details={details} seatName={"President"} />
-                  )
-                })
-              }
+              <ElectionGraph setter={setter} details={apply.president} seatName={"President"} />
             </div>
             <div className="">
               <ElectionGraph
+                setter={setter}
                 details={apply.vPresident}
                 seatName={"vice President"}
               />
             </div>
             <div className="">
               <ElectionGraph
+                setter={setter}
                 details={apply.finSec}
                 seatName={"financial secretary"}
               />
             </div>
             <div className="">
               <ElectionGraph
+                setter={setter}
                 details={apply.genSec}
                 seatName={"general secretary"}
               />
@@ -80,30 +80,35 @@ const ElectionDashboard = () => {
             </div>
             <div className="">
               <ElectionGraph
+                setter={setter}
                 details={apply.dirOfWelfare}
                 seatName={"director of welfare"}
               />
             </div>
             <div className="">
               <ElectionGraph
+                setter={setter}
                 details={apply.dirOfSocials}
                 seatName={"director of socials"}
               />
             </div>
             <div className="">
               <ElectionGraph
+                setter={setter}
                 details={apply.dirOfSports}
                 seatName={"director of sports"}
               />
             </div>
             <div className="">
               <ElectionGraph
+                setter={setter}
                 details={apply.dirOfHealth}
                 seatName={"director of health"}
               />
             </div>
             <div className="">
               <ElectionGraph
+                setter={setter}
                 details={apply.dirOfInfo}
                 seatName={"director of information"}
               />

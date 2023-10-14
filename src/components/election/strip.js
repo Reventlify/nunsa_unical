@@ -133,7 +133,7 @@ export const MainStrip = ({ details }) => {
         </div>
         <div
           className="reventlify mt-2 hover limiter"
-          // onClick={toDashboard}
+          onClick={toDashboard}
         >
           Election dashboard
         </div>
