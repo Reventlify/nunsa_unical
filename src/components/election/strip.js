@@ -69,7 +69,9 @@ export const MainStrip = ({ details }) => {
   const apply = () => {
     navigate("apply");
   };
-
+  const approve = () => {
+    navigate("approve");
+  };
   if (details.length === 0) {
     return (
       <div
@@ -93,7 +95,7 @@ export const MainStrip = ({ details }) => {
         <h4 className="bolder">
           Election Details&nbsp;
           {electionCo ? (
-            <span className="float-right reventlify hover">
+            <span className="float-right reventlify hover" onClick={approve}>
               <SettingsIcon />
             </span>
           ) : (
