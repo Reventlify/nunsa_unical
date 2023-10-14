@@ -21,6 +21,57 @@ members, and provide more efficient services to the
 community they serve. This strategic move demonstrates
 the President's commitment to keeping NUNSA relevant and
 responsive in the ever-evolving digital age.`;
+// election result
+const electionResult = [
+  {
+    name: "balewa amure",
+    // uv: 4000,
+    votes: 0,
+    // votes: 500,
+    amt: 2400,
+  },
+  {
+    name: "suliya chale",
+    // uv: 3000,
+    votes: 1,
+    // votes: 200,
+    amt: 2210,
+  },
+  {
+    name: "dan chima",
+    // uv: 2000,
+    votes: 0,
+    // votes: 50,
+    amt: 2290,
+  },
+  {
+    name: "bobo D",
+    // uv: 2780,
+    votes: 0,
+    // votes: 450,
+    amt: 2000,
+  },
+  {
+    name: "roller rola",
+    // uv: 2780,
+    votes: 0,
+    // votes: 450,
+    amt: 2010,
+  },
+];
+
+const totalResult = {
+  president: electionResult,
+  vPresident: electionResult,
+  finSec: electionResult,
+  genSec: electionResult,
+  treasurer: electionResult,
+  dirOfWelfare: electionResult,
+  dirOfSocials: electionResult,
+  dirOfSports: electionResult,
+  dirOfHealth: electionResult,
+  dirOfInfo: electionResult,
+};
 // testPeople
 const testPeople = [
   {
@@ -360,5 +411,15 @@ const years = [
   {
     year: "Year_5",
   },
-]
-export { testChats, testPost, testComments, testReplies, testPeople, testCourses, years };
+];
+export {
+  electionResult,
+  testChats,
+  testPost,
+  testComments,
+  testReplies,
+  testPeople,
+  testCourses,
+  years,
+  totalResult,
+};

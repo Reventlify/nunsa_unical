@@ -13,33 +13,8 @@ import {
   LabelList,
   ResponsiveContainer,
 } from "recharts";
+import { electionResult } from "../../testData/tesData";
 
-const data = [
-  {
-    name: "balewa amure",
-    // uv: 4000,
-    votes: 500,
-    amt: 2400,
-  },
-  {
-    name: "suliya chale",
-    // uv: 3000,
-    votes: 200,
-    amt: 2210,
-  },
-  {
-    name: "dan chima",
-    // uv: 2000,
-    votes: 50,
-    amt: 2290,
-  },
-  {
-    name: "bobo D",
-    // uv: 2780,
-    votes: 450,
-    amt: 2000,
-  },
-];
 
 const CustomizedAxisTick = ({ x, y, stroke, payload }) => {
   return (
@@ -68,7 +43,7 @@ const TestChart = () => {
           <BarChart
             width={330}
             height={250}
-            data={data}
+            data={electionResult}
             margin={{
               top: 5,
               right: 30,

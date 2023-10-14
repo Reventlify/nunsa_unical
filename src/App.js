@@ -27,6 +27,16 @@ const Election = lazy(() => import("./pages/auth/Election"));
 const CreateElection = lazy(() =>
   import("./components/election/create/createElection")
 );
+const ElectionDashboard = lazy(() =>
+  import("./components/election/electionDashboard")
+);
+const ElectionApply = lazy(() =>
+  import("./components/election/apply/electionApply")
+);
+const ElectionApprove = lazy(() =>
+  import("./components/election/approve/approve")
+);
+const StartElection = lazy(() => import("./components/election/start/start"));
 const Chat = lazy(() => import("./components/messages/chat/chat"));
 const Approval = lazy(() => import("./components/courses/approval"));
 const ViewCourses = lazy(() =>
@@ -101,6 +111,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/student/create_post" element={<CreatePostMain />} />
         <Route path="/test/chart" element={<TestChart />} />
+        {/* <Route path="/student/election/apply" element={<ElectionApply />} /> */}
         <Route path="*" element={<Four0Four />} />
 
         {/* lazy loaded routes */}
@@ -302,6 +313,54 @@ function App() {
             isLoggedIn ? (
               <Suspense fallback={<FullLoader />}>
                 <CreateElection />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
+          }
+        />
+        <Route
+          path="/student/election/status"
+          element={
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <StartElection />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
+          }
+        />
+        <Route
+          path="/student/election/dashboard"
+          element={
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <ElectionDashboard />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
+          }
+        />
+        <Route
+          path="/student/election/apply"
+          element={
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <ElectionApply />
+              </Suspense>
+            ) : (
+              <LoginView />
+            )
+          }
+        />
+        <Route
+          path="/student/election/approve"
+          element={
+            isLoggedIn ? (
+              <Suspense fallback={<FullLoader />}>
+                <ElectionApprove />
               </Suspense>
             ) : (
               <LoginView />

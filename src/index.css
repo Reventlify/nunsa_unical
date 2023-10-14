@@ -231,6 +231,15 @@ code {
   margin-left: auto;
   margin-right: auto;
 }
+.display-flex{
+  display: flex;
+}
+.display-flex_V{
+  justify-content: center;
+}
+.display-flex_H{
+  align-items: center;
+}
 .flex-row {
   display: flex;
   flex-direction: row;
@@ -312,6 +321,12 @@ code {
   width: 40%;
   height: 4px;
 }
+.flex-direction-row{
+  flex-direction: row;
+}
+.flex-direction-column{
+  flex-direction: column;
+}
 .topicFlex {
   display: flex;
   flex-direction: column;
@@ -363,6 +378,12 @@ code {
 }
 .blogText {
   color: #777;
+}
+.candidateDiv{
+  border-top: #61ce70 1px solid;
+  border-bottom: #61ce70 1px solid;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 .blogFoot {
   border-top: 1px solid #adadad;

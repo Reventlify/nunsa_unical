@@ -63,6 +63,13 @@ export const MainStrip = ({ details }) => {
 
   const divHeight = screenWidth > 750 ? "130px" : "200px";
 
+  const toDashboard = () => {
+    navigate("dashboard");
+  };
+  const apply = () => {
+    navigate("apply");
+  };
+
   if (details.length === 0) {
     return (
       <div
@@ -122,8 +129,10 @@ export const MainStrip = ({ details }) => {
             {moment(timeHandler(), "hmmss").format("h:mm a")}
           </div>
         </div>
-        <div className="reventlify mt-2 hover limiter">Election dashboard</div>
-        <div className="reventlify mt-2 hover limiter">
+        <div className="reventlify mt-2 hover limiter" onClick={toDashboard}>
+          Election dashboard
+        </div>
+        <div className="reventlify mt-2 hover limiter" onClick={apply}>
           Candidate application
         </div>
       </div>
