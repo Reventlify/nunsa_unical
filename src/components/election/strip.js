@@ -129,7 +129,10 @@ export const MainStrip = ({ details }) => {
             {moment(timeHandler(), "hmmss").format("h:mm a")}
           </div>
         </div>
-        <div className="reventlify mt-2 hover limiter" onClick={toDashboard}>
+        <div
+          className="reventlify mt-2 hover limiter"
+          // onClick={toDashboard}
+        >
           Election dashboard
         </div>
         <div className="reventlify mt-2 hover limiter" onClick={apply}>
