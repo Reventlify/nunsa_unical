@@ -56,7 +56,7 @@ function PaginationTable({ students }) {
           <div className="container mt-2">
             <h6 className="white">
               Filtered Students ({page.length} out of{" "}
-              {preGlobalFilteredRows.length})
+              776)
             </h6>
           </div>
         ) : (

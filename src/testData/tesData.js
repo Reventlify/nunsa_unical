@@ -21,6 +21,7 @@ members, and provide more efficient services to the
 community they serve. This strategic move demonstrates
 the President's commitment to keeping NUNSA relevant and
 responsive in the ever-evolving digital age.`;
+// {preGlobalFilteredRows.length}
 // election result
 const electionResult = [
   {
