@@ -39,23 +39,22 @@ const ElectionGraph = ({ details, seatName, vote }) => {
           // disabled={ongoing ? true : false}
           onClick={openAndClose}
         >
-          {dynamicLoader !== `President` ? (
-            <span>
-              {/* Candidates &nbsp;&nbsp; */}
-              {!ongoing ? <KeyboardArrowDownIcon style={{ color: "white" }} /> : <KeyboardArrowUpIcon style={{ color: "white" }} />}
-              
-            </span>
-          ) : (
-            <BeatLoader size="12px" color="#fff" loading={true} />
-          )}
+          <span>
+            {/* Candidates &nbsp;&nbsp; */}
+            {!ongoing ? (
+              <KeyboardArrowDownIcon style={{ color: "white" }} />
+            ) : (
+              <KeyboardArrowUpIcon style={{ color: "white" }} />
+            )}
+          </span>
         </button>
       </div>
       {ongoing ? (
         <div className="display-flex flex-direction-column mt-3">
           {details.map((candidate) => {
             return (
-              <div key={candidate.amt} className="blogText candidateDiv">
-                {candidate.name}{" "}
+              <div key={candidate.candidate_id} className="blogText candidateDiv">
+                {candidate.candidate_name}{" "}
                 <button type="button" className="float-right btn btn-success">
                   Vote
                 </button>
@@ -79,7 +78,7 @@ const ElectionGraph = ({ details, seatName, vote }) => {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" tick={false}>
+          <XAxis dataKey="candidate_name" tick={false}>
             <Label
               value={`${startWithCase(seatName)}`}
               offset={0}

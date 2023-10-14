@@ -128,7 +128,7 @@ export const MainStrip = ({ details }) => {
           </div>
           <div>
             <span className="black bold">Time</span>&nbsp;&nbsp;—&nbsp;&nbsp;
-            {moment(timeHandler(), "hmmss").format("h:mm a")}
+            {/* {moment(timeHandler(), "hmmss").format("h:mm a")} */} 4:00 pm
           </div>
         </div>
         <div
